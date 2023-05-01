@@ -1,2 +1,2 @@
 # codesbyshrey.github.io
-Personal Portfolio
+Personal Blog / Portfolio
