@@ -3,4 +3,21 @@
 * {
     margin: 0;
     padding: 0;
+    background-color: #039497
+}
+
+main {
+    background-color: #039497;
+    padding: 10px;
+
+}
+
+.socialink {
+    color: black;
+    text-decoration: none;
+}
+.projectlink {
+    color: blue;
+    text-decoration: underline;
+    text-decoration-color: black;
 }
