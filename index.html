@@ -1,188 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./css/index.css">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-     <title> Shreyas Sriram @codesbyshrey </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyas Sriram | Human Centered Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        .heading-font {
+            font-family: 'Space+Grotesk', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .philosophy-line {
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-<body>
-     <div>
-          <p class="text-center"> THIS PAGE IS STILL UNDER DEVELOPMENT AS A REACT-BASED PORTFOLIO IS INBOUND</p>
-     </div>
-     <main>
-          <!-- <article> Article </article>
-          <figure> Figure </figure> -->
-          <h1 class="text-center"> SHREYAS SRIRAM </h1>
-          <h5 class="text-center"> Sammamish, WA | 201.574.7397 | <a class="email" href="mailto:shreyassriram3@gmail.com" target="blank"> shreyassriram3@gmail.com </a> <hr/>
-          <p class="text-center"> Former EMT seeking to work with biometric wearables (BS Biomedical Engineering 2019 @ RPI) to help improve patient healthspan. The impact of biometric data is immense for emergency responders, ER nurses, and patients themselves. My ideal is to incentivize people to improve their own physiological hygiene. </br>
-          <hr>
-          <h2 class="text-center"> TECHNICAL SKILLS</h2>
-          <table class="table">
-               <tr>
-                    <th> Languages </th>
-                    <th> Frameworks/Libraries </th>
-                    <th> Databases </th>
-                    <th> Tools </th>
-                    <th> Extra</th>
-               </tr>
-               <tr>
-                    <th>
-                         <ul>
-                              <li> Python</li>
-                              <li> Javascript</li>
-                              <li> Java </li>
-                              <li> HTML 5 / CSS 3</li>
-                         </ul>
-                    </th>
-                    <th>
-                         <ul>
-                              <li>Numpy</li>
-                              <li> Pandas</li>
-                              <li> Flask </li>
-                              <li> React</li>
-                              <li> Bootstrap</li>
-                         </ul>
-                    </th>
-                    <th>
-                         <ul>
-                              <li> MySQL</li>
-                              <li> MongoDB</li>
-                              <li> SQL </li>
-                         </ul>
-                    </th>
-                    <th>
-                         <ul>
-                              <li> Anaconda</li>
-                              <li> PyCharm </li>
-                              <li> Xcode </li>
-                              <li> MATLAB </li>
-                              <li> Postman </li>
-                         </ul>
-                    </th>
-                    <th>
-                         <ul>
-                              <li> Cmder</li>
-                              <li> Github</li>
-                              <li> GitBash </li>
-                              <li> Powershell</li>
-                         </ul>
-                    </th>
-               </tr>
-          </table>
-          <hr>
-          <h2 class="text-center"> My Social Links </h2>
-          <!-- target="_blank" in anchor tags automatically opens in new tab -->
-          <img src="./images/github.jpg" height="20" width="20">
-          <a class="socialink" href="https://github.com/codesbyshrey" target="_blank"> GITHUB </a> <br>
-          <a class="socialink" href="https://leetcode.com/codesbyshrey/" target="_blank"> LEETCODE </a> <br>
-          <img src="./images/linked.jpg" height="20" width="20">
-          <a class="socialink" href="https://www.linkedin.com/in/shreyas-sriram/" target="_blank"> LINKEDIN </a> <br>
-          <a class="socialink" href="https://hackerrank.com/codesbyshrey" target="_blank"> HACKERRANK </a> <br>
-          <!-- Maybe some kind of a select button among the other websites to click on that link? -->
-          <hr>
-          <h2 class="text-center"> PROJECTS / EXPERIENCE  </h2>
-          <table class="table table-3">
-               <tr>
-                    <th> Role (Company)</th>
-                    <th> Project Github </th>
-                    <th> Description </th>
-                    <th> Technologies </th>
-                    <th> Time </th>
-               </tr>
-               <tr>
-                    <td> Full-Stack Developer (Personal Projects) </td>
-                    <td> <a class="projectlink" href="https://github.com/codesbyshrey/CodingDojoCommerce"> Coding Dojo
-                              Commerce</a></td>
-                    <td>
-                         <p> eCommerce Project built with MERN</p>
-                    </td>
-                    <td> MERN: MongoDB, Express, ReactJS, NodeJS</td>
-                    <td> April 2023</td>
-               </tr>
-          </table>
-          <hr>
-          <h2 class="text-center"> EDUCATION </h2>
-          <div>
-               <p><strong>Coding Dojo</strong> - Full Time Software Development (Jan 2023 - April 2023) </p> <img src="./images/dojo.jpg" width="50">
-               <table class="table">
-                    <tr>
-                         <th>Front-End:</th>
-                         <th>Python:</th>
-                         <th>JavaScript:</th>
-                         <th>Database:</th>
-                         <th>Concepts:</th>
-                    </tr>
-                    <tr>
-                         <td>HTML5</td>
-                         <td>Django</td>
-                         <td>Express</td>
-                         <td>MySQL</td>
-                         <td>AJAX</td>
-                    </tr>
-                    <tr>
-                         <td>CSS3</td>
-                         <td>Flask</td>
-                         <td>Mongoose</td>
-                         <td>MongoDB</td>
-                         <td>OOP</td>
-                    </tr>
-                    <tr>
-                         <td>Bootstrap</td>
-                         <td>Unitest</td>
-                         <td>React</td>
-                         <td> </td>
-                         <td>RESTful Routing</td>
-                    </tr>
-               </table>
-          </div>
-          <hr>
-          <!-- Add a link for the codingdojo page on the website -->
-          <!-- Make CodingDojo a Link to the website -->
-          <!-- Add a link for the codingdojo page on the website -->
-          <!-- comment to practice moving lines -->
-          <!-- comment to practice moving lines -->
-          <h3> Checklist of Inbound Implementations </h3>
-          <ul>
-               <li> Select JS to Organize Projects/Experience </li>
-               <li> Media and Linking </li>
-               <li> CSS Formatting </li>
-               <li> Website </li>
-               <li> Progress Heatmap</li>
-               <li> Personal Interests </li>
-               <li> Coding Dojo </li>
-          </ul>
-          <!-- <section>
-               Section is at bottom of main.
-          </section> -->
+<body class="min-h-screen selection:bg-pink-500 selection:text-white">
 
-          <!-- <h3> Contact Me! </h3>
-          <form action="/processContactForm" method="post">
-               <div>
-                    <label>Name: </label>
-                    <input type="text" name="name" placeholder="Your name...">
-               </div>
-               <div>
-                    <label>Email: </label>
-                    <input type="text" name="email" placeholder="Your email...">
-               </div>
-               <div>
-                    <input type="checkbox" name="newletter" id="newletter" checked>
-                    <label for="contact"> You would like to be updated about progress in my career :) </label>
-               </div>
-               <input type="submit" value="Email Me!">
-          </form> -->
+    <main class="max-w-7xl mx-auto px-6 py-12 lg:py-16 space-y-16">
+        
+        <!-- Top Row: Identity vs About -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <!-- Name & Titles -->
+            <div class="lg:col-span-5">
+                <h1 class="text-6xl font-bold heading-font mb-6 tracking-tight">
+                    Shreyas <span class="text-amber-400">Sriram</span>
+                </h1>
+                <div class="space-y-1 text-xl text-slate-400 font-light italic">
+                    <p>Human Factors Engineer</p>
+                    <p>Biomechanics Specialist</p>
+                    <p>Immersive Interaction Designer</p>
+                </div>
+                
+                <div class="flex items-center space-x-5 mt-8">
+                    <a href="https://linkedin.com/in/shreyas-sriram" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="22"></i></a>
+                    <a href="https://github.com/codesbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="GitHub"><i data-lucide="github" size="22"></i></a>
+                    <a href="https://substack.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="Substack"><i data-lucide="newspaper" size="22"></i></a>
+                    <a href="https://medium.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="Medium"><i data-lucide="pen-tool" size="22"></i></a>
+                    <a href="mailto:shreyassriram3@gmail.com" class="text-slate-500 hover:text-amber-400 transition-colors" title="Email"><i data-lucide="mail" size="22"></i></a>
+                </div>
+            </div>
 
-     </main>
+            <!-- Large About -->
+            <div class="lg:col-span-7">
+                <h2 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">About</h2>
+                <p class="text-2xl font-light text-slate-200 leading-snug">
+                    Biomedical engineer with clinical experience as an EMT. I architect <span class="text-amber-400 font-medium">AI systems</span> and multimodal physical interfaces that bridge the gap between human cognition and technical execution.
+                </p>
+            </div>
+        </div>
 
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-          crossorigin="anonymous"></script>
+        <!-- Middle Row: Concepts/Philosophy vs Recent Work -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Left: Frameworks -->
+            <div class="lg:col-span-5 space-y-12">
+                <!-- Applied Concepts -->
+                <section>
+                    <h3 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">Applied Concepts</h3>
+                    <div class="space-y-4 font-mono text-sm font-bold">
+                        <div class="flex justify-between items-center glass-card p-5 rounded-lg border-l-4 border-blue-500">
+                            <span class="text-blue-400 uppercase tracking-tighter">Perception</span>
+                            <span class="text-slate-600">&rarr;</span>
+                            <span class="text-blue-400">Interaction (MS)</span>
+                        </div>
+                        <div class="flex justify-between items-center glass-card p-5 rounded-lg border-l-4 border-pink-500">
+                            <span class="text-pink-500 uppercase tracking-tighter">Propulsion</span>
+                            <span class="text-slate-600">&rarr;</span>
+                            <span class="text-pink-500">Locomotion (BS)</span>
+                        </div>
+                    </div>
+                </section>
 
-     <script src="./js/index.js"></script>
+                <!-- Process Philosophy -->
+                <section>
+                    <h2 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">Process Philosophy</h2>
+                    <ul class="space-y-3 text-lg font-medium text-slate-300 uppercase tracking-[0.2em]">
+                        <li class="hover:text-amber-400 transition-colors">Ecological Awareness</li>
+                        <li class="hover:text-amber-400 transition-colors">Intentional Attention</li>
+                        <li class="hover:text-amber-400 transition-colors">Embodied Expression</li>
+                        <li class="text-amber-400 font-bold border-l-2 border-amber-400 pl-4 group flex items-center justify-between">
+                            <a href="https://practiceintuition.substack.com" target="_blank" class="hover:underline flex items-center gap-2">
+                                Practice Intuition
+                                <i data-lucide="external-link" size="14" class="opacity-50"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Systems Level Solutions -->
+                <section>
+                    <h3 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">Systems-Level Solutions</h3>
+                    <div class="space-y-4">
+                        <div class="glass-card p-6 rounded-xl">
+                            <p class="text-slate-300 font-medium tracking-widest uppercase text-sm">Patient Care Continuum</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl">
+                            <p class="text-slate-300 font-medium tracking-widest uppercase text-sm">Spectrum of End-Users</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right: Recent Work -->
+            <div class="lg:col-span-7">
+                <h3 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">Recent Work</h3>
+                <div class="space-y-4">
+                    <!-- Bonita Baddies -->
+                    <a href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" class="block">
+                        <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-amber-400/50 transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-xl font-bold group-hover:text-amber-400 transition-colors">Bonita Baddies Intelligence System</h4>
+                                <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4 leading-relaxed italic">A tool to optimize your lived experience by considering space, time, and Self.</p>
+                            <div class="flex gap-2">
+                                <span class="tag">Systems Design</span>
+                                <span class="tag">Wellness AI</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- NBME -->
+                    <a href="https://roleplay-sim.lovable.app/" target="_blank" class="block">
+                        <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-amber-400/50 transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-xl font-bold group-hover:text-amber-400 transition-colors">Clinical Roleplay Simulator</h4>
+                                <span class="text-[10px] font-mono text-slate-500 uppercase">2025</span>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">Architected LLM-based agents with RAG and multimodal (ASR/TTS) capabilities to simulate contextually grounded clinical scenarios.</p>
+                            <div class="flex gap-2">
+                                <span class="tag">OpenAI</span>
+                                <span class="tag">Pinecone</span>
+                                <span class="tag">React</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- HapTrek -->
+                    <a href="https://vimeo.com/1145639929?share=copy&amp;fl=sv&amp;fe=ci" target="_blank" class="block">
+                        <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-blue-400/50 transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-xl font-bold group-hover:text-blue-400 transition-colors">HapTrek: Hiking Biofeedback</h4>
+                                <span class="text-[10px] font-mono text-slate-500 uppercase">2025</span>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">Arduino-based haptic tool for non-visual navigation and emergency detection in unstructured environments.</p>
+                            <div class="flex gap-2">
+                                <span class="tag">Arduino</span>
+                                <span class="tag">Haptics</span>
+                                <span class="tag">Embedded C++</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Nathan Sports -->
+                    <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-pink-400/50 transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-xl font-bold group-hover:text-pink-400 transition-colors">Nathan Sports Usability</h4>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase">2025</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Moderated usability research defining psychographic segmentation models and conversion drivers.</p>
+                        <div class="flex gap-2">
+                            <span class="tag">UserTesting</span>
+                            <span class="tag">Mixed Methods</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row: Background & Credentials -->
+        <div class="space-y-8 pt-8 border-t border-slate-800">
+            <h3 class="text-[10px] font-bold philosophy-line text-slate-500 pb-2">Background & Credentials</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card p-6 rounded-xl">
+                    <p class="text-[10px] font-bold text-amber-400 uppercase mb-1">2025 Graduate</p>
+                    <h4 class="text-sm font-bold">MS Human Factors</h4>
+                    <p class="text-xs text-slate-500">Bentley University</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <p class="text-[10px] font-bold text-blue-400 uppercase mb-1">2019 Graduate</p>
+                    <h4 class="text-sm font-bold">BS Biomedical Eng.</h4>
+                    <p class="text-xs text-slate-500">Rensselaer Polytech</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-t-2 border-pink-500/30">
+                    <p class="text-[10px] font-bold text-pink-400 uppercase mb-1">Patent 20220202583</p>
+                    <h4 class="text-sm font-bold">Modular Glenoid Implant</h4>
+                    <p class="text-xs text-slate-500">Enovis (DJO Orthopedics)</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-t-2 border-amber-500/30">
+                    <p class="text-[10px] font-bold text-amber-500 uppercase mb-1">AWS Certified</p>
+                    <h4 class="text-sm font-bold">Developer Associate</h4>
+                    <p class="text-xs text-slate-500">Credential ID: Dec 2023</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-16 text-center">
+        <p class="text-slate-400 font-medium tracking-wide italic">"Learning is Unobstructed Self Expression"</p>
+        <p class="text-[10px] text-slate-600 font-mono mt-4 uppercase tracking-widest">Shreyas Sriram &copy; 2026</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
-
 </html>
