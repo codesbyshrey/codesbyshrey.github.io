@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quantum Lens: Physics & Philosophy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9; /* stone-50 */
+            color: #1c1917; /* stone-900 */
+        }
+        
+        h1, h2, h3, .serif-font {
+            font-family: 'Crimson Pro', serif;
+        }
+
+        /* Chart Container Custom Styles as per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .active-tab {
+            border-bottom: 2px solid #4f46e5; /* indigo-600 */
+            color: #312e81; /* indigo-900 */
+            font-weight: 600;
+        }
+        
+        .inactive-tab {
+            color: #78716c; /* stone-500 */
+        }
+        .inactive-tab:hover {
+            color: #4338ca; /* indigo-700 */
+        }
+
+        /* Custom Scrollbar for side panels */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a8a29e;
+            border-radius: 3px;
+        }
+    </style>
+    <!-- Chosen Palette: Cosmic Academia - Warm Neutrals (Stone) background, Deep Indigo for primary actions, Amber/Bronze for highlights. -->
+    <!-- Application Structure Plan: 
+         1. Hero Section: Introduction to the conflict between objectivity and quantum mechanics.
+         2. The Timeline of Thought: A horizontal interactive timeline. Users click eras (Philosophy, Newtonian, Einsteinian, Quantum) to update a central content area. This avoids a text wall and allows non-linear exploration.
+         3. The Determinism vs. Probability Lab: An interactive Chart.js section. Users toggle between "Classical" (Line chart) and "Quantum" (Scatter cloud) to visually understand the breakdown of predictability.
+         4. The Unification Challenge: A split-view interactively contrasting General Relativity and Quantum Mechanics, leading into the "Theory of Everything" discussion.
+         5. The Philosophical Lens: A grid of cards addressing the 4E Psychology and Objectivity aspects, allowing users to drill down into definitions.
+    -->
+    <!-- Visualization & Content Choices:
+         1. Timeline: HTML/JS dynamic DOM updates. Goal: Show the evolution of thought. Justification: Timelines are the best mental model for history.
+         2. Determinism Chart: Chart.js Line vs Scatter. Goal: Visually demonstrate the uncertainty principle. Justification: A clean line represents Newtonian certainty; a cloud represents probability. No SVG used.
+         3. Unification Diagram: Interactive HTML Flexbox layout. Goal: Show the disconnect between Micro and Macro. Justification: Spatial separation on screen mimics the theoretical separation.
+         4. Concepts Grid: CSS Grid with JS expansion. Goal: Define complex terms (Entanglement, Axiom). Justification: Bite-sized learning.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-stone-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="serif-font text-2xl font-bold text-indigo-900">The Quantum Lens</span>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#timeline" class="text-stone-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Timeline</a>
+                    <a href="#simulation" class="text-stone-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Simulation</a>
+                    <a href="#unification" class="text-stone-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Unification</a>
+                    <a href="#philosophy" class="text-stone-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">Philosophy</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-stone-100 border-b border-stone-200">
+        <div class="max-w-5xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl lg:text-6xl italic serif-font">
+                How Quantum Physics Complicates <span class="text-indigo-700 not-italic">Objective Truth</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-xl text-stone-600">
+                From Aristotle's Natural Philosophy to the probability clouds of Quantum Mechanics. Explore how our understanding of reality has shifted from a clockwork universe to one of entanglement and uncertainty.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#timeline" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">Begin Exploration</a>
+                <a href="#simulation" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 transition-colors">View The Data</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="space-y-24 pb-24">
+
+        <!-- SECTION 1: TIMELINE OF THOUGHT -->
+        <section id="timeline" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 serif-font">The Evolution of Physical Thought</h2>
+                <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">
+                    History and philosophy are deeply intertwined with physics. Explore the eras below to see how the definition of "truth" has evolved from Natural Philosophy to the Standard Model.
+                </p>
+            </div>
+
+            <!-- Timeline Navigation -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8 border-b border-stone-200 pb-4" id="timeline-nav">
+                <!-- Buttons injected by JS -->
+            </div>
+
+            <!-- Timeline Content Display -->
+            <div class="bg-white rounded-2xl shadow-lg border border-stone-100 overflow-hidden min-h-[400px] flex flex-col md:flex-row transition-all duration-500" id="timeline-content">
+                <!-- Content injected by JS -->
+                <div class="p-12 text-center w-full flex flex-col items-center justify-center text-stone-400">
+                    <p>Select an Era above to begin.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: DETERMINISM VS PROBABILITY (Interactive Visualization) -->
+        <section id="simulation" class="bg-stone-900 text-stone-50 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+                    
+                    <!-- Controls & Context -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <h2 class="text-3xl font-bold text-white serif-font">Certainty vs. Probability</h2>
+                        <p class="text-stone-300">
+                            Classical mechanics (Newton) offered a "clockwork" universe: if you know the position and momentum of a particle, you know its future. Quantum mechanics (Heisenberg) shattered this with the Uncertainty Principle.
+                        </p>
+                        <div class="bg-stone-800 p-6 rounded-lg border border-stone-700">
+                            <h3 class="text-lg font-semibold text-indigo-400 mb-4">Select Paradigm:</h3>
+                            <div class="space-y-3">
+                                <button onclick="updateChart('classical')" class="w-full text-left px-4 py-3 rounded-md bg-stone-700 hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors flex items-center justify-between group">
+                                    <span>Classical Mechanics</span>
+                                    <span class="text-xs bg-stone-900 px-2 py-1 rounded text-stone-400 group-hover:text-white">Deterministic</span>
+                                </button>
+                                <button onclick="updateChart('quantum')" class="w-full text-left px-4 py-3 rounded-md bg-stone-700 hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors flex items-center justify-between group">
+                                    <span>Quantum Mechanics</span>
+                                    <span class="text-xs bg-stone-900 px-2 py-1 rounded text-stone-400 group-hover:text-white">Probabilistic</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-sm text-stone-400 italic" id="chart-description">
+                            Select a paradigm to visualize the trajectory of a particle.
+                        </div>
+                    </div>
+
+                    <!-- Chart Container -->
+                    <div class="lg:col-span-2 bg-stone-800 rounded-xl p-4 shadow-2xl border border-stone-700">
+                        <div class="chart-container">
+                            <canvas id="paradigmChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE UNIFICATION PROBLEM -->
+        <section id="unification" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 serif-font">The Great Divide</h2>
+                <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">
+                    We have two incredibly successful theories that refuse to talk to each other. General Relativity explains the massive, while Quantum Mechanics explains the tiny.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+                <!-- General Relativity Card -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 card-hover group cursor-default">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-stone-800 serif-font">General Relativity</h3>
+                        <span class="text-3xl">🪐</span>
+                    </div>
+                    <ul class="space-y-2 text-stone-600 mb-6">
+                        <li class="flex items-start"><span class="text-indigo-500 mr-2">▪</span>Scale: Stars, Galaxies, Cosmos</li>
+                        <li class="flex items-start"><span class="text-indigo-500 mr-2">▪</span>Key Figure: Albert Einstein</li>
+                        <li class="flex items-start"><span class="text-indigo-500 mr-2">▪</span>Core: Spacetime is curved by mass</li>
+                        <li class="flex items-start"><span class="text-indigo-500 mr-2">▪</span>Nature: Smooth, Continuous, Deterministic</li>
+                    </ul>
+                    <div class="bg-stone-50 p-4 rounded text-sm text-stone-500 italic">
+                        "Gravity is not a force, but a curvature of the spacetime fabric."
+                    </div>
+                </div>
+
+                <!-- Quantum Mechanics Card -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 card-hover group cursor-default">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-stone-800 serif-font">Quantum Mechanics</h3>
+                        <span class="text-3xl">⚛️</span>
+                    </div>
+                    <ul class="space-y-2 text-stone-600 mb-6">
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">▪</span>Scale: Atoms, Subatomic Particles</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">▪</span>Key Figures: Bohr, Schrödinger, Heisenberg</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">▪</span>Core: Discrete packets of energy (quanta)</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">▪</span>Nature: Pixelated, Probabilistic, "Spooky"</li>
+                    </ul>
+                    <div class="bg-stone-50 p-4 rounded text-sm text-stone-500 italic">
+                        "God does not play dice with the universe." - Einstein (Disagreed)
+                    </div>
+                </div>
+
+                <!-- The Bridge (Overlay) -->
+                <div class="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
+                    <div class="bg-indigo-600 text-white px-4 py-2 rounded-full shadow-lg z-10 font-bold text-sm pointer-events-auto cursor-help" title="Attempts like String Theory and Loop Quantum Gravity try to bridge this gap.">
+                        ? The Gap
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Standard Model & Future -->
+            <div class="mt-12 bg-white rounded-xl border border-stone-200 p-8">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">The Quest for a Theory of Everything</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-4 bg-stone-50 rounded-lg">
+                        <h4 class="font-semibold text-indigo-900 mb-2">String Theory</h4>
+                        <p class="text-sm text-stone-600">Proposes that fundamental particles are not points, but vibrating strings. Requires extra dimensions.</p>
+                    </div>
+                    <div class="p-4 bg-stone-50 rounded-lg">
+                        <h4 class="font-semibold text-indigo-900 mb-2">Standard Model</h4>
+                        <p class="text-sm text-stone-600">The current best map of particles (Quarks, Leptons, Bosons). Incredibly accurate, but doesn't include Gravity.</p>
+                    </div>
+                    <div class="p-4 bg-stone-50 rounded-lg">
+                        <h4 class="font-semibold text-indigo-900 mb-2">Entanglement</h4>
+                        <p class="text-sm text-stone-600">"Non-locality." Particles separated by vast distances affect each other instantly, suggesting space itself might be emergent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PHILOSOPHY & COGNITION -->
+        <section id="philosophy" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 serif-font">The Observer's Lens</h2>
+                <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">
+                    How subjective consciousness interacts with objective reality. 
+                    <span class="italic block mt-1">"Everyone is a philosopher the moment before they decide to pursue physics."</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="philosophy-grid">
+                <!-- Cards injected by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h4 class="text-lg font-bold text-white mb-4 serif-font">The Quantum Lens</h4>
+                <p class="text-sm max-w-xs">
+                    Synthesized from lectures by Dr. Elise Crull, Sean Carroll, and StarTalk. Exploring the intersection of history, philosophy, and quantum mechanics.
+                </p>
+            </div>
+            <div class="text-sm space-y-2">
+                <h5 class="font-semibold text-white">Key Concepts</h5>
+                <p>Natural Philosophy • Determinism • Uncertainty • Non-Locality • 4E Cognition</p>
+                <div class="pt-4 text-xs text-stone-600">
+                    Generated for educational exploration.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA STORAGE ---
+
+        const timelineData = [
+            {
+                id: 'ancient',
+                title: 'Natural Philosophy',
+                years: 'Antiquity - 1600s',
+                icon: '🏛️',
+                description: 'Before "Physics" existed, there was Natural Philosophy. Thinkers used logic and observation to understand nature, often intertwining it with the divine.',
+                keyFigures: ['Aristotle', 'Descartes', 'Copernicus'],
+                details: 'Descartes established "I think, therefore I am," creating a foundation for knowledge. He separated the mind (res cogitans) from matter (res extensa), setting the stage for objective analysis of the physical world.',
+                color: 'bg-amber-100 text-amber-900'
+            },
+            {
+                id: 'classical',
+                title: 'The Clockwork Universe',
+                years: '1687 - 1900',
+                icon: '⚙️',
+                description: 'Isaac Newton published "Principia," laying the groundwork for Classical Mechanics. The universe was seen as a predictable machine governed by absolute laws.',
+                keyFigures: ['Isaac Newton', 'Gottfried Leibniz', 'Maxwell'],
+                details: 'Newton introduced Absolute Space and Time. Determinism reigned: if you knew the position and speed of every particle, you could predict the future perfectly. Light was understood as a wave (Maxwell), and gravity as a force.',
+                color: 'bg-stone-200 text-stone-800'
+            },
+            {
+                id: 'relativity',
+                title: 'Relativity Revolution',
+                years: '1905 - 1915',
+                icon: '⏳',
+                description: 'Einstein shattered absolute space and time. He unified them into "Spacetime," which bends and curves in the presence of mass/energy.',
+                keyFigures: ['Albert Einstein', 'Minkowski'],
+                details: 'Special Relativity: The speed of light is constant; time is relative to the observer. General Relativity: Gravity is the curvature of spacetime. This marked the end of the rigid Newtonian framework.',
+                color: 'bg-indigo-100 text-indigo-900'
+            },
+            {
+                id: 'quantum',
+                title: 'The Quantum Leap',
+                years: '1900 - Present',
+                icon: '🌊',
+                description: 'Focus shifted to the subatomic. Certainty was replaced by probability. Particles act like waves, and observation affects reality.',
+                keyFigures: ['Max Planck', 'Niels Bohr', 'Heisenberg', 'Schrödinger'],
+                details: 'Heisenberg\'s Uncertainty Principle: You cannot know both position and momentum precisely. Entanglement: Particles stay connected across distances. The "Observer Effect" challenges the idea of a purely objective reality.',
+                color: 'bg-rose-100 text-rose-900'
+            }
+        ];
+
+        const philosophyData = [
+            {
+                title: "Axiom vs. Dogma",
+                content: "An axiom is a starting point for reasoning accepted as true. Dogma is a principle laid down by authority as incontrovertibly true. Science relies on axioms but must avoid dogma to progress."
+            },
+            {
+                title: "Embodied Cognition (4E)",
+                content: "The mind is Embodied, Embedded, Enacted, and Extended. We are not just brains in vats; our physical biology filters how we understand quantum concepts like 'time' and 'space'."
+            },
+            {
+                title: "Objectivity",
+                content: "Classical physics assumed a 'God's eye view' exists. Quantum mechanics suggests the observer is part of the system. Is there an objective truth without a subject to experience it?"
+            },
+            {
+                title: "Decoherence",
+                content: "The process by which quantum systems interact with the environment and 'collapse' into classical behavior. This explains why we don't see Schrödinger's cats in daily life."
+            }
+        ];
+
+        // --- TIMELINE INTERACTION ---
+
+        function renderTimeline() {
+            const nav = document.getElementById('timeline-nav');
+            const content = document.getElementById('timeline-content');
+            
+            // Clear existing
+            nav.innerHTML = '';
+            
+            timelineData.forEach((era, index) => {
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 ${index === 0 ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-stone-600 border-stone-300 hover:border-indigo-400'}`;
+                btn.innerText = era.title;
+                btn.onclick = () => loadEra(index, btn);
+                nav.appendChild(btn);
+            });
+
+            // Load initial
+            loadEra(0, nav.firstChild);
+        }
+
+        function loadEra(index, activeBtn) {
+            const era = timelineData[index];
+            const contentContainer = document.getElementById('timeline-content');
+            
+            // Update button styles
+            const buttons = document.getElementById('timeline-nav').children;
+            Array.from(buttons).forEach(b => {
+                b.className = 'px-4 py-2 rounded-full text-sm font-semibold border bg-white text-stone-600 border-stone-300 hover:border-indigo-400 transition-all duration-300';
+            });
+            activeBtn.className = 'px-4 py-2 rounded-full text-sm font-semibold border bg-indigo-600 text-white border-indigo-600 shadow-md transform scale-105 transition-all duration-300';
+
+            // Animation out
+            contentContainer.style.opacity = '0';
+
+            setTimeout(() => {
+                contentContainer.innerHTML = `
+                    <div class="w-full md:w-1/3 p-8 ${era.color} flex flex-col justify-center items-center text-center">
+                        <div class="text-6xl mb-4">${era.icon}</div>
+                        <h3 class="text-2xl font-bold mb-2 serif-font">${era.title}</h3>
+                        <span class="text-sm font-mono opacity-75">${era.years}</span>
+                    </div>
+                    <div class="w-full md:w-2/3 p-8 md:p-12 bg-white flex flex-col justify-center">
+                        <h4 class="text-xl font-bold text-stone-800 mb-4">Overview</h4>
+                        <p class="text-stone-600 mb-6 leading-relaxed">${era.description}</p>
+                        
+                        <h4 class="text-xl font-bold text-stone-800 mb-4">Key Concepts & Figures</h4>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            ${era.keyFigures.map(fig => `<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded-full text-sm border border-stone-200">${fig}</span>`).join('')}
+                        </div>
+                        <div class="p-4 bg-stone-50 border-l-4 border-indigo-400 rounded-r">
+                            <p class="text-sm text-stone-700 italic">"${era.details}"</p>
+                        </div>
+                    </div>
+                `;
+                contentContainer.style.opacity = '1';
+            }, 300);
+        }
+
+        // --- CHART.JS VISUALIZATION ---
+
+        let mainChart;
+
+        function initChart() {
+            const ctx = document.getElementById('paradigmChart').getContext('2d');
+            
+            // Common Options
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart'
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: { display: true, text: 'Time (t)', color: '#a8a29e' },
+                        grid: { color: '#44403c' },
+                        ticks: { color: '#a8a29e' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Position (x)', color: '#a8a29e' },
+                        grid: { color: '#44403c' },
+                        ticks: { color: '#a8a29e' },
+                        min: 0,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#fff' } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `(${context.parsed.x}, ${context.parsed.y})`;
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Initial Data (Classical - Line)
+            const classicalData = {
+                datasets: [{
+                    label: 'Particle Trajectory (Deterministic)',
+                    data: Array.from({length: 20}, (_, i) => ({x: i * 5, y: 10 + (i * 4)})),
+                    borderColor: '#6366f1', // Indigo 500
+                    backgroundColor: '#6366f1',
+                    borderWidth: 3,
+                    type: 'line',
+                    tension: 0, // Straight line for Newtonian predictability
+                    pointRadius: 4
+                }]
+            };
+
+            mainChart = new Chart(ctx, {
+                type: 'line',
+                data: classicalData,
+                options: commonOptions
+            });
+        }
+
+        function updateChart(mode) {
+            const desc = document.getElementById('chart-description');
+            
+            if (mode === 'classical') {
+                // Update to Line Chart
+                mainChart.data.datasets = [{
+                    label: 'Newtonian Path (Determined)',
+                    data: Array.from({length: 21}, (_, i) => ({x: i * 5, y: 10 + (i * 4)})), // Linear y = mx + b
+                    borderColor: '#6366f1',
+                    backgroundColor: '#6366f1',
+                    borderWidth: 3,
+                    type: 'line',
+                    tension: 0,
+                    pointRadius: 4
+                }];
+                desc.innerHTML = "<span class='text-indigo-400 font-bold'>Classical:</span> A straight, predictable line. If you know the start, you know the end.";
+            } else {
+                // Update to Scatter Plot (Cloud)
+                const scatterPoints = [];
+                // Create a "probability cloud" around the linear path
+                for (let i = 0; i <= 20; i++) {
+                    // Generate 5 points per time step with random spread
+                    const trueY = 10 + (i * 4);
+                    for (let j = 0; j < 8; j++) {
+                        const spread = Math.random() * 30 - 15; // +/- 15 units of uncertainty
+                        scatterPoints.push({
+                            x: (i * 5) + (Math.random() * 4 - 2), // Slight x uncertainty
+                            y: Math.max(0, Math.min(100, trueY + spread))
+                        });
+                    }
+                }
+
+                mainChart.data.datasets = [{
+                    label: 'Electron Cloud (Probabilistic)',
+                    data: scatterPoints,
+                    backgroundColor: 'rgba(251, 191, 36, 0.6)', // Amber 400
+                    borderColor: 'rgba(251, 191, 36, 1)',
+                    borderWidth: 0,
+                    type: 'scatter',
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }];
+                desc.innerHTML = "<span class='text-amber-400 font-bold'>Quantum:</span> A cloud of possibilities. We can only predict the <em>probability</em> of finding the particle here.";
+            }
+            mainChart.update();
+        }
+
+        // --- PHILOSOPHY GRID RENDER ---
+
+        function renderPhilosophy() {
+            const grid = document.getElementById('philosophy-grid');
+            philosophyData.forEach(card => {
+                const div = document.createElement('div');
+                div.className = 'bg-white p-6 rounded-xl border border-stone-200 card-hover flex flex-col justify-between h-full';
+                div.innerHTML = `
+                    <div>
+                        <h4 class="text-lg font-bold text-indigo-900 mb-3 serif-font">${card.title}</h4>
+                        <p class="text-stone-600 text-sm leading-relaxed">${card.content}</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-stone-100 flex justify-end">
+                        <span class="text-indigo-500 text-xs font-semibold tracking-wide uppercase">Concept</span>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // --- INITIALIZATION ---
+
+        window.onload = function() {
+            renderTimeline();
+            initChart();
+            renderPhilosophy();
+        };
+
+    </script>
+</body>
+</html>

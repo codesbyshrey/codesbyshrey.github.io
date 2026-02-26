@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Knowledge Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The application uses a single-page, vertical-scroll layout with a sticky top navigation for easy access to all sections. This structure is chosen for its clarity and usability, allowing the user to either read linearly or jump directly to a topic. The design consists of: 1) An introduction. 2) A three-column grid ("The Pillars") that directly addresses the user's request to "organize notes" by presenting the definitions and key topics for each of the three fields in a clear, card-based layout. 3) An "Interactive Intersections" section, which is the core interactive component. This section uses a Chart.js radar chart to visually and dynamically model the "bridges" and "relationships" between the fields, fulfilling the deeper synthesis goal of the report. Users can click buttons to see how different concepts (including the "chakras" example) relate to the three pillars. 4) A final synthesis conclusion. This structure separates static, organized information (the notes) from dynamic, exploratory synthesis (the chart), providing a comprehensive and user-friendly tool. -->
+    <!-- Visualization & Content Choices: 
+        1. Report Info: Core definitions and broad topics for Ecological Awareness (EA), Applied Biomechanics (AB), and Cognitive Neuromechanics (CN).
+           Goal: Inform, Organize (as requested by "organize notes").
+           Viz/Presentation: A responsive 3-column grid (HTML/Tailwind) of styled "cards." Each card contains the definition (text) and a bulleted list of key topics (text).
+           Interaction: Static content, accessible via top navigation links (smooth scroll).
+           Justification: Directly fulfills the user's primary "organize notes" task in a clean, scannable, and aesthetically-pleasing format.
+        2. Report Info: The "interplay," "bridges," "relationships" between the fields, and the "chakras" example as a cross-cutting concept.
+           Goal: Show Relationships, Synthesize, Engage.
+           Viz/Presentation: Chart.js Radar Chart (Canvas). This visualization is ideal for plotting multiple data points on axes originating from a central point, perfectly representing how a single concept (like "Motor Learning" or "Chakras") might "score" on its relevance to the three pillars.
+           Interaction: A series of <button> elements. Clicking a button triggers a JavaScript function (updateChart) that dynamically changes the radar chart's dataset and labels, then updates the chart.
+           Justification: This makes the abstract concept of "synthesis" tangible and interactive. It directly models the report's theme of interconnectedness and provides a specific, functional way to explore the "chakras" example, as requested.
+           Library/Method: Chart.js (CDN).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4; 
+            color: #1f2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 96vh;
+            max-height: 500px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                max-height: 600px;
+            }
+        }
+        .nav-button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .nav-button.active {
+            background-color: #059669; 
+            color: white;
+            border-color: #047857;
+        }
+        .nav-button:not(.active) {
+            background-color: #ffffff;
+            color: #374151;
+            border-color: #d1d5db;
+        }
+        .nav-button:not(.active):hover {
+            background-color: #f9fafb;
+            border-color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm shadow-sm">
+        <nav class="container mx-auto max-w-7xl px-4">
+            <div class="flex justify-between items-center h-16">
+                <span class="text-xl font-bold text-gray-800">Knowledge Framework</span>
+                <div class="hidden md:flex space-x-4">
+                    <a href="#intro" class="text-gray-600 hover:text-emerald-700 px-3 py-2 rounded-md text-sm font-medium">Introduction</a>
+                    <a href="#pillars" class="text-gray-600 hover:text-emerald-700 px-3 py-2 rounded-md text-sm font-medium">The Pillars</a>
+                    <a href="#intersections" class="text-gray-600 hover:text-emerald-700 px-3 py-2 rounded-md text-sm font-medium">Intersections</a>
+                    <a href="#synthesis" class="text-gray-600 hover:text-emerald-700 px-3 py-2 rounded-md text-sm font-medium">Synthesis</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto max-w-7xl px-4 py-8 sm:py-12">
+
+        <section id="intro" class="my-12 scroll-mt-20">
+            <h1 class="text-4xl font-bold text-center text-emerald-800 mb-4">Exploring Mind, Body, and Environment</h1>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center">
+                This application organizes and explores three key interdisciplinary fields: Ecological Awareness, Applied Biomechanics, and Cognitive Neuromechanics. It serves as an interactive framework to understand not only each field individually but also their crucial intersections, which together provide a holistic view of health, movement, and sustainability.
+            </p>
+        </section>
+
+        <section id="pillars" class="my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">The Three Pillars</h2>
+            <p class="text-base text-gray-600 max-w-2xl mx-auto text-center mb-12">
+                The following are the core definitions and broad topics associated with each field, as provided in the source material. This section acts as a foundational knowledge base.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col">
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-3">Ecological Awareness</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">
+                        Understanding the interconnectedness between living organisms and their environment, recognizing the impact of human actions on ecosystems, and fostering a sense of responsibility toward environmental conservation and sustainability.
+                    </p>
+                    <h4 class="text-md font-semibold text-gray-800 mb-2">Key Topics:</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Ecological Psychology</li>
+                        <li>Perceptual Awareness & Attention</li>
+                        <li>Affordances (Design Philosophy)</li>
+                        <li>Human-Ecosystem Impact</li>
+                        <li>Conservation & Sustainability</li>
+                        <li>Philosophical Notions (e.g., Alan Watts)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col">
+                    <h3 class="text-2xl font-bold text-sky-700 mb-3">Applied Biomechanics</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">
+                        The study and application of mechanical principles to living organisms, especially humans, to analyze movement, improve performance, prevent injury, and design better equipment or rehabilitation protocols. It applies physics and engineering concepts to understand how muscles, bones, and joints work.
+                    </p>
+                    <h4 class="text-md font-semibold text-gray-800 mb-2">Key Topics:</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Mechanical Principles & Physics</li>
+                        <li>Movement Analysis & Performance</li>
+                        <li>Injury Prevention & Rehabilitation</li>
+                        <li>Equipment & Ergonomic Design</li>
+                        <li>Fascia, Biophysics, & Thermodynamics</li>
+                        <li>Physiologic Bridges to Neuromechanics</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col">
+                    <h3 class="text-2xl font-bold text-amber-700 mb-3">Cognitive Neuromechanics</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">
+                        An interdisciplinary field that studies how the brain controls movement by integrating neuroscience, cognitive science, and biomechanics. It focuses on understanding the neural mechanisms underlying motor control, coordination, and how cognitive processes influence physical movement.
+                    </p>
+                    <h4 class="text-md font-semibold text-gray-800 mb-2">Key Topics:</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Neural Mechanisms & Motor Control</li>
+                        <li>Sensorimotor Integration</li>
+                        <li>Cognitive Influence on Movement</li>
+                        <li>Motor Learning & Coordination</li>
+                        <li>Theoretical Computational Science</li>
+                        <li>Neurologic Bridges to Biomechanics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="intersections" class="my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Visualizing Intersections</h2>
+            <p class="text-base text-gray-600 max-w-2xl mx-auto text-center mb-8">
+                These fields are deeply interconnected. The radar chart below provides a dynamic way to visualize how different concepts might relate to each of the three pillars. Click a button to see a conceptual "profile" for that idea, representing its relative connection to each field.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-2 my-6">
+                <button class="nav-button" data-concept="synthesis">Overall Synthesis</button>
+                <button class="nav-button" data-concept="motorLearning">Motor Learning</button>
+                <button class="nav-button" data-concept="injuryRehab">Injury Rehab</button>
+                <button class="nav-button" data-concept="sustainableDesign">Sustainable Design</button>
+                <button class="nav-button" data-concept="chakras">Chakras (Relational)</button>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+        </section>
+
+        <section id="synthesis" class="my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Synthesis</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                Together, these fields explore the intricate relationships between <strong class="text-emerald-700">environment</strong>, <strong class="text-sky-700">body mechanics</strong>, and <strong class="text-amber-700">brain function</strong> to optimize health, movement, and sustainability.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 text-center p-6 mt-16">
+        <p>&copy; 2025 Interactive Knowledge Framework. Built as an interactive visualization.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            
+            const concepts = {
+                'synthesis': {
+                    label: 'Overall Synthesis',
+                    data: [8, 8, 8],
+                    backgroundColor: 'rgba(110, 231, 183, 0.2)',
+                    borderColor: 'rgba(5, 150, 105, 1)',
+                },
+                'motorLearning': {
+                    label: 'Motor Learning',
+                    data: [2, 6, 9],
+                    backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                    borderColor: 'rgba(2, 132, 199, 1)',
+                },
+                'injuryRehab': {
+                    label: 'Injury Rehab',
+                    data: [1, 9, 6],
+                    backgroundColor: 'rgba(251, 191, 36, 0.2)',
+                    borderColor: 'rgba(217, 119, 6, 1)',
+                },
+                'sustainableDesign': {
+                    label: 'Sustainable Design',
+                    data: [9, 5, 2],
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                    borderColor: 'rgba(4, 120, 87, 1)',
+                },
+                'chakras': {
+                    label: 'Chakras (Relational)',
+                    data: [6, 5, 6],
+                    backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                    borderColor: 'rgba(126, 34, 206, 1)',
+                }
+            };
+
+            const chartData = {
+                labels: [
+                    'Ecological Awareness',
+                    'Applied Biomechanics',
+                    'Cognitive Neuromechanics'
+                ],
+                datasets: []
+            };
+
+            const chartConfig = {
+                type: 'radar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 13,
+                                    weight: '600'
+                                },
+                                color: ['#047857', '#0369a1', '#b45309']
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(255, 255, 255, 0.75)',
+                                color: '#4b5563',
+                                stepSize: 2,
+                                backdropPadding: 3
+                            },
+                            min: 0,
+                            max: 10
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    weight: '600'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            const radarChart = new Chart(ctx, chartConfig);
+            
+            const buttons = document.querySelectorAll('.nav-button');
+
+            function updateChart(conceptKey) {
+                const conceptData = concepts[conceptKey];
+                
+                radarChart.data.datasets = [{
+                    label: conceptData.label,
+                    data: conceptData.data,
+                    backgroundColor: conceptData.backgroundColor,
+                    borderColor: conceptData.borderColor,
+                    borderWidth: 2,
+                    pointBackgroundColor: conceptData.borderColor,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: conceptData.borderColor
+                }];
+                radarChart.update();
+
+                buttons.forEach(btn => {
+                    if (btn.dataset.concept === conceptKey) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    updateChart(button.dataset.concept);
+                });
+            });
+
+            updateChart('synthesis');
+
+            document.querySelectorAll('header nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

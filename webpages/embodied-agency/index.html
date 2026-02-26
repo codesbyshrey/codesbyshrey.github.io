@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Token Prediction to Embodied Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F0; /* Warm neutral background */
+            color: #2D3748;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Merriweather', serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .interactive-btn {
+            transition: all 0.2s ease;
+        }
+        .interactive-btn:active {
+            transform: scale(0.95);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F5F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E0;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A0AEC0;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals & Earth Tones
+         Background: #F5F5F0 (Isabelline/Warm Grey)
+         Text: #2D3748 (Dark Slate)
+         Primary Accent: #5F6F52 (Reseda Green - representing nature/grounding)
+         Secondary Accent: #A98467 (Earth/Clay - representing embodiment)
+         Highlight: #D9AE94 (Buff)
+    -->
+    
+    <!-- Application Structure Plan: 
+         The app is designed as a narrative journey divided into 4 logical phases ("Chapters") that mirror the evolution of intelligence described in the paper.
+         1. The Context: The "Scaling Era" and its limits (Disembodied).
+         2. The Pivot: Theoretical foundations (Sutton, LeCun, Li) bridging the gap.
+         3. The Solution: Embodied Agency & Humanoids (The "How").
+         4. The Synthesis: Philosophical implications and conclusion.
+         
+         Reasoning: The report is a dense argument. Breaking it into a linear, interactive story helps the user digest the "Why" before getting to the "How". 
+         A "Dashboard" approach isn't suitable here because the content is argumentative/theoretical rather than monitoring data. 
+         Instead, we use a "Scrollytelling-lite" structure where each section introduces a concept and provides an interactive model to demonstrate it.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. "The Divergence" (Line Chart): Shows Scaling benchmarks vs. Real World Utility. 
+            - Goal: Visually demonstrate the "diminishing returns" argument.
+            - Interaction: Toggle lines to see the gap widen.
+            - Method: Chart.js.
+         
+         2. "The Theory Triad" (Interactive Cards): Sutton (Experience), LeCun (Prediction), Li (Space).
+            - Goal: Breakdown the three theoretical pillars.
+            - Interaction: Click to expand specific contribution.
+            - Method: HTML/JS DOM manipulation.
+         
+         3. "System 1 vs System 2" (Interactive Diagram): 
+            - Goal: Explain the control stack (Reflex vs. Planning).
+            - Interaction: Buttons to "Trigger Reflex" (fast path) vs "Trigger Plan" (slow path) with visual feedback.
+            - Method: CSS Class toggling + Tailwind.
+         
+         4. "The Slow Movement Hypothesis" (Scatter Chart):
+            - Goal: visualize why "slow" = "better data".
+            - Interaction: Slider to adjust speed, affecting data point density on the chart.
+            - Method: Chart.js dynamic update.
+    -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#F5F5F0]/95 backdrop-blur-sm border-b border-stone-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold serif text-[#5F6F52]">Embodied Agency</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#section-scaling" class="hover:text-[#A98467] transition-colors">1. The Disconnect</a>
+                    <a href="#section-theory" class="hover:text-[#A98467] transition-colors">2. The Pivot</a>
+                    <a href="#section-humanoid" class="hover:text-[#A98467] transition-colors">3. The Solution</a>
+                    <a href="#section-integration" class="hover:text-[#A98467] transition-colors">4. The Integration</a>
+                </div>
+                <div class="md:hidden">
+                    <!-- Mobile menu button placeholder -->
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                 <a href="#section-scaling" class="block py-2 text-sm text-slate-600 hover:text-[#A98467]">1. The Disconnect</a>
+                 <a href="#section-theory" class="block py-2 text-sm text-slate-600 hover:text-[#A98467]">2. The Pivot</a>
+                 <a href="#section-humanoid" class="block py-2 text-sm text-slate-600 hover:text-[#A98467]">3. The Solution</a>
+                 <a href="#section-integration" class="block py-2 text-sm text-slate-600 hover:text-[#A98467]">4. The Integration</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-white border-b border-stone-200">
+        <div class="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                From Token Prediction to <span class="text-[#A98467]">Embodied Agency</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-8 font-light">
+                Humanoid robotics is not just an application—it is the integration test for General Intelligence. 
+                Why the body is the missing link in the quest for AGI.
+            </p>
+            <div class="flex justify-center gap-4 text-sm text-slate-500">
+                <span class="px-3 py-1 bg-stone-100 rounded-full">Scaling Laws</span>
+                <span class="px-3 py-1 bg-stone-100 rounded-full">Active Inference</span>
+                <span class="px-3 py-1 bg-stone-100 rounded-full">Spatial Intelligence</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: The Scaling Era & Discontents -->
+    <section id="section-scaling" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-slate-800 mb-6">1. The Limits of Disembodied Scaling</h2>
+                <p class="text-lg text-slate-600 mb-4 leading-relaxed">
+                    The last decade validated the "Scaling Era"—more data and compute yield better results. 
+                    However, while Large Language Models (LLMs) excel at syntax, they struggle with causality. 
+                </p>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <h3 class="font-bold text-yellow-800">The Symbol Grounding Problem</h3>
+                    <p class="text-sm text-yellow-700 mt-1">
+                        An LLM knows "apple" follows "red," but has no concept of weight, crunch, or taste. 
+                        It models language, not consequences.
+                    </p>
+                </div>
+                <p class="text-slate-600 mb-4">
+                    Benchmarks rise, but real-world utility in novel physical environments is plateauing. 
+                    Use the interactive chart to visualize this divergence.
+                </p>
+            </div>
+            
+            <!-- Visualization: Scaling vs Utility -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-stone-100">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-slate-700">Scaling vs. Reality (Conceptual)</h3>
+                    <div class="flex gap-2">
+                        <button onclick="toggleChartData('benchmarks')" class="px-3 py-1 text-xs font-semibold rounded-full bg-[#5F6F52] text-white hover:bg-opacity-90">Benchmarks</button>
+                        <button onclick="toggleChartData('utility')" class="px-3 py-1 text-xs font-semibold rounded-full bg-[#A98467] text-white hover:bg-opacity-90">Real Utility</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="scalingChart"></canvas>
+                </div>
+                <p class="text-xs text-slate-400 text-center mt-3 italic">
+                    Conceptual representation of diminishing returns in real-world task competence despite benchmark saturation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: The Theoretical Pivot -->
+    <section id="section-theory" class="bg-white py-16 border-y border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">2. The Theoretical Pivot</h2>
+                <p class="text-slate-600">
+                    Three key figures provide the intellectual scaffolding to move beyond text. 
+                    Click each pillar to understand their contribution to Embodied AI.
+                </p>
+            </div>
+
+            <!-- Interactive Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Sutton -->
+                <div id="card-sutton" class="card bg-[#F5F5F0] p-6 rounded-lg cursor-pointer border border-transparent hover:border-[#5F6F52]" onclick="activatePillar('sutton')">
+                    <div class="text-[#5F6F52] text-4xl mb-4 font-serif">I.</div>
+                    <h3 class="text-xl font-bold mb-2">Richard Sutton</h3>
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide">Intelligence as Experience</p>
+                    <div class="mt-4 text-slate-600 text-sm hidden-content hidden" id="text-sutton">
+                        <p class="mb-2"><strong>Core Idea:</strong> Intelligence isn't about static datasets; it's about a continuous stream of sensation-action-reward.</p>
+                        <p><strong>The Bitter Lesson:</strong> We must stop hand-crafting priors. Agents must learn from interaction. Without the risk of failure (consequence), planning is just hallucination.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: LeCun -->
+                <div id="card-lecun" class="card bg-[#F5F5F0] p-6 rounded-lg cursor-pointer border border-transparent hover:border-[#5F6F52]" onclick="activatePillar('lecun')">
+                    <div class="text-[#5F6F52] text-4xl mb-4 font-serif">II.</div>
+                    <h3 class="text-xl font-bold mb-2">Yann LeCun</h3>
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide">World Models (JEPA)</p>
+                    <div class="mt-4 text-slate-600 text-sm hidden-content hidden" id="text-lecun">
+                        <p class="mb-2"><strong>Core Idea:</strong> Predicting pixels is inefficient. Agents need an internal simulator (World Model) to predict <em>abstract states</em>.</p>
+                        <p><strong>The Missing Middle:</strong> This allows counterfactual reasoning ("What if I drop this?") without needing to physically fail every time.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Li -->
+                <div id="card-li" class="card bg-[#F5F5F0] p-6 rounded-lg cursor-pointer border border-transparent hover:border-[#5F6F52]" onclick="activatePillar('li')">
+                    <div class="text-[#5F6F52] text-4xl mb-4 font-serif">III.</div>
+                    <h3 class="text-xl font-bold mb-2">Fei-Fei Li</h3>
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide">Spatial Intelligence</p>
+                    <div class="mt-4 text-slate-600 text-sm hidden-content hidden" id="text-li">
+                        <p class="mb-2"><strong>Core Idea:</strong> Language is an evolutionary latecomer. Intelligence is foundationaly spatial.</p>
+                        <p><strong>Affordances:</strong> We perceive objects by what they <em>afford</em> us (a chair affords sitting). Embodiment forces the AI to learn geometry and causality.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p id="pillar-instruction" class="text-sm text-slate-400 animate-pulse">Select a perspective above to explore.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: The Humanoid Solution -->
+    <section id="section-humanoid" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6">3. The Humanoid Stack: System 1 & 2</h2>
+            <p class="text-lg text-slate-600 max-w-3xl">
+                To function in the real world, robots are adopting a cognitive architecture similar to the human brain's Dual Process Theory. 
+                Use the controls below to visualize how different layers of the "Stack" handle tasks.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Interactive Stack Visualizer -->
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-stone-100">
+                <div class="flex justify-center gap-4 mb-8">
+                    <button onclick="triggerSystem(1)" class="interactive-btn px-6 py-2 bg-stone-200 hover:bg-stone-300 text-slate-700 rounded-md font-semibold">
+                        Trigger System 1 (Reflex)
+                    </button>
+                    <button onclick="triggerSystem(2)" class="interactive-btn px-6 py-2 bg-[#5F6F52] hover:bg-[#4a5740] text-white rounded-md font-semibold">
+                        Trigger System 2 (Reasoning)
+                    </button>
+                </div>
+
+                <!-- Diagram -->
+                <div class="relative w-full h-64 bg-slate-50 rounded-lg border-2 border-dashed border-slate-200 flex flex-col justify-between p-4 overflow-hidden">
+                    
+                    <!-- System 2 Block -->
+                    <div id="block-sys2" class="w-full bg-slate-200 p-3 rounded text-center transition-all duration-300">
+                        <span class="font-bold text-slate-600 block">System 2: Prefrontal Cortex</span>
+                        <span class="text-xs text-slate-500">VLA Models • Planning • "Clean Kitchen"</span>
+                    </div>
+
+                    <!-- Flow Arrow Down -->
+                    <div class="flex justify-center h-8 relative">
+                        <div id="arrow-down" class="w-1 h-full bg-slate-300 transition-colors duration-300"></div>
+                    </div>
+
+                    <!-- System 1 Block -->
+                    <div id="block-sys1" class="w-full bg-slate-200 p-3 rounded text-center transition-all duration-300">
+                        <span class="font-bold text-slate-600 block">System 1: Cerebellum</span>
+                        <span class="text-xs text-slate-500">Diffusion Policy • Reflex • Torque Control</span>
+                    </div>
+
+                    <!-- Output -->
+                    <div class="mt-2 text-center">
+                        <span id="stack-output" class="text-sm font-bold text-slate-400">Waiting for input...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content: Why Humanoids & Biotensegrity -->
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Why the Humanoid Form?</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="mr-2 text-[#A98467]">✔</span>
+                            <span class="text-slate-600 text-sm"><strong>The Brownfield World:</strong> Stairs, handles, and tools are engineered for bipeds.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 text-[#A98467]">✔</span>
+                            <span class="text-slate-600 text-sm"><strong>Imitation Learning:</strong> We can train robots on YouTube data because their morphology matches the humans in the video.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-[#F5F5F0] p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">The "Slow Movement" Hypothesis</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Biology is compliant (biotensegrity); robots are rigid. Moving slower increases "Data Density"—capturing micro-errors that high-speed rigid control misses.
+                    </p>
+                    
+                    <div class="chart-container" style="height: 200px;">
+                        <canvas id="densityChart"></canvas>
+                    </div>
+                    <div class="mt-4">
+                        <label class="text-xs font-bold text-slate-500 uppercase">Movement Speed</label>
+                        <input type="range" min="1" max="10" value="5" class="w-full accent-[#A98467]" id="speedRange" oninput="updateDensity(this.value)">
+                        <div class="flex justify-between text-xs text-slate-400">
+                            <span>Slow (High Density)</span>
+                            <span>Fast (Low Density)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Integration Test -->
+    <section id="section-integration" class="bg-slate-900 text-slate-100 py-20 mt-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-serif text-[#D9AE94] mb-8">4. The Integration Test</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-12">
+                <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+                    <h3 class="text-lg font-bold text-white mb-2">Moravec's Paradox</h3>
+                    <p class="text-slate-400 text-sm">
+                        "High-level reasoning is computationally easy; low-level sensorimotor skills are computationally hard."
+                        <br><br>
+                        Chess is easy. Walking is hard. The bulk of intelligence is managing the body.
+                    </p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+                    <h3 class="text-lg font-bold text-white mb-2">Resolving Dualism</h3>
+                    <p class="text-slate-400 text-sm">
+                        AI tried to build the "mind" in isolation. It failed to understand reality.
+                        <br><br>
+                        Humanoids prove that "mind" is not a ghost in the machine, but a process emerging from regulating a body in the world.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-xl font-light leading-relaxed">
+                "AI began by imitating thought. It scaled by imitating language. <br>
+                <span class="text-[#D9AE94] font-semibold">It will mature only by learning to act.</span>"
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-500 py-8 text-center text-sm">
+        <p>Interactive synthesis based on "From Token Prediction to Embodied Agency"</p>
+        <p class="mt-2 text-slate-600">&copy; 2024 Embodied Intelligence Research</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. Scaling Chart Logic ---
+        const ctxScaling = document.getElementById('scalingChart').getContext('2d');
+        const scalingChart = new Chart(ctxScaling, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [
+                    {
+                        label: 'Benchmark Performance',
+                        data: [20, 35, 50, 75, 90, 95, 98],
+                        borderColor: '#5F6F52', // Primary Accent
+                        backgroundColor: 'rgba(95, 111, 82, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 4
+                    },
+                    {
+                        label: 'Real World Utility',
+                        data: [15, 25, 35, 40, 42, 43, 44],
+                        borderColor: '#A98467', // Secondary Accent
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        tension: 0.2,
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: { mode: 'index', intersect: false }
+                },
+                scales: {
+                    y: { beginAtZero: true, max: 100, title: { display: true, text: 'Capability Score' } }
+                }
+            }
+        });
+
+        function toggleChartData(view) {
+            const benchData = [20, 35, 50, 75, 90, 95, 98];
+            const utilData = [15, 25, 35, 40, 42, 43, 44];
+            
+            if (view === 'benchmarks') {
+                scalingChart.data.datasets[0].hidden = false;
+                scalingChart.data.datasets[1].hidden = true;
+            } else if (view === 'utility') {
+                scalingChart.data.datasets[0].hidden = false;
+                scalingChart.data.datasets[1].hidden = false;
+            }
+            scalingChart.update();
+        }
+
+        // --- 2. Pillar Logic ---
+        function activatePillar(id) {
+            // Reset all
+            ['sutton', 'lecun', 'li'].forEach(p => {
+                document.getElementById(`text-${p}`).classList.add('hidden');
+                document.getElementById(`card-${p}`).classList.remove('bg-white', 'shadow-lg', 'scale-105');
+                document.getElementById(`card-${p}`).classList.add('bg-[#F5F5F0]');
+            });
+
+            // Activate specific
+            document.getElementById(`text-${id}`).classList.remove('hidden');
+            document.getElementById(`text-${id}`).classList.add('fade-in');
+            
+            const activeCard = document.getElementById(`card-${id}`);
+            activeCard.classList.remove('bg-[#F5F5F0]');
+            activeCard.classList.add('bg-white', 'shadow-lg', 'scale-105');
+
+            document.getElementById('pillar-instruction').classList.add('hidden');
+        }
+
+        // --- 3. Stack Simulation Logic ---
+        function triggerSystem(sys) {
+            const block1 = document.getElementById('block-sys1');
+            const block2 = document.getElementById('block-sys2');
+            const arrow = document.getElementById('arrow-down');
+            const output = document.getElementById('stack-output');
+
+            // Reset styles
+            block1.className = "w-full bg-slate-200 p-3 rounded text-center transition-all duration-300";
+            block2.className = "w-full bg-slate-200 p-3 rounded text-center transition-all duration-300";
+            arrow.style.backgroundColor = '#CBD5E0';
+            output.innerText = "Processing...";
+            output.className = "text-sm font-bold text-slate-500";
+
+            if (sys === 1) {
+                // System 1: Fast, bottom-up
+                setTimeout(() => {
+                    block1.classList.remove('bg-slate-200');
+                    block1.classList.add('bg-[#A98467]', 'text-white', 'shadow-md', 'scale-105'); // Reflex color
+                    output.innerText = "ACTION: Reflexive Balance Correction (10ms)";
+                    output.className = "text-sm font-bold text-[#A98467]";
+                }, 100);
+            } else {
+                // System 2: Slow, top-down
+                setTimeout(() => {
+                    block2.classList.remove('bg-slate-200');
+                    block2.classList.add('bg-[#5F6F52]', 'text-white', 'shadow-md'); // Planning color
+                }, 100);
+
+                setTimeout(() => {
+                    arrow.style.backgroundColor = '#5F6F52';
+                }, 600);
+
+                setTimeout(() => {
+                    block1.classList.remove('bg-slate-200');
+                    block1.classList.add('bg-[#5F6F52]', 'text-white', 'shadow-md');
+                    output.innerText = "ACTION: Execute Planned Trajectory (500ms)";
+                    output.className = "text-sm font-bold text-[#5F6F52]";
+                }, 1100);
+            }
+        }
+
+        // --- 4. Density Chart (Slow Movement) ---
+        const ctxDensity = document.getElementById('densityChart').getContext('2d');
+        
+        // Generate initial data
+        function generateDensityData(points) {
+            let data = [];
+            for (let i = 0; i <= 100; i += (100/points)) {
+                data.push({x: i, y: Math.sin(i * 0.1) + (Math.random() * 0.1)});
+            }
+            return data;
+        }
+
+        const densityChart = new Chart(ctxDensity, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Sensory Data Points Captured',
+                    data: generateDensityData(20), // Start with medium speed
+                    backgroundColor: '#A98467',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: { display: false },
+                    y: { display: false, min: -1.5, max: 1.5 }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: () => 'Sensory Feedback' } }
+                }
+            }
+        });
+
+        function updateDensity(val) {
+            // Slider 1 (Slow) to 10 (Fast)
+            // Points: 1 -> 100 points, 10 -> 10 points
+            // Inverse relationship
+            const points = Math.max(5, Math.floor(100 / val));
+            
+            densityChart.data.datasets[0].data = generateDensityData(points);
+            
+            // Visual feedback on color
+            if (val < 4) {
+                densityChart.data.datasets[0].backgroundColor = '#5F6F52'; // Good (Dense)
+                densityChart.data.datasets[0].pointRadius = 5;
+            } else {
+                densityChart.data.datasets[0].backgroundColor = '#A98467'; // Sparse
+                densityChart.data.datasets[0].pointRadius = 3;
+            }
+            
+            densityChart.update();
+        }
+
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+    </script>
+</body>
+</html>
+

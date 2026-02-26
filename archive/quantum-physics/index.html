@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Quantum Physics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#005BC5',
+                        'primary-dark': '#0043A8',
+                        'primary-light': '#0072FF',
+                        accent: '#3B91FF',
+                        'accent-light': '#8CC4FF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800 leading-relaxed">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-10 text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-primary-dark mb-3">
+                The Astonishing World of Quantum Physics
+            </h1>
+            <p class="text-xl text-gray-700">
+                Exploring the strange and counter-intuitive fundamentals of reality.
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-primary text-center">
+                    A Tale of Two Realities
+                </h2>
+                <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">
+                    Our everyday world is governed by "classical physics"—predictable, logical, and intuitive. But at the tiniest scales, a completely different set of rules takes over. This is the realm of quantum physics, and it is bizarre.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-inner text-center">
+                        <h3 class="text-2xl font-bold text-primary mb-3">Classical Physics</h3>
+                        <p class="text-6xl mb-3">🌎 ⚾</p>
+                        <p class="text-lg">Governs the large-scale. Planets, baseballs, and people. States are definite and outcomes are predictable.</p>
+                    </div>
+                    <div class="bg-accent-light bg-opacity-20 p-6 rounded-lg shadow-inner text-center">
+                        <h3 class="text-2xl font-bold text-primary-light mb-3">Quantum Physics</h3>
+                        <p class="text-6xl mb-3">🔬 ⚛️</p>
+                        <p class="text-lg">Governs the subatomic. Electrons, photons, and atoms. States are probabilistic and reality is fuzzy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-primary text-center">
+                    Principle 1: Energy is "Quantized"
+                </h2>
+                <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">
+                    In the classical world, energy is a continuous ramp—you can have any amount. In the quantum world, energy comes in discrete packets, or "quanta," like steps on a staircase. You can be on step 1 or step 2, but never in between.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-center mb-3">Classical Ramp (Continuous)</h3>
+                        <div class="h-48 w-full bg-primary rounded-lg" style="clip-path: polygon(0% 100%, 100% 0%, 100% 100%);"></div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-center mb-3">Quantum Stairs (Discrete)</h3>
+                        <div class="h-48 w-full flex flex-col-reverse">
+                            <div class="h-1/5 bg-primary-light w-full"></div>
+                            <div class="h-1/5 bg-primary-light w-4/5"></div>
+                            <div class="h-1/5 bg-primary-light w-3/5"></div>
+                            <div class="h-1/5 bg-primary-light w-2/5"></div>
+                            <div class="h-1/5 bg-primary-light w-1/5"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-primary text-center">
+                    Principle 2: Wave-Particle Duality
+                </h2>
+                <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">
+                    One of the most profound discoveries is that quantum objects, like electrons, behave as *both* particles (a single point) and waves (spread out) at the same time. The famous double-slit experiment proves this.
+                </p>
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">The Double-Slit Experiment</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div class="p-4 bg-gray-100 rounded-lg shadow-sm">Electron Gun 🔫</div>
+                        <div class="text-4xl text-gray-400">→</div>
+                        <div class="p-4 bg-gray-100 rounded-lg shadow-sm text-center">Two Slits<br>| |</div>
+                        <div class="text-4xl text-gray-400">→</div>
+                        <div class="p-4 bg-gray-100 rounded-lg shadow-sm">Detection Screen</div>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-center mb-2 text-gray-900">Result: An Interference Pattern</h3>
+                <p class="text-sm text-gray-600 text-center mb-4 max-w-xl mx-auto">
+                    Instead of two simple bands (as particles would make), the electrons create an interference pattern—a classic sign of wave behavior. They interfere with themselves.
+                </p>
+                <div class="chart-container">
+                    <canvas id="doubleSlitChart"></canvas>
+                </div>
+            </section>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-primary mb-3">Principle 3: Superposition</h3>
+                <p class="text-lg text-gray-800 mb-4">
+                    A quantum particle can exist in all its possible states at once. An electron can be "spin up" and "spin down" simultaneously. This only "collapses" into one definite state when we try to measure it.
+                </p>
+                <div class="p-6 bg-blue-50 rounded-lg shadow-inner text-center">
+                    <div class="p-4 bg-white rounded-lg shadow font-mono text-primary-light border-2 border-dashed border-primary-light">
+                        ? State ?<br>(Spin Up & Spin Down)
+                    </div>
+                    <div class="text-4xl my-4">👇</div>
+                    <div class="p-2 bg-gray-200 text-gray-800 font-semibold rounded">Measurement</div>
+                    <div class="flex justify-around mt-4">
+                        <div class="p-4 bg-white rounded-lg shadow font-mono text-primary">Spin Up</div>
+                        <div class="p-4 text-gray-500 text-xl font-bold">OR</div>
+                        <div class="p-4 bg-white rounded-lg shadow font-mono text-primary">Spin Down</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-primary mb-3">Principle 4: Entanglement</h3>
+                <p class="text-lg text-gray-800 mb-4">
+                    Two particles can become "entangled," their fates linked. If you measure one, you *instantly* know the state of the other, no matter how far apart they are. Einstein called this "spooky action at a distance."
+                </p>
+                <div class="p-6 bg-blue-50 rounded-lg shadow-inner">
+                    <div class="flex justify-between items-center text-center">
+                        <div class="p-4 bg-white rounded-lg shadow-md font-mono text-primary">Particle A</div>
+                        <div class="w-1/3 h-1 bg-accent-light border-t-2 border-b-2 border-dashed border-accent"></div>
+                        <div class="p-4 bg-white rounded-lg shadow-md font-mono text-primary">Particle B</div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <p class="text-lg font-semibold">If you measure A = <span class="text-primary-light">Spin Up</span></p>
+                        <p class="text-lg font-semibold">You instantly know B = <span class="text-red-500">Spin Down</span></p>
+                        <p class="text-sm text-gray-600 mt-2">(Even if B is light-years away)</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-primary text-center">
+                    Principle 5: The Uncertainty Principle
+                </h2>
+                <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">
+                    You cannot simultaneously know certain pairs of properties, like a particle's exact position and its exact momentum, with perfect accuracy. The more you know about one, the less you can know about the other.
+                </p>
+                <div class="chart-container">
+                    <canvas id="uncertaintyChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-600 text-center mt-4 max-w-2xl mx-auto">
+                    This chart shows the trade-off. You can have high certainty of position (but low of momentum) or vice-versa. You can never have high certainty of both (the "Forbidden Zone").
+                </p>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-primary text-center">
+                    Why Does This Matter? Real-World Tech
+                </h2>
+                <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">
+                    Quantum physics isn't just theory; it's the foundation of our modern world. Many technologies we rely on only work because we understand these quantum rules.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="chart-container">
+                        <canvas id="techChart"></canvas>
+                    </div>
+                    <div class="text-lg space-y-4">
+                        <p><strong class="text-primary">Electronics:</strong> The transistors and semiconductors in every computer and phone are quantum devices.</p>
+                        <p><strong class="text-primary-light">Lasers:</strong> Used in everything from fiber optics to surgery, lasers rely on the quantum leap of electrons.</p>
+                        <p><strong class="text-accent">Medical Imaging (MRI):</strong> MRI machines use quantum "spin" to see inside the human body.</p>
+                        <p><strong class="text-primary-dark">Future Computing:</strong> Quantum computers promise to solve problems impossible for today's machines by using superposition.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="text-center p-10 mt-8 text-gray-500 border-t border-gray-200">
+        <p>This infographic is based on the core concepts and principles of quantum physics.</p>
+        <p class="text-sm mt-1">Created as a single-page web application using Chart.js and Tailwind CSS. No SVG or Mermaid JS were used.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            function wrapLabels(label) {
+                if (typeof label === 'string' && label.length > 16) {
+                    const words = label.split(' ');
+                    const newLabel = [];
+                    let line = '';
+                    for (const word of words) {
+                        if ((line + ' ' + word).trim().length > 16) {
+                            if (line.length > 0) {
+                                newLabel.push(line.trim());
+                            }
+                            line = word;
+                        } else {
+                            line = (line + ' ' + word).trim();
+                        }
+                    }
+                    if (line.length > 0) {
+                        newLabel.push(line.trim());
+                    }
+                    return newLabel;
+                }
+                return label;
+            }
+
+            const robustTooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                }
+                                return label;
+                            },
+                            label: function(tooltipItem) {
+                                let label = tooltipItem.dataset.label || '';
+                                if (Array.isArray(label)) {
+                                    label = label.join(' ');
+                                }
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (tooltipItem.parsed.y !== null) {
+                                    label += tooltipItem.parsed.y;
+                                } else if (tooltipItem.parsed.r !== null) {
+                                    label += tooltipItem.parsed.r;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            const chartColors = {
+                primary: '#005BC5',
+                primaryLight: '#0072FF',
+                primaryDark: '#0043A8',
+                accent: '#3B91FF',
+                accentLight: '#8CC4FF',
+                red: '#CC333F'
+            };
+
+            if (document.getElementById('doubleSlitChart')) {
+                const doubleSlitCtx = document.getElementById('doubleSlitChart').getContext('2d');
+                new Chart(doubleSlitCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pos 1', 'Pos 2', 'Pos 3', 'Pos 4', 'Pos 5', 'Pos 6', 'Pos 7', 'Pos 8', 'Pos 9', 'Pos 10', 'Pos 11', 'Pos 12', 'Pos 13'],
+                        datasets: [{
+                            label: 'Electron Hits',
+                            data: [10, 50, 90, 50, 10, 5, 0, 5, 10, 50, 90, 50, 10],
+                            backgroundColor: chartColors.primary,
+                            borderColor: chartColors.primaryDark,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...robustTooltipConfig,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Number of Electrons Detected' }
+                            },
+                            x: {
+                                display: false
+                            }
+                        },
+                        plugins: {
+                            ...robustTooltipConfig.plugins,
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            if (document.getElementById('uncertaintyChart')) {
+                const uncertaintyCtx = document.getElementById('uncertaintyChart').getContext('2d');
+                new Chart(uncertaintyCtx, {
+                    type: 'bubble',
+                    data: {
+                        datasets: [{
+                            label: 'Allowed State',
+                            data: [{ x: 10, y: 90, r: 20 }, { x: 90, y: 10, r: 20 }, {x: 20, y: 70, r: 15}, {x: 70, y: 20, r: 15}, {x: 50, y: 50, r: 10}],
+                            backgroundColor: 'rgba(0, 114, 255, 0.7)'
+                        }, {
+                            label: 'Forbidden Zone',
+                            data: [{ x: 90, y: 90, r: 25 }],
+                            backgroundColor: 'rgba(204, 51, 63, 0.7)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...robustTooltipConfig,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: { display: true, text: 'Certainty of Momentum' }
+                            },
+                            x: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: { display: true, text: 'Certainty of Position' }
+                            }
+                        },
+                        plugins: {
+                            ...robustTooltipConfig.plugins,
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            if (document.getElementById('techChart')) {
+                const techCtx = document.getElementById('techChart').getContext('2d');
+                const techLabels = ['Electronics (Transistors)', 'Lasers', 'Medical Imaging (MRI)', 'Future (Quantum Computing)'].map(wrapLabels);
+                
+                new Chart(techCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: techLabels,
+                        datasets: [{
+                            data: [40, 30, 20, 10],
+                            backgroundColor: [
+                                chartColors.primary,
+                                chartColors.primaryLight,
+                                chartColors.accent,
+                                chartColors.accentLight
+                            ],
+                            borderColor: '#ffffff',
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...robustTooltipConfig,
+                        plugins: {
+                            ...robustTooltipConfig.plugins,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { size: 12 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

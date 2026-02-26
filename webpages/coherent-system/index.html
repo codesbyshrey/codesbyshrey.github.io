@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Coherent System: Criticality, Fascia & Inception</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom Font Import - Noto Sans for clean readability */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: #F9F8F6; /* Warm Off-White */
+            color: #2D3748; /* Dark Gray for text */
+        }
+
+        /* Chart Container Specifics */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F1F1F1; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A0AEC0; }
+
+        .transition-all-300 { transition: all 0.3s ease-in-out; }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals & Earth Tones
+         Background: #F9F8F6 (Off-White/Sand)
+         Primary Text: #2D3748 (Charcoal)
+         Accent 1 (Criticality/Energy): #E07A5F (Terra Cotta)
+         Accent 2 (Coherence/Sage): #81B29A (Sage Green)
+         Accent 3 (Structure/Bone): #3D405B (Dark Slate Blue)
+         Accent 4 (Fascia/Fluid): #F2CC8F (Maize/Gold)
+         Accent 5 (Inception/Deep): #1D3557 (Deep Ocean Blue)
+    -->
+
+    <!-- Application Structure Plan:
+         1. Header & Global Controls.
+         2. Section 1: Neural Criticality (Scatter).
+         3. Section 2: Heart-Brain Coherence (Line).
+         4. Section 3: The Fascial Web (Bubble).
+         5. Section 4: Structural Alignment (Radar).
+         6. Section 5 (NEW): The Inception Topology (Case Study). Maps the previous concepts to the movie's layers (Van/Hotel/Fortress). Interactive "Kick" Phase-Locking.
+         7. Synthesis.
+    -->
+
+    <!-- Visualization & Content Choices:
+         ... (Previous choices maintained) ...
+         5. Inception Kick: Goal -> Demonstrate Phase-Locking/Synchronization across scales. Method -> Chart.js Line (Multi-axis/Stacked). Interaction -> Slider (Sync). Justification -> Visualizing three distinct waveforms aligning into a single vertical event ("The Kick") perfectly illustrates systemic coherence.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased selection:bg-orange-200 selection:text-orange-900">
+
+    <!-- Navigation / Header -->
+    <nav class="sticky top-0 z-50 bg-[#F9F8F6]/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-[#3D405B]">The Coherent System</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-500 font-medium hidden sm:block">Perspective:</span>
+                    <div class="relative inline-block w-48 bg-gray-200 rounded-full p-1 flex">
+                        <button id="btn-general" class="w-1/2 rounded-full py-1 text-xs font-bold text-white bg-[#3D405B] shadow-sm transition-all-300" onclick="setPerspective('general')">General</button>
+                        <button id="btn-specialist" class="w-1/2 rounded-full py-1 text-xs font-bold text-gray-600 hover:text-[#3D405B] transition-all-300" onclick="setPerspective('specialist')">Specialist (MS/PhD)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-24">
+
+        <!-- Intro Section -->
+        <header class="text-center space-y-6 max-w-3xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#3D405B] tracking-tight leading-tight">
+                Optimal Balance at the Edge
+            </h1>
+            <p class="text-xl text-gray-600 leading-relaxed">
+                From the firing of neurons to the architecture of the soul, systems thrive near a critical point. Explore how <span class="text-[#E07A5F] font-bold">Criticality</span>, <span class="text-[#81B29A] font-bold">Coherence</span>, and <span class="text-[#1D3557] font-bold">Topological Intelligence</span> create the optimal state for life.
+            </p>
+        </header>
+
+        <!-- SECTION 1: Neural Criticality -->
+        <section id="criticality" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 bg-[#E07A5F]/10 text-[#E07A5F] text-xs font-bold uppercase tracking-wider rounded-full">Neuroscience</span>
+                        <h2 class="text-2xl font-bold text-[#2D3748]">Neural Criticality</h2>
+                    </div>
+                    
+                    <div id="text-criticality-general" class="prose prose-lg text-gray-600">
+                        <p>
+                            The brain operates near a "critical point" — a sweet spot between rigid order and chaotic randomness. At this edge, the brain is maximally responsive.
+                        </p>
+                        <p>
+                            <strong>Why it matters:</strong> A system too ordered lacks flexibility (stuck in habits). A system too chaotic lacks stability (incoherent thought). At criticality, small inputs can trigger complex, coordinated responses (avalanches), maximizing <em>Integrated Information</em> (Φ).
+                        </p>
+                    </div>
+
+                    <div id="text-criticality-specialist" class="hidden prose prose-lg text-gray-600 bg-gray-50 p-4 rounded-lg border-l-4 border-[#E07A5F]">
+                        <h4 class="text-[#E07A5F] font-bold text-sm uppercase mb-2">Analogy: RNNs & Spectral Radius</h4>
+                        <p class="text-sm">
+                            Think of the brain as a Recurrent Neural Network (RNN) initialized with an orthogonal weight matrix where the <strong>spectral radius is exactly 1.0</strong>.
+                        </p>
+                        <ul class="text-sm list-disc pl-5 space-y-1">
+                            <li><strong>Subcritical (Radius < 1):</strong> Vanishing gradients. Signals die out. Frozen lattice.</li>
+                            <li><strong>Supercritical (Radius > 1):</strong> Exploding gradients. Lyapunov exponent > 0. Chaos.</li>
+                            <li><strong>Criticality:</strong> The regime where a reservoir computer maximizes computational capacity and memory, analogous to maximizing Φ.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Interactive Visualization -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <h3 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide text-center">Interactive: The Edge of Chaos</h3>
+                    
+                    <!-- Chart Container -->
+                    <div class="chart-container bg-white rounded-xl shadow-inner border border-gray-100 mb-4 flex items-center justify-center overflow-hidden relative">
+                         <canvas id="criticalityChart"></canvas>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-xs font-bold text-gray-500 uppercase">
+                            <span>Order (Frozen)</span>
+                            <span class="text-[#E07A5F]">Critical Point</span>
+                            <span>Chaos (Noise)</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E07A5F]" id="criticalitySlider">
+                        <p id="criticalityStatus" class="text-center text-sm font-medium text-[#E07A5F]">State: Critical (Maximized Information)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Heart-Brain Coherence -->
+        <section id="coherence" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:flex-row-reverse">
+                <!-- Visualization (Left on desktop) -->
+                 <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 lg:order-1 order-2">
+                    <h3 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide text-center">Interactive: Phase-Locking</h3>
+                    
+                    <!-- Chart Container -->
+                    <div class="chart-container bg-white rounded-xl shadow-inner border border-gray-100 mb-4">
+                         <canvas id="coherenceChart"></canvas>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-xs font-bold text-gray-500 uppercase">
+                            <span>Stress (Incoherent)</span>
+                            <span class="text-[#81B29A]">Coherence (Flow)</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#81B29A]" id="coherenceSlider">
+                        <p id="coherenceStatus" class="text-center text-sm font-medium text-gray-500">State: Low Coupling (Noise)</p>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="space-y-6 lg:order-2 order-1">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 bg-[#81B29A]/10 text-[#81B29A] text-xs font-bold uppercase tracking-wider rounded-full">Physiology</span>
+                        <h2 class="text-2xl font-bold text-[#2D3748]">Heart-Brain Coherence</h2>
+                    </div>
+                    
+                    <div id="text-coherence-general" class="prose prose-lg text-gray-600">
+                        <p>
+                            The heart, brain, and lungs are not isolated; they form an integrated triad. When we feel positive emotions or regulate breath, these systems synchronize.
+                        </p>
+                        <p>
+                            <strong>Mechanism:</strong> This "complexity synchronization" means heart rhythms (ECG) and brain waves (EEG) rise and fall together. In this coherent state, the body operates with minimal friction—like musicians improvising in perfect key.
+                        </p>
+                    </div>
+
+                    <div id="text-coherence-specialist" class="hidden prose prose-lg text-gray-600 bg-gray-50 p-4 rounded-lg border-l-4 border-[#81B29A]">
+                        <h4 class="text-[#81B29A] font-bold text-sm uppercase mb-2">Analogy: Coupled Oscillators & Injection Locking</h4>
+                        <p class="text-sm">
+                            Consider the heart and brain as <strong>Coupled Harmonic Oscillators</strong>. Coherence is the phenomenon of <strong>Injection Locking</strong>.
+                        </p>
+                        <ul class="text-sm list-disc pl-5 space-y-1">
+                            <li><strong>Coupling Strength (Vagal Tone):</strong> As coupling increases, eigenfrequencies synchronize (phase-lock).</li>
+                            <li><strong>Stochastic Resonance:</strong> The heart rhythm acts as a carrier wave, tuning the noise floor to maximize the Signal-to-Noise Ratio (SNR) of cortical processing.</li>
+                            <li><strong>Topology:</strong> The system shifts from a random graph to a <strong>Small-World Network</strong> (high global efficiency).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: The Fascial Web -->
+        <section id="fascia" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 bg-[#F2CC8F]/20 text-[#D4A373] text-xs font-bold uppercase tracking-wider rounded-full">Biotensegrity</span>
+                        <h2 class="text-2xl font-bold text-[#2D3748]">The Fascial Matrix</h2>
+                    </div>
+                    
+                    <div id="text-fascia-general" class="prose prose-lg text-gray-600">
+                        <p>
+                            Fascia is the continuous web of connective tissue that wraps every muscle, bone, and organ. It is the body's "organ of form."
+                        </p>
+                        <p>
+                            <strong>Global Connection:</strong> Unlike the standard skeletal model (stack of bricks), the body is a <em>tensegrity</em> structure—bones float in a sea of tension. A restriction in your foot can pull on your neck, just as pulling a thread in a sweater distorts the whole shape.
+                        </p>
+                    </div>
+
+                    <div id="text-fascia-specialist" class="hidden prose prose-lg text-gray-600 bg-gray-50 p-4 rounded-lg border-l-4 border-[#F2CC8F]">
+                        <h4 class="text-[#D4A373] font-bold text-sm uppercase mb-2">Perspective: Viscoelasticity & Piezoelectricity</h4>
+                        <p class="text-sm">
+                            Fascia acts as a <strong>Pre-Stressed Global Network</strong>. It transmits forces not just linearly, but dispersively across the Extracellular Matrix (ECM).
+                        </p>
+                        <ul class="text-sm list-disc pl-5 space-y-1">
+                            <li><strong>Piezoelectricity:</strong> The collagen matrix is a liquid crystal. Mechanical stress deforms the crystal lattice, generating an electric charge (mechanotransduction).</li>
+                            <li><strong>Viscoelasticity:</strong> Fascia exhibits hysteresis. Slow inputs melt the thixotropic gel state (sol-gel), while rapid inputs trigger elastic recoil.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Interactive Visualization -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <h3 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide text-center">Interactive: The Living Matrix</h3>
+                    
+                    <!-- Chart Container -->
+                    <div class="chart-container bg-white rounded-xl shadow-inner border border-gray-100 mb-4 flex justify-center items-center relative">
+                         <canvas id="fasciaChart"></canvas>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex justify-center space-x-4">
+                        <button id="btn-stiff" class="px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg hover:bg-gray-300 transition-colors" onclick="updateFascia('stiff')">Fibrotic / Adhered</button>
+                        <button id="btn-hydrated" class="px-4 py-2 bg-[#F2CC8F] text-white text-sm font-bold rounded-lg shadow-md hover:bg-[#E0B165] transition-colors" onclick="updateFascia('hydrated')">Hydrated / Tensegrity</button>
+                    </div>
+                    <p id="fasciaStatus" class="text-center text-sm font-medium text-gray-500 mt-4">State: Stress Concentrations Detected</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Arthrokinematics -->
+        <section id="mechanics" class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:flex-row-reverse">
+                 <!-- Visualization (Left on desktop) -->
+                 <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 lg:order-1 order-2">
+                    <h3 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide text-center">Interactive: Joint Load Distribution</h3>
+                    
+                    <!-- Chart Container -->
+                    <div class="chart-container bg-white rounded-xl shadow-inner border border-gray-100 mb-4 flex justify-center items-center">
+                         <canvas id="mechanicsChart"></canvas>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex justify-center space-x-4">
+                        <button id="btn-misaligned" class="px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg hover:bg-gray-300 transition-colors" onclick="updateMechanics('misaligned')">Misaligned</button>
+                        <button id="btn-aligned" class="px-4 py-2 bg-[#3D405B] text-white text-sm font-bold rounded-lg shadow-md hover:bg-[#2D3748] transition-colors" onclick="updateMechanics('aligned')">Aligned</button>
+                    </div>
+                    <p id="mechanicsStatus" class="text-center text-sm font-medium text-gray-500 mt-4">Current State: Misaligned (Singularities detected)</p>
+                </div>
+
+                <!-- Text Content -->
+                <div class="space-y-6 lg:order-2 order-1">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 bg-[#3D405B]/10 text-[#3D405B] text-xs font-bold uppercase tracking-wider rounded-full">Mechanics</span>
+                        <h2 class="text-2xl font-bold text-[#2D3748]">Structural Alignment</h2>
+                    </div>
+                    
+                    <div id="text-mechanics-general" class="prose prose-lg text-gray-600">
+                        <p>
+                            Supported by the fascial web, <em>Arthrokinematics</em> is the precise rolling and gliding of joint surfaces. When aligned, force flows like water.
+                        </p>
+                        <p>
+                            <strong>Wolff's Law:</strong> Our tissues reshape based on mechanical stress. Aligned movement builds resilience. Misaligned movement builds pathology as the body attempts to stabilize incoherent motion.
+                        </p>
+                    </div>
+
+                    <div id="text-mechanics-specialist" class="hidden prose prose-lg text-gray-600 bg-gray-50 p-4 rounded-lg border-l-4 border-[#3D405B]">
+                        <h4 class="text-[#3D405B] font-bold text-sm uppercase mb-2">Analogy: FEA & Adaptive Meshing</h4>
+                        <p class="text-sm">
+                            View the body as a <strong>Finite Element Analysis (FEA)</strong> mesh. Wolff's Law is an <strong>Adaptive Meshing Algorithm</strong>—refining the mesh where Von Mises stress is high.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: The Inception Topology (NEW) -->
+        <section id="inception" class="bg-gradient-to-br from-[#1D3557] to-[#162942] rounded-3xl shadow-2xl overflow-hidden text-white border border-[#2D4A6E]">
+            <div class="p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 bg-[#F2CC8F]/20 text-[#F2CC8F] text-xs font-bold uppercase tracking-wider rounded-full">Case Study</span>
+                        <h2 class="text-2xl font-bold text-white">The Inception Topology</h2>
+                    </div>
+                    
+                    <div id="text-inception-general" class="prose prose-lg text-gray-300">
+                        <p>
+                            Christopher Nolan's <em>Inception</em> is a perfect schematic of the Integrated Self. It maps how choices in "Base Reality" cascade through layers to trigger change.
+                        </p>
+                        <ul class="space-y-4 mt-4">
+                            <li class="flex items-start"><span class="mr-2 text-[#F2CC8F]">➜</span> <strong>Level 1 (The Van) = Fascia (KQ):</strong> The "Gravity Well." Just as the van's roll shifts gravity in the hotel, somatic/fascial shifts dictate the physics of the mind.</li>
+                            <li class="flex items-start"><span class="mr-2 text-[#F2CC8F]">➜</span> <strong>Level 2 (The Hotel) = Computation (IQ):</strong> Arthur must navigate a shifting topology. This is intelligence maintaining coherence when the somatic foundation destabilizes.</li>
+                            <li class="flex items-start"><span class="mr-2 text-[#F2CC8F]">➜</span> <strong>Level 3 (The Fortress) = Criticality (EQ):</strong> The site of the "Avalanche." A small vibration here reorganizes the entire emotional landscape (Opening the Safe).</li>
+                        </ul>
+                    </div>
+
+                    <div id="text-inception-specialist" class="hidden prose prose-lg text-gray-300 bg-[#2D4A6E]/30 p-4 rounded-lg border-l-4 border-[#F2CC8F]">
+                        <h4 class="text-[#F2CC8F] font-bold text-sm uppercase mb-2">Topological Mapping: The Perception-Action Loop</h4>
+                        <p class="text-sm mb-2">
+                            The film illustrates the integration of KQ, IQ, and EQ across time scales.
+                        </p>
+                        <ul class="text-sm list-disc pl-5 space-y-1">
+                            <li><strong>Base Reality:</strong> Initial Conditions / Vector Origin. The collapse of the wavefunction (Choice).</li>
+                            <li><strong>Time Dilation:</strong> Somatic changes (Van) are low-frequency but high-amplitude. Emotional changes (Fortress) are high-frequency, behaving like a "Neuronal Avalanche" or Critical Phase Transition.</li>
+                            <li><strong>Limbo:</strong> The Ontological Void. The pre-geometric space of pure potentiality before topology is constructed.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Interactive Visualization: The Kick -->
+                <div class="bg-[#0F1C2E]/50 rounded-2xl p-6 border border-[#2D4A6E]">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wide text-center">Interactive: The Kick Synchronization</h3>
+                    
+                    <!-- Chart Container -->
+                    <div class="chart-container bg-[#0B1421] rounded-xl shadow-inner border border-[#1D3557] mb-4 flex justify-center items-center relative">
+                         <canvas id="inceptionChart"></canvas>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-xs font-bold text-gray-400 uppercase">
+                            <span>Drift (Incoherent)</span>
+                            <span class="text-[#F2CC8F]">Phase Lock (Kick)</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="20" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#F2CC8F]" id="inceptionSlider">
+                        <p id="inceptionStatus" class="text-center text-sm font-medium text-gray-400">Status: Layers Desynchronized (Dream Collapse Imminent)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Synthesis -->
+        <section class="bg-[#3D405B] rounded-3xl shadow-xl overflow-hidden text-white">
+            <div class="p-8 sm:p-12 text-center max-w-4xl mx-auto space-y-8">
+                <h2 class="text-3xl font-bold">The Unified View: Dharma as Gradient Descent</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-left mt-8">
+                    <div class="bg-[#4A4E69] p-5 rounded-xl border border-[#4A4E69]/50">
+                        <div class="text-[#E07A5F] text-2xl mb-2">⚡</div>
+                        <h3 class="font-bold text-base mb-2">Thermodynamics</h3>
+                        <p class="text-gray-300 text-xs">
+                            <span class="block mb-2" id="synth-1-gen">Alignment reduces metabolic friction.</span>
+                            <span class="hidden italic" id="synth-1-spec">Minimizing Free Energy / Entropy.</span>
+                        </p>
+                    </div>
+                    <div class="bg-[#4A4E69] p-5 rounded-xl border border-[#4A4E69]/50">
+                        <div class="text-[#F2CC8F] text-2xl mb-2">🕸️</div>
+                        <h3 class="font-bold text-base mb-2">Connection</h3>
+                        <p class="text-gray-300 text-xs">
+                            <span class="block mb-2" id="synth-2-gen">The web connects toe to head.</span>
+                            <span class="hidden italic" id="synth-2-spec">Global Tensegrity & Piezo signaling.</span>
+                        </p>
+                    </div>
+                    <div class="bg-[#4A4E69] p-5 rounded-xl border border-[#4A4E69]/50">
+                        <div class="text-[#81B29A] text-2xl mb-2">🌊</div>
+                        <h3 class="font-bold text-base mb-2">Fluidity</h3>
+                        <p class="text-gray-300 text-xs">
+                            <span class="block mb-2" id="synth-3-gen">Motion without resistance.</span>
+                            <span class="hidden italic" id="synth-3-spec">Superfluidity & Laminar Flow.</span>
+                        </p>
+                    </div>
+                    <div class="bg-[#4A4E69] p-5 rounded-xl border border-[#4A4E69]/50">
+                        <div class="text-white text-2xl mb-2">🎯</div>
+                        <h3 class="font-bold text-base mb-2">Optimization</h3>
+                        <p class="text-gray-300 text-xs">
+                            <span class="block mb-2" id="synth-4-gen">Dharma is the path of least resistance.</span>
+                            <span class="hidden italic" id="synth-4-spec">Gradient Descent to Global Minima.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-[#4A4E69]">
+                    <p class="text-lg text-gray-200">
+                        "To wake up, we must synchronize the kick: feeling the emotion (EQ), understanding the structure (IQ), and physically enacting the change (KQ)."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100 mt-24 py-12 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>Generated based on the report: "Criticality and Integrated Information" & "The Architecture of the Soul".</p>
+            <p class="mt-2">Perspective Mode includes content from "Interdisciplinary Analogies".</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // --- State Management ---
+        const state = {
+            perspective: 'general',
+            criticality: 50,
+            coherence: 10,
+            fascia: 'stiff',
+            mechanics: 'misaligned',
+            inception: 20
+        };
+
+        // --- Perspective Toggle Logic ---
+        function setPerspective(mode) {
+            state.perspective = mode;
+            
+            // Button Styles
+            const btnGen = document.getElementById('btn-general');
+            const btnSpec = document.getElementById('btn-specialist');
+            
+            if (mode === 'general') {
+                btnGen.className = "w-1/2 rounded-full py-1 text-xs font-bold text-white bg-[#3D405B] shadow-sm transition-all-300";
+                btnSpec.className = "w-1/2 rounded-full py-1 text-xs font-bold text-gray-600 hover:text-[#3D405B] transition-all-300";
+            } else {
+                btnGen.className = "w-1/2 rounded-full py-1 text-xs font-bold text-gray-600 hover:text-[#3D405B] transition-all-300";
+                btnSpec.className = "w-1/2 rounded-full py-1 text-xs font-bold text-white bg-[#3D405B] shadow-sm transition-all-300";
+            }
+
+            // Text Content Toggling
+            toggleText('text-criticality-general', 'text-criticality-specialist', mode);
+            toggleText('text-coherence-general', 'text-coherence-specialist', mode);
+            toggleText('text-fascia-general', 'text-fascia-specialist', mode);
+            toggleText('text-mechanics-general', 'text-mechanics-specialist', mode);
+            toggleText('text-inception-general', 'text-inception-specialist', mode);
+            
+            // Synthesis Section Toggling
+            toggleDisplay('synth-1-gen', 'synth-1-spec', mode);
+            toggleDisplay('synth-2-gen', 'synth-2-spec', mode);
+            toggleDisplay('synth-3-gen', 'synth-3-spec', mode);
+            toggleDisplay('synth-4-gen', 'synth-4-spec', mode);
+        }
+
+        function toggleText(genId, specId, mode) {
+            const genEl = document.getElementById(genId);
+            const specEl = document.getElementById(specId);
+            if (mode === 'general') {
+                genEl.classList.remove('hidden');
+                specEl.classList.add('hidden');
+            } else {
+                genEl.classList.add('hidden');
+                specEl.classList.remove('hidden');
+            }
+        }
+
+        function toggleDisplay(genId, specId, mode) {
+            const genEl = document.getElementById(genId);
+            const specEl = document.getElementById(specId);
+            if (mode === 'general') {
+                genEl.style.display = 'block';
+                specEl.style.display = 'none';
+            } else {
+                genEl.style.display = 'none';
+                specEl.style.display = 'block';
+            }
+        }
+
+        // --- Chart 1: Criticality (Scatter) ---
+        const ctxCrit = document.getElementById('criticalityChart').getContext('2d');
+        function generateCriticalityData(val) {
+            const data = [];
+            const count = 150;
+            for (let i = 0; i < count; i++) {
+                let x, y;
+                if (val < 40) {
+                    x = (i % 15) * 6 + (Math.random() * val/10);
+                    y = Math.floor(i / 15) * 6 + (Math.random() * val/10);
+                } else if (val > 60) {
+                    x = Math.random() * 100;
+                    y = Math.random() * 100;
+                } else {
+                    x = (i / count) * 100;
+                    y = 50 + 20 * Math.sin(x * 0.1) + 10 * Math.sin(x * 0.3) + (Math.random() * 10 - 5); 
+                }
+                data.push({x, y});
+            }
+            return data;
+        }
+        const critChart = new Chart(ctxCrit, {
+            type: 'scatter',
+            data: { datasets: [{ label: 'Neural States', data: generateCriticalityData(50), backgroundColor: '#E07A5F', pointRadius: 3 }] },
+            options: { responsive: true, maintainAspectRatio: false, animation: { duration: 400 }, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+        });
+        document.getElementById('criticalitySlider').addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            const status = document.getElementById('criticalityStatus');
+            critChart.data.datasets[0].data = generateCriticalityData(val);
+            if (val < 40) {
+                status.innerText = "State: Subcritical (Frozen / Habitual)";
+                status.className = "text-center text-sm font-medium text-gray-500";
+                critChart.data.datasets[0].backgroundColor = '#CBD5E0';
+            } else if (val > 60) {
+                status.innerText = "State: Supercritical (Chaotic / Unstable)";
+                status.className = "text-center text-sm font-medium text-gray-500";
+                critChart.data.datasets[0].backgroundColor = '#CBD5E0';
+            } else {
+                status.innerText = "State: Critical (Maximized Information / Flow)";
+                status.className = "text-center text-sm font-medium text-[#E07A5F]";
+                critChart.data.datasets[0].backgroundColor = '#E07A5F';
+            }
+            critChart.update();
+        });
+
+        // --- Chart 2: Coherence (Line) ---
+        const ctxCoh = document.getElementById('coherenceChart').getContext('2d');
+        function generateWaveData(phaseLockStrength) {
+            const points = 100;
+            const labels = Array.from({length: points}, (_, i) => i);
+            const heartData = labels.map(i => Math.sin(i * 0.1) * 10);
+            const noiseLevel = (100 - phaseLockStrength) / 20; 
+            const phaseShift = (100 - phaseLockStrength) / 10;
+            const brainData = labels.map(i => (Math.sin((i * 0.1) + phaseShift) * 10) + ((Math.random() - 0.5) * noiseLevel * 5));
+            return { labels, heartData, brainData };
+        }
+        const initialCohData = generateWaveData(10);
+        const cohChart = new Chart(ctxCoh, {
+            type: 'line',
+            data: { labels: initialCohData.labels, datasets: [{ label: 'Heart', data: initialCohData.heartData, borderColor: '#E07A5F', pointRadius: 0, tension: 0.4 }, { label: 'Brain', data: initialCohData.brainData, borderColor: '#81B29A', pointRadius: 0, tension: 0.4 }] },
+            options: { responsive: true, maintainAspectRatio: false, animation: { duration: 0 }, plugins: { legend: { position: 'bottom' } }, scales: { x: { display: false }, y: { display: false, min: -20, max: 20 } } }
+        });
+        document.getElementById('coherenceSlider').addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            const status = document.getElementById('coherenceStatus');
+            const newData = generateWaveData(val);
+            cohChart.data.datasets[1].data = newData.brainData;
+            if (val < 40) {
+                status.innerText = "State: Low Coupling (Incoherent / Stress)";
+                status.className = "text-center text-sm font-medium text-gray-500";
+            } else if (val > 80) {
+                status.innerText = "State: High Coherence (Injection Locked / Flow)";
+                status.className = "text-center text-sm font-medium text-[#81B29A]";
+            } else {
+                status.innerText = "State: Syncing...";
+                status.className = "text-center text-sm font-medium text-gray-400";
+            }
+            cohChart.update();
+        });
+
+        // --- Chart 3: Fascia (Bubble) ---
+        const ctxFascia = document.getElementById('fasciaChart').getContext('2d');
+        function generateFasciaData(type) {
+            const data = [];
+            if (type === 'stiff') {
+                for(let i=0; i<40; i++) {
+                    const cluster = i % 3;
+                    const cx = cluster === 0 ? 25 : cluster === 1 ? 75 : 50;
+                    const cy = cluster === 0 ? 25 : cluster === 1 ? 25 : 75;
+                    data.push({ x: cx + (Math.random() - 0.5) * 30, y: cy + (Math.random() - 0.5) * 30, r: Math.random() * 25 + 5 });
+                }
+            } else {
+                for(let i=0; i<6; i++) {
+                    for(let j=0; j<6; j++) {
+                        data.push({ x: i * 16 + 10 + (Math.random() * 2), y: j * 16 + 10 + (Math.random() * 2), r: 8 });
+                    }
+                }
+            }
+            return data;
+        }
+        const fasciaChart = new Chart(ctxFascia, {
+            type: 'bubble',
+            data: { datasets: [{ label: 'Fascial Nodes', data: generateFasciaData('stiff'), backgroundColor: 'rgba(239, 68, 68, 0.6)' }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+        });
+        function updateFascia(type) {
+            const status = document.getElementById('fasciaStatus');
+            const btnStiff = document.getElementById('btn-stiff');
+            const btnHydrated = document.getElementById('btn-hydrated');
+            if (type === 'hydrated') {
+                fasciaChart.data.datasets[0].data = generateFasciaData('hydrated');
+                fasciaChart.data.datasets[0].backgroundColor = 'rgba(129, 178, 154, 0.7)';
+                status.innerText = "State: Global Tensegrity (Distributed Force / Piezoelectric Flow)";
+                status.className = "text-center text-sm font-medium text-[#81B29A] mt-4";
+                btnHydrated.className = "px-4 py-2 bg-[#F2CC8F] text-white text-sm font-bold rounded-lg shadow-md hover:bg-[#E0B165] transition-colors";
+                btnStiff.className = "px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg hover:bg-gray-300 transition-colors";
+            } else {
+                fasciaChart.data.datasets[0].data = generateFasciaData('stiff');
+                fasciaChart.data.datasets[0].backgroundColor = 'rgba(239, 68, 68, 0.5)';
+                status.innerText = "State: Stress Concentrations Detected (Blockage / Adhesion)";
+                status.className = "text-center text-sm font-medium text-red-400 mt-4";
+                btnHydrated.className = "px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg hover:bg-gray-300 transition-colors";
+                btnStiff.className = "px-4 py-2 bg-gray-400 text-white text-sm font-bold rounded-lg shadow-md transition-colors";
+            }
+            fasciaChart.update();
+        }
+
+        // --- Chart 4: Mechanics (Radar) ---
+        const ctxMech = document.getElementById('mechanicsChart').getContext('2d');
+        const mechData = { misaligned: [30, 90, 20, 40, 85], aligned: [80, 80, 80, 80, 80] };
+        const mechChart = new Chart(ctxMech, {
+            type: 'radar',
+            data: { labels: ['Fluid Flow', 'Compression', 'Tension', 'Stability', 'Force Transfer'], datasets: [{ data: mechData.misaligned, backgroundColor: 'rgba(203, 213, 224, 0.5)', borderColor: '#718096' }] },
+            options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false }, grid: { color: '#E2E8F0' }, pointLabels: { font: { size: 10, family: 'Noto Sans' }, color: '#4A5568' } } }, plugins: { legend: { display: false } } }
+        });
+        function updateMechanics(type) {
+            const status = document.getElementById('mechanicsStatus');
+            const btnAlign = document.getElementById('btn-aligned');
+            const btnMis = document.getElementById('btn-misaligned');
+            if (type === 'aligned') {
+                mechChart.data.datasets[0].data = mechData.aligned;
+                mechChart.data.datasets[0].backgroundColor = 'rgba(61, 64, 91, 0.5)';
+                mechChart.data.datasets[0].borderColor = '#3D405B';
+                status.innerText = "Current State: Aligned (Laminar Flow / Tensegrity)";
+                status.className = "text-center text-sm font-medium text-[#3D405B] mt-4";
+                btnAlign.className = "px-4 py-2 bg-[#3D405B] text-white text-sm font-bold rounded-lg shadow-md transition-colors";
+                btnMis.className = "px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg hover:bg-gray-300 transition-colors";
+            } else {
+                mechChart.data.datasets[0].data = mechData.misaligned;
+                mechChart.data.datasets[0].backgroundColor = 'rgba(203, 213, 224, 0.5)';
+                mechChart.data.datasets[0].borderColor = '#718096';
+                status.innerText = "Current State: Misaligned (Singularities / Friction)";
+                status.className = "text-center text-sm font-medium text-gray-500 mt-4";
+                btnAlign.className = "px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg hover:bg-gray-300 transition-colors";
+                btnMis.className = "px-4 py-2 bg-gray-400 text-white text-sm font-bold rounded-lg shadow-md transition-colors";
+            }
+            mechChart.update();
+        }
+
+        // --- Chart 5: Inception Kick (Line/Stacked) ---
+        const ctxInception = document.getElementById('inceptionChart').getContext('2d');
+        
+        function generateInceptionData(syncValue) {
+            // syncValue 0-100. 100 is perfect alignment (Kick).
+            const points = 100;
+            const labels = Array.from({length: points}, (_, i) => i);
+            
+            // The "Kick" is a peak. We want to align the peaks.
+            // Level 1 (Van/Fascia): Slow.
+            // Level 2 (Hotel/IQ): Medium.
+            // Level 3 (Fortress/EQ): Fast.
+            
+            // Peak Position Target = 50.
+            const target = 50;
+            const offset = (100 - syncValue) / 2; // Drift factor
+            
+            // Level 1: Drifts Left
+            const p1 = target - (offset * 1.5);
+            // Level 2: Stays relatively central
+            const p2 = target + (offset * 0.5);
+            // Level 3: Drifts Right
+            const p3 = target + (offset * 2.0);
+
+            // Gaussian Pulse Generator
+            const pulse = (x, peak, width) => Math.exp(-Math.pow(x - peak, 2) / (2 * Math.pow(width, 2)));
+
+            const d1 = labels.map(x => pulse(x, p1, 10)); // Slow wave
+            const d2 = labels.map(x => pulse(x, p2, 5));  // Med wave
+            const d3 = labels.map(x => pulse(x, p3, 2));  // Fast wave (Sharp spike)
+            
+            return { labels, d1, d2, d3 };
+        }
+
+        const initInc = generateInceptionData(20);
+
+        const inceptionChart = new Chart(ctxInception, {
+            type: 'line',
+            data: {
+                labels: initInc.labels,
+                datasets: [
+                    { label: 'Lvl 1 (Fascia/Van)', data: initInc.d1, borderColor: '#4A5568', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+                    { label: 'Lvl 2 (IQ/Hotel)', data: initInc.d2, borderColor: '#718096', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+                    { label: 'Lvl 3 (EQ/Fortress)', data: initInc.d3, borderColor: '#A0AEC0', borderWidth: 2, pointRadius: 0, tension: 0.4 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 0 },
+                scales: {
+                    x: { display: false },
+                    y: { display: false, min: 0, max: 1.2 }
+                },
+                plugins: { legend: { display: true, labels: { color: '#CBD5E0', font: { size: 10 } } } }
+            }
+        });
+
+        document.getElementById('inceptionSlider').addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            const status = document.getElementById('inceptionStatus');
+            const newData = generateInceptionData(val);
+            
+            inceptionChart.data.datasets[0].data = newData.d1;
+            inceptionChart.data.datasets[1].data = newData.d2;
+            inceptionChart.data.datasets[2].data = newData.d3;
+
+            // Visual feedback for Sync
+            if (val > 95) {
+                // GOLDEN STATE (The Kick)
+                inceptionChart.data.datasets[0].borderColor = '#F2CC8F';
+                inceptionChart.data.datasets[1].borderColor = '#F2CC8F';
+                inceptionChart.data.datasets[2].borderColor = '#F2CC8F';
+                inceptionChart.data.datasets[0].borderWidth = 4;
+                inceptionChart.data.datasets[1].borderWidth = 4;
+                inceptionChart.data.datasets[2].borderWidth = 4;
+                
+                status.innerText = "Status: PHASE LOCKED (KICK INITIATED)";
+                status.className = "text-center text-sm font-bold text-[#F2CC8F] animate-pulse";
+            } else {
+                // Standard Drift
+                inceptionChart.data.datasets[0].borderColor = '#4A5568';
+                inceptionChart.data.datasets[1].borderColor = '#718096';
+                inceptionChart.data.datasets[2].borderColor = '#A0AEC0';
+                inceptionChart.data.datasets[0].borderWidth = 2;
+                inceptionChart.data.datasets[1].borderWidth = 2;
+                inceptionChart.data.datasets[2].borderWidth = 2;
+                
+                status.innerText = "Status: Layers Desynchronized (Dream Collapse Imminent)";
+                status.className = "text-center text-sm font-medium text-gray-400";
+            }
+
+            inceptionChart.update();
+        });
+
+        // Init
+        updateMechanics('misaligned');
+        updateFascia('stiff');
+
+    </script>
+</body>
+</html>

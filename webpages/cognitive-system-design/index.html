@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive System Design Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful. Structure: Hero → Cognitive Pipeline (M1-M5) → Core Modules (cards + LTM/Bias/Hick's charts) → SDT & GOMS → Failure Modes. No SVG/Mermaid. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            color: #073B4C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .text-accent-1 { color: #FF6B6B; }
+        .text-accent-2 { color: #FFD166; }
+        .text-accent-3 { color: #06D6A0; }
+        .text-accent-4 { color: #118AB2; }
+        .bg-accent-1 { background-color: #FF6B6B; }
+        .bg-accent-2 { background-color: #FFD166; }
+        .bg-accent-3 { background-color: #06D6A0; }
+        .bg-accent-4 { background-color: #118AB2; }
+        .bg-primary-dark { background-color: #073B4C; }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #118AB2;
+        }
+        h1 { font-weight: 900; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl text-accent-4">From Eye to Decision</h1>
+            <p class="text-xl md:text-2xl mt-4 text-gray-700">The 5 Modules of Cognitive System Design</p>
+        </header>
+
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-8">The Human Cognitive Pipeline</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center mb-12">
+                Effective system design respects the flow of human cognition. Information passes from initial sensory input (M1) through preattentive filters (M2) to be processed by our memory systems (M3 & M5), all governed by our self-awareness (M4).
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <div class="card p-4 text-center w-60">
+                    <span class="text-2xl font-bold text-accent-4">M1: Perception</span>
+                    <p class="text-sm">Sensory Input</p>
+                </div>
+                
+                <span class="text-4xl font-bold text-accent-4 transform rotate-90 md:rotate-0">→</span>
+                
+                <div class="card p-4 text-center w-60">
+                    <span class="text-2xl font-bold text-accent-4">M2: Preattention</span>
+                    <p class="text-sm">Automatic Grouping</p>
+                </div>
+                
+                <span class="text-4xl font-bold text-accent-4 transform rotate-90 md:rotate-0">→</span>
+                
+                <div class="flex flex-col space-y-4">
+                    <div class="card p-4 text-center w-60">
+                        <span class="text-2xl font-bold text-accent-4">M3: LTM</span>
+                        <p class="text-sm">Stored Knowledge</p>
+                    </div>
+                    <div class="card p-4 text-center w-60">
+                        <span class="text-2xl font-bold text-accent-4">M5: Working Memory</span>
+                        <p class="text-sm">Real-Time Processing</p>
+                    </div>
+                </div>
+                
+                <span class="text-4xl font-bold text-accent-4 transform rotate-90 md:rotate-0">→</span>
+
+                <div class="card p-4 text-center w-60 bg-accent-4 text-white">
+                    <span class="text-2xl font-bold">M4: Metacognition</span>
+                    <p class="text-sm">Executive Control</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="text-3xl font-bold text-center mb-12">A Deeper Look at the Core Modules</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card p-6 lg:col-span-1">
+                    <h3 class="text-2xl mb-4">M1: Sensory Processing</h3>
+                    <p class="text-gray-700 mb-4">
+                        Design must respect the physical limits of our senses. For vision, this means ensuring high contrast and legibility, accounting for the different functions of rods (low light) and cones (color, detail).
+                    </p>
+                    <div class="text-center p-4 bg-gray-100 rounded-lg">
+                        <span class="text-5xl font-bold text-accent-4 block">👁️</span>
+                        <p class="font-semibold mt-2">Design for Visual Acuity</p>
+                    </div>
+                </div>
+
+                <div class="card p-6 lg:col-span-2">
+                    <h3 class="text-2xl mb-4">M2: Preattentive Grouping (Gestalt)</h3>
+                    <p class="text-gray-700 mb-4">
+                        Our brains automatically group objects before we even pay attention. Designs that violate these Gestalt principles (like Proximity) force the user's brain to work harder, increasing cognitive load.
+                    </p>
+                    <div class="flex justify-around items-center p-4 bg-gray-100 rounded-lg h-32">
+                        <div>
+                            <p class="font-semibold text-center mb-2 text-accent-1">Bad: High Load</p>
+                            <div class="flex space-x-8">
+                                <div class="w-6 h-6 rounded-full bg-accent-4"></div>
+                                <div class="w-6 h-6 rounded-full bg-accent-3"></div>
+                                <div class="w-6 h-6 rounded-full bg-accent-4"></div>
+                                <div class="w-6 h-6 rounded-full bg-accent-3"></div>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gray-300 h-full"></div>
+                        <div>
+                            <p class="font-semibold text-center mb-2 text-accent-3">Good: Low Load</p>
+                            <div class="flex space-x-8">
+                                <div class="flex space-x-2">
+                                    <div class="w-6 h-6 rounded-full bg-accent-4"></div>
+                                    <div class="w-6 h-6 rounded-full bg-accent-4"></div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <div class="w-6 h-6 rounded-full bg-accent-3"></div>
+                                    <div class="w-6 h-6 rounded-full bg-accent-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card p-6">
+                    <h3 class="text-2xl mb-4">M3: Long-Term Memory (LTM)</h3>
+                    <p class="text-gray-700 mb-4">
+                        LTM stores our knowledge. Designs must support retrieval by providing consistent cues (Encoding Specificity) and build on our two main memory types.
+                    </p>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="ltmChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card p-6">
+                    <h3 class="text-2xl mb-4">M4: Metacognition</h3>
+                    <p class="text-gray-700 mb-4">
+                        This is our "thinking about thinking." A key HF goal is to mitigate cognitive biases, like Anchoring, where an initial piece of info skews our judgment.
+                    </p>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="biasChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <h3 class="text-2xl mb-4">M5: Working Memory (WM)</h3>
+                    <p class="text-gray-700 mb-4">
+                        WM is our limited-capacity "processor." Hick's Law proves that as you add choices (n), Reaction Time (RT) increases logarithmically. Good design simplifies.
+                    </p>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="hicksChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Key Principles in Practice</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="card p-6">
+                    <h3 class="text-2xl mb-4">Signal Detection Theory (SDT)</h3>
+                    <p class="text-gray-700 mb-4">
+                        Is that alert a real signal or just noise? SDT helps us measure a user's ability (d') to distinguish them. A good design maximizes "Hits" and "Correct Rejections."
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="p-4 bg-accent-3 text-white rounded-lg">
+                            <span class="font-bold block text-lg">Hit</span>
+                            (Signal Detected)
+                        </div>
+                        <div class="p-4 bg-accent-1 text-white rounded-lg">
+                            <span class="font-bold block text-lg">Miss</span>
+                            (Signal Not Detected)
+                        </div>
+                        <div class="p-4 bg-accent-2 text-gray-800 rounded-lg">
+                            <span class="font-bold block text-lg">False Alarm</span>
+                            (Noise Detected)
+                        </div>
+                        <div class="p-4 bg-accent-4 text-white rounded-lg">
+                            <span class="font-bold block text-lg">Correct Rejection</span>
+                            (Noise Ignored)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <h3 class="text-2xl mb-4">Predictive Modeling (GOMS/KLM)</h3>
+                    <p class="text-gray-700 mb-4">
+                        We can mathematically predict how long an expert user will take to complete a task. Optimizing this time by reducing steps is a core HF goal.
+                    </p>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="gomsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Cognitive Failure Modes & Solutions</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center mb-12">
+                When design violates these cognitive principles, performance suffers. Here are common failures and their HF-engineered solutions.
+            </p>
+            <div class="space-y-6">
+                
+                <div class="card p-6 border-l-8 border-accent-1">
+                    <h3 class="text-2xl mb-2 text-accent-1">Failure: User is Overwhelmed</h3>
+                    <p class="text-gray-700"><strong class="text-gray-900">Cognitive Origin:</strong> M2/M5 Failure. Poor Gestalt grouping (M2) forces Working Memory (M5) to do the organizational work, causing rapid fatigue.</p>
+                    <p class="text-gray-700 mt-2"><strong class="text-accent-4">Solution:</strong> Apply Gestalt principles (Proximity, Similarity) to create a clear visual hierarchy that M2 can process automatically.</p>
+                </div>
+
+                <div class="card p-6 border-l-8 border-accent-1">
+                    <h3 class="text-2xl mb-2 text-accent-1">Failure: User Freezes or Abandons Task</h3>
+                    <p class="text-gray-700"><strong class="text-gray-900">Cognitive Origin:</strong> M5 Violation (Hick's Law). Excessive choice complexity (high 'n') logarithmically increases reaction time and cognitive load.</p>
+                    <p class="text-gray-700 mt-2"><strong class="text-accent-4">Solution:</strong> Reduce 'n'. Implement progressive disclosure and chunking to present fewer options at critical decision points.</p>
+                </div>
+                
+                <div class="card p-6 border-l-8 border-accent-1">
+                    <h3 class="text-2xl mb-2 text-accent-1">Failure: User Can't Recall a Command</h3>
+                    <p class="text-gray-700"><strong class="text-gray-900">Cognitive Origin:</strong> M3 Violation (Encoding Specificity). The cues at retrieval (on the interface) do not match the cues from training.</p>
+                    <p class="text-gray-700 mt-2"><strong class="text-accent-4">Solution:</strong> Ensure 1:1 consistency for icons, labels, and context between the training environment and the operational system.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="mt-20 py-8 border-t border-gray-300 text-center">
+            <p class="text-gray-600">An infographic based on the Cognitive System Design Review (HF700) principles.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const chartTooltipCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const ltmChartCtx = document.getElementById('ltmChart');
+            if (ltmChartCtx) {
+                new Chart(ltmChartCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Declarative (Facts)', 'Procedural (Skills)'],
+                        datasets: [{
+                            label: 'LTM Types',
+                            data: [45, 55],
+                            backgroundColor: ['#FF6B6B', '#118AB2'],
+                            borderWidth: 0,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...chartTooltipCallback,
+                        plugins: {
+                            ...chartTooltipCallback.plugins,
+                            legend: {
+                                position: 'bottom',
+                            },
+                        }
+                    }
+                });
+            }
+
+            const biasChartCtx = document.getElementById('biasChart');
+            if (biasChartCtx) {
+                new Chart(biasChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Anchored Estimate', 'Calibrated Estimate'],
+                        datasets: [{
+                            label: 'Impact of Bias',
+                            data: [85, 40],
+                            backgroundColor: ['#FF6B6B', '#06D6A0'],
+                            borderRadius: 4,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...chartTooltipCallback,
+                        scales: {
+                            y: { beginAtZero: true, max: 100 }
+                        },
+                        plugins: {
+                            ...chartTooltipCallback.plugins,
+                            legend: { display: false },
+                        }
+                    }
+                });
+            }
+
+            const hicksChartCtx = document.getElementById('hicksChart');
+            if (hicksChartCtx) {
+                const hicksLabels = [1, 2, 4, 8, 16];
+                const a = 200; 
+                const b = 150;
+                const hicksData = hicksLabels.map(n => a + (b * Math.log2(n)));
+                
+                new Chart(hicksChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: hicksLabels.map(n => `${n} Choices`),
+                        datasets: [{
+                            label: 'Reaction Time (ms)',
+                            data: hicksData,
+                            borderColor: '#FF6B6B',
+                            backgroundColor: '#FF6B6B',
+                            tension: 0.1,
+                            fill: false,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...chartTooltipCallback,
+                        scales: {
+                            y: { 
+                                beginAtZero: false,
+                                title: { display: true, text: 'Reaction Time (ms)' }
+                            },
+                            x: {
+                                title: { display: true, text: 'Number of Choices (n)' }
+                            }
+                        },
+                        plugins: {
+                            ...chartTooltipCallback.plugins,
+                            legend: { display: false },
+                        }
+                    }
+                });
+            }
+
+            const gomsChartCtx = document.getElementById('gomsChart');
+            if (gomsChartCtx) {
+                new Chart(gomsChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [['Poor Design', '(KLM)'], ['Optimized Design', '(KLM)']],
+                        datasets: [{
+                            label: 'Predicted Task Time (ms)',
+                            data: [4250, 1800],
+                            backgroundColor: ['#FFD166', '#06D6A0'],
+                            borderRadius: 4,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...chartTooltipCallback,
+                        scales: {
+                            y: { 
+                                beginAtZero: true,
+                                title: { display: true, text: 'Time (ms)' }
+                            }
+                        },
+                        plugins: {
+                            ...chartTooltipCallback.plugins,
+                            legend: { display: false },
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
