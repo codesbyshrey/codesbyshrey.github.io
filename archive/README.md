@@ -10,3 +10,4 @@ Archived single-page applications and projects. Each subfolder is a self-contain
 - `synthesizing-the-organism/` — Synthesizing the Organism: Towards a Unified Theory
 - `resonant-self/` — The Resonant Self: A Biological Theory of Everything
 - `quantum-physics/` — The World of Quantum Physics (principles, double-slit, uncertainty, real-world tech)
+ - `cognitive-toolkit/` — The Cognitive Toolkit: Drawing & Visualization

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cognitive Toolkit: Drawing & Visualization | Interactive Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom Font Import - Inter for clean academic look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfaf8; /* Warm neutral background */
+            color: #292524; /* Stone 800 */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+        }
+
+        /* Chart Container Styling - MANDATORY */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Scrollbar for a polished feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d6d3d1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a29e;
+        }
+
+        /* Interactive Element Transitions */
+        .interactive-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #ea580c; /* Orange 600 */
+        }
+
+        /* Abstraction Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ea580c;
+            cursor: pointer;
+            margin-top: -8px; 
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #d6d3d1;
+            border-radius: 2px;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Intellectual (Stone/Orange/Sage) -->
+    <!-- Application Structure Plan: 
+         1. Hero Section: Hook based on the "Cartesian" unity of algebra/geometry.
+         2. "The Cognitive Toolkit": Introduction to the core concept.
+         3. "Drawing as Discovery": Interactive Abstraction simulation (Slider) showing how we simplify to communicate.
+         4. "Mechanisms of Thought": Interactive diagram comparing "Visual" vs "Mechanistic" explanations.
+         5. "The New Frontier: Data Viz": Chart.js interaction comparing Human vs. AI graph understanding.
+         6. Conclusion: Future implications for AI and Education.
+         Why: This flows from the historical context (video start) to the specific modalities (Drawing -> Viz) and ends with the lab's modern research focus.
+    -->
+    <!-- Visualization & Content Choices:
+         - Abstraction Slider: Uses CSS opacity/display changes on text/shapes to simulate "Photo" -> "Sketch" -> "Schematic" to demonstrate Fan's research on communication efficiency.
+         - Mechanism Diagram: CSS Grid/Flexbox with click interactions to reveal "hidden causal links," mirroring the "contraptions" study.
+         - Data Viz Chart: Chart.js Bar chart comparing "Human vs Model" performance on visual reasoning tasks, derived from the "Graph Understanding" segment.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased selection:bg-orange-100 selection:text-orange-900">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-sm border-b border-stone-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-stone-800 tracking-tight">The Cognitive Toolkit</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('intro')" class="text-stone-600 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Concept</button>
+                    <button onclick="scrollToSection('drawing')" class="text-stone-600 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Drawing</button>
+                    <button onclick="scrollToSection('mechanism')" class="text-stone-600 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Mechanisms</button>
+                    <button onclick="scrollToSection('dataviz')" class="text-stone-600 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Data Visualization</button>
+                </div>
+                <!-- Mobile Menu Button (Functional via JS) -->
+                <button id="mobile-menu-btn" class="md:hidden text-stone-600 hover:text-stone-900 focus:outline-none">
+                    <span class="text-2xl">☰</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 border-b border-stone-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('intro')" class="block w-full text-left text-stone-600 hover:bg-stone-100 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium">Concept</button>
+                <button onclick="scrollToSection('drawing')" class="block w-full text-left text-stone-600 hover:bg-stone-100 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium">Drawing</button>
+                <button onclick="scrollToSection('mechanism')" class="block w-full text-left text-stone-600 hover:bg-stone-100 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium">Mechanisms</button>
+                <button onclick="scrollToSection('dataviz')" class="block w-full text-left text-stone-600 hover:bg-stone-100 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium">Data Visualization</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="intro" class="relative overflow-hidden bg-stone-100 py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <div class="inline-flex items-center px-3 py-1 rounded-full border border-orange-200 bg-orange-50 text-orange-800 text-xs font-semibold uppercase tracking-wide mb-4">
+                    Based on Research by Prof. Judy Fan (Stanford)
+                </div>
+                <h1 class="text-4xl tracking-tight font-extrabold text-stone-900 sm:text-5xl md:text-6xl mb-6">
+                    Reverse Engineering the <br class="hidden sm:block"> <span class="text-orange-600">Human Cognitive Toolkit</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-stone-600 leading-relaxed">
+                    From the number line to data visualization, humans invent tools that expand our capacity to think. 
+                    Explore how drawing and visual abstraction accelerate learning, communication, and discovery.
+                </p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <button onclick="scrollToSection('drawing')" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-stone-800 hover:bg-stone-900 md:py-4 md:text-lg transition-all shadow-lg hover:shadow-xl">
+                        Start Exploring
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Concept Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">What is a Cognitive Tool?</h2>
+                <p class="text-lg text-stone-600 leading-relaxed">
+                    Just as a hammer extends our physical strength, cognitive tools extend our mental reach. 
+                    The video highlights how inventions like the <strong>Cartesian coordinate system</strong> didn't just solve math problems—they bridged algebra and geometry, fundamentally changing how humans conceptualize space and relationship.
+                </p>
+            </div>
+
+            <!-- Interactive Concept Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="interactive-card bg-stone-50 rounded-xl p-6 border border-stone-200 cursor-pointer" onclick="updateInfo('tool-numberline')">
+                    <div class="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center text-2xl mb-4">📏</div>
+                    <h3 class="text-xl font-semibold text-stone-800 mb-2">The Number Line</h3>
+                    <p class="text-stone-600 text-sm">Mapping abstract quantities to physical space.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="interactive-card bg-stone-50 rounded-xl p-6 border border-stone-200 cursor-pointer" onclick="updateInfo('tool-cartesian')">
+                    <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-2xl mb-4">📈</div>
+                    <h3 class="text-xl font-semibold text-stone-800 mb-2">Cartesian Plane</h3>
+                    <p class="text-stone-600 text-sm">Unifying algebra and geometry to visualize relationships.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="interactive-card bg-stone-50 rounded-xl p-6 border border-stone-200 cursor-pointer" onclick="updateInfo('tool-drawing')">
+                    <div class="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center text-2xl mb-4">✏️</div>
+                    <h3 class="text-xl font-semibold text-stone-800 mb-2">Drawing</h3>
+                    <p class="text-stone-600 text-sm">Externalizing thought to perceive, learn, and share.</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Info Box -->
+            <div id="tool-info-box" class="mt-8 bg-stone-800 text-stone-50 p-6 rounded-lg shadow-inner transition-all duration-500 opacity-100">
+                <h4 class="text-lg font-bold text-orange-400 mb-2" id="info-title">Select a tool above</h4>
+                <p id="info-desc">Click on one of the cards to see how these cognitive tools transformed human intelligence according to the colloquium.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drawing & Abstraction Section -->
+    <section id="drawing" class="py-16 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- Text Content -->
+                <div>
+                    <div class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800 mb-4">Empirical Study</div>
+                    <h2 class="text-3xl font-bold text-stone-900 mb-6">Drawing as Visual Abstraction</h2>
+                    <p class="text-stone-600 mb-4 leading-relaxed">
+                        Prof. Fan's research argues that drawing is not just about making "faithful pictures" (resemblance). It is a process of <strong>abstraction</strong> driven by context.
+                    </p>
+                    <p class="text-stone-600 mb-4 leading-relaxed">
+                        When we communicate, we strip away unnecessary detail. This efficiency depends on <strong>shared context</strong>. To a stranger, we draw a detailed chair. To a friend who knows which chair we mean, a few lines suffice.
+                    </p>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-orange-500 shadow-sm mt-6">
+                        <h4 class="font-bold text-stone-900 text-sm">Key Insight:</h4>
+                        <p class="text-stone-600 text-sm italic">"Drawing provides a window into how people perceive and understand the visual world, accelerating the ability to learn and communicate useful abstractions."</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Abstraction Slider -->
+                <div class="bg-white rounded-2xl shadow-xl border border-stone-200 p-8">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-6 text-center">Experiment: The Levels of Abstraction</h3>
+                    
+                    <!-- Visual Container -->
+                    <div class="relative w-full h-64 bg-stone-100 rounded-lg mb-8 flex items-center justify-center overflow-hidden border border-stone-300">
+                        
+                        <!-- Level 1: Realistic (Simulated) -->
+                        <div id="viz-level-1" class="absolute inset-0 flex items-center justify-center transition-opacity duration-500 bg-stone-200">
+                            <div class="text-center">
+                                <div class="text-6xl mb-2">🪑</div>
+                                <div class="text-xs text-stone-500 font-mono">Input: Visual Sensory Data</div>
+                                <div class="text-sm font-bold mt-2 text-stone-700">Detailed Representation</div>
+                                <div class="text-xs text-stone-500 max-w-xs mx-auto mt-1">Includes texture, lighting, perspective, and specific features. High cognitive load to produce.</div>
+                            </div>
+                        </div>
+
+                        <!-- Level 2: Sketch (Simulated) -->
+                        <div id="viz-level-2" class="absolute inset-0 flex items-center justify-center transition-opacity duration-500 opacity-0 bg-white">
+                            <div class="text-center">
+                                <div class="w-32 h-32 border-4 border-stone-800 rounded-lg flex items-center justify-center relative">
+                                    <div class="w-24 h-4 bg-stone-800 absolute top-14"></div> <!-- Seat -->
+                                    <div class="w-4 h-16 bg-stone-800 absolute top-14 left-4"></div> <!-- Leg -->
+                                    <div class="w-4 h-16 bg-stone-800 absolute top-14 right-4"></div> <!-- Leg -->
+                                    <div class="w-4 h-16 bg-stone-800 absolute top-0 left-4"></div> <!-- Back -->
+                                </div>
+                                <div class="text-sm font-bold mt-4 text-stone-700">Structural Sketch</div>
+                                <div class="text-xs text-stone-500 max-w-xs mx-auto mt-1">Captures key parts and relations. Good for general communication.</div>
+                            </div>
+                        </div>
+
+                        <!-- Level 3: Token/Symbol (Simulated) -->
+                        <div id="viz-level-3" class="absolute inset-0 flex items-center justify-center transition-opacity duration-500 opacity-0 bg-white">
+                            <div class="text-center">
+                                <div class="text-8xl text-stone-900 font-bold">h</div>
+                                <div class="text-sm font-bold mt-2 text-stone-700">Symbolic Token</div>
+                                <div class="text-xs text-stone-500 max-w-xs mx-auto mt-1">Requires established convention. Highly efficient, low production cost, relies on shared context.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-xs font-semibold text-stone-500 uppercase tracking-wide">
+                            <span>Perception</span>
+                            <span>Communication</span>
+                            <span>Convention</span>
+                        </div>
+                        <input type="range" min="1" max="3" value="1" id="abstractionSlider" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="text-center">
+                            <p class="text-stone-800 font-medium" id="slider-label">Level: Detailed Perception</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanistic Knowledge Section -->
+    <section id="mechanism" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
+            <h2 class="text-3xl font-bold text-stone-900">Communicating "How Things Work"</h2>
+            <p class="mt-4 text-lg text-stone-600">
+                Beyond static objects, drawings explain mechanisms. The lab studies how people generate visual explanations for novel contraptions. We don't just draw what we see; we draw <strong>causal relationships</strong>.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-stone-900 rounded-xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                <!-- Interactive "Contraption" -->
+                <div class="p-8 bg-stone-800 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-stone-700">
+                    <div class="text-stone-400 text-sm mb-6 uppercase tracking-widest font-semibold">The "Black Box" Contraption</div>
+                    
+                    <!-- The Diagram -->
+                    <div class="relative w-64 h-64 bg-stone-700 rounded-lg p-4 grid grid-cols-2 grid-rows-2 gap-4">
+                        <!-- Gear A -->
+                        <div onclick="activateMechanism('A')" id="mech-A" class="bg-stone-600 hover:bg-orange-600 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-md group">
+                            <span class="text-2xl group-hover:animate-spin">⚙️</span>
+                        </div>
+                        <!-- Lever B -->
+                        <div onclick="activateMechanism('B')" id="mech-B" class="bg-stone-600 hover:bg-orange-600 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 shadow-md">
+                            <span class="text-2xl">🔧</span>
+                        </div>
+                        <!-- Battery C -->
+                        <div onclick="activateMechanism('C')" id="mech-C" class="bg-stone-600 hover:bg-orange-600 rounded-md flex items-center justify-center cursor-pointer transition-all duration-300 shadow-md">
+                            <span class="text-2xl">🔋</span>
+                        </div>
+                        <!-- Bulb D -->
+                        <div id="mech-D" class="bg-stone-600 rounded-full flex items-center justify-center transition-all duration-300 shadow-md border-2 border-transparent">
+                            <span class="text-2xl filter grayscale opacity-50" id="bulb-icon">💡</span>
+                        </div>
+                        
+                        <!-- Connecting Lines (CSS borders) -->
+                        <div class="absolute inset-0 pointer-events-none">
+                            <!-- Line A to B -->
+                            <div id="line-AB" class="absolute top-1/4 left-1/4 w-1/2 h-1 bg-stone-500/30 origin-left transition-colors duration-300"></div>
+                            <!-- Line B to D -->
+                            <div id="line-BD" class="absolute top-1/4 left-3/4 w-1 h-1/2 bg-stone-500/30 origin-top transition-colors duration-300"></div>
+                             <!-- Line C to D -->
+                             <div id="line-CD" class="absolute bottom-1/4 left-1/4 w-1/2 h-1 bg-stone-500/30 origin-left transition-colors duration-300"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-stone-400 text-xs">Click parts to discover causal links</div>
+                </div>
+
+                <!-- Analysis Panel -->
+                <div class="p-8 flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-white mb-4">Mechanism Analysis</h3>
+                    <div id="mechanism-feedback" class="space-y-4">
+                        <p class="text-stone-300">The lab uses "novel contraptions" to test causal understanding. Click the components on the left to uncover the hidden mechanism.</p>
+                        <div class="p-4 bg-stone-800/50 rounded border border-stone-600">
+                            <p class="text-orange-400 font-mono text-sm">Status: <span id="mech-status">Unknown</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization Section -->
+    <section id="dataviz" class="py-16 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 text-center md:text-left">
+                <h2 class="text-3xl font-bold text-stone-900">Data Visualization: Making the Invisible Visible</h2>
+                <p class="mt-4 text-lg text-stone-600 max-w-3xl">
+                    Data visualization is a recent cognitive tool. The lab investigates the "cognitive foundations" of how we extract meaning from plots. 
+                    A key study compares <strong>Human Intuition</strong> against <strong>Machine Learning Models</strong> on visual reasoning tasks (e.g., detecting trends or clusters in scatter plots).
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border border-stone-200 p-6 md:p-8">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-stone-800">Human vs. AI: Visual Reasoning Accuracy</h3>
+                    <div class="flex space-x-2 mt-4 md:mt-0">
+                        <button onclick="updateChartData('trend')" class="px-3 py-1 bg-stone-100 hover:bg-orange-100 text-stone-700 rounded text-sm font-medium transition-colors border border-stone-300">Trend Detection</button>
+                        <button onclick="updateChartData('cluster')" class="px-3 py-1 bg-stone-100 hover:bg-orange-100 text-stone-700 rounded text-sm font-medium transition-colors border border-stone-300">Cluster ID</button>
+                    </div>
+                </div>
+
+                <!-- Chart Container -->
+                <div class="chart-container">
+                    <canvas id="vizComparisonChart"></canvas>
+                </div>
+
+                <div class="mt-6 text-sm text-stone-500 bg-stone-50 p-4 rounded-lg">
+                    <strong>Context:</strong> While humans naturally grasp visual "gestalts" (overall shape/trend), standard computer vision models (like basic CNNs) often struggle without specific training. Newer "object-centric" models aim to bridge this gap. This data is illustrative of the trends discussed in the colloquium.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion & Lab Info -->
+    <section class="py-16 bg-stone-900 text-stone-300">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">The Future of Cognitive Tools</h2>
+            <p class="text-lg leading-relaxed mb-8">
+                By reverse-engineering the psychological mechanisms behind drawing and visualization, Judy Fan's lab aims to build better tools for learning and discovery. 
+                Embracing this "continually expanding suite of cognitive tools" is key to augmenting human intelligence in the age of AI.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left bg-stone-800 p-8 rounded-xl border border-stone-700">
+                <div>
+                    <h4 class="text-white font-bold mb-2">Relevant Concepts</h4>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li>• Cognitive Offloading</li>
+                        <li>• Pragmatic Inference</li>
+                        <li>• Multimodal Abstraction</li>
+                        <li>• Visual Production vs. Perception</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-2">Lab Mission</h4>
+                    <p class="text-sm text-stone-400">
+                        To uncover the cognitive foundations of visual communication and use these insights to design technologies that help people learn, share, and create.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-12 text-sm text-stone-500">
+                <p>Based on the BCS Colloquium "Drawing & Visualization as Cognitive Tools" (March 2025).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // --- State Management ---
+        const appState = {
+            currentToolInfo: 'default',
+            mechSteps: { A: false, B: false, C: false },
+            chartMode: 'trend'
+        };
+
+        // --- Navigation ---
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // --- Section 1: Concept Info Box ---
+        const toolData = {
+            'tool-numberline': {
+                title: "The Number Line",
+                desc: "A foundational tool that maps abstract numerical concepts onto a spatial dimension. It enables us to perform arithmetic visually and understand continuity."
+            },
+            'tool-cartesian': {
+                title: "Cartesian Coordinate System",
+                desc: "Descartes' invention united algebra and geometry. It allowed abstract relationships (equations) to be visualized as shapes (curves), laying the groundwork for calculus and modern physics."
+            },
+            'tool-drawing': {
+                title: "Drawing as a Cognitive Tool",
+                desc: "Drawing allows us to externalize our internal mental models. It serves three roles: re-formatting sensory info (Perception), marking the world (Production), and affecting others' minds (Communication)."
+            }
+        };
+
+        function updateInfo(key) {
+            const box = document.getElementById('tool-info-box');
+            const title = document.getElementById('info-title');
+            const desc = document.getElementById('info-desc');
+            
+            // Simple fade effect
+            box.style.opacity = '0.5';
+            setTimeout(() => {
+                if (toolData[key]) {
+                    title.textContent = toolData[key].title;
+                    desc.textContent = toolData[key].desc;
+                }
+                box.style.opacity = '1';
+            }, 200);
+        }
+
+        // --- Section 2: Abstraction Slider ---
+        const slider = document.getElementById('abstractionSlider');
+        const sliderLabel = document.getElementById('slider-label');
+        
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            const level1 = document.getElementById('viz-level-1');
+            const level2 = document.getElementById('viz-level-2');
+            const level3 = document.getElementById('viz-level-3');
+
+            // Reset all opacity
+            level1.style.opacity = '0';
+            level2.style.opacity = '0';
+            level3.style.opacity = '0';
+            
+            // Wait briefly for transition then hide/show
+            // For simplicity in vanilla JS, we keep them absolute positioned and just toggle opacity
+            
+            if (val == 1) {
+                level1.style.opacity = '1';
+                sliderLabel.textContent = "Level: Detailed Perception (Faithful)";
+            } else if (val == 2) {
+                level2.style.opacity = '1';
+                sliderLabel.textContent = "Level: Structural Sketch (Communicative)";
+            } else {
+                level3.style.opacity = '1';
+                sliderLabel.textContent = "Level: Symbolic Token (Conventional)";
+            }
+        });
+
+        // --- Section 3: Mechanism Interaction ---
+        function activateMechanism(part) {
+            const feedback = document.getElementById('mech-status');
+            const bulb = document.getElementById('bulb-icon');
+            const lineAB = document.getElementById('line-AB');
+            const lineCD = document.getElementById('line-CD');
+            const lineBD = document.getElementById('line-BD');
+            const dContainer = document.getElementById('mech-D');
+
+            // Update State
+            appState.mechSteps[part] = !appState.mechSteps[part]; // Toggle
+            
+            // UI Updates based on logic
+            const el = document.getElementById(`mech-${part}`);
+            if (appState.mechSteps[part]) {
+                el.classList.add('ring-2', 'ring-orange-400');
+            } else {
+                el.classList.remove('ring-2', 'ring-orange-400');
+            }
+
+            // Simple Logic Simulation
+            // Logic: Need (A AND B) OR C to light the bulb.
+            // A powers B. B powers D. C powers D directly.
+            
+            let message = "";
+            let lit = false;
+
+            // Visualizing connections
+            if (appState.mechSteps.A) {
+                lineAB.classList.remove('bg-stone-500/30');
+                lineAB.classList.add('bg-orange-500');
+                message = "Gear A is spinning...";
+            } else {
+                lineAB.classList.add('bg-stone-500/30');
+                lineAB.classList.remove('bg-orange-500');
+            }
+
+            if (appState.mechSteps.C) {
+                lineCD.classList.remove('bg-stone-500/30');
+                lineCD.classList.add('bg-orange-500');
+                message = "Battery C provides direct power.";
+                lit = true;
+            } else {
+                lineCD.classList.add('bg-stone-500/30');
+                lineCD.classList.remove('bg-orange-500');
+            }
+
+            if (appState.mechSteps.A && appState.mechSteps.B) {
+                lineBD.classList.remove('bg-stone-500/30');
+                lineBD.classList.add('bg-orange-500');
+                message = "Gear A drives Lever B, activating the system.";
+                lit = true;
+            } else if (appState.mechSteps.B && !appState.mechSteps.A) {
+                message = "Lever B is active, but needs Gear A to move.";
+                lineBD.classList.add('bg-stone-500/30');
+                lineBD.classList.remove('bg-orange-500');
+            }
+
+            if (appState.mechSteps.A && appState.mechSteps.B && appState.mechSteps.C) {
+                message = "Full system active! Redundant power.";
+            }
+
+            if (!appState.mechSteps.A && !appState.mechSteps.B && !appState.mechSteps.C) {
+                message = "System Idle.";
+            }
+
+            feedback.textContent = message;
+
+            if (lit) {
+                bulb.classList.remove('grayscale', 'opacity-50');
+                bulb.classList.add('text-yellow-400', 'drop-shadow-lg');
+                dContainer.classList.add('border-yellow-400');
+            } else {
+                bulb.classList.add('grayscale', 'opacity-50');
+                bulb.classList.remove('text-yellow-400', 'drop-shadow-lg');
+                dContainer.classList.remove('border-yellow-400');
+            }
+        }
+
+        // --- Section 4: Chart.js Implementation ---
+        let comparisonChart;
+
+        function initChart() {
+            const ctx = document.getElementById('vizComparisonChart').getContext('2d');
+            
+            // Data derived from general findings in Fan's research on graph understanding
+            // Note: Actual numbers are illustrative of the "Human > Basic CNN" gap
+            const trendData = {
+                labels: ['Simple Linear', 'Noisy Linear', 'Quadratic', 'Sinusoidal'],
+                datasets: [
+                    {
+                        label: 'Human Accuracy',
+                        data: [98, 92, 95, 88],
+                        backgroundColor: '#ea580c', // Orange 600
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Standard CNN Model',
+                        data: [85, 60, 72, 45],
+                        backgroundColor: '#a8a29e', // Stone 400
+                        borderRadius: 4
+                    }
+                ]
+            };
+
+            comparisonChart = new Chart(ctx, {
+                type: 'bar',
+                data: trendData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { font: { family: 'Inter' } }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(41, 37, 36, 0.9)',
+                            titleFont: { family: 'Inter', size: 13 },
+                            bodyFont: { family: 'Inter', size: 12 },
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Accuracy (%)',
+                                font: { family: 'Inter' }
+                            },
+                            grid: { color: '#e7e5e4' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter' } }
+                        }
+                    },
+                    animation: {
+                        duration: 800
+                    }
+                }
+            });
+        }
+
+        function updateChartData(mode) {
+            if (!comparisonChart) return;
+            
+            let newData, newLabels;
+
+            if (mode === 'trend') {
+                newLabels = ['Simple Linear', 'Noisy Linear', 'Quadratic', 'Sinusoidal'];
+                newData = [
+                    [98, 92, 95, 88], // Human
+                    [85, 60, 72, 45]  // CNN
+                ];
+            } else {
+                newLabels = ['Distinct Clusters', 'Overlapping', 'Outliers', 'Sparse Data'];
+                newData = [
+                    [99, 85, 96, 90], // Human (better at gestalt)
+                    [88, 55, 65, 50]  // CNN (struggles with global structure)
+                ];
+            }
+
+            comparisonChart.data.labels = newLabels;
+            comparisonChart.data.datasets[0].data = newData[0];
+            comparisonChart.data.datasets[1].data = newData[1];
+            comparisonChart.update();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initChart();
+        });
+
+    </script>
+</body>
+</html>
