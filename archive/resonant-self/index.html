@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+      FUNCTIONAL VERSION — Original paste was not saved to disk.
+      See notfullpaste.txt in this folder for why and for a spec of the original content.
+
+      Substitutions in this file:
+      - Layout: original had 2-column (Synthesis Engine left: concept buttons, Select A/B, "Analyze Connection",
+        synthesis-result-card; right: tabbed Nexus / Criticality / Coherence). This version uses single-column
+        tabbed layout (Nexus, Criticality, Coherence) with DB cards beside charts.
+      - Nexus: original had Plotly 3D (plotly-nexus) with concepts and edges; substituted with Chart.js radar.
+      - Criticality: original had temp-slider + Chart.js bar + crit-state / crit-dist / crit-phi; substituted
+        with Chart.js line chart and a single DB card.
+      - Coherence: original had chart-coherence + "Induce Coherence" toggle with animate() loop; substituted
+        with Chart.js bar (Temporal, Spatial, Functional) for stability.
+      - Synthesis Engine (concept grid, runSynthesis, synthesisDB): omitted; see notfullpaste.txt. Philosophical
+        Pillars here are static cards; original had posts array injected via initPosts().
+      - Palette: original warm stone #f5f5f4; substituted with dark theme (#0d1117) for consistency.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unified Organism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        h1, h2, .font-crimson {
+            font-family: 'Crimson Pro', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            height: 340px;
+            margin: 0 auto;
+        }
+        .tab-btn {
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .tab-active {
+            border-bottom: 2px solid #79c0ff;
+            color: #79c0ff;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            color: #8b949e;
+        }
+        .tab-inactive:hover {
+            color: #c9d1d9;
+        }
+        .panel {
+            display: none;
+        }
+        .panel.active {
+            display: block;
+        }
+        .db-card {
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            background: #161b22;
+        }
+        .pillar-card {
+            border-left: 3px solid #79c0ff;
+            background: #161b22;
+            border-radius: 0 6px 6px 0;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #21262d;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #484f58;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-crimson font-bold text-white mb-3">The Resonant Self</h1>
+            <p class="text-xl text-gray-400">A Biological Theory of Everything</p>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-crimson font-semibold text-center mb-6">Synthesis Engine</h2>
+            <div class="flex flex-wrap justify-center gap-2 border-b border-gray-700 pb-4 mb-6">
+                <button type="button" class="tab-btn tab-active px-4 py-2 rounded-t" data-tab="nexus">Nexus</button>
+                <button type="button" class="tab-btn tab-inactive px-4 py-2 rounded-t" data-tab="criticality">Criticality</button>
+                <button type="button" class="tab-btn tab-inactive px-4 py-2 rounded-t" data-tab="coherence">Coherence</button>
+            </div>
+
+            <!-- SUBSTITUTE: Original had Plotly 3D Nexus (plotly-nexus) with concepts and edges; using Chart.js radar. -->
+            <div id="nexus" class="panel active">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="chart-container">
+                        <canvas id="nexusChart"></canvas>
+                    </div>
+                    <!-- Original had full Synthesis Engine (concept buttons, Select A/B, Analyze Connection, synthesis-result-card); this is a synthesisDB summary. -->
+                    <div class="db-card p-6">
+                        <h3 class="font-crimson font-semibold text-lg mb-4">synthesisDB</h3>
+                        <div class="space-y-3 custom-scroll max-h-72 overflow-y-auto">
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Entity</span><span>Organism</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Boundary</span><span>Environment</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Resonance</span><span>Coupling</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBSTITUTE: Original had temp-slider + Chart.js bar + crit-state / crit-dist / crit-phi; using line chart + DB card. -->
+            <div id="criticality" class="panel">
+                <div class="chart-container mx-auto mb-6">
+                    <canvas id="criticalityChart"></canvas>
+                </div>
+                <div class="db-card p-6">
+                    <h3 class="font-crimson font-semibold text-lg mb-4">Criticality (synthesisDB)</h3>
+                    <p class="text-gray-400 text-sm">Edge of chaos; scale-invariant dynamics.</p>
+                </div>
+            </div>
+
+            <!-- SUBSTITUTE: Original had chart-coherence + "Induce Coherence" toggle with requestAnimationFrame loop; using bar chart here. -->
+            <div id="coherence" class="panel">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="chart-container">
+                        <canvas id="coherenceChart"></canvas>
+                    </div>
+                    <div class="db-card p-6">
+                        <h3 class="font-crimson font-semibold text-lg mb-4">Coherence (synthesisDB)</h3>
+                        <div class="space-y-2 text-sm text-gray-400">Temporal, spatial, functional integration.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Original had "The Empirical Feed" with posts array injected via initPosts(); static pillar cards here. -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-crimson font-semibold text-center mb-6">Philosophical Pillars</h2>
+            <div class="space-y-4 custom-scroll max-h-96 overflow-y-auto">
+                <div class="pillar-card p-4">
+                    <h4 class="font-semibold text-white mb-1">Unity</h4>
+                    <p class="text-sm text-gray-400">The organism as a single, integrated process rather than a collection of parts.</p>
+                </div>
+                <div class="pillar-card p-4">
+                    <h4 class="font-semibold text-white mb-1">Resonance</h4>
+                    <p class="text-sm text-gray-400">Coupling between scales—from cellular to ecological—through shared dynamics.</p>
+                </div>
+                <div class="pillar-card p-4">
+                    <h4 class="font-semibold text-white mb-1">Criticality</h4>
+                    <p class="text-sm text-gray-400">Living systems poised at the edge of order and chaos for maximal adaptability.</p>
+                </div>
+                <div class="pillar-card p-4">
+                    <h4 class="font-semibold text-white mb-1">Coherence</h4>
+                    <p class="text-sm text-gray-400">Temporal and spatial integration as the basis of consciousness and agency.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <p class="text-gray-500 text-sm">The Resonant Self — Unified Organism Archive</p>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            const tabBtns = document.querySelectorAll('[data-tab]');
+            const panels = document.querySelectorAll('.panel');
+
+            tabBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-tab');
+                    tabBtns.forEach(function (b) {
+                        b.classList.remove('tab-active');
+                        b.classList.add('tab-inactive');
+                    });
+                    this.classList.add('tab-active');
+                    this.classList.remove('tab-inactive');
+                    panels.forEach(function (p) {
+                        p.classList.remove('active');
+                        if (p.id === targetId) p.classList.add('active');
+                    });
+                });
+            });
+
+            const ctxNexus = document.getElementById('nexusChart');
+            if (ctxNexus) {
+                new Chart(ctxNexus, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Integration', 'Resonance', 'Boundary', 'Nexus', 'Phi'],
+                        datasets: [{
+                            label: 'Nexus',
+                            data: [80, 75, 85, 82, 78],
+                            borderColor: 'rgba(121, 192, 255, 1)',
+                            backgroundColor: 'rgba(121, 192, 255, 0.2)',
+                            pointBackgroundColor: 'rgba(121, 192, 255, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { r: { beginAtZero: true, max: 100 } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            const ctxCrit = document.getElementById('criticalityChart');
+            if (ctxCrit) {
+                new Chart(ctxCrit, {
+                    type: 'line',
+                    data: {
+                        labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6'],
+                        datasets: [{
+                            label: 'Criticality',
+                            data: [20, 45, 65, 80, 75, 70],
+                            borderColor: 'rgba(121, 192, 255, 1)',
+                            fill: true,
+                            backgroundColor: 'rgba(121, 192, 255, 0.15)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true, max: 100 } }
+                    }
+                });
+            }
+
+            const ctxCoherence = document.getElementById('coherenceChart');
+            if (ctxCoherence) {
+                new Chart(ctxCoherence, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Temporal', 'Spatial', 'Functional'],
+                        datasets: [{
+                            label: 'Coherence',
+                            data: [72, 68, 85],
+                            backgroundColor: ['rgba(121, 192, 255, 0.6)', 'rgba(121, 192, 255, 0.5)', 'rgba(121, 192, 255, 0.7)'],
+                            borderColor: 'rgba(121, 192, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true, max: 100 } }
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

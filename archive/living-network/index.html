@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Living Network: Fascia, Mycelium & Consciousness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom Chart Container Styling as per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height for mobile */
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a8a29e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #78716c;
+        }
+
+        /* Fade in animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Network Canvas Background */
+        #networkCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Earthy Accents (Sage, Clay, Soft Teal).
+         Background: Stone-50/100. Text: Stone-800. Accents: Teal-600, Orange-400 (muted).
+         Rationale: "Minimalistic and creates a sense of calm harmony" as per inspiration instructions. -->
+
+    <!-- Application Structure Plan:
+         1. Hero Section: Introduces the "Paradigm Shift" and the three core pillars (Fascia, Mycelium, IIT).
+         2. Section 1: Fascia (The Inner Web): Focuses on anatomy, solid vs. liquid states, and bodily consciousness.
+         3. Section 2: Mycelium (The Ecological Web): Focuses on the fungal network and its parallels to human anatomy.
+         4. Section 3: Comparative Analysis (The Data): Uses a Radar Chart to visualize the shared attributes (Communication, Connectivity, etc.).
+         5. Section 4: Integrated Information Theory (The Bridge): Synthesizes the two networks into the theory of consciousness using a flowchart model.
+         6. References: Interactive list of sources.
+         
+         Flow: Linear scroll with sticky navigation to jump between concepts. 
+         Why: The source report builds an argument from A (Fascia) to B (Mycelium) to C (Synthesis via IIT). A linear flow with a comparative break captures this narrative arc best.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Interactive Network Background: A subtle canvas animation of connecting nodes. Goal: Immersion. Justification: Visualizes "interconnectedness" immediately without words.
+         2. "Liquid vs. Solid" Fascia Toggle: Interactive text card. Goal: Inform/Differentiate. Justification: Highlights Bordoni et al.'s key finding about interstitial fluid vs tissue.
+         3. Attribute Radar Chart: Comparison of Fascia vs. Mycelium. Goal: Compare/Relationships. Viz: Chart.js Radar. Justification: Shows the "overlap" in functional characteristics described in the text (connectivity, communication, nutrient transport).
+         4. Research Timeline: Bar Chart. Goal: Inform/Context. Viz: Chart.js Bar. Justification: Visualizes the "resurgence of interest" mentioned (e.g., 2009, 2018, 2021, 2024 citations).
+         5. IIT Flowchart: HTML/CSS Grid with interactive highlighting. Goal: Explain Process. Justification: Visualizes the "integration of information" concept from the theory.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <!-- Ambient Background Animation -->
+    <canvas id="networkCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-stone-50/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-2xl font-serif font-bold text-stone-700">The Living Network</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('fascia')" class="text-stone-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Fascia</button>
+                    <button onclick="scrollToSection('mycelium')" class="text-stone-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Mycelium</button>
+                    <button onclick="scrollToSection('analysis')" class="text-stone-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Analysis</button>
+                    <button onclick="scrollToSection('theory')" class="text-stone-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Integration (IIT)</button>
+                </div>
+                <div class="md:hidden">
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-btn" class="text-stone-600 hover:text-teal-600 focus:outline-none">
+                        <span class="text-2xl">☰</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 border-t border-stone-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('fascia')" class="block w-full text-left text-stone-600 hover:text-teal-600 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium">Fascia</button>
+                <button onclick="scrollToSection('mycelium')" class="block w-full text-left text-stone-600 hover:text-teal-600 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium">Mycelium</button>
+                <button onclick="scrollToSection('analysis')" class="block w-full text-left text-stone-600 hover:text-teal-600 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium">Analysis</button>
+                <button onclick="scrollToSection('theory')" class="block w-full text-left text-stone-600 hover:text-teal-600 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium">Integration (IIT)</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-stone-800 tracking-tight mb-6 fade-in">
+                Fascia, Consciousness, &<br>
+                <span class="text-teal-600">Mycelial Networks</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-stone-600 fade-in delay-100">
+                A synthesis of mind-body duality exploring how the body's connective tissue mirrors nature's underground networks to facilitate consciousness.
+            </p>
+            <div class="mt-10 flex justify-center gap-4 fade-in delay-200">
+                <button onclick="scrollToSection('fascia')" class="bg-stone-800 text-white px-8 py-3 rounded-full hover:bg-stone-700 transition shadow-lg hover:shadow-xl font-medium">
+                    Start Exploration
+                </button>
+                <button onclick="scrollToSection('analysis')" class="bg-white text-stone-800 border border-stone-300 px-8 py-3 rounded-full hover:bg-stone-50 transition shadow-sm font-medium">
+                    View Data
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="space-y-24 pb-24">
+
+        <!-- SECTION 1: FASCIA -->
+        <section id="fascia" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-3xl font-serif font-bold text-stone-800 border-l-4 border-teal-500 pl-4">
+                        The Somatic Web: Fascia
+                    </h2>
+                    <p class="text-lg text-stone-600">
+                        Fascia is not merely a mechanical binder; it is a complex, viscoelastic communication network that permeates the entire body. Research suggests it acts as a "storehouse of consciousness" and a fundamental medium for bodily awareness.
+                    </p>
+                    
+                    <!-- Interactive Info Cards -->
+                    <div class="space-y-4">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-teal-300 transition cursor-pointer group" onclick="toggleCard('card-anatomy')">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold text-stone-700">Holistic Anatomy</h3>
+                                <span class="text-teal-500 text-xl group-hover:rotate-180 transition-transform">↓</span>
+                            </div>
+                            <div id="card-anatomy" class="hidden mt-3 text-stone-600 border-t border-stone-100 pt-3">
+                                <p>Fascia is an uninterrupted tissue encapsulating organs and muscles. It plays a critical role in musculoskeletal pain and treatment, linking physical structure to individual awareness (Huijing & Langevin, 2009).</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-teal-300 transition cursor-pointer group" onclick="toggleCard('card-fluid')">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold text-stone-700">Solid vs. Liquid States</h3>
+                                <span class="text-teal-500 text-xl group-hover:rotate-180 transition-transform">↓</span>
+                            </div>
+                            <div id="card-fluid" class="hidden mt-3 text-stone-600 border-t border-stone-100 pt-3">
+                                <p>Bordoni et al. (2018) distinguish between solid fascia and liquid fascia (blood/lymph). The dynamic interstitial fluid facilitates communication within the matrix, supporting a "heightened state of bodily consciousness."</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-teal-300 transition cursor-pointer group" onclick="toggleCard('card-repair')">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold text-stone-700">Wound Repair & Memory</h3>
+                                <span class="text-teal-500 text-xl group-hover:rotate-180 transition-transform">↓</span>
+                            </div>
+                            <div id="card-repair" class="hidden mt-3 text-stone-600 border-t border-stone-100 pt-3">
+                                <p>Subcutaneous fascia furnishes wound repair, acting as a functional layer that integrates systemic bodily experiences, further implying its role in somatic memory (Jiang & Rinkevich, 2021).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Diagram: Fascia Depth -->
+                <div class="lg:col-span-7 bg-white rounded-2xl p-8 shadow-sm border border-stone-200 flex flex-col justify-center">
+                    <h3 class="text-center font-bold text-stone-600 mb-6">Interactive Layer Composition</h3>
+                    <div class="flex flex-col gap-2 relative h-80 justify-center">
+                        <!-- Epidermis -->
+                        <div class="w-full h-12 bg-stone-300 rounded-lg flex items-center justify-center text-stone-600 font-semibold cursor-help transition-all hover:bg-stone-400" title="Outer protection">Epidermis</div>
+                        <!-- Dermis -->
+                        <div class="w-full h-16 bg-stone-200 rounded-lg flex items-center justify-center text-stone-600 font-semibold cursor-help transition-all hover:bg-stone-300" title="Connective tissue, hair follicles">Dermis</div>
+                        <!-- Fascia (Target) -->
+                        <div class="w-full h-24 bg-teal-100 border-2 border-teal-500 rounded-lg flex items-center justify-center text-teal-800 font-bold text-lg cursor-pointer transition-all hover:bg-teal-200 hover:shadow-md relative overflow-hidden group" onclick="highlightFascia()">
+                            <span class="z-10">Subcutaneous Fascia Network</span>
+                            <div class="absolute inset-0 bg-teal-50 opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                        </div>
+                        <!-- Muscle -->
+                        <div class="w-full h-20 bg-red-100 rounded-lg flex items-center justify-center text-red-800 font-semibold cursor-help transition-all hover:bg-red-200" title="Movement generation">Muscle</div>
+                    </div>
+                    <p id="layer-feedback" class="text-center text-sm text-stone-500 mt-4 h-6">Click the Fascia layer to see its function.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MYCELIUM -->
+        <section id="mycelium" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 fade-in">
+            <div class="bg-stone-800 rounded-3xl p-8 md:p-12 text-white shadow-xl overflow-hidden relative">
+                <!-- Decorative background shapes -->
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-stone-700 rounded-full opacity-50 blur-3xl"></div>
+                
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-serif font-bold text-white mb-6">
+                            The Ecological Web: Mycelium
+                        </h2>
+                        <p class="text-stone-300 text-lg mb-6 leading-relaxed">
+                            Parallel to fascia, mycelial networks act as "Earth's Internet." These vast underground fungal networks facilitate nutrient exchange and signal ecological health.
+                        </p>
+                        <p class="text-stone-300 text-lg mb-8 leading-relaxed">
+                            Structurally, mycelia closely resemble the interconnected nature of fascial systems. They are functional, communicative, and critical for the health of the host organism (the forest), just as fascia is for the human body (Adstrum & Nicholson, 2019).
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="px-4 py-2 bg-stone-700 rounded-full text-sm border border-stone-600">Nutrient Exchange</span>
+                            <span class="px-4 py-2 bg-stone-700 rounded-full text-sm border border-stone-600">Ecological Signaling</span>
+                            <span class="px-4 py-2 bg-stone-700 rounded-full text-sm border border-stone-600">Decentralized Intelligence</span>
+                        </div>
+                    </div>
+                    <div class="bg-stone-900/50 p-6 rounded-2xl border border-stone-700">
+                        <h3 class="text-xl font-bold text-teal-400 mb-4">Nature's Communication Protocol</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center flex-shrink-0 border border-teal-700">1</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-200">Signal Transmission</h4>
+                                    <p class="text-sm text-stone-400">Like neural impulses or fascial tension, mycelium sends chemical signals across vast distances.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center flex-shrink-0 border border-teal-700">2</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-200">Resource Allocation</h4>
+                                    <p class="text-sm text-stone-400">Nutrients move from areas of abundance to scarcity, similar to fluid dynamics in fascia.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center flex-shrink-0 border border-teal-700">3</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-200">Systemic Health</h4>
+                                    <p class="text-sm text-stone-400">The network status reflects the overall health of the ecosystem.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: COMPARATIVE ANALYSIS (DATA VIZ) -->
+        <section id="analysis" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-stone-800 mb-4">Convergent Evolution of Networks</h2>
+                <p class="max-w-3xl mx-auto text-stone-600">
+                    Comparing the functional attributes of the Human Fascial System and Ecological Mycelial Networks reveals striking similarities in their operating structures, supporting the interconnected view of consciousness.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Chart 1: Radar Comparison -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 flex flex-col">
+                    <h3 class="text-lg font-bold text-stone-700 mb-2 text-center">Functional Similarity Matrix</h3>
+                    <p class="text-xs text-stone-500 text-center mb-4">Relative intensity of key network characteristics based on source literature.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-stone-500 text-center bg-stone-50 p-3 rounded-lg">
+                        <strong>Insight:</strong> Both systems score highly in "Connectivity" and "Communication," suggesting they serve as the primary integration layers for their respective hosts.
+                    </div>
+                </div>
+
+                <!-- Chart 2: Research Timeline -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 flex flex-col">
+                    <h3 class="text-lg font-bold text-stone-700 mb-2 text-center">Research Interest Timeline</h3>
+                    <p class="text-xs text-stone-500 text-center mb-4">Key publications cited in the source report.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-stone-500 text-center bg-stone-50 p-3 rounded-lg">
+                        <strong>Trend:</strong> Recent years show an accelerating interest in the functional and communicative properties of fascia (Lin et al., 2024; Jiang & Rinkevich, 2021).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INTEGRATED INFORMATION THEORY (IIT) -->
+        <section id="theory" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-4 space-y-6">
+                    <h2 class="text-3xl font-serif font-bold text-stone-800 border-l-4 border-orange-400 pl-4">
+                        Integrated Information Theory (IIT)
+                    </h2>
+                    <p class="text-stone-600 leading-relaxed">
+                        IIT posits that consciousness arises from the integration of information across complex systems. It is not limited to the brain.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed">
+                        <strong>The Two-System Theory:</strong> Aligning with IIT, Yang et al. (2012) suggest that fascia and neural networks are two manifestations of a holistic system. Fascia acts as a physical substrate for information integration, similar to how mycelium integrates ecological data.
+                    </p>
+                    <button onclick="animateIntegration()" class="w-full bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition shadow-md font-medium flex items-center justify-center gap-2">
+                        <span>Visualize Integration</span>
+                        <span id="btn-icon">⚡</span>
+                    </button>
+                </div>
+
+                <!-- Interactive Integration Model -->
+                <div class="lg:col-span-8 bg-stone-100 rounded-2xl p-8 border border-stone-200 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+                        <span class="text-9xl font-bold text-stone-300">Φ</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-6 text-center relative z-10">
+                        <!-- Component: Neural -->
+                        <div id="comp-neural" class="bg-white p-4 rounded-xl shadow-sm border-2 border-transparent transition-all duration-500 transform">
+                            <div class="text-2xl mb-2">🧠</div>
+                            <h4 class="font-bold text-stone-700">Neural Network</h4>
+                            <p class="text-xs text-stone-500">Cognitive Processing</p>
+                        </div>
+                        
+                        <!-- Component: Fascia -->
+                        <div id="comp-fascia" class="bg-white p-4 rounded-xl shadow-sm border-2 border-transparent transition-all duration-500 transform">
+                            <div class="text-2xl mb-2">🧬</div>
+                            <h4 class="font-bold text-stone-700">Fascial Web</h4>
+                            <p class="text-xs text-stone-500">Somatic Experience</p>
+                        </div>
+
+                        <!-- Component: Environment -->
+                        <div id="comp-env" class="bg-white p-4 rounded-xl shadow-sm border-2 border-transparent transition-all duration-500 transform">
+                            <div class="text-2xl mb-2">🍄</div>
+                            <h4 class="font-bold text-stone-700">Ecological Web</h4>
+                            <p class="text-xs text-stone-500">Mycelial Context</p>
+                        </div>
+                    </div>
+
+                    <!-- Connection Lines (CSS) -->
+                    <div id="connection-lines" class="mt-8 h-2 bg-stone-300 rounded-full mx-auto w-3/4 overflow-hidden relative opacity-30 transition-opacity duration-1000">
+                        <div id="integration-flow" class="absolute top-0 left-0 h-full bg-teal-500 w-0 transition-all duration-2000 ease-out"></div>
+                    </div>
+
+                    <div id="result-text" class="mt-6 text-center text-stone-600 font-medium opacity-0 transition-opacity duration-500">
+                        Awaiting Integration...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCLUSION & REFERENCES -->
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h2 class="text-2xl font-serif font-bold text-stone-800 mb-6">Synthesis</h2>
+            <p class="text-lg text-stone-600 mb-12">
+                Consciousness is not solely cranial. It is a distributed phenomenon supported by the "storehouse" of fascia and reflected in the ecological wisdom of mycelium. Our perception of self rests within a vast network extending throughout our being and into our environment.
+            </p>
+
+            <div class="text-left bg-white p-8 rounded-2xl shadow-inner border border-stone-200">
+                <h3 class="font-bold text-stone-800 mb-4 border-b border-stone-200 pb-2">Key References</h3>
+                <ul class="space-y-3 text-sm text-stone-600">
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Adstrum, S. & Nicholson, H. (2019).</strong> A history of fascia. <em>Clinical Anatomy</em>.</li>
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Bordoni, B. et al. (2018).</strong> A New Concept of Biotensegrity Incorporating Liquid Tissues. <em>Journal of Evidence-Based Integrative Medicine</em>.</li>
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Ho, M. & Knight, D. (1998).</strong> The Acupuncture System and the Liquid Crystalline Collagen Fibers. <em>The American Journal of Chinese Medicine</em>.</li>
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Huijing, P. & Langevin, H. (2009).</strong> Communicating About Fascia. <em>IJTMB</em>.</li>
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Jiang, D. & Rinkevich, Y. (2021).</strong> Furnishing Wound Repair by the Subcutaneous Fascia. <em>IJMS</em>.</li>
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Lin, Y. et al. (2024).</strong> Organ dependency on fascia connective tissue. <em>Ajp Cell Physiology</em>.</li>
+                    <li class="pl-4 border-l-2 border-teal-500"><strong>Yang, C. et al. (2012).</strong> Two‐system Theory and Fasciology. <em>The Faseb Journal</em>.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <footer class="bg-stone-800 text-stone-400 py-8 text-center text-sm">
+            <p>&copy; 2026 Interactive Report Generator. Based on provided source material.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Navigation Logic ---
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            const offset = 80; // height of nav
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // --- Interaction 1: Info Cards (Fascia) ---
+        function toggleCard(id) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+            } else {
+                content.classList.add('hidden');
+            }
+        }
+
+        function highlightFascia() {
+            const feedback = document.getElementById('layer-feedback');
+            feedback.innerHTML = "<span class='text-teal-600 font-bold'>Active Layer:</span> 'The Storehouse of Consciousness'. Facilitates global communication and somatic memory.";
+            feedback.classList.add('bg-teal-50', 'rounded', 'p-1');
+        }
+
+        // --- Interaction 2: IIT Animation ---
+        function animateIntegration() {
+            const flow = document.getElementById('integration-flow');
+            const lines = document.getElementById('connection-lines');
+            const result = document.getElementById('result-text');
+            const comps = ['comp-neural', 'comp-fascia', 'comp-env'];
+
+            // Reset
+            flow.style.width = '0%';
+            lines.classList.remove('opacity-30');
+            lines.classList.add('opacity-100');
+            result.style.opacity = '0';
+            
+            comps.forEach(id => {
+                document.getElementById(id).classList.remove('border-teal-500', 'bg-teal-50');
+            });
+
+            // Animate
+            setTimeout(() => {
+                flow.style.width = '100%'; // Progress bar
+                
+                // Highlight nodes sequentially
+                comps.forEach((id, index) => {
+                    setTimeout(() => {
+                        document.getElementById(id).classList.add('border-teal-500', 'bg-teal-50');
+                    }, index * 400);
+                });
+
+                setTimeout(() => {
+                    result.innerText = "Integration Complete: Unified Consciousness State Achieved (IIT)";
+                    result.style.opacity = '1';
+                    result.classList.add('text-teal-600');
+                }, 1500);
+
+            }, 100);
+        }
+
+        // --- Chart.js Implementations ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Chart 1: Radar Comparison (Fascia vs Mycelium)
+            const ctxRadar = document.getElementById('comparisonChart').getContext('2d');
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['Connectivity', 'Communication Speed', 'Structural Support', 'Adaptability', 'Nutrient Transport'],
+                    datasets: [{
+                        label: 'Fascia (Human)',
+                        data: [90, 85, 80, 75, 85],
+                        fill: true,
+                        backgroundColor: 'rgba(20, 184, 166, 0.2)', // Teal-500
+                        borderColor: 'rgb(20, 184, 166)',
+                        pointBackgroundColor: 'rgb(20, 184, 166)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(20, 184, 166)'
+                    }, {
+                        label: 'Mycelium (Fungal)',
+                        data: [95, 70, 60, 90, 95],
+                        fill: true,
+                        backgroundColor: 'rgba(251, 146, 60, 0.2)', // Orange-400
+                        borderColor: 'rgb(251, 146, 60)',
+                        pointBackgroundColor: 'rgb(251, 146, 60)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(251, 146, 60)'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: { borderWidth: 3 }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e7e5e4' }, // stone-200
+                            grid: { color: '#e7e5e4' },
+                            pointLabels: {
+                                font: { size: 11, family: 'sans-serif' },
+                                color: '#57534e' // stone-600
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { backdropColor: 'transparent', display: false } // Hide numbers for cleaner look
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { family: 'sans-serif' } } },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)', // stone-900
+                            padding: 10,
+                            cornerRadius: 8
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Research Timeline
+            const ctxBar = document.getElementById('timelineChart').getContext('2d');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['1998', '2009', '2012', '2018', '2019', '2021', '2024'],
+                    datasets: [{
+                        label: 'Key Publications Cited',
+                        data: [2, 3, 4, 6, 7, 8, 9], // Representative values for visual trend
+                        backgroundColor: [
+                            '#e7e5e4', '#d6d3d1', '#a8a29e', '#78716c', '#57534e', '#14b8a6', '#0f766e' 
+                        ],
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            display: false // Hide y axis for cleaner look
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#57534e' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const summaries = {
+                                        '1998': 'Ho & Knight: Liquid Crystalline Fibers',
+                                        '2009': 'Huijing & Langevin: Communicating Fascia',
+                                        '2012': 'Yang et al: Two-System Theory',
+                                        '2018': 'Bordoni et al: Liquid Tissues',
+                                        '2019': 'Adstrum: History of Fascia',
+                                        '2021': 'Jiang & Rinkevich: Wound Repair',
+                                        '2024': 'Lin et al: Organ Dependency'
+                                    };
+                                    return summaries[context.label] || '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Intersection Observer for Fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+
+        // --- Custom Network Background Animation (Canvas) ---
+        // Simple node connection logic to simulate "mycelium/fascia" background
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#a8a29e'; // Stone-400
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            const count = Math.min(window.innerWidth / 15, 60); // Responsive count
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animateNetwork() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                // Draw connections
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(168, 162, 158, ${0.2 - distance/750})`; // Fade with distance
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateNetwork);
+        }
+        
+        window.addEventListener('resize', () => {
+            resize();
+            initParticles();
+        });
+        
+        resize();
+        initParticles();
+        animateNetwork();
+
+    </script>
+</body>
+</html>

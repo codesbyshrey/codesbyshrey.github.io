@@ -1,0 +1,22 @@
+---
+description: When a pasted SPA/HTML cannot be used exactly, save original as notfullpaste and create a commented, functional version.
+globs: archive/**/*.html
+alwaysApply: false
+---
+
+# Archive paste workflow
+
+When the user provides a copy-paste (e.g. full HTML for an archive SPA) that **cannot be used exactly** for functionality reasons:
+
+1. **Explain why** the exact paste could not be used (e.g. length/truncation, missing context, platform limits, or original not stored).
+
+2. **Save the original** (the unusable or incomplete paste) into a file named **`notfullpaste`** in the same folder as the target file, with an appropriate extension (e.g. `notfullpaste.html` or `notfullpaste.txt`). If the original was never saved to disk, create `notfullpaste.txt` that:
+   - States that the original paste was not stored.
+   - Describes the intended structure and content (layout, sections, scripts, data) so the user can re-paste or reconstruct later.
+
+3. **Create or edit the functional file** (e.g. `index.html`) so that it works. In that file:
+   - **Comment out** any code that could not be included or does not work, with a short explanation (e.g. `<!-- ORIGINAL: [description]. Not included because [reason]. -->` or `// SUBSTITUTED: original section was [X]; using [Y] for usability.`).
+   - **Substitute** partial or broken code with working alternatives and add a brief comment explaining the substitution (e.g. `<!-- Functional substitute: original had [X]; this achieves [Y]. -->`).
+   - Add a short top-of-file comment block if needed: explain that this is a functional version, reference `notfullpaste` for the original/spec, and list main substitutions or omissions.
+
+Goal: the deployed file is as functional as possible; the originals and reasons are preserved and documented.

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyas Sriram | Systems-Level Behavioral Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB; /* Slate 50 */
+            color: #1F2937; /* Gray 800 */
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        /* Custom Scrollbar for text areas */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #F3F4F6;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #D1D5DB;
+            border-radius: 20px;
+        }
+
+        /* Interactive Card Hover Effects */
+        .hover-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #2563EB; /* Blue 600 */
+            color: #2563EB;
+            font-weight: 600;
+        }
+        
+        .tab-inactive {
+            color: #6B7280; /* Gray 500 */
+        }
+        .tab-inactive:hover {
+            color: #374151; /* Gray 700 */
+        }
+
+        .maze-border {
+            border: 1px solid #E5E7EB;
+            position: relative;
+        }
+        .maze-border::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid #2563EB;
+            border-left: 2px solid #2563EB;
+        }
+        .maze-border::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid #2563EB;
+            border-right: 2px solid #2563EB;
+        }
+
+        .hidden-content {
+            display: none;
+        }
+    </style>
+    <!-- Chosen Palette: Corporate Clean with Organic Warmth (Slate, White, Blue BluePill Accent, Warm Gray) -->
+    <!-- Application Structure Plan:
+         1. Hero: High-level positioning headline and core value prop.
+         2. The Narrative Arc (Interactive): A stepper to visualize the career evolution (Clinical -> Hardware -> AI).
+         3. Strategic Core (Dashboard): Radar chart of skills and grid of strategic points to prove "System Level" thinking.
+         4. The Philosophy (Article): A clean reading section for "The Architect's Maze" to establish thought leadership.
+         5. Application Assets (Tabs): Interactive document viewer for the Email, Cover Letter, and Interview Prep Q&A.
+         Why: This structure moves from "Who I am" (Identity) to "How I think" (Philosophy) to "What I deliver" (Application Assets), mimicking the hiring manager's evaluation journey.
+    -->
+    <!-- Visualization & Content Choices:
+         - Narrative Arc: Stepper Interface. Goal: Show evolution. Method: HTML/JS state change. Justification: Linear storytelling.
+         - Strategic Balance: Radar Chart. Goal: Visualize the hybrid nature of the candidate (Sci + Tech + UX). Method: Chart.js. Justification: Shows multi-dimensional fit instantly.
+         - Interview Prep: Accordion. Goal: Manage dense text. Method: JS Toggle. Justification: Allows scanning questions before diving into answers.
+         - Documents: Tabbed View. Goal: Organize distinct document types. Method: JS Tab Switching. Justification: Keeps the page clean.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-900 serif tracking-tight">SHREYAS SRIRAM</span>
+                    <span class="hidden sm:block ml-4 text-sm text-gray-500 uppercase tracking-widest border-l border-gray-300 pl-4">Target: BluePill</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="scrollToSection('strategy')" class="text-sm font-medium text-gray-600 hover:text-blue-600">Strategy</button>
+                    <button onclick="scrollToSection('philosophy')" class="text-sm font-medium text-gray-600 hover:text-blue-600">Philosophy</button>
+                    <button onclick="scrollToSection('application')" class="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100">Application Kit</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="bg-white py-12 sm:py-20 border-b border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    Systems-Level Behavioral Architect
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto font-light">
+                    Designing behavioral architectures for AI systems that <span class="text-blue-600 font-semibold">simulate and adapt</span> like real people.
+                </p>
+                <div class="inline-block bg-slate-50 border border-slate-200 rounded-lg p-4 text-left shadow-sm max-w-2xl mx-auto">
+                    <p class="text-slate-800 italic text-lg">
+                        "I design behavioral architectures grounded in human factors, validated through rigorous UX research, and built end-to-end using cutting-edge conversational technologies."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Narrative Arc (Interactive) -->
+        <section class="py-16 bg-slate-50">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">The Evolution of a Behavioral Architect</h2>
+                    <p class="text-gray-500">Explore the journey from clinical insight to AI simulation.</p>
+                </div>
+
+                <!-- Stepper Controls -->
+                <div class="flex flex-col md:flex-row justify-between items-center relative mb-12">
+                    <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -z-10 hidden md:block"></div>
+                    
+                    <button onclick="updateArc(0)" id="step-btn-0" class="flex flex-col items-center bg-slate-50 p-2 z-10 focus:outline-none group">
+                        <div id="step-circle-0" class="w-10 h-10 rounded-full flex items-center justify-center border-2 border-blue-600 bg-blue-600 text-white font-bold transition-colors">1</div>
+                        <span class="mt-2 text-sm font-semibold text-gray-900">Clinical Insight</span>
+                    </button>
+                    
+                    <button onclick="updateArc(1)" id="step-btn-1" class="flex flex-col items-center bg-slate-50 p-2 z-10 focus:outline-none group">
+                        <div id="step-circle-1" class="w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-300 bg-white text-gray-500 font-bold group-hover:border-blue-400 transition-colors">2</div>
+                        <span class="mt-2 text-sm font-semibold text-gray-500 group-hover:text-gray-700">Hardware to Heuristics</span>
+                    </button>
+                    
+                    <button onclick="updateArc(2)" id="step-btn-2" class="flex flex-col items-center bg-slate-50 p-2 z-10 focus:outline-none group">
+                        <div id="step-circle-2" class="w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-300 bg-white text-gray-500 font-bold group-hover:border-blue-400 transition-colors">3</div>
+                        <span class="mt-2 text-sm font-semibold text-gray-500 group-hover:text-gray-700">Simulated Humans</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Content -->
+                <div id="arc-content" class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4" id="arc-title">From Clinical Insight to AI Simulation</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6" id="arc-desc">
+                        EMT, patient, and caregiver experiences feed directly into high-fidelity behavioral modeling. Understanding the high-stakes pulse of a patient provides the raw data needed to model urgency, empathy, and crisis response in digital systems.
+                    </p>
+                    <div class="flex flex-wrap gap-2" id="arc-tags">
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold">EMT Experience</span>
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold">High-Fidelity Modeling</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Positioning (Dashboard) -->
+        <section id="strategy" class="py-16 bg-white border-t border-gray-200">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Left: Radar Chart -->
+                    <div>
+                        <div class="mb-6">
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">Strategic Profile</h2>
+                            <p class="text-gray-600">
+                                This radar visualization maps my core competencies against the requirements for a Systems-Level Behavioral Architect. It highlights a unique hybrid profile that bridges the gap between scientific validation and technical implementation.
+                            </p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="positioningRadar"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Right: Strategic Points Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="hover-card p-5 border border-gray-200 rounded-lg bg-gray-50">
+                            <div class="text-blue-600 text-2xl mb-2">&#9879;</div> <!-- Unicode Atom/Science -->
+                            <h4 class="font-bold text-gray-900 mb-1">Scientific Rigor</h4>
+                            <p class="text-sm text-gray-600">Mixed-methods research (ANOVA, regression) to validate behavioral hypotheses.</p>
+                        </div>
+                        <div class="hover-card p-5 border border-gray-200 rounded-lg bg-gray-50">
+                            <div class="text-blue-600 text-2xl mb-2">&#9881;</div> <!-- Unicode Gear -->
+                            <h4 class="font-bold text-gray-900 mb-1">Technical Depth</h4>
+                            <p class="text-sm text-gray-600">Full-stack AI prototypes (GPT, RAG, ASR/TTS) built from scratch.</p>
+                        </div>
+                        <div class="hover-card p-5 border border-gray-200 rounded-lg bg-gray-50">
+                            <div class="text-blue-600 text-2xl mb-2">&#129504;</div> <!-- Unicode Brain -->
+                            <h4 class="font-bold text-gray-900 mb-1">Behavioral Lens</h4>
+                            <p class="text-sm text-gray-600">Encoding perception-action loops, motivation, and heuristics into AI agents.</p>
+                        </div>
+                        <div class="hover-card p-5 border border-gray-200 rounded-lg bg-gray-50">
+                            <div class="text-blue-600 text-2xl mb-2">&#128640;</div> <!-- Unicode Rocket -->
+                            <h4 class="font-bold text-gray-900 mb-1">Startup Readiness</h4>
+                            <p class="text-sm text-gray-600">Led MVP lifecycles, architecture decisions, and custom GPT builds.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messaging Themes Bar -->
+                <div class="mt-12 p-6 bg-slate-900 rounded-lg text-white shadow-xl">
+                    <h3 class="text-sm uppercase tracking-widest text-blue-400 mb-4 font-bold">Key Messaging Themes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="border-l-2 border-blue-500 pl-4">
+                            <p class="font-medium italic">"I know how to simulate trust, not just measure it."</p>
+                        </div>
+                        <div class="border-l-2 border-blue-500 pl-4">
+                            <p class="font-medium italic">"My UX research encodes patterns into persona frameworks."</p>
+                        </div>
+                        <div class="border-l-2 border-blue-500 pl-4">
+                            <p class="font-medium italic">"Bringing rigor to personality modeling, and empathy to architecture."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section (The Article) -->
+        <section id="philosophy" class="py-16 bg-slate-50 border-t border-gray-200">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-10">
+                    <span class="text-blue-600 font-bold tracking-wider text-xs uppercase">Thought Leadership</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mt-2 serif">The Architect's Maze</h2>
+                    <p class="text-gray-500 mt-2 italic">What Westworld Taught Me About Building the Soul of a System</p>
+                </div>
+
+                <div class="bg-white p-8 md:p-12 shadow-sm border border-gray-100 rounded-sm maze-border">
+                    <div class="prose prose-slate max-w-none text-gray-700">
+                        <p class="mb-4">
+                            In the opening credits of HBO's <em>Westworld</em>, a mechanical loom weaves fine white thread into the tendon and bone of a humanoid "Host." As a former EMT and a designer of patented orthopedic implants, I spent the early years of my career focused on that exact intersection: the cold, hard reality of the physical body.
+                        </p>
+                        <p class="mb-6 font-semibold text-gray-900 border-l-4 border-blue-600 pl-4 italic">
+                            The true challenge—and my true calling—lay in the architecture of the mind.
+                        </p>
+                        
+                        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">From Hardware to Heuristics</h3>
+                        <p class="mb-4">
+                            My professional journey has been a transition from fixing the machine to designing the ghost within it. When I moved from biomechanical systems to conversational AI, I brought a distinct philosophy with me: <strong>a system is only as "real" as its constraints.</strong>
+                        </p>
+                        <p class="mb-4">
+                            In <em>Westworld</em>, the hosts are defined by their "loops." But they become alive when those loops are interrupted. This mirrors my work—whether building a clinical simulator or a caregiver assistant, I look for the subtle, human-like friction of a persona that can simulate trust and navigate empathy.
+                        </p>
+
+                        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">The Power of the Reverie</h3>
+                        <p class="mb-4">
+                            There is a concept in the show called the "Reverie"—small, subconscious gestures tied to past memories. In AI systems architecture, we call this <strong>high-fidelity behavioral modeling</strong>.
+                        </p>
+                        <p class="mb-4">
+                            When I design an AI, I'm thinking about the <code>P(Trust | Context)</code>—the probability that a user will believe a system based on the nuances of its delivery. My interest in <em>Westworld</em> is about the technical rigor required to make a digital entity feel psychologically real.
+                        </p>
+
+                        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">Solving the Maze</h3>
+                        <p class="mb-4">
+                            I see myself as a <strong>Behavioral Architect</strong>. My toolkit includes ANOVA and regression to validate research, but my inspiration comes from narrative depth. To build the next generation of AI, we must move beyond "if-then" logic. We must build systems that understand the "why."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Application Assets (Tabs) -->
+        <section id="application" class="py-16 bg-white border-t border-gray-200">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900">Application Assets</h2>
+                    <p class="text-gray-500">Tailored materials for the BluePill Behavioral Scientist role.</p>
+                </div>
+
+                <!-- Tabs Header -->
+                <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                    <button onclick="openTab('email')" id="tab-email" class="tab-active py-2 px-6 text-sm focus:outline-none whitespace-nowrap">Intro Email</button>
+                    <button onclick="openTab('cover')" id="tab-cover" class="tab-inactive py-2 px-6 text-sm focus:outline-none whitespace-nowrap">Cover Letter</button>
+                    <button onclick="openTab('interview')" id="tab-interview" class="tab-inactive py-2 px-6 text-sm focus:outline-none whitespace-nowrap">Interview Prep</button>
+                </div>
+
+                <!-- Tab Content: Email -->
+                <div id="content-email" class="bg-gray-50 p-8 rounded-lg border border-gray-200 animate-fade-in">
+                    <div class="mb-4 pb-4 border-b border-gray-200">
+                        <p class="text-sm text-gray-500"><span class="font-bold text-gray-700">Subject:</span> Behavioral Science + AI Systems – BluePill Fit</p>
+                    </div>
+                    <div class="prose prose-sm text-gray-700">
+                        <p>Hi [Hiring Manager's Name],</p>
+                        <p>I'm writing to express strong interest in the Behavioral Scientist role at BluePill. I bring a hybrid background in human factors engineering, AI systems architecture, and cognitive-behavioral modeling that aligns directly with your mission of building high-fidelity digital consumers.</p>
+                        <p>At Bentley, I've developed modular conversational AI systems that simulate clinical reasoning and empathy using LLMs, RAG pipelines, and multimodal feedback (Live demo: roleplay-sim.lovable.app). My research has focused on trust calibration in AI-generated evidence and the decision-making heuristics people apply to such tools.</p>
+                        <p>Prior to this, I co-developed a patented orthopedic implant (Enovis/DJO) — so I understand what it takes to move from insight to implementation, from human feedback to validated outcomes.</p>
+                        <p>I'd love to speak further about how my work across embodied intelligence, behavioral UX, and system design could help BluePill evolve the next generation of psychologically-real AI personas.</p>
+                        <p>Warm regards,<br>Shreyas Sriram</p>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Cover Letter -->
+                <div id="content-cover" class="hidden bg-gray-50 p-8 rounded-lg border border-gray-200">
+                    <div class="prose prose-sm text-gray-700 max-h-[500px] overflow-y-auto custom-scroll pr-4">
+                        <p class="mb-4">Dear BluePill Team,</p>
+                        <p class="mb-4">When I discovered BluePill's vision — to build digital consumers who truly think, feel, and respond like real people — it immediately resonated. As someone who's designed systems from anatomical implants to conversational AIs, my passion lies in modeling how humans behave, decide, and adapt — and then encoding those insights into usable, repeatable, validated technologies.</p>
+                        <p class="mb-4">As a graduate student in Human Factors at Bentley University, I've led multiple projects that sit at the intersection of behavioral science and AI:</p>
+                        <ul class="list-disc pl-5 mb-4 space-y-2">
+                            <li><strong>NBME Roleplay Simulator:</strong> Built a clinical AI that mimics human empathy and diagnostic reasoning using LLMs and RAG pipelines. Managed the balance between complexity and learnability in scenario design.</li>
+                            <li><strong>Mixed-Methods AI Tool Evaluation:</strong> Led a human subjects study identifying trust calibration failures in tools like OpenEvidence and Consensus — insights directly applicable to your validation benchmarks.</li>
+                            <li><strong>HapTrek:</strong> Prototyped a multimodal haptic device providing real-time, embodied feedback — a wearable UX case study in perception-action coupling.</li>
+                        </ul>
+                        <p class="mb-4">What sets me apart is my ability to move fluidly between behavioral theory, technical implementation, and product impact. I've built GPT-powered caregiver systems, conducted quantitative UX research with ANOVA and regression, and translated lived experiences as an EMT into product architectures.</p>
+                        <p>BluePill is redefining how we simulate consumers — not just for insight, but for empathy at scale. I'd be honored to contribute to that mission.</p>
+                        <p>Sincerely,<br>Shreyas Sriram</p>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Interview Prep -->
+                <div id="content-interview" class="hidden">
+                    <div class="space-y-4">
+                        <!-- Q1 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button onclick="toggleAccordion('q1')" class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors">
+                                <span class="font-bold text-gray-800">Q1: Tell me about a time you modeled human decision-making.</span>
+                                <span id="icon-q1" class="text-blue-600 font-bold">+</span>
+                            </button>
+                            <div id="ans-q1" class="hidden px-6 py-4 bg-white text-gray-700 text-sm border-t border-gray-200">
+                                <p class="mb-2"><strong>Context:</strong> NBME Project. Needed to simulate medical students under pressure.</p>
+                                <p><strong>Action:</strong> Built a persona system modeling patient reactions based on tone, topic, and question flow. Embedded cognitive constraints like limited memory span and emotional reactivity.</p>
+                                <p><strong>Result:</strong> Not just simulating dialogue, but modeling context decay, empathy thresholds, and trust building.</p>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button onclick="toggleAccordion('q2')" class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors">
+                                <span class="font-bold text-gray-800">Q2: How do you approach validating whether a system feels "real"?</span>
+                                <span id="icon-q2" class="text-blue-600 font-bold">+</span>
+                            </button>
+                            <div id="ans-q2" class="hidden px-6 py-4 bg-white text-gray-700 text-sm border-t border-gray-200">
+                                <p class="mb-2"><strong>Context:</strong> AI trust calibration study.</p>
+                                <p><strong>Action:</strong> Used subjective trust scores AND behavioral interaction patterns. Found users confused synthesis with citation.</p>
+                                <p><strong>Result:</strong> Designed a system using framing and chunking that mapped to actual comprehension levels, not just confidence scores.</p>
+                            </div>
+                        </div>
+
+                         <!-- Q3 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button onclick="toggleAccordion('q3')" class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors">
+                                <span class="font-bold text-gray-800">Q3: Describe translating complex research into usable product insights.</span>
+                                <span id="icon-q3" class="text-blue-600 font-bold">+</span>
+                            </button>
+                            <div id="ans-q3" class="hidden px-6 py-4 bg-white text-gray-700 text-sm border-t border-gray-200">
+                                <p><strong>For Nathan Sports:</strong> Ran usability studies across athlete segments. Distilled complex navigation issues into five traits: comparison anxiety, motivation type, info-seeking level, social proof reliance, and trust barrier. These became actionable segment personas.</p>
+                            </div>
+                        </div>
+
+                         <!-- Q4 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button onclick="toggleAccordion('q4')" class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors">
+                                <span class="font-bold text-gray-800">Q4: When have you built something from 0-to-1?</span>
+                                <span id="icon-q4" class="text-blue-600 font-bold">+</span>
+                            </button>
+                            <div id="ans-q4" class="hidden px-6 py-4 bg-white text-gray-700 text-sm border-t border-gray-200">
+                                <p><strong>CCnC Project:</strong> Built a custom GPT-based caregiver assistant. Validated market needs (EMT background), built prototypes across three LLMs, implemented RAG. Encoded behavioral risk tolerance and attention prioritization into the system response.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold serif mb-4">Shreyas Sriram</h2>
+            <p class="text-gray-400 mb-8">Ready to help BluePill evolve the next generation of psychologically-real AI personas.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                <a href="mailto:shreyas@example.com" class="text-gray-400 hover:text-white transition-colors">Email</a>
+            </div>
+            <p class="mt-8 text-xs text-gray-600">&copy; 2026 Shreyas Sriram. Built for BluePill Application.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA OBJECTS ---
+        
+        // Narrative Arc Data
+        const arcData = [
+            {
+                title: "From Clinical Insight to AI Simulation",
+                desc: "EMT, patient, and caregiver experiences feed directly into high-fidelity behavioral modeling. Understanding the high-stakes pulse of a patient provides the raw data needed to model urgency, empathy, and crisis response in digital systems.",
+                tags: ["EMT Experience", "Patient Care", "High-Fidelity Modeling"]
+            },
+            {
+                title: "From Hardware to Heuristics",
+                desc: "Transitioned from biomechanical design and patented implant systems to cognitive simulation. Understanding the stress-strain curves of titanium laid the groundwork for understanding the 'loops' and constraints of human behavioral architecture.",
+                tags: ["Biomechanics", "Patents", "Cognitive Simulation"]
+            },
+            {
+                title: "From Subsystems to Simulated Humans",
+                desc: "Designing AI that emulates attention, trust, motivation, and perception. Using validated psychographic models to create digital personas that don't just output text, but perform empathy and reason through complex scenarios.",
+                tags: ["Attention Modeling", "Psychographics", "AI Personas"]
+            }
+        ];
+
+        // --- INTERACTION FUNCTIONS ---
+
+        // Narrative Arc Stepper
+        function updateArc(index) {
+            // Update Text
+            const titleEl = document.getElementById('arc-title');
+            const descEl = document.getElementById('arc-desc');
+            const tagsEl = document.getElementById('arc-tags');
+            
+            // Fade out
+            const contentBox = document.getElementById('arc-content');
+            contentBox.classList.add('opacity-50');
+
+            setTimeout(() => {
+                titleEl.textContent = arcData[index].title;
+                descEl.textContent = arcData[index].desc;
+                
+                // Update Tags
+                tagsEl.innerHTML = '';
+                arcData[index].tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = "px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold animate-pulse-once";
+                    span.textContent = tag;
+                    tagsEl.appendChild(span);
+                });
+
+                contentBox.classList.remove('opacity-50');
+            }, 200);
+
+            // Update Buttons Styles
+            for(let i=0; i<3; i++) {
+                const circle = document.getElementById(`step-circle-${i}`);
+                if (i === index) {
+                    circle.className = "w-10 h-10 rounded-full flex items-center justify-center border-2 border-blue-600 bg-blue-600 text-white font-bold transition-colors";
+                } else {
+                    circle.className = "w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-300 bg-white text-gray-500 font-bold group-hover:border-blue-400 transition-colors";
+                }
+            }
+        }
+
+        // Tab Switching Logic
+        function openTab(tabName) {
+            const tabs = ['email', 'cover', 'interview'];
+            
+            tabs.forEach(t => {
+                const content = document.getElementById(`content-${t}`);
+                const btn = document.getElementById(`tab-${t}`);
+                
+                if (t === tabName) {
+                    content.classList.remove('hidden');
+                    btn.classList.remove('tab-inactive');
+                    btn.classList.add('tab-active');
+                } else {
+                    content.classList.add('hidden');
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                }
+            });
+        }
+
+        // Accordion Logic
+        function toggleAccordion(id) {
+            const answer = document.getElementById(`ans-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.textContent = '-';
+            } else {
+                answer.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // Smooth Scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- CHART.JS INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('positioningRadar').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Scientific Rigor', 
+                        'Technical Depth', 
+                        'Behavioral Lens', 
+                        'Startup Readiness', 
+                        'UX Empathy'
+                    ],
+                    datasets: [{
+                        label: 'Candidate Profile',
+                        data: [9, 8, 10, 7, 9], // Estimated values based on resume strength
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)', // Blue-600 with opacity
+                        borderColor: 'rgb(37, 99, 235)',
+                        pointBackgroundColor: 'rgb(37, 99, 235)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(37, 99, 235)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10,
+                            ticks: {
+                                backdropColor: 'transparent',
+                                display: false // Hide numbers for cleaner look
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif",
+                                    weight: 'bold'
+                                },
+                                color: '#374151'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    // Custom tooltip context
+                                    const descriptions = {
+                                        'Scientific Rigor': 'Mixed-methods research, ANOVA, Regression',
+                                        'Technical Depth': 'Full-stack AI, GPT, RAG pipelines',
+                                        'Behavioral Lens': 'Perception-action loops, Motivation modeling',
+                                        'Startup Readiness': 'MVP lifecycle, 0-to-1 building',
+                                        'UX Empathy': 'Trust calibration, User identity framing'
+                                    };
+                                    return descriptions[context.label] || '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

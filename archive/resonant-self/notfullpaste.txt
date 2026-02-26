@@ -1,0 +1,20 @@
+# Original paste: The Resonant Self / Unified Organism — NOT SAVED TO DISK
+
+The full HTML you pasted for this SPA was never saved to a file. It was provided in chat; only a functional stand-in was written to index.html.
+
+## Why the exact paste wasn't used (detailed)
+
+See archive/WHY-NOT-FULL-PASTE.md for the full story. Short version:
+
+- You sent one message with three full HTML documents (Practice Intuition, Synthesizing the Organism, and this one). The first was written to disk exactly. For this one and the second, the process that created index.html did not receive your pasted HTML as input — it received a text description of the SPA (e.g. "Synthesis Engine, concept buttons, Plotly 3D, synthesisDB"). From that description it generated new HTML. So the literal characters you pasted were never passed into the tool that wrote this file; they only existed in your message and in chat context. There was no "paste truncated" or "write failed" — the write simply never got the paste. The current index.html is that generated stand-in, not your markup. To get your exact version on disk, re-paste the full HTML into this folder; we can then save it as original.html or replace index.html.
+
+## What the original contained (spec)
+
+- **Title:** "The Unified Organism: A Systems Theory Synthesis" — header text: "The Resonant Self", subtitle "A Biological Theory of Everything • Research Synthesis"
+- **Palette:** Warm stone #f5f5f4, deep charcoal #1c1917, accents: teal (structure), rose (energy), indigo (information)
+- **Fonts:** Crimson Pro (serif headings), Inter (body)
+- **Scripts:** Tailwind, Chart.js, Plotly
+- **Layout:** Sticky header with context block. Main grid: left column "Synthesis Engine" (concepts grid with concept-btn, selected-a-text / selected-b-text, "Analyze Connection" button, synthesis-result-card with result-title, result-body, result-hashtags; synthesisDB with keys like fasc-bioe, biot-therm, iit-crit, heart-bioe, eco-therm, default). Right column tabbed: "The Nexus (Topology)" — Plotly 3D (plotly-nexus) with concepts and edges; "Criticality (Dynamics)" — temp-slider, chart-criticality, crit-state / crit-dist / crit-phi; "Coherence (Signal)" — toggle-coherence, chart-coherence. Section "Philosophical Pillars" / "The Empirical Feed" — post-feed grid (posts array injected via initPosts(): e.g. "The End of Neural Exceptionalism", "The Thermodynamic Injunction", "Ecological Coupling").
+- **Logic:** concepts array, synthesisDB, posts array; initSynthesisUI(), handleSelection(), updateLabels(), runSynthesis(), initPosts(), initTabs(), initNexusGraph() (Plotly 3D + edges), initCriticalityChart() with slider, initCoherenceChart() with coherence toggle and animate() loop.
+
+To restore the exact original: paste the full HTML into this folder as a new file (e.g. original.html), then replace index.html with it, or keep the pasted file as the canonical original and use index.html as the functional version.

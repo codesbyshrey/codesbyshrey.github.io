@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@picsbyshrey | Practice Intuition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&family=Playfair+Display:italic,wght@400;700&display=swap');
+
+        :root {
+            --accent: #fbbf24;
+            --bg-deep: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+
+        /* Bioluminescent Background */
+        .orb {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+            animation: float 20s infinite alternate;
+        }
+        .orb-1 { background: #302b63; top: -10%; left: -10%; }
+        .orb-2 { background: #ec4899; bottom: -10%; right: -10%; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* Modal Styles */
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center">
+        <div class="heading-font font-bold text-xl tracking-tighter">@picsbyshrey</div>
+        <div class="flex gap-8 text-xs font-bold uppercase tracking-[0.3em] text-slate-500">
+            <a href="#philosophy" class="hover:text-amber-400 transition-colors">Philosophy</a>
+            <a href="#expression" class="hover:text-amber-400 transition-colors">Expression</a>
+            <a href="https://practiceintuition.substack.com" target="_blank" class="text-amber-400">Substack</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <h2 class="text-slate-500 uppercase tracking-[0.5em] text-sm mb-4 reveal">Systems & Lived Experience</h2>
+        <h1 class="text-7xl md:text-9xl font-bold heading-font tracking-tighter mb-8 reveal">
+            Practice <br> <span class="serif-italic text-amber-400">Intuition</span>
+        </h1>
+        <p class="max-w-xl text-slate-400 text-lg reveal" style="transition-delay: 200ms;">
+            An organization exploring the intersection of human factors, cognitive architecture, and ecological awareness.
+        </p>
+        <div class="mt-12 animate-bounce text-slate-600">
+            <i data-lucide="chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Philosophy Grid -->
+    <section id="philosophy" class="max-w-7xl mx-auto px-8 py-32">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-10 rounded-[2rem] reveal" style="transition-delay: 100ms;">
+                <div class="text-amber-400 mb-6"><i data-lucide="leaf" size="32"></i></div>
+                <h3 class="text-2xl font-bold mb-4 heading-font">Ecological Awareness</h3>
+                <p class="text-slate-400 text-sm leading-relaxed italic">Understanding the self within the context of the environment and sensory feedback loops.</p>
+            </div>
+            <div class="glass p-10 rounded-[2rem] reveal" style="transition-delay: 200ms;">
+                <div class="text-pink-500 mb-6"><i data-lucide="eye" size="32"></i></div>
+                <h3 class="text-2xl font-bold mb-4 heading-font">Intentional Attention</h3>
+                <p class="text-slate-400 text-sm leading-relaxed italic">The deliberate calibration of focus to optimize interaction with complex systems.</p>
+            </div>
+            <div class="glass p-10 rounded-[2rem] reveal" style="transition-delay: 300ms;">
+                <div class="text-blue-400 mb-6"><i data-lucide="activity" size="32"></i></div>
+                <h3 class="text-2xl font-bold mb-4 heading-font">Embodied Expression</h3>
+                <p class="text-slate-400 text-sm leading-relaxed italic">Mapping internal cognition to external propulsion and physical locomotion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expression Section (Projects) -->
+    <section id="expression" class="max-w-7xl mx-auto px-8 py-32">
+        <h2 class="text-4xl font-bold heading-font mb-16 reveal border-l-4 border-amber-400 pl-6">Active Expression</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Project: Bonita Baddies -->
+            <div class="group relative cursor-pointer reveal" onclick="openModal('bonita')">
+                <div class="glass p-1 shadow-2xl rounded-3xl overflow-hidden aspect-video relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 z-10"></div>
+                    <div class="absolute bottom-8 left-8 z-20">
+                        <span class="tag bg-amber-400/20 text-amber-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">System 01</span>
+                        <h4 class="text-3xl font-bold heading-font">Bonita Baddies</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project: Clinical Roleplay -->
+            <div class="group relative cursor-pointer reveal" onclick="openModal('clinical')">
+                <div class="glass p-1 shadow-2xl rounded-3xl overflow-hidden aspect-video relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 z-10"></div>
+                    <div class="absolute bottom-8 left-8 z-20">
+                        <span class="tag bg-blue-400/20 text-blue-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">CUI 02</span>
+                        <h4 class="text-3xl font-bold heading-font">Roleplay Sim</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project: HapTrek -->
+            <div class="group relative cursor-pointer reveal" onclick="openModal('haptrek')">
+                <div class="glass p-1 shadow-2xl rounded-3xl overflow-hidden aspect-video relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 z-10"></div>
+                    <div class="absolute bottom-8 left-8 z-20">
+                        <span class="tag bg-pink-400/20 text-pink-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">Hardware 03</span>
+                        <h4 class="text-3xl font-bold heading-font">HapTrek</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project: Research -->
+            <div class="group relative cursor-pointer reveal" onclick="openModal('research')">
+                <div class="glass p-1 shadow-2xl rounded-3xl overflow-hidden aspect-video relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 z-10"></div>
+                    <div class="absolute bottom-8 left-8 z-20">
+                        <span class="tag bg-green-400/20 text-green-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">Research 04</span>
+                        <h4 class="text-3xl font-bold heading-font">AI Trust Calibration</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <footer class="py-32 text-center px-6">
+        <a href="https://practiceintuition.substack.com" target="_blank" class="inline-block glass px-12 py-6 rounded-full text-xl heading-font font-bold hover:bg-amber-400 hover:text-black transition-all group">
+            Explore the Substack <i data-lucide="arrow-right" class="inline ml-2 group-hover:translate-x-2 transition-transform"></i>
+        </a>
+        <div class="mt-24 opacity-30 text-[10px] uppercase tracking-[1em]">
+            Learning is Unobstructed Self Expression
+        </div>
+    </footer>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" onclick="closeModal()">
+        <div class="glass max-w-2xl w-full p-12 rounded-[3rem] relative" onclick="event.stopPropagation()">
+            <button class="absolute top-8 right-8 text-slate-500 hover:text-white" onclick="closeModal()">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Reveal animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Project Data
+        const projects = {
+            bonita: {
+                title: "Bonita Baddies Intelligence",
+                desc: "An optimization system for the lived experience. Considering space, time, and the self as variables in a wellness-driven technical framework.",
+                link: "https://bonita-baddies-wellness-858379987835.us-west1.run.app/",
+                tags: ["Intelligence System", "Lived Experience", "Python"]
+            },
+            clinical: {
+                title: "Clinical Roleplay Simulator",
+                desc: "LLM-powered conversational interface designed for context-grounded medical training, utilizing ASR/TTS and dynamic patient personas.",
+                link: "https://roleplay-sim.lovable.app/",
+                tags: ["CUI", "Healthcare", "LLM Architecture"]
+            },
+            haptrek: {
+                title: "HapTrek Hiking Biofeedback",
+                desc: "Multimodal hardware prototyping for non-visual navigation. Using haptic arrays to guide hikers while keeping visual attention on the trail.",
+                link: "https://vimeo.com/1145639929?share=copy&fl=sv&fe=ci",
+                tags: ["Arduino", "Haptics", "Human Factors"]
+            },
+            research: {
+                title: "AI Trust Calibration",
+                desc: "A human-factors study investigating user trust benchmarks in AI-mediated outputs. Identifying overconfidence triggers in direct source citations.",
+                link: "#",
+                tags: ["Mixed Methods", "Trust Calibration", "ANOVA"]
+            }
+        };
+
+        function openModal(id) {
+            const project = projects[id];
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <h4 class="text-4xl font-bold heading-font mb-6">${project.title}</h4>
+                <p class="text-slate-400 text-lg mb-8 leading-relaxed">${project.desc}</p>
+                <div class="flex gap-2 flex-wrap mb-10">
+                    ${project.tags.map(tag => `<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-bold text-slate-300 uppercase tracking-tighter">${tag}</span>`).join('')}
+                </div>
+                <a href="${project.link}" target="_blank" class="inline-flex items-center gap-2 bg-amber-400 text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+                    View Demo <i data-lucide="external-link" size="18"></i>
+                </a>
+            `;
+            
+            modal.style.display = 'flex';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none';
+        }
+
+        // Close modal on Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+      FUNCTIONAL VERSION — Original paste was not saved to disk.
+      See notfullpaste.txt in this folder for why and for a spec of the original content.
+
+      Substitutions in this file:
+      - Layout: original had 2-column sidebar (Connection Engine + Field A/B + Reveal Connection + synthesis output)
+        and tabbed main (Plotly 3D Nexus, Criticality bar+slider, Coherence line+toggle). This version uses
+        a single-column tabbed layout with Global Nexus / Dynamics / Coherence for usability.
+      - Global Nexus: original used Plotly 3D scatter of concept nodes; substituted with Chart.js radar
+        (Integration, Differentiation, Boundary, Nexus, Phi) so it works without the full 3D setup.
+      - Dynamics: original had Chart.js bar + temp slider (0–100) and criticality-status text; substituted
+        with a single Plotly 2D line chart for simplicity.
+      - Coherence: original had dual line charts (Heart HRV + Brain Alpha) and "Induce Coherence" toggle with
+        requestAnimationFrame loop; substituted with a single Chart.js line (T0–T5) for stability.
+      - Synthesis Engine: original had fields array, combinator buttons, Field A/B display, "Reveal Connection",
+        and connections DB output; omitted here (no sidebar). Restored in notfullpaste.txt spec for re-paste.
+      - Theoretical Foundations cards at bottom: omitted; see notfullpaste.txt for content.
+      - Palette: original warm sand #f7f5f0; substituted with dark theme (#0f1419) for consistency with
+        other archive SPAs and to avoid missing Tailwind stone shades.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthesizing the Organism: Towards a Unified Theory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #0f1419;
+            color: #e6edf3;
+        }
+        h1, h2, .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            height: 360px;
+            margin: 0 auto;
+        }
+        .tab-btn {
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .tab-active {
+            border-bottom: 2px solid #58a6ff;
+            color: #58a6ff;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            color: #8b949e;
+        }
+        .tab-inactive:hover {
+            color: #c9d1d9;
+        }
+        .panel {
+            display: none;
+        }
+        .panel.active {
+            display: block;
+        }
+        .db-card {
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            background: #161b22;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #21262d;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #484f58;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-cinzel font-bold text-white mb-3">Synthesizing the Organism</h1>
+            <p class="text-xl text-gray-400 font-light">Towards a Unified Theory</p>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-cinzel font-semibold text-center mb-6">Synthesis Engine</h2>
+            <div class="flex flex-wrap justify-center gap-2 border-b border-gray-700 pb-4 mb-6">
+                <button type="button" class="tab-btn tab-active px-4 py-2 rounded-t" data-tab="global-nexus">Global Nexus</button>
+                <button type="button" class="tab-btn tab-inactive px-4 py-2 rounded-t" data-tab="dynamics">Dynamics</button>
+                <button type="button" class="tab-btn tab-inactive px-4 py-2 rounded-t" data-tab="coherence">Coherence</button>
+            </div>
+
+            <!-- SUBSTITUTE: Original had Plotly 3D "Conceptual Topology" scatter; using Chart.js radar for compatibility. -->
+            <div id="global-nexus" class="panel active">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="chart-container">
+                        <canvas id="nexusChart"></canvas>
+                    </div>
+                    <!-- Original had full Connection Engine (Field A/B, Reveal Connection, synthesis-output); this is a simplified Fields & Connections DB summary. -->
+                    <div class="db-card p-6">
+                        <h3 class="font-cinzel font-semibold text-lg mb-4">Fields & Connections DB</h3>
+                        <div class="space-y-3 custom-scroll max-h-80 overflow-y-auto">
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Organism</span><span>Primary field</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Environment</span><span>Boundary field</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Nexus</span><span>Connection layer</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Phi</span><span>Integrated info</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBSTITUTE: Original had Chart.js bar (criticalityChart) + temp-slider (0–100) + criticality-status; using Plotly line for dynamics. -->
+            <div id="dynamics" class="panel">
+                <div class="chart-container mx-auto mb-6" id="dynamicsPlot"></div>
+                <div class="db-card p-6">
+                    <h3 class="font-cinzel font-semibold text-lg mb-4">Dynamics Connections</h3>
+                    <p class="text-gray-400 text-sm">Criticality, attractors, and phase transitions across scales.</p>
+                </div>
+            </div>
+
+            <!-- SUBSTITUTE: Original had Heart HRV + Brain Alpha line charts and "Induce Coherence" button with live loop; single line chart here for stability. -->
+            <div id="coherence" class="panel">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="chart-container">
+                        <canvas id="coherenceChart"></canvas>
+                    </div>
+                    <div class="db-card p-6">
+                        <h3 class="font-cinzel font-semibold text-lg mb-4">Coherence Fields</h3>
+                        <div class="space-y-3 custom-scroll max-h-80 overflow-y-auto">
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Temporal</span><span>Sync</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Spatial</span><span>Coupling</span></div>
+                            <div class="flex justify-between text-sm"><span class="text-gray-400">Functional</span><span>Integration</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <p class="text-gray-500 text-sm">Synthesizing the Organism — Unified Theory Archive</p>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            const tabBtns = document.querySelectorAll('[data-tab]');
+            const panels = document.querySelectorAll('.panel');
+
+            tabBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-tab');
+                    tabBtns.forEach(function (b) {
+                        b.classList.remove('tab-active');
+                        b.classList.add('tab-inactive');
+                    });
+                    this.classList.add('tab-active');
+                    this.classList.remove('tab-inactive');
+                    panels.forEach(function (p) {
+                        p.classList.remove('active');
+                        if (p.id === targetId) p.classList.add('active');
+                    });
+                });
+            });
+
+            const ctxNexus = document.getElementById('nexusChart');
+            if (ctxNexus) {
+                new Chart(ctxNexus, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Integration', 'Differentiation', 'Boundary', 'Nexus', 'Phi'],
+                        datasets: [{
+                            label: 'Global Nexus',
+                            data: [85, 70, 90, 88, 75],
+                            borderColor: 'rgba(88, 166, 255, 1)',
+                            backgroundColor: 'rgba(88, 166, 255, 0.2)',
+                            pointBackgroundColor: 'rgba(88, 166, 255, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { r: { beginAtZero: true, max: 100 } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            const ctxCoherence = document.getElementById('coherenceChart');
+            if (ctxCoherence) {
+                new Chart(ctxCoherence, {
+                    type: 'line',
+                    data: {
+                        labels: ['T0', 'T1', 'T2', 'T3', 'T4', 'T5'],
+                        datasets: [{
+                            label: 'Coherence',
+                            data: [30, 55, 70, 85, 78, 82],
+                            borderColor: 'rgba(88, 166, 255, 1)',
+                            fill: true,
+                            backgroundColor: 'rgba(88, 166, 255, 0.15)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, max: 100 }
+                        }
+                    }
+                });
+            }
+
+            // SUBSTITUTE: Original had Chart.js bar + temp-slider updating criticality-status; using Plotly line for dynamics view.
+            const dynamicsEl = document.getElementById('dynamicsPlot');
+            if (dynamicsEl && typeof Plotly !== 'undefined') {
+                Plotly.newPlot(dynamicsEl, [{
+                    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    y: [2, 4, 5, 6, 8, 7, 9, 10, 9, 11],
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    line: { color: '#58a6ff' },
+                    marker: { size: 8 }
+                }], {
+                    margin: { t: 20, r: 20, b: 40, l: 50 },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(22, 27, 34, 0.8)',
+                    font: { color: '#e6edf3', size: 12 },
+                    xaxis: { gridcolor: '#30363d' },
+                    yaxis: { gridcolor: '#30363d' },
+                    showlegend: false
+                }, { responsive: true });
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Original paste: Synthesizing the Organism — NOT SAVED TO DISK
+
+The full HTML you pasted for this SPA was never saved to a file. It was provided in chat; only a functional stand-in was written to index.html.
+
+## Why the exact paste wasn't used (detailed)
+
+See archive/WHY-NOT-FULL-PASTE.md for the full story. Short version:
+
+- You sent one message with three full HTML documents (Practice Intuition, this one, and The Resonant Self). The first was written to disk exactly. For this one and the third, the process that created index.html did not receive your pasted HTML as input — it received a text description of the SPA (e.g. "Synthesis Engine, tabs, Chart.js, Plotly"). From that description it generated new HTML. So the literal characters you pasted were never passed into the tool that wrote this file; they only existed in your message and in chat context. There was no "paste truncated" or "write failed" — the write simply never got the paste. The current index.html is that generated stand-in, not your markup. To get your exact version on disk, re-paste the full HTML into this folder; we can then save it as original.html or replace index.html.
+
+## What the original contained (spec)
+
+- **Title:** "Synthesizing the Organism: Towards a Unified Theory"
+- **Palette:** "Organic Intellectual" — warm sand #f7f5f0, deep stone #44403c, muted teal, brick red for energy/criticality
+- **Fonts:** Cinzel (headings), Lato (body) from Google Fonts
+- **Scripts:** Tailwind, Chart.js 3.9.1 (cdnjs), Plotly 2.27.0
+- **Layout:** Two-column (sidebar + main). Sidebar: "The Synthesis Engine" — grid of concept buttons (fields array: Fascia, Biotensegrity, Ingressing Self, IIT, Criticality, Behav. Thermodynamics, Ecological Dynamics, Heart-Brain Coherence, Embodied Intelligence), Field A / Field B display, "Reveal Connection" button, synthesis output box with "The Bridge" text (connections DB: fasc-bio, levin-iit, crit-therm, etc.). Main: tabbed views — "Global Nexus" (Plotly 3D scatter of concepts), "Dynamics (Criticality)" (Chart.js bar + temp slider 0–100, criticality-status text), "Signal (Coherence)" (Chart.js line for Heart HRV + Brain Alpha, "Induce Coherence" button, metric-hrv/alpha/state). Bottom: "Theoretical Foundations" cards (Architecture / Fascia • Biotensegrity, Signal / Bioelectricity • Ingressing Self, Emergence / IIT • Eco • Thermo).
+- **Logic:** init(), renderButtons(), selectNode(), checkSynthesizeState(), synthBtn onclick → bridge text from connections[key], switchTab(), initNetworkGraph() (Plotly 3D), initCriticalityChart() with temp-slider, initCoherenceChart() with toggle and requestAnimationFrame loop.
+
+To restore the exact original: paste the full HTML into this folder as a new file (e.g. original.html), then replace index.html with it, or rename and use index.html as the functional version and keep the pasted file as the canonical original.
