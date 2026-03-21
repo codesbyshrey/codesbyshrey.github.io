@@ -19,7 +19,7 @@ So in that message, your exact source for all three was present as pasted text.
 ## What happened to each paste
 
 - **Practice Intuition**  
-  Your pasted HTML was used as the only source. It was written to `archive/practice-intuition/index.html` exactly. So that file **is** your full paste.
+  Your pasted HTML was used as the only source. It was originally written to `archive/practice-intuition/index.html` exactly. The canonical copy is now at the repo root: `practice-intuition/index.html` (same SPA; the archive duplicate was removed).
 
 - **Synthesizing the Organism** and **The Resonant Self**  
   For these two, the **exact paste was never written to disk**. The process that created their `index.html` files did **not** receive your raw HTML. Instead it received a **short description** of what those SPAs should be (e.g. “Synthesis Engine, tabs for Nexus / Criticality / Coherence, Chart.js and Plotly, synthesisDB”). From that description it **generated new HTML** — a different, shorter implementation. So what’s on disk is that generated version, not your paste.
