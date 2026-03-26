@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form & Function: Enterprise Humanoids</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals (Stone 50 to 900) for harmony, Teal 600 for interactive elements and data highlights, Amber 600 for secondary data points. Background is consistently light (Stone 50). -->
+    <!-- Application Structure Plan: The SPA is structured as a vertical narrative dashboard. It begins with the conceptual shift (Form vs Function), moves into physical capabilities (Hardware/Kinesiology), then cognitive processing (Neuro/Compute), and concludes with the athletic performance synthesis. This linear-to-exploratory structure allows users to digest the robotic concepts through the familiar lens of human biomechanics step-by-step. -->
+    <!-- Visualization & Content Choices: 1. Radar Chart (Chart.js): Compares Human vs Atlas capabilities (Goal: Compare, Justification: Shows multi-axis superiority easily). 2. Bar Chart (Chart.js): Shows power-to-weight evolution (Goal: Change/Compare, Justification: Highlights the leap from hydraulic to electric). 3. Interactive Matrix (JS/HTML): CNS vs MPC control logic (Goal: Organize/Inform, Justification: Clarifies complex software concepts via human analogy). All use Canvas/HTML without SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            background-color: #fafaf9;
+            color: #1c1917;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 50vh;
+            max-height: 500px;
+            min-height: 350px;
+        }
+        .matrix-btn.active {
+            background-color: #0d9488;
+            color: white;
+            border-color: #0d9488;
+        }
+        .nav-link:hover {
+            color: #0d9488;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <nav class="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="text-xl font-bold tracking-tighter text-stone-800">
+                    <span class="text-teal-600">KINEMATIC</span>🤖SYNTHESIS
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600">
+                    <a href="#overview" class="nav-link transition-colors">Overview</a>
+                    <a href="#biomechanics" class="nav-link transition-colors">Biomechanics</a>
+                    <a href="#neurocontrol" class="nav-link transition-colors">Neuro-Control</a>
+                    <a href="#performance" class="nav-link transition-colors">Athletic Synthesis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="overview" class="py-24 sm:py-32 bg-stone-100 border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-stone-900 mb-6">
+                Form as a Foundation,<br><span class="text-teal-600">Not a Constraint.</span>
+            </h1>
+            <p class="mt-4 text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+                Analyzing the evolution of enterprise humanoids (like Boston Dynamics' Atlas) through the dual lenses of industrial utility and human kinesiology. We explore how modern robotics leverages human form to navigate our world, but abandons human anatomical limitations to maximize functional capability.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-32">
+
+        <section id="biomechanics" class="scroll-mt-24">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Hardware & Biomechanics: Breaking the Ligament</h2>
+                <p class="text-lg text-stone-600 leading-relaxed max-w-4xl">
+                    This section examines the structural differences between biological humans and electric humanoids. In human physical therapy, our goal is to restore a naturally limited Range of Motion (ROM) governed by bone structure, ligaments, and joint capsules. Enterprise humanoids use our bipedal footprint to fit into human spaces, but they utilize custom electric actuators that provide continuous rotation, effectively discarding biological limitations to achieve hyper-efficient task execution.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-6 text-center">Kinematic Capability Profile</h3>
+                    <div class="chart-container">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-stone-50 p-6 rounded-xl border-l-4 border-teal-600">
+                        <h4 class="font-bold text-stone-800 flex items-center gap-2">
+                            <span class="text-2xl">🦴</span> The Human Constraint
+                        </h4>
+                        <p class="mt-2 text-stone-600">
+                            A human knee is a modified hinge joint with roughly 135&deg; of flexion and 0&deg; of extension. Shoulders offer high mobility but low stability. Athletic performance is about optimizing force transfer through a rigid core while respecting these tissue limits.
+                        </p>
+                    </div>
+                    <div class="bg-stone-50 p-6 rounded-xl border-l-4 border-amber-500">
+                        <h4 class="font-bold text-stone-800 flex items-center gap-2">
+                            <span class="text-2xl">⚙️</span> The Robotic Liberation
+                        </h4>
+                        <p class="mt-2 text-stone-600">
+                            The electric Atlas features joints with continuous 360&deg; rotation. It can fold its legs backwards to stand up from a prone position, or swivel its torso entirely around to walk "backward" while facing forward. It adopts the most mechanically efficient posture for a task, regardless of how alien it looks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="neurocontrol" class="scroll-mt-24">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Neuro-Motor Control: CNS vs. MPC</h2>
+                <p class="text-lg text-stone-600 leading-relaxed max-w-4xl">
+                    Here we compare the "software" of movement. In humans, the Central Nervous System (CNS) uses proprioception, feedforward anticipation, and feedback loops to orchestrate muscle firing. In advanced humanoids, this is mirrored by Model Predictive Control (MPC) and Machine Learning (ML) policies. Explore the interactive matrix below to see how biological and synthetic systems solve identical environmental challenges.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden">
+                <div class="flex flex-wrap border-b border-stone-200 bg-stone-50">
+                    <button class="matrix-btn active flex-1 py-4 px-6 text-sm font-semibold tracking-wide border-b-2 border-transparent transition-all" data-target="proprioception">
+                        Proprioception (Sensing)
+                    </button>
+                    <button class="matrix-btn flex-1 py-4 px-6 text-sm font-semibold tracking-wide border-b-2 border-transparent transition-all" data-target="feedforward">
+                        Feedforward (Planning)
+                    </button>
+                    <button class="matrix-btn flex-1 py-4 px-6 text-sm font-semibold tracking-wide border-b-2 border-transparent transition-all" data-target="adaptation">
+                        Adaptation (Learning)
+                    </button>
+                </div>
+                
+                <div class="p-8 md:p-12" id="matrix-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="text-teal-600 font-bold mb-2 uppercase tracking-wider text-sm">Biological (Human)</div>
+                            <h3 class="text-2xl font-bold text-stone-900 mb-3" id="bio-title">Mechanoreceptors & Vestibular System</h3>
+                            <p class="text-stone-600 leading-relaxed" id="bio-desc">Muscle spindles and Golgi tendon organs provide constant subconscious feedback regarding muscle length and tension. The inner ear provides spatial orientation, allowing athletes to maintain balance dynamically over uneven terrain.</p>
+                        </div>
+                        <div>
+                            <div class="text-amber-600 font-bold mb-2 uppercase tracking-wider text-sm">Synthetic (Atlas)</div>
+                            <h3 class="text-2xl font-bold text-stone-900 mb-3" id="syn-title">IMUs, Lidar & Force/Torque Sensors</h3>
+                            <p class="text-stone-600 leading-relaxed" id="syn-desc">Inertial Measurement Units (IMUs) act as the vestibular system. Custom force/torque sensors at every joint act as synthetic Golgi tendon organs, giving the robot precise, quantifiable data on the load applied to its environment at 1000hz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance" class="scroll-mt-24">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Athletic Synthesis: Power, Weight, & Evolution</h2>
+                <p class="text-lg text-stone-600 leading-relaxed max-w-4xl">
+                    In human athletic performance, maximizing the power-to-weight ratio is critical. The transition of Atlas from a bulky hydraulic research platform to a sleek, commercially viable electric humanoid represents a massive leap in this metric. The chart below visualizes the evolution of functional utility, comparing system mass to functional power output and environmental robustness.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                <div class="flex justify-between items-end mb-6">
+                    <h3 class="text-xl font-semibold text-stone-800">Evolution of Enterprise Utility Metrics</h3>
+                    <select id="chartMetricToggle" title="Select chart metric" aria-label="Select chart metric" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block p-2.5 outline-none cursor-pointer">
+                        <option value="powerWeight">Power-to-Weight Ratio</option>
+                        <option value="robustness">Environmental Robustness</option>
+                    </select>
+                </div>
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="mt-6 text-center text-sm text-stone-500 italic" id="barChartCaption">
+                    Comparing the hydraulic research generation, the electric commercial generation, and a baseline elite human athlete.
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-stone-900 rounded-3xl p-8 sm:p-12 text-center my-16 shadow-xl">
+            <h2 class="text-3xl sm:text-4xl font-bold text-stone-50 mb-6">Redefining Posture</h2>
+            <p class="text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed mb-8">
+                In physical therapy, "good posture" is defined by anatomical neutrality that minimizes tissue strain. For an enterprise humanoid, "good posture" is entirely dynamic. It is the mathematical optimization of joint angles to apply maximum force to a heavy object, even if that means contorting its body in a way that would snap a human spine. 
+                <br><br>
+                <strong class="text-teal-400">Human likeness gets the robot into the factory. Functional liberation gets the job done.</strong>
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-100 border-t border-stone-200 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-stone-500 text-sm">
+            <p>Interactive Analysis: Form and Function of Enterprise Humanoids.</p>
+            <p class="mt-2">Synthesizing Robotics, Compute, and Kinesiology.</p>
+        </div>
+    </footer>
+
+    <script>
+        const chartColors = {
+            teal: 'rgba(13, 148, 136, 0.8)',
+            tealBorder: 'rgb(13, 148, 136)',
+            tealLight: 'rgba(13, 148, 136, 0.2)',
+            amber: 'rgba(217, 119, 6, 0.8)',
+            amberBorder: 'rgb(217, 119, 6)',
+            amberLight: 'rgba(217, 119, 6, 0.2)',
+            stone: 'rgba(120, 113, 108, 0.8)',
+            stoneBorder: 'rgb(120, 113, 108)'
+        };
+
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Degrees of Freedom (Joints)',
+                    'Continuous Rotation',
+                    'Dynamic Load Stability',
+                    'Energy Efficiency (Locomotion)',
+                    'Environmental Adaptability (Unstructured)'
+                ],
+                datasets: [{
+                    label: 'Human Athlete (Biological)',
+                    data: [80, 5, 90, 95, 100],
+                    backgroundColor: chartColors.stone,
+                    borderColor: chartColors.stoneBorder,
+                    pointBackgroundColor: chartColors.stoneBorder,
+                    borderWidth: 2,
+                    fill: true
+                }, {
+                    label: 'Electric Atlas (Synthetic)',
+                    data: [60, 100, 95, 70, 85],
+                    backgroundColor: chartColors.tealLight,
+                    borderColor: chartColors.tealBorder,
+                    pointBackgroundColor: chartColors.tealBorder,
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.1)' },
+                        pointLabels: {
+                            font: { size: 12, family: 'system-ui' },
+                            color: '#444'
+                        },
+                        ticks: { display: false, min: 0, max: 100 }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                label += context.raw + ' / 100 Index';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const barData = {
+            powerWeight: {
+                labels: ['Elite Human', 'Hydraulic Atlas (Research)', 'Electric Atlas (Commercial)'],
+                datasets: [{
+                    label: 'Relative Power-to-Weight Ratio Index',
+                    data: [65, 50, 95],
+                    backgroundColor: [chartColors.stone, chartColors.amber, chartColors.teal],
+                    borderRadius: 6
+                }]
+            },
+            robustness: {
+                labels: ['Elite Human', 'Hydraulic Atlas (Research)', 'Electric Atlas (Commercial)'],
+                datasets: [{
+                    label: 'Continuous Operational Robustness Index',
+                    data: [40, 60, 90],
+                    backgroundColor: [chartColors.stone, chartColors.amber, chartColors.teal],
+                    borderRadius: 6
+                }]
+            }
+        };
+
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        let barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: barData.powerWeight,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let text = context[0].label;
+                                if (text.length > 16) {
+                                    return text.substring(0, 16) + '...';
+                                }
+                                return text;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        document.getElementById('chartMetricToggle').addEventListener('change', function(e) {
+            const selectedMetric = e.target.value;
+            barChart.data = barData[selectedMetric];
+            barChart.update();
+            
+            const caption = document.getElementById('barChartCaption');
+            if(selectedMetric === 'powerWeight') {
+                caption.innerText = 'Comparing the hydraulic research generation, the electric commercial generation, and a baseline elite human athlete.';
+            } else {
+                caption.innerText = 'Robustness measures resistance to structural failure, fatigue limits, and maintenance intervals under heavy industrial loads.';
+            }
+        });
+
+        const matrixData = {
+            proprioception: {
+                bioTitle: "Mechanoreceptors & Vestibular System",
+                bioDesc: "Muscle spindles and Golgi tendon organs provide constant subconscious feedback regarding muscle length and tension. The inner ear provides spatial orientation, allowing athletes to maintain balance dynamically over uneven terrain.",
+                synTitle: "IMUs, Lidar & Force/Torque Sensors",
+                synDesc: "Inertial Measurement Units (IMUs) act as the vestibular system. Custom force/torque sensors at every joint act as synthetic Golgi tendon organs, giving the robot precise, quantifiable data on the load applied to its environment at 1000hz."
+            },
+            feedforward: {
+                bioTitle: "Motor Cortex & Anticipatory Adjustment",
+                bioDesc: "Before a human even touches a heavy box, the brain prepares the core muscles to brace. This feedforward mechanism relies on visual input and past experiences to anticipate the force required.",
+                synTitle: "Model Predictive Control (MPC)",
+                synDesc: "The robot continuously simulates physics models milliseconds into the future. It calculates the optimal joint trajectories required to execute a lift while maintaining its Center of Mass within its base of support, bracing before impact."
+            },
+            adaptation: {
+                bioTitle: "Neuroplasticity & Motor Learning",
+                bioDesc: "Through repetition, humans myelinate neural pathways, making movements smoother, more efficient, and requiring less conscious cognitive load. This requires physical rest and cellular regeneration.",
+                synTitle: "Machine Learning & Fleet Data",
+                synDesc: "Reinforcement learning policies allow humanoids to learn complex movements in simulation. Unlike biological systems, a breakthrough achieved by one robot can be pushed as a software update to the entire fleet instantly, without physical fatigue."
+            }
+        };
+
+        const matrixButtons = document.querySelectorAll('.matrix-btn');
+        const bioTitle = document.getElementById('bio-title');
+        const bioDesc = document.getElementById('bio-desc');
+        const synTitle = document.getElementById('syn-title');
+        const synDesc = document.getElementById('syn-desc');
+
+        matrixButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                matrixButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-teal-600', 'text-white', 'border-teal-600');
+                    b.classList.add('border-transparent');
+                });
+                
+                this.classList.add('active', 'bg-teal-600', 'text-white', 'border-teal-600');
+                this.classList.remove('border-transparent');
+
+                const target = this.getAttribute('data-target');
+                const data = matrixData[target];
+
+                bioTitle.style.opacity = 0;
+                bioDesc.style.opacity = 0;
+                synTitle.style.opacity = 0;
+                synDesc.style.opacity = 0;
+
+                setTimeout(() => {
+                    bioTitle.innerText = data.bioTitle;
+                    bioDesc.innerText = data.bioDesc;
+                    synTitle.innerText = data.synTitle;
+                    synDesc.innerText = data.synDesc;
+
+                    bioTitle.style.opacity = 1;
+                    bioDesc.style.opacity = 1;
+                    synTitle.style.opacity = 1;
+                    synDesc.style.opacity = 1;
+                }, 200);
+            });
+        });
+
+        const elements = [bioTitle, bioDesc, synTitle, synDesc];
+        elements.forEach(el => {
+            el.style.transition = 'opacity 0.2s ease-in-out';
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -9,4 +9,5 @@ Active webpages linked from the main site. Linking from the main page will be se
 - `quantum-lens/` — The Quantum Lens: Physics & Philosophy (timeline of thought, determinism vs probability chart, GR vs QM, 4E/philosophy cards)
 - `embodied-agency/` — From Token Prediction to Embodied Agency (scaling vs utility, Sutton/LeCun/Li pillars, System 1/2 stack, slow movement hypothesis)
 - `coherent-system/` — The Coherent System: Criticality, Fascia & Inception (neural criticality scatter, heart–brain coherence, fascial matrix bubble, structural alignment radar, Inception “Kick” sync, synthesis)
+- `form-function-enterprise-humanoids/` — Form & Function: Enterprise Humanoids
 - `bioelectric-levin/` — Morphogenetic Mind: A Field Guide to Dr. Michael Levin (hero HUD, lab evidence tiles, TAME cognitive light cone selector, polycomputing side quests, ingressing minds finale; implemented as a React/JSX SPA in `bioelectric-levin/index.jsx`)

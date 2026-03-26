@@ -22,6 +22,7 @@
 
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
@@ -66,6 +67,15 @@
             text-transform: uppercase;
             color: #94a3b8; /* Reverted from f8fafc to match section-subheading */
         }
+
+        .linked-system-card {
+            border-left-width: 2px;
+            border-left-color: transparent;
+        }
+
+        .linked-system-card:hover {
+            border-left-color: #fbbf24;
+        }
     </style>
 </head>
 <body class="min-h-screen selection:bg-pink-500 selection:text-white">
@@ -86,10 +96,10 @@
                 </div>
                 
                 <div class="flex items-center space-x-5 mt-8">
-                    <a href="https://linkedin.com/in/shreyas-sriram" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="22"></i></a>
-                    <a href="https://github.com/codesbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="GitHub"><i data-lucide="github" size="22"></i></a>
-                    <a href="https://substack.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="Substack"><i data-lucide="newspaper" size="22"></i></a>
-                    <a href="https://medium.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" title="Medium"><i data-lucide="pen-tool" size="22"></i></a>
+                    <a href="https://linkedin.com/in/shreyas-sriram" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i data-lucide="linkedin" size="22"></i></a>
+                    <a href="https://github.com/codesbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="GitHub"><i data-lucide="github" size="22"></i></a>
+                    <a href="https://substack.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="Substack"><i data-lucide="newspaper" size="22"></i></a>
+                    <a href="https://medium.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="Medium"><i data-lucide="pen-tool" size="22"></i></a>
                     <a href="mailto:shreyassriram3@gmail.com" class="text-slate-500 hover:text-amber-400 transition-colors" title="Email"><i data-lucide="mail" size="22"></i></a>
                 </div>
             </div>
@@ -127,13 +137,18 @@
 
                 <!-- Process Philosophy -->
                 <section>
-                    <h2 class="section-subheading mb-6 border-b border-slate-700/50 pb-2">Process Philosophy</h2>
+                    <h2 class="section-subheading mb-6 border-b border-slate-700/50 pb-2">
+                        <a href="https://practiceintuition.github.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            Process Philosophy
+                            <i data-lucide="external-link" size="14" class="opacity-50"></i>
+                        </a>
+                    </h2>
                     <ul class="space-y-3 text-lg font-medium text-slate-300 uppercase tracking-[0.2em]">
                         <li class="hover:text-amber-400 transition-colors">Ecological Awareness</li>
                         <li class="hover:text-amber-400 transition-colors">Intentional Attention</li>
                         <li class="hover:text-amber-400 transition-colors">Embodied Expression</li>
                         <li class="text-amber-400 font-bold border-l-2 border-amber-400 pl-4 group flex items-center justify-between">
-                            <a href="https://practiceintuition.substack.com" target="_blank" class="hover:underline flex items-center gap-2">
+                            <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-2">
                                 Practice Intuition
                                 <i data-lucide="external-link" size="14" class="opacity-50"></i>
                             </a>
@@ -162,7 +177,7 @@
                 <h3 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">Recent Work</h3>
                 <div class="space-y-4">
                     <!-- Bonita Baddies -->
-                    <a href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" class="block">
+                    <a href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-amber-400/50 transition-all">
                             <div class="flex justify-between items-start mb-2">
                                 <h4 class="text-xl font-bold group-hover:text-amber-400 transition-colors">Practice Intuition Intelligence System</h4>
@@ -177,7 +192,7 @@
                     </a>
 
                     <!-- NBME -->
-                    <a href="https://roleplay-sim.lovable.app/" target="_blank" class="block">
+                    <a href="https://roleplay-sim.lovable.app/" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-amber-400/50 transition-all">
                             <div class="flex justify-between items-start mb-2">
                                 <h4 class="text-xl font-bold group-hover:text-amber-400 transition-colors">Clinical Roleplay Simulator</h4>
@@ -193,7 +208,7 @@
                     </a>
 
                     <!-- HapTrek -->
-                    <a href="https://vimeo.com/1145639929?share=copy&amp;fl=sv&amp;fe=ci" target="_blank" class="block">
+                    <a href="https://vimeo.com/1145639929?share=copy&amp;fl=sv&amp;fe=ci" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-blue-400/50 transition-all">
                             <div class="flex justify-between items-start mb-2">
                                 <h4 class="text-xl font-bold group-hover:text-blue-400 transition-colors">HapTrek: Hiking Biofeedback</h4>
@@ -248,6 +263,40 @@
                     <h4 class="text-lg font-bold">Developer Associate</h4>
                     <p class="text-xs text-slate-500">Credential ID: Dec 2023</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Linked System -->
+        <div class="space-y-8 pt-2">
+            <h3 class="section-subheading pb-2">Linked System</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/practice-intuition" class="block">
+                    <div class="glass-card linked-system-card p-6 rounded-xl group transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold group-hover:text-amber-400 transition-colors">Practice Intuition</h4>
+                            <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                        </div>
+                        <p class="text-xs text-slate-500">Primary portal for systems philosophy and active expression.</p>
+                    </div>
+                </a>
+                <a href="/webpages" class="block">
+                    <div class="glass-card linked-system-card p-6 rounded-xl group transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold group-hover:text-amber-400 transition-colors">Webpages</h4>
+                            <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                        </div>
+                        <p class="text-xs text-slate-500">Active interactive pages linked from the portfolio.</p>
+                    </div>
+                </a>
+                <a href="/archive" class="block">
+                    <div class="glass-card linked-system-card p-6 rounded-xl group transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold group-hover:text-amber-400 transition-colors">Archive</h4>
+                            <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                        </div>
+                        <p class="text-xs text-slate-500">Archived SPAs and prior explorations.</p>
+                    </div>
+                </a>
             </div>
         </div>
 

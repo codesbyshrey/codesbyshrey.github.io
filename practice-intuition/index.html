@@ -47,6 +47,7 @@
         /* Glassmorphism */
         .glass {
             background: var(--glass);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -80,6 +81,7 @@
             position: fixed;
             inset: 0;
             background: rgba(0,0,0,0.9);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             z-index: 100;
             align-items: center;
@@ -99,7 +101,7 @@
         <div class="flex gap-8 text-xs font-bold uppercase tracking-[0.3em] text-slate-500">
             <a href="#philosophy" class="hover:text-amber-400 transition-colors">Philosophy</a>
             <a href="#expression" class="hover:text-amber-400 transition-colors">Expression</a>
-            <a href="https://practiceintuition.substack.com" target="_blank" class="text-amber-400">Substack</a>
+            <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" class="text-amber-400">Substack</a>
         </div>
     </nav>
 
@@ -191,7 +193,7 @@
 
     <!-- Call to Action -->
     <footer class="py-32 text-center px-6">
-        <a href="https://practiceintuition.substack.com" target="_blank" class="inline-block glass px-12 py-6 rounded-full text-xl heading-font font-bold hover:bg-amber-400 hover:text-black transition-all group">
+        <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" class="inline-block glass px-12 py-6 rounded-full text-xl heading-font font-bold hover:bg-amber-400 hover:text-black transition-all group">
             Explore the Substack <i data-lucide="arrow-right" class="inline ml-2 group-hover:translate-x-2 transition-transform"></i>
         </a>
         <div class="mt-24 opacity-30 text-[10px] uppercase tracking-[1em]">
@@ -265,7 +267,7 @@
                 <div class="flex gap-2 flex-wrap mb-10">
                     ${project.tags.map(tag => `<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-bold text-slate-300 uppercase tracking-tighter">${tag}</span>`).join('')}
                 </div>
-                <a href="${project.link}" target="_blank" class="inline-flex items-center gap-2 bg-amber-400 text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amber-400 text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
                     View Demo <i data-lucide="external-link" size="18"></i>
                 </a>
             `;
