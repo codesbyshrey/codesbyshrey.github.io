@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platonic Intelligence & Integrated Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-neutral: #F9F7F3;
+            --text-main: #2D3748;
+            --sage: #8F9E8B;
+            --terracotta: #D69E83;
+            --slate: #4A5568;
+        }
+        body {
+            background-color: var(--bg-neutral);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .nav-active {
+            color: var(--sage);
+            border-bottom: 2px solid var(--sage);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .perspective-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .perspective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <nav class="fixed top-0 w-full glass-panel z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-[#8F9E8B] rounded-full"></div>
+                    <span class="text-lg font-bold tracking-tight">Platonic Intelligence</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#conference" class="nav-link text-sm font-medium hover:text-[#8F9E8B]">The Conference</a>
+                    <a href="#representation" class="nav-link text-sm font-medium hover:text-[#8F9E8B]">Factored Agency</a>
+                    <a href="#implementation" class="nav-link text-sm font-medium hover:text-[#8F9E8B]">Systemic Health</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-black text-[#2D3748] mb-6 tracking-tight">
+                Towards <span class="text-[#D69E83]">Integrated Agency</span>
+            </h1>
+            <p class="text-xl text-gray-600 leading-relaxed">
+                Exploring the convergence of World Models, Ecological Dynamics, and Systems Science. 
+                Intelligence is not something we invent; it is a structure we discover.
+            </p>
+        </div>
+    </header>
+
+    <section id="conference" class="max-w-7xl mx-auto px-4 py-16">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">The Asynchronous Conference</h2>
+            <p class="text-gray-600 max-w-3xl">
+                Across distinct research communities, a shared insight is emerging: intelligence arises through the discovery and internalization of world structure. This section explores how biology, AI, and movement education are arriving at a similar conceptual summit.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="perspective-card bg-white p-8 rounded-2xl border border-gray-100" onclick="showPerspective('biology')">
+                <div class="text-[#8F9E8B] font-bold text-sm uppercase mb-2">Biology</div>
+                <h3 class="text-xl font-bold mb-3">Michael Levin: TAME</h3>
+                <p class="text-sm text-gray-500">Cells as collective agents navigating 'Possibility Space' through structural gradients.</p>
+                <button class="mt-4 text-[#8F9E8B] text-xs font-bold underline">Explore Model</button>
+            </div>
+            <div class="perspective-card bg-white p-8 rounded-2xl border border-gray-100" onclick="showPerspective('ai')">
+                <div class="text-[#D69E83] font-bold text-sm uppercase mb-2">Machine Learning</div>
+                <h3 class="text-xl font-bold mb-3">Yann LeCun: World Models</h3>
+                <p class="text-sm text-gray-500">JEPA architectures that learn dynamics rather than surface correlations.</p>
+                <button class="mt-4 text-[#D69E83] text-xs font-bold underline">View Architecture</button>
+            </div>
+            <div class="perspective-card bg-white p-8 rounded-2xl border border-gray-100" onclick="showPerspective('movement')">
+                <div class="text-[#4A5568] font-bold text-sm uppercase mb-2">Ecological Dynamics</div>
+                <h3 class="text-xl font-bold mb-3">Bren Veziroglu: Movement</h3>
+                <p class="text-sm text-gray-500">Skill emergence through constraint-based games and environmental affordances.</p>
+                <button class="mt-4 text-[#4A5568] text-xs font-bold underline">Analyze Skill</button>
+            </div>
+        </div>
+
+        <div id="perspective-detail" class="mt-12 bg-[#2D3748] text-white p-8 rounded-3xl hidden">
+            <h4 id="detail-title" class="text-2xl font-bold mb-2"></h4>
+            <p id="detail-text" class="text-gray-300"></p>
+        </div>
+    </section>
+
+    <section id="representation" class="bg-white py-20 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Fractured vs. Factored Representations</h2>
+                    <p class="text-gray-600 mb-8">
+                        The "Platonic Representation Hypothesis" suggests that models converge toward the same structure when they align with reality. 
+                        <strong>Fractured</strong> representations rely on shortcuts and collapse under perturbation. 
+                        <strong>Factored</strong> representations align with the world's dynamics, enabling true agency and exaptation.
+                    </p>
+                    
+                    <div class="flex space-x-4 mb-8">
+                        <button onclick="toggleRepresentation('fractured')" class="px-6 py-2 rounded-full border-2 border-gray-200 font-bold hover:bg-gray-50 transition-all" id="btn-fractured">Fractured</button>
+                        <button onclick="toggleRepresentation('factored')" class="px-6 py-2 rounded-full border-2 border-[#8F9E8B] bg-[#8F9E8B] text-white font-bold transition-all" id="btn-factored">Factored</button>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h4 id="rep-name" class="font-bold mb-2">Factored Representation (Unified)</h4>
+                        <p id="rep-desc" class="text-sm text-gray-600">Knowledge is organized along meaningful axes. Concepts compose flexibly. The system understands the "physics" of the problem space, not just the pattern.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <canvas id="repChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="implementation" class="max-w-7xl mx-auto px-4 py-20">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Implementing Health Agency</h2>
+            <p class="text-gray-600 max-w-3xl">
+                In Public Health, we are moving from "Language about Health" to "Models of the World." 
+                By treating health as an agency problem, we can design adaptive systems that flourish within a community's unique ecological constraints.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                <h3 class="text-xl font-bold mb-6">Prediction Accuracy: Grounded vs. Linguistic</h3>
+                <p class="text-sm text-gray-500 mb-4">Linguistic-only models struggle with physical dynamics. Sensory-grounded world models (JEPA) converge toward high accuracy as they "discover" structural regularities.</p>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="groundingChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                <h3 class="text-xl font-bold mb-6">Dissemination Success (Health Equity)</h3>
+                <p class="text-sm text-gray-500 mb-4">Interventions designed with "Rigid Protocols" (Fractured) vs. "Adaptive Systems" (Factored Agency). Adaptive systems maintain efficacy across diverse ecologies.</p>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="equityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#2D3748] text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-gray-400 text-sm mb-4">The Architecture of Integrated Agency & Platonic Intelligence Framework</p>
+            <div class="flex justify-center space-x-6">
+                <span class="text-xs uppercase tracking-widest font-bold">Biology</span>
+                <span class="text-xs uppercase tracking-widest font-bold">AI</span>
+                <span class="text-xs uppercase tracking-widest font-bold">Systems Science</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const colors = {
+            sage: '#8F9E8B',
+            sageSoft: 'rgba(143, 158, 139, 0.6)',
+            terracotta: '#D69E83',
+            terracottaSoft: 'rgba(214, 158, 131, 0.6)',
+            slate: '#2D3748',
+            white: '#FFFFFF'
+        };
+
+        const perspectives = {
+            biology: {
+                title: "Biological Self-Organization (TAME)",
+                text: "Levin's framework reveals that biological collectives (cells, tissues) aren't just following genetic scripts. They are navigating 'Goal Spaces' and solving problems across structural gradients. They are the original 'World Modelers'."
+            },
+            ai: {
+                title: "Predictive World Models (JEPA)",
+                text: "Yann LeCun argues that AI must move beyond text prediction. JEPA architectures learn by predicting relationships in abstract space, discovering the stable 'Invariants' of physics and causality."
+            },
+            movement: {
+                title: "Ecological Dynamics (BJJ)",
+                text: "In movement education, skill is an emergent property of the agent-environment relationship. By using constraints instead of recipes, learners discover the 'Factored' mechanics of leverage and momentum."
+            }
+        };
+
+        window.showPerspective = (key) => {
+            const detail = document.getElementById('perspective-detail');
+            const title = document.getElementById('detail-title');
+            const text = document.getElementById('detail-text');
+            
+            detail.classList.remove('hidden');
+            title.innerText = perspectives[key].title;
+            text.innerText = perspectives[key].text;
+            
+            detail.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+
+        const repCtx = document.getElementById('repChart').getContext('2d');
+        const repChart = new Chart(repCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Generalization', 'Robustness', 'Efficiency', 'Adaptability', 'Compositionality'],
+                datasets: [{
+                    label: 'Factored Agency',
+                    data: [95, 90, 85, 98, 92],
+                    backgroundColor: colors.sage,
+                    borderRadius: 8
+                }, {
+                    label: 'Fractured (Shortcut)',
+                    data: [40, 20, 80, 15, 10],
+                    backgroundColor: 'rgba(214, 158, 131, 0.4)',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100, title: { display: true, text: 'Structural Integrity (%)', font: { size: 10 } } },
+                    x: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } }
+                }
+            }
+        });
+
+        window.toggleRepresentation = (type) => {
+            const btnFrac = document.getElementById('btn-fractured');
+            const btnFact = document.getElementById('btn-factored');
+            const name = document.getElementById('rep-name');
+            const desc = document.getElementById('rep-desc');
+
+            if(type === 'factored') {
+                btnFact.className = "px-6 py-2 rounded-full border-2 border-[#8F9E8B] bg-[#8F9E8B] text-white font-bold transition-all";
+                btnFrac.className = "px-6 py-2 rounded-full border-2 border-gray-200 font-bold hover:bg-gray-50 transition-all";
+                name.innerText = "Factored Representation (Unified)";
+                desc.innerText = "Knowledge is organized along meaningful axes. Concepts compose flexibly. The system understands the 'physics' of the problem space, not just the pattern.";
+                repChart.data.datasets[1].hidden = false;
+                repChart.data.datasets[0].hidden = false;
+            } else {
+                btnFrac.className = "px-6 py-2 rounded-full border-2 border-[#D69E83] bg-[#D69E83] text-white font-bold transition-all";
+                btnFact.className = "px-6 py-2 rounded-full border-2 border-gray-200 font-bold hover:bg-gray-50 transition-all";
+                name.innerText = "Fractured Representation (Shortcuts)";
+                desc.innerText = "Knowledge is brittle and entangled. The system relies on superficial patterns. While performance may be high on known data, it breaks immediately in novel environments.";
+                repChart.data.datasets[0].hidden = true;
+                repChart.data.datasets[1].hidden = false;
+            }
+            repChart.update();
+        };
+
+        const groundingCtx = document.getElementById('groundingChart').getContext('2d');
+        new Chart(groundingCtx, {
+            type: 'line',
+            data: {
+                labels: ['Start', '1k Iterations', '5k Iterations', '10k Iterations', '25k Iterations', '50k Iterations'],
+                datasets: [{
+                    label: 'World Model (JEPA)',
+                    data: [10, 45, 75, 88, 94, 98],
+                    borderColor: colors.sage,
+                    backgroundColor: colors.sageSoft,
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Linguistic-Only',
+                    data: [15, 30, 40, 45, 50, 52],
+                    borderColor: colors.terracotta,
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'bottom' } },
+                scales: { y: { beginAtZero: true, max: 100 } }
+            }
+        });
+
+        const equityCtx = document.getElementById('equityChart').getContext('2d');
+        new Chart(equityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Urban High-Resource', 'Rural Healthcare Desert', 'Cultural Minority Hub', 'Standardized Clinic'],
+                datasets: [{
+                    label: 'Adaptive (Factored)',
+                    data: [92, 88, 85, 90],
+                    backgroundColor: colors.sage
+                }, {
+                    label: 'Rigid (Fractured)',
+                    data: [85, 30, 45, 88],
+                    backgroundColor: colors.slate
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true, max: 100 } },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
