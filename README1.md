@@ -5,9 +5,9 @@ Assistant-maintained workspace notes for the GitHub Pages repo.
 ## Current Structure
 
 - `index.html`: portfolio-style landing page for Shreyas Sriram
-- `practice-intuition/`: related site content, including `bonita/` and `kinesthetic/`
-- `NBME-CCS/`: medical education or simulation-related content
-- `about/`, `connect/`, `research/`, `design/`, `development/`, `human-factors/`, `biomedical-engineering/`, `haptrek/`, `patents/`: routed static pages for the portfolio
+- `about/`, `education/`, `experiences/`, `expression/`, `connect/`: primary portfolio route headings
+- `NBME-CCS/`, `bonita/`, `kinesthetic/`, `haptrek/`, `nathan-sports/`, `implant/`, `praxik/`: project route pages
+- `kinesthetic/source/`: preserved Practice Intuition source/support files from the former parent folder
 
 ## Notes
 
