@@ -3,309 +3,807 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shreyas Sriram | Human Centered Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Shreyas Sriram | Human Factored Designer</title>
+    <meta name="description" content="Portfolio homepage for Shreyas Sriram spanning human factors, biomedical engineering, AI systems, and physical interface design.">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            color: #e2e8f0;
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #f4eee4;
+            --paper: rgba(255, 250, 244, 0.78);
+            --ink: #191612;
+            --muted: #675f57;
+            --line: rgba(25, 22, 18, 0.14);
+            --gold: #b88a3d;
+            --blue: #2a5bff;
+            --blue-soft: rgba(42, 91, 255, 0.1);
+            --blue-border: rgba(42, 91, 255, 0.24);
+            --red: #c24d34;
+            --red-soft: rgba(194, 77, 52, 0.1);
+            --red-border: rgba(194, 77, 52, 0.22);
+            --shadow: 0 24px 60px rgba(39, 30, 22, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
-        .heading-font {
-            font-family: 'Space+Grotesk', sans-serif;
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at top left, rgba(42, 91, 255, 0.1), transparent 28%),
+                radial-gradient(circle at top right, rgba(194, 77, 52, 0.1), transparent 30%),
+                linear-gradient(180deg, #f7f2ea 0%, var(--bg) 100%);
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', sans-serif;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .shell {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 22px 22px 72px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0 20px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 18px;
+        }
+
+        .nav a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.73rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .nav a:hover,
+        .nav a:focus-visible {
+            color: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+            gap: 32px;
+            padding: 34px 0 18px;
+            align-items: start;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3.2rem, 6.7vw, 6.1rem);
+            line-height: 0.93;
+            letter-spacing: -0.05em;
+        }
+
+        .role-line {
+            margin-top: 16px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .hero-copy {
+            margin-top: 22px;
+            max-width: 47rem;
+            font-size: 1.18rem;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        .credential-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .credential-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            font-size: 0.94rem;
+            font-weight: 500;
+        }
+
+        .credential-pill:hover,
+        .credential-pill:focus-visible {
             transform: translateY(-2px);
+            border-color: rgba(25, 22, 18, 0.28);
         }
 
-        .philosophy-line {
-            letter-spacing: 0.2em;
+        .credential-pill.static {
+            cursor: default;
+        }
+
+        .hero-side {
+            background: linear-gradient(180deg, rgba(255, 250, 244, 0.9), rgba(255, 247, 240, 0.74));
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-side h2 {
+            margin: 0 0 10px;
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            line-height: 1.1;
+        }
+
+        .hero-side p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .focus-subcopy {
+            margin-top: 14px;
+            font-size: 0.98rem;
+        }
+
+        .icon-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .icon-row a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.55);
+            color: var(--muted);
+            transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .icon-row a:hover,
+        .icon-row a:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(25, 22, 18, 0.26);
+            color: var(--ink);
+        }
+
+        .timeline {
+            margin-top: 22px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 18px 0;
+        }
+
+        .timeline-label {
+            margin: 0 0 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .timeline-track {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .timeline-item {
+            display: block;
+            min-height: 118px;
+            padding: 14px;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.48);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            position: relative;
+        }
+
+        .timeline-item:hover,
+        .timeline-item:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(25, 22, 18, 0.24);
+        }
+
+        .timeline-year {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.69rem;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .timeline-name {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .timeline-meta {
+            display: block;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.15rem;
+            color: rgba(25, 22, 18, 0.34);
+        }
+
+        .workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-top: 26px;
+        }
+
+        .foundation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .foundation-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-label {
+            margin: 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .small-card {
+            display: block;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .small-card:hover,
+        .small-card:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(25, 22, 18, 0.26);
+        }
+
+        .small-card .mini {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.67rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .small-card h3 {
+            margin: 0 0 8px;
+            font-size: 1.12rem;
+            line-height: 1.3;
+        }
+
+        .small-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 0.95rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .product-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .column-head {
+            padding: 14px 16px;
+            border-radius: 18px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .column-head.blue {
+            color: var(--blue);
+            background: var(--blue-soft);
+            border: 1px solid var(--blue-border);
+        }
+
+        .column-head.red {
+            color: var(--red);
+            background: var(--red-soft);
+            border: 1px solid var(--red-border);
+        }
+
+        .product-card {
+            display: block;
+            padding: 20px;
+            border-radius: 24px;
+            border: 1px solid;
+            background: rgba(255, 252, 249, 0.78);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            min-height: 220px;
+        }
+
+        .product-card:hover,
+        .product-card:focus-visible {
+            transform: translateY(-3px);
+            box-shadow: 0 28px 70px rgba(39, 30, 22, 0.12);
+        }
+
+        .product-card.blue {
+            border-color: var(--blue-border);
+        }
+
+        .product-card.red {
+            border-color: var(--red-border);
+        }
+
+        .product-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .product-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
-        .tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #94a3b8;
+        .product-card.blue .product-tag,
+        .product-card.blue .product-arrow {
+            color: var(--blue);
+        }
+
+        .product-card.red .product-tag,
+        .product-card.red .product-arrow {
+            color: var(--red);
+        }
+
+        .product-card h3 {
+            margin: 0 0 10px;
+            font-family: 'Fraunces', serif;
+            font-size: 1.85rem;
+            line-height: 1.02;
+        }
+
+        .product-card p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .chip-block {
+            margin-top: 14px;
+        }
+
+        .chip-label {
+            margin: 0 0 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            color: var(--muted);
         }
 
-        .section-subheading {
-            font-size: 0.875rem; 
-            font-weight: 800;   
-            letter-spacing: 0.2em;
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-family: 'IBM Plex Mono', monospace;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .loops-panel {
+            background: rgba(255, 250, 244, 0.72);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .loops-track {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .loop-card {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid var(--line);
+        }
+
+        .loop-card strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #94a3b8;
+            color: var(--muted);
         }
 
-        /* Adjusted color to match other subheadings per request */
-        .systems-subheading {
-            font-size: 1rem; 
-            line-height: 1.2;
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: #94a3b8; /* Reverted from f8fafc to match section-subheading */
+        .loop-title {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        .linked-system-card {
-            border-left-width: 2px;
-            border-left-color: transparent;
+        .loop-copy {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.55;
         }
 
-        .linked-system-card:hover {
-            border-left-color: #fbbf24;
+        footer {
+            margin-top: 32px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 1080px) {
+            .hero,
+            .workspace,
+            .product-grid,
+            .timeline-track,
+            .foundation-grid,
+            .loops-track {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .shell {
+                padding: 18px 16px 52px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 3.4rem;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen selection:bg-pink-500 selection:text-white">
+<body>
+    <div class="shell">
+        <header class="topbar">
+            <a class="brand" href="/">Codes by Shrey</a>
+            <nav class="nav" aria-label="Primary">
+                <a href="/about/">About</a>
+                <a href="/research/">Research</a>
+                <a href="/design/">Design</a>
+                <a href="/development/">Development</a>
+                <a href="/connect/">Connect</a>
+            </nav>
+        </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12 lg:py-16 space-y-16">
-        
-        <!-- Top Row: Identity vs About -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <!-- Name & Titles -->
-            <div class="lg:col-span-5">
-                <h1 class="text-6xl font-bold heading-font mb-6 tracking-tight">
-                    Shreyas <span class="text-amber-400">Sriram</span>
-                </h1>
-                <div class="space-y-1 text-xl text-slate-400 font-light italic">
-                    <p>Human Factors Engineer</p>
-                    <p>Biomechanics Specialist</p>
-                    <p>Immersive Interaction Designer</p>
-                </div>
-                
-                <div class="flex items-center space-x-5 mt-8">
-                    <a href="https://linkedin.com/in/shreyas-sriram" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i data-lucide="linkedin" size="22"></i></a>
-                    <a href="https://github.com/codesbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="GitHub"><i data-lucide="github" size="22"></i></a>
-                    <a href="https://substack.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="Substack"><i data-lucide="newspaper" size="22"></i></a>
-                    <a href="https://medium.com/@picsbyshrey" class="text-slate-500 hover:text-amber-400 transition-colors" target="_blank" rel="noopener noreferrer" title="Medium"><i data-lucide="pen-tool" size="22"></i></a>
-                    <a href="mailto:shreyassriram3@gmail.com" class="text-slate-500 hover:text-amber-400 transition-colors" title="Email"><i data-lucide="mail" size="22"></i></a>
-                </div>
-            </div>
-
-            <!-- Large About -->
-            <div class="lg:col-span-7">
-                <h2 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">About</h2>
-                <p class="text-2xl font-light text-slate-200 leading-snug">
-                    Biomedical engineer with clinical experience as an EMT. I architect <span class="text-amber-400 font-medium">AI systems</span> and multimodal physical interfaces that bridge the gap between human cognition and technical execution.
-                </p>
-            </div>
-        </div>
-
-        <!-- Middle Row: Concepts/Philosophy vs Recent Work -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            <!-- Left: Frameworks -->
-            <div class="lg:col-span-5 space-y-12">
-                <!-- Applied Concepts -->
-                <section>
-                    <h3 class="section-subheading mb-6 border-b border-slate-700/50 pb-2">Applied Concepts</h3>
-                    <div class="space-y-4 font-mono text-sm font-bold">
-                        <div class="flex justify-between items-center glass-card p-5 rounded-lg border-l-4 border-blue-500">
-                            <span class="text-blue-400 uppercase tracking-tighter">Perception</span>
-                            <span class="text-slate-600">&rarr;</span>
-                            <span class="text-blue-400">Interaction (MS)</span>
-                        </div>
-                        <div class="flex justify-between items-center glass-card p-5 rounded-lg border-l-4 border-pink-500">
-                            <span class="text-pink-500 uppercase tracking-tighter">Propulsion</span>
-                            <span class="text-slate-600">&rarr;</span>
-                            <span class="text-pink-500">Locomotion (BS)</span>
-                        </div>
+        <main>
+            <section class="hero">
+                <div>
+                    <h1>Shreyas Sriram</h1>
+                    <div class="role-line">Human-Systems Interaction Designer</div>
+                    <div class="credential-row">
+                        <a class="credential-pill" href="/human-factors/">Human Factored Designer (MS)</a>
+                        <a class="credential-pill" href="/biomedical-engineering/">Biomedical Engineer (BS)</a>
+                        <a class="credential-pill static" href="/patents/">Patent Holder: Glenoid Implant</a>
+                        <a class="credential-pill static" href="/development/">AWS Developer Associate Certified</a>
                     </div>
-                </section>
+                    <p class="hero-copy">
+                        I design AI systems &amp; physical interfaces that understand and align with how humans sense, think, and act.
+                    </p>
+                </div>
 
-                <!-- Process Philosophy -->
-                <section>
-                    <h2 class="section-subheading mb-6 border-b border-slate-700/50 pb-2">
-                        <a href="https://practiceintuition.github.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-amber-400 transition-colors">
-                            Process Philosophy
-                            <i data-lucide="external-link" size="14" class="opacity-50"></i>
-                        </a>
-                    </h2>
-                    <ul class="space-y-3 text-lg font-medium text-slate-300 uppercase tracking-[0.2em]">
-                        <li class="hover:text-amber-400 transition-colors">Ecological Awareness</li>
-                        <li class="hover:text-amber-400 transition-colors">Intentional Attention</li>
-                        <li class="hover:text-amber-400 transition-colors">Embodied Expression</li>
-                        <li class="text-amber-400 font-bold border-l-2 border-amber-400 pl-4 group flex items-center justify-between">
-                            <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-2">
-                                Practice Intuition
-                                <i data-lucide="external-link" size="14" class="opacity-50"></i>
+                <aside class="hero-side">
+                    <h2>Human Centered Product Minded Process Oriented</h2>
+                    <p>
+                        I work with perception-intention-action loops for embodied intelligences, effecting change through systems interaction through a deep understanding of human behavior: how we gather information, process it, &amp; express ourselves.
+                    </p>
+                    <p class="focus-subcopy">
+                        I use these same dynamics to connect sense-think-act models, vision-language-action systems in robotics, and awareness-attention-expression patterns in human cognition and behavior.
+                    </p>
+                    <div class="icon-row">
+                        <a href="https://linkedin.com/in/shreyas-sriram" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i data-lucide="linkedin" size="18"></i></a>
+                        <a href="https://github.com/codesbyshrey" target="_blank" rel="noopener noreferrer" title="GitHub"><i data-lucide="github" size="18"></i></a>
+                        <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" title="Substack"><i data-lucide="newspaper" size="18"></i></a>
+                        <a href="https://medium.com/@picsbyshrey" target="_blank" rel="noopener noreferrer" title="Medium"><i data-lucide="pen-tool" size="18"></i></a>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="timeline" aria-labelledby="timeline-label">
+                <p id="timeline-label" class="timeline-label">Chronology</p>
+                <div class="timeline-track">
+                    <a class="timeline-item" href="/biomedical-engineering/">
+                        <span class="timeline-year">2019</span>
+                        <span class="timeline-name">BS</span>
+                        <span class="timeline-meta">Biomedical engineering training and biomechanics foundation.</span>
+                    </a>
+                    <a class="timeline-item" href="/human-factors/">
+                        <span class="timeline-year">2020</span>
+                        <span class="timeline-name">EMT</span>
+                        <span class="timeline-meta">Frontline patient care and real-world human systems exposure.</span>
+                    </a>
+                    <a class="timeline-item" href="/patents/">
+                        <span class="timeline-year">2021–2023</span>
+                        <span class="timeline-name">Patent Inventor</span>
+                        <span class="timeline-meta">Glenoid implant design and product translation in a medical-device context.</span>
+                    </a>
+                    <a class="timeline-item" href="/development/">
+                        <span class="timeline-year">2024</span>
+                        <span class="timeline-name">Product Incubator (CCnC)</span>
+                        <span class="timeline-meta">Healthcare AI product incubation, communication tooling, and experimentation.</span>
+                    </a>
+                    <a class="timeline-item" href="/design/">
+                        <span class="timeline-year">2025</span>
+                        <span class="timeline-name">Biomechanics Specialist</span>
+                        <span class="timeline-meta">Movement, performance, physical systems, and embodied product thinking.</span>
+                    </a>
+                    <a class="timeline-item" href="/human-factors/">
+                        <span class="timeline-year">2025</span>
+                        <span class="timeline-name">MS</span>
+                        <span class="timeline-meta">Human factors, interaction, and design through the lens of cognition and behavior.</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="workspace">
+                <div>
+                    <div class="product-grid">
+                        <div class="product-column">
+                            <div class="column-head blue">Digital Products</div>
+
+                            <a class="product-card blue" href="/NBME-CCS/">
+                                <div class="product-top">
+                                    <span class="product-tag">Clinical AI</span>
+                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                                </div>
+                                <h3>NBME Clinical Communication Simulator</h3>
+                                <p>LLM-powered roleplay and patient-centered communication training built around context, scenario structure, and human-factors thinking.</p>
+                                <div class="chip-block">
+                                    <p class="chip-label">Relevant Concepts</p>
+                                    <div class="chips">
+                                        <span class="chip">Conversation Design</span>
+                                        <span class="chip">Behavior Change</span>
+                                        <span class="chip">Patient-Centered Communication</span>
+                                    </div>
+                                </div>
+                                <div class="chip-block">
+                                    <p class="chip-label">Tech Stack</p>
+                                    <div class="chips">
+                                        <span class="chip">OpenAI</span>
+                                        <span class="chip">STT / TTS</span>
+                                        <span class="chip">Pinecone RAG</span>
+                                        <span class="chip">React</span>
+                                    </div>
+                                </div>
                             </a>
-                        </li>
-                    </ul>
-                </section>
 
-                <!-- Systems Level Solutions -->
-                <section>
-                    <h3 class="systems-subheading mb-6 border-b border-slate-700/50 pb-4">
-                        DELIVERING SYSTEMS LEVEL SOLUTIONS FOR:
-                    </h3>
-                    <div class="space-y-3">
-                        <div class="glass-card p-4 rounded-lg">
-                            <p class="text-slate-300 font-medium tracking-widest uppercase text-xs">Patient Care Continuum</p>
-                        </div>
-                        <div class="glass-card p-4 rounded-lg">
-                            <p class="text-slate-300 font-medium tracking-widest uppercase text-xs">Spectrum of End-Users</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
+                            <a class="product-card blue" href="/practice-intuition/kinesthetic/">
+                                <div class="product-top">
+                                    <span class="product-tag">Digital Implementation</span>
+                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                                </div>
+                                <h3>Practice Intuition</h3>
+                                <p>Building on the original Bonita implementation and now developing Kinesthetic as an independent product engineer, translating human systems performance into a digital product through cognitive, biomechanical, and behavioral lenses.</p>
+                                <div class="chip-block">
+                                    <p class="chip-label">Relevant Concepts</p>
+                                    <div class="chips">
+                                        <span class="chip">Health &amp; Wellness</span>
+                                        <span class="chip">Cognitive Protocols</span>
+                                        <span class="chip">Movement Coaching</span>
+                                        <span class="chip">Behavior Design</span>
+                                    </div>
+                                </div>
+                                <div class="chip-block">
+                                    <p class="chip-label">Tech Stack</p>
+                                    <div class="chips">
+                                        <span class="chip">Google AI Studio</span>
+                                        <span class="chip">Pinecone RAG</span>
+                                        <span class="chip">React</span>
+                                        <span class="chip">Skills.md</span>
+                                    </div>
+                                </div>
+                            </a>
 
-            <!-- Right: Recent Work -->
-            <div class="lg:col-span-7">
-                <h3 class="text-[10px] font-bold philosophy-line text-slate-500 mb-6 border-b border-slate-700/50 pb-2">Recent Work</h3>
-                <div class="space-y-4">
-                    <!-- Bonita Baddies -->
-                    <a href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" rel="noopener noreferrer" class="block">
-                        <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-amber-400/50 transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-bold group-hover:text-amber-400 transition-colors">Practice Intuition Intelligence System</h4>
-                                <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
-                            </div>
-                            <p class="text-slate-400 text-sm mb-4 leading-relaxed italic">A tool to optimize your lived experience by considering space, time, and Self.</p>
-                            <div class="flex gap-2">
-                                <span class="tag">Systems Design</span>
-                                <span class="tag">Wellness AI</span>
-                            </div>
+                            <a class="product-card blue" href="/development/">
+                                <div class="product-top">
+                                    <span class="product-tag">Healthcare Product</span>
+                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                                </div>
+                                <h3>CCnC-ChatEMT</h3>
+                                <p>Product incubation for healthcare communication tools between caregivers, patients, and clinicians, working through system design principles, product architecture, and cloud infrastructure using AWS Certified Cloud Practitioner and Developer Associate foundations.</p>
+                                <div class="chips">
+                                    <span class="chip">AWS</span>
+                                    <span class="chip">Cloud Infrastructure</span>
+                                    <span class="chip">Product Strategy</span>
+                                    <span class="chip">Healthcare</span>
+                                </div>
+                            </a>
                         </div>
-                    </a>
 
-                    <!-- NBME -->
-                    <a href="https://roleplay-sim.lovable.app/" target="_blank" rel="noopener noreferrer" class="block">
-                        <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-amber-400/50 transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-bold group-hover:text-amber-400 transition-colors">Clinical Roleplay Simulator</h4>
-                                <span class="text-[10px] font-mono text-slate-500 uppercase">2025</span>
-                            </div>
-                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">Architected LLM-based agents with RAG and multimodal (ASR/TTS) capabilities to simulate contextually grounded clinical scenarios.</p>
-                            <div class="flex gap-2">
-                                <span class="tag">OpenAI</span>
-                                <span class="tag">Pinecone</span>
-                                <span class="tag">React</span>
-                            </div>
-                        </div>
-                    </a>
+                        <div class="product-column">
+                            <div class="column-head red">Physical Products</div>
 
-                    <!-- HapTrek -->
-                    <a href="https://vimeo.com/1145639929?share=copy&amp;fl=sv&amp;fe=ci" target="_blank" rel="noopener noreferrer" class="block">
-                        <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-blue-400/50 transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-bold group-hover:text-blue-400 transition-colors">HapTrek: Hiking Biofeedback</h4>
-                                <span class="text-[10px] font-mono text-slate-500 uppercase">2025</span>
-                            </div>
-                            <p class="text-slate-400 text-sm mb-4 leading-relaxed">Arduino-based haptic tool for non-visual navigation and emergency detection in unstructured environments.</p>
-                            <div class="flex gap-2">
-                                <span class="tag">Arduino</span>
-                                <span class="tag">Haptics</span>
-                                <span class="tag">Embedded C++</span>
-                            </div>
-                        </div>
-                    </a>
+                            <a class="product-card red" href="/haptrek/">
+                                <div class="product-top">
+                                    <span class="product-tag">Embodied Interface</span>
+                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                                </div>
+                                <h3>HapTrek</h3>
+                                <p>Hiking biofeedback and haptic navigation for non-visual guidance, including fall detection through a 3-axis accelerometer. Built with public health safety in mind while applying human body dynamics directly to product design.</p>
+                                <div class="chips">
+                                    <span class="chip">Haptics</span>
+                                    <span class="chip">3-Axis Accelerometer</span>
+                                    <span class="chip">Arduino</span>
+                                    <span class="chip">Fall Detection</span>
+                                </div>
+                            </a>
 
-                    <!-- Nathan Sports -->
-                    <div class="glass-card p-6 rounded-2xl group border-l-2 border-transparent hover:border-pink-400/50 transition-all">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold group-hover:text-pink-400 transition-colors">Nathan Sports Usability</h4>
-                            <span class="text-[10px] font-mono text-slate-500 uppercase">2025</span>
-                        </div>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Moderated usability research defining psychographic segmentation models and conversion drivers.</p>
-                        <div class="flex gap-2">
-                            <span class="tag">UserTesting</span>
-                            <span class="tag">Mixed Methods</span>
+                            <a class="product-card red" href="/patents/">
+                                <div class="product-top">
+                                    <span class="product-tag">Patent and Device</span>
+                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                                </div>
+                                <h3>Patent Holder</h3>
+                                <p>The Glenoid Implant was developed for shoulder arthroplasty, with a novel design intended to improve implant longevity, improve biocompatibility, reduce revisional surgery time, and support better rehabilitation outcomes.</p>
+                                <div class="chips">
+                                    <span class="chip">Glenoid Implant</span>
+                                    <span class="chip">Shoulder Arthroplasty</span>
+                                    <span class="chip">Biocompatibility</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Bottom Row: Background & Credentials -->
-        <div class="space-y-8 pt-8 border-t border-slate-800">
-            <h3 class="section-subheading pb-2">Background & Credentials</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass-card p-6 rounded-xl">
-                    <p class="text-[10px] font-bold text-amber-400 uppercase mb-1">2025 Graduate</p>
-                    <h4 class="text-lg font-bold">MS Human Factors</h4>
-                    <p class="text-xs text-slate-500">Bentley University</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl">
-                    <p class="text-[10px] font-bold text-blue-400 uppercase mb-1">2019 Graduate</p>
-                    <h4 class="text-lg font-bold">BS Biomedical Eng.</h4>
-                    <p class="text-xs text-slate-500">Rensselaer Polytech</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-t-2 border-pink-500/30">
-                    <p class="text-[10px] font-bold text-pink-400 uppercase mb-1">Patent 20220202583</p>
-                    <h4 class="text-lg font-bold">Modular Glenoid Implant</h4>
-                    <p class="text-xs text-slate-500">Enovis (DJO Orthopedics)</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-t-2 border-amber-500/30">
-                    <p class="text-[10px] font-bold text-amber-500 uppercase mb-1">AWS Certified</p>
-                    <h4 class="text-lg font-bold">Developer Associate</h4>
-                    <p class="text-xs text-slate-500">Credential ID: Dec 2023</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Linked System -->
-        <div class="space-y-8 pt-2">
-            <h3 class="section-subheading pb-2">Linked System</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <a href="/practice-intuition" class="block">
-                    <div class="glass-card linked-system-card p-6 rounded-xl group transition-all">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-lg font-bold group-hover:text-amber-400 transition-colors">Practice Intuition</h4>
-                            <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                <div class="loops-panel">
+                    <p class="section-label">Loop Dynamics</p>
+                    <div class="loops-track">
+                        <div class="loop-card">
+                            <strong>Embodied Intelligence</strong>
+                            <p class="loop-title">Perception → Intention → Action</p>
+                            <p class="loop-copy">The way I frame interactive systems around sensing, goal formation, and expression through behavior.</p>
                         </div>
-                        <p class="text-xs text-slate-500">Primary portal for systems philosophy and active expression.</p>
-                    </div>
-                </a>
-                <a href="/webpages" class="block">
-                    <div class="glass-card linked-system-card p-6 rounded-xl group transition-all">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-lg font-bold group-hover:text-amber-400 transition-colors">Webpages</h4>
-                            <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                        <div class="loop-card">
+                            <strong>Human Behavior</strong>
+                            <p class="loop-title">Sense → Think → Act</p>
+                            <p class="loop-copy">A quick shorthand for how people gather information, process it, and move into decision and expression.</p>
                         </div>
-                        <p class="text-xs text-slate-500">Active interactive pages linked from the portfolio.</p>
-                    </div>
-                </a>
-                <a href="/archive" class="block">
-                    <div class="glass-card linked-system-card p-6 rounded-xl group transition-all">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-lg font-bold group-hover:text-amber-400 transition-colors">Archive</h4>
-                            <i data-lucide="arrow-up-right" size="18" class="text-slate-600 group-hover:text-amber-400 transition-colors"></i>
+                        <div class="loop-card">
+                            <strong>Robotics / Cognition</strong>
+                            <p class="loop-title">VLA and AAE Dynamics</p>
+                            <p class="loop-copy">Vision-language-action models and awareness-attention-expression dynamics are parallel frames for the same design problem.</p>
                         </div>
-                        <p class="text-xs text-slate-500">Archived SPAs and prior explorations.</p>
                     </div>
-                </a>
-            </div>
-        </div>
+                </div>
 
-    </main>
+                <div class="foundation-grid">
+                    <div class="foundation-column">
+                        <p class="section-label">Experience</p>
+                        <a class="small-card" href="/research/">
+                            <span class="mini">Contract Role</span>
+                            <h3>Nathan Sports Usability Researcher</h3>
+                            <p>November through January contract work focused on usability research, product evaluation, and structured recommendations for design improvements.</p>
+                        </a>
+                    </div>
 
-    <footer class="max-w-7xl mx-auto px-6 py-16 text-center">
-        <p class="text-slate-400 font-medium tracking-wide italic">"Learning is Unobstructed Self Expression"</p>
-        <p class="text-[10px] text-slate-600 font-mono mt-4 uppercase tracking-widest">Shreyas Sriram &copy; 2026</p>
-    </footer>
+                    <div class="foundation-column">
+                        <p class="section-label">Embodied Practice</p>
+                        <a class="small-card" href="/design/">
+                            <span class="mini">Movement and Biomechanics</span>
+                            <h3>Biomechanics Specialist &amp; Movement Coach</h3>
+                            <p>Applied physical-systems work around movement quality, expression, rehabilitation logic, and coaching informed by biomechanics and human behavior.</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <a href="https://practiceintuition.github.io" target="_blank" rel="noopener noreferrer">Learning is Unobstructed Self Expression. Practice Intuition.</a>
+            <span>Shreyas Sriram &copy; 2026</span>
+        </footer>
+    </div>
 
     <script>
         lucide.createIcons();

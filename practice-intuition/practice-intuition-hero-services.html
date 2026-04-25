@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreyas Sriram · Practice Intuition</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5/400.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5/600.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@5/index.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #FAF8F4;
+  --bg-surface:   #F0EAE1;
+  --bg-card:      #FFFFFF;
+  --text:         #1A1917;
+  --text2:        #5C5850;
+  --text3:        #8C8880;
+  --green:        #2B4738;
+  --green-mid:    #3D6150;
+  --green-light:  #D6E9DD;
+  --accent:       #C4622D;
+  --accent-light: #F7E4D6;
+  --amber:        #B47B1A;
+  --amber-light:  #FDF0D5;
+  --blue:         #1F4A7A;
+  --blue-light:   #DCE9F7;
+  --border:       #DDD7CE;
+  --border2:      #C2BAB0;
+  --r:            10px;
+  --r-lg:         16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:           #141412;
+    --bg-surface:   #1C1B18;
+    --bg-card:      #222018;
+    --text:         #EDE9E3;
+    --text2:        #A09890;
+    --text3:        #686058;
+    --green:        #5A9070;
+    --green-mid:    #4A7860;
+    --green-light:  #182A20;
+    --accent:       #D0743E;
+    --accent-light: #2A1A0E;
+    --amber:        #D4A040;
+    --amber-light:  #2A1E08;
+    --blue:         #4A7CC0;
+    --blue-light:   #0E1E30;
+    --border:       #2C2A24;
+    --border2:      #3C3A34;
+  }
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.nav-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.nav-dot { color: var(--border2); font-size: 12px; }
+
+.nav-sub {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--green);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--text2);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  font-size: 13px !important;
+  color: var(--green) !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--green);
+  padding: 7px 16px;
+  border-radius: 100px;
+  transition: background 0.15s, color 0.15s !important;
+}
+
+.nav-cta:hover {
+  background: var(--green) !important;
+  color: #F0EDE8 !important;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 120px 48px 80px;
+  gap: 80px;
+}
+
+.brand-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.eyebrow-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.eyebrow-text {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.hero-tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(38px, 4.2vw, 58px);
+  line-height: 1.16;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.hero-tagline .accent-line {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--text2);
+  margin-bottom: 36px;
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 44px;
+}
+
+.pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid;
+  letter-spacing: 0.02em;
+}
+
+.pill-athlete  { background: var(--green-light); color: var(--green);  border-color: var(--green);  }
+.pill-rehab    { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+.pill-everyday { background: var(--amber-light);  color: var(--amber);  border-color: var(--amber);  }
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: #EEE9E2;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: var(--r);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.15s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+.btn-ghost {
+  font-size: 14px;
+  color: var(--text2);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+
+.btn-ghost:hover { color: var(--text); }
+
+/* ─── HERO PHOTOS ─── */
+.hero-photos {
+  position: relative;
+  height: 540px;
+}
+
+.photo-corner-accent {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 72px;
+  height: 72px;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  border-radius: 0 4px 0 0;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.photo-corner-accent-2 {
+  position: absolute;
+  bottom: -14px;
+  left: -14px;
+  width: 52px;
+  height: 52px;
+  border-bottom: 2px solid var(--green);
+  border-left: 2px solid var(--green);
+  border-radius: 0 0 0 4px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Running photo — larger, top */
+.photo-slot {
+  position: absolute;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1.5px dashed var(--border2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-slot-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.photo-slot-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+}
+
+.photo-slot-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* Show placeholder inner only when no img child */
+.photo-slot:has(img) .photo-slot-inner { display: none; }
+
+.photo-run {
+  top: 0; left: 0;
+  width: 100%;
+  height: 370px;
+}
+
+.photo-portrait {
+  bottom: 0; right: 0;
+  width: 220px;
+  height: 260px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+}
+
+/* Stat strip */
+.hero-stat-strip {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 235px;
+  display: flex;
+  gap: 2px;
+}
+
+.stat-chip {
+  background: color-mix(in srgb, var(--bg-card) 90%, transparent);
+  backdrop-filter: blur(8px);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex: 1;
+}
+
+.stat-chip-val {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+}
+
+.stat-chip-lbl {
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* ─── SECTION TRANSITION ─── */
+.section-stripe {
+  background: var(--green);
+  color: #EEE9E2;
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.stripe-tag {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.stripe-content {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+  white-space: nowrap;
+  animation: marquee 32s linear infinite;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.stripe-content span { margin: 0 32px; }
+
+/* ─── SERVICES + BOOKING ─── */
+.services-section {
+  background: var(--bg-surface);
+  padding: 88px 0;
+}
+
+.services-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 80px;
+  align-items: start;
+}
+
+.section-kicker {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-kicker::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--text3);
+  flex-shrink: 0;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.22;
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  font-size: 14px;
+  color: var(--text2);
+  max-width: 400px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+/* Progression trail */
+.progression-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progression-label::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+
+/* ─── CERT CARDS ─── */
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+/* Vertical connector between CPT → CES → CBS → PES */
+.cert-list::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 34px;
+  bottom: 34px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--green-light), var(--accent-light), var(--blue-light));
+  z-index: 0;
+}
+
+.cert-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px 16px 22px;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  z-index: 1;
+}
+
+.cert-card:hover {
+  box-shadow: 0 3px 20px rgba(0,0,0,0.07);
+}
+
+.cert-card.featured {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-light);
+  padding-left: 19px;
+}
+
+.cert-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.badge-cpt { background: var(--green-light); color: var(--green); }
+.badge-ces { background: var(--amber-light); color: var(--amber); }
+.badge-cbs { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent); }
+.badge-pes { background: var(--blue-light);   color: var(--blue);  }
+
+.cert-info { min-width: 0; }
+
+.cert-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.cert-desc {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 2px;
+  line-height: 1.45;
+}
+
+.cert-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.cert-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.tag-new  { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent); }
+.tag-nasm { background: var(--green-light);  color: var(--green);  }
+.tag-cbs  { background: var(--accent); color: #F0EDE8; }
+
+.featured-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* CNC footnote */
+.cnc-note {
+  margin-top: 4px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 0.5px dashed var(--border2);
+  border-radius: var(--r);
+  font-size: 12px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cnc-badge {
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--green-light);
+  color: var(--green);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+/* ─── BOOKING COLUMN ─── */
+.booking-col {
+  position: sticky;
+  top: 96px;
+}
+
+.booking-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 32px 28px;
+}
+
+.booking-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.booking-sub {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 26px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-group { margin-bottom: 13px; }
+
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 10px 13px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--text3); }
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px var(--green-light);
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%238C8880' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.form-textarea {
+  resize: none;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 13px;
+  background: var(--green);
+  color: #EEE9E2;
+  border: none;
+  border-radius: var(--r);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+}
+
+.submit-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+.submit-btn:active { transform: scale(0.99); }
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+
+.calendly-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: var(--r);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.calendly-btn:hover { background: var(--green-light); }
+
+.booking-assurance {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--text3);
+  justify-content: center;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px 24px 60px;
+    gap: 48px;
+  }
+  .hero-photos { height: 300px; }
+  .section-stripe { padding: 16px 24px; }
+  .services-inner {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    gap: 48px;
+  }
+  .booking-col { position: static; }
+  .cert-list::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-brand">
+    <span class="nav-name">Shreyas Sriram</span>
+    <span class="nav-dot">·</span>
+    <span class="nav-sub">Practice Intuition</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#story">My story</a></li>
+    <li><a href="#contact" class="nav-cta">Work with me</a></li>
+  </ul>
+</nav>
+
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+
+  <div class="hero-content">
+    <div class="brand-eyebrow">
+      <div class="eyebrow-rule"></div>
+      <span class="eyebrow-text">Personal Training · Biomechanics · Human Performance</span>
+    </div>
+
+    <h1 class="hero-tagline">
+      Train like<br>an athlete.<br>
+      <span class="accent-line">Live with intention.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Certified Biomechanics Specialist, Personal Trainer &amp; Movement Coach — 
+      a former D&#8203;III athlete &amp; clinician bringing a wide berth of experience
+      to focus on you and your unique journey.
+    </p>
+
+    <div class="pills">
+      <span class="pill pill-athlete">Athletes</span>
+      <span class="pill pill-rehab">Post-rehab &amp; recovery</span>
+      <span class="pill pill-everyday">Everyday performance</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Work with me
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M3 7.5h9M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#story" class="btn-ghost">
+        My story
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <path d="M6.5 2v9M3 8l3.5 3.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Photo area -->
+  <div class="hero-photos">
+    <div class="photo-corner-accent"></div>
+    <div class="photo-corner-accent-2"></div>
+
+    <!-- Running photo — replace src with your image path -->
+    <div class="photo-slot photo-run">
+      <!-- <img src="your-running-photo.jpg" alt="Shreyas running"> -->
+      <div class="photo-slot-inner">
+        <div class="photo-slot-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="6" cy="6.5" r="1.5" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M1 12l4-3.5 3 2.5 3-4 6 5" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="photo-slot-label">Running · action photo</span>
+      </div>
+    </div>
+
+    <!-- Portrait — replace src with your image path -->
+    <div class="photo-slot photo-portrait">
+      <!-- <img src="your-portrait.jpg" alt="Shreyas Sriram"> -->
+      <div class="photo-slot-inner">
+        <div class="photo-slot-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="6.5" r="2.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M3 16c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="photo-slot-label">Portrait</span>
+      </div>
+    </div>
+
+    <!-- Mini PR stat chips — floated over the running photo -->
+    <div class="hero-stat-strip">
+      <div class="stat-chip">
+        <div class="stat-chip-val">4:42</div>
+        <div class="stat-chip-lbl">Mile PR</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-chip-val">15:50</div>
+        <div class="stat-chip-lbl">5K PR</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-chip-val">2:56</div>
+        <div class="stat-chip-lbl">Marathon</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ─── MARQUEE STRIPE ─── -->
+<div class="section-stripe">
+  <span class="stripe-tag">Certifications</span>
+  <div style="overflow:hidden;flex:1;">
+    <div class="stripe-content">
+      <span>NASM Certified Personal Trainer</span>
+      <span>·</span>
+      <span>Corrective Exercise Specialist</span>
+      <span>·</span>
+      <span>Certified Biomechanics Specialist</span>
+      <span>·</span>
+      <span>Performance Enhancement Specialist</span>
+      <span>·</span>
+      <span>Certified Nutrition Coach</span>
+      <span>·</span>
+      <span>NASM Certified Personal Trainer</span>
+      <span>·</span>
+      <span>Corrective Exercise Specialist</span>
+      <span>·</span>
+      <span>Certified Biomechanics Specialist</span>
+      <span>·</span>
+      <span>Performance Enhancement Specialist</span>
+      <span>·</span>
+      <span>Certified Nutrition Coach</span>
+      <span>·</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── SERVICES + BOOKING ─── -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+
+    <!-- LEFT: Services -->
+    <div>
+      <p class="section-kicker">What I offer</p>
+      <h2 class="section-heading">From recovery<br>to performance</h2>
+      <p class="section-sub">
+        A progressive path — from foundational fitness through precise biomechanical
+        analysis to full athletic performance. I meet you exactly where you are.
+      </p>
+
+      <div class="progression-label">Certification progression</div>
+
+      <div class="cert-list">
+
+        <!-- CBS — FEATURED (top, newest) -->
+        <div class="cert-card featured">
+          <div class="cert-badge badge-cbs">CBS</div>
+          <div class="cert-info">
+            <div class="cert-title">Certified Biomechanics Specialist</div>
+            <div class="cert-desc">Precision movement analysis, load optimization, structural injury prevention</div>
+          </div>
+          <div class="cert-meta">
+            <span class="cert-tag tag-new">New · 2026</span>
+            <span class="featured-badge">Conor Harris</span>
+          </div>
+        </div>
+
+        <!-- CPT -->
+        <div class="cert-card">
+          <div class="cert-badge badge-cpt">CPT</div>
+          <div class="cert-info">
+            <div class="cert-title">Certified Personal Trainer</div>
+            <div class="cert-desc">Fitness goals, weight management, muscle gain, general wellness</div>
+          </div>
+          <div class="cert-meta">
+            <span class="cert-tag tag-nasm">NASM</span>
+          </div>
+        </div>
+
+        <!-- CES -->
+        <div class="cert-card">
+          <div class="cert-badge badge-ces">CES</div>
+          <div class="cert-info">
+            <div class="cert-title">Corrective Exercise Specialist</div>
+            <div class="cert-desc">Movement dysfunction, chronic pain, injury recovery &amp; prevention</div>
+          </div>
+          <div class="cert-meta">
+            <span class="cert-tag tag-nasm">NASM</span>
+          </div>
+        </div>
+
+        <!-- PES -->
+        <div class="cert-card">
+          <div class="cert-badge badge-pes">PES</div>
+          <div class="cert-info">
+            <div class="cert-title">Performance Enhancement Specialist</div>
+            <div class="cert-desc">Speed, agility, power, endurance — athletic performance at every level</div>
+          </div>
+          <div class="cert-meta">
+            <span class="cert-tag tag-nasm">NASM</span>
+          </div>
+        </div>
+
+        <!-- CNC footnote -->
+        <div class="cnc-note">
+          <span class="cnc-badge">CNC</span>
+          Certified Nutrition Coach — nutrition support woven throughout all service levels
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Booking -->
+    <div class="booking-col" id="contact">
+      <div class="booking-card">
+        <div class="booking-heading">Let's get started</div>
+        <p class="booking-sub">
+          Tell me a little about where you are and what you're after — 
+          I'll follow up within 24 hours.
+        </p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First name</label>
+            <input class="form-input" type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last name</label>
+            <input class="form-input" type="text" placeholder="Smith">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="you@email.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">What brings you here?</label>
+          <select class="form-select">
+            <option value="" disabled selected>Select a goal</option>
+            <option>General fitness &amp; weight management</option>
+            <option>Injury recovery / post-surgery return</option>
+            <option>Chronic pain &amp; movement correction</option>
+            <option>Athletic performance training</option>
+            <option>Biomechanics &amp; movement analysis</option>
+            <option>Holistic behavior + biomechanics coaching</option>
+            <option>Functional environment redesign (consult)</option>
+            <option>Nutrition coaching</option>
+            <option>Not sure yet — let's talk</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            Anything else?
+            <span style="font-weight:400;text-transform:none;letter-spacing:0"> (optional)</span>
+          </label>
+          <textarea class="form-textarea" placeholder="Injuries, history, what you've tried before, timeline..."></textarea>
+        </div>
+
+        <button class="submit-btn">Send message →</button>
+
+        <div class="or-divider">or</div>
+
+        <a href="https://calendly.com" target="_blank" class="calendly-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="2.5" width="12" height="10.5" rx="2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M1 6.5h12M4.5 1v3M9.5 1v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Schedule directly on Calendly
+        </a>
+
+        <p class="booking-assurance">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          No commitment — first conversation is always free
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

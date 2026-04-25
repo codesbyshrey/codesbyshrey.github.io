@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Me · Practice Intuition</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5/400.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5/600.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@5/index.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #FAF8F4;
+  --bg-surface:   #F0EAE1;
+  --bg-card:      #FFFFFF;
+  --text:         #1A1917;
+  --text2:        #5C5850;
+  --text3:        #8C8880;
+  --green:        #2B4738;
+  --green-mid:    #3D6150;
+  --green-light:  #D6E9DD;
+  --accent:       #C4622D;
+  --accent-light: #F7E4D6;
+  --amber:        #B47B1A;
+  --amber-light:  #FDF0D5;
+  --blue:         #1F4A7A;
+  --blue-light:   #DCE9F7;
+  --border:       #DDD7CE;
+  --border2:      #C2BAB0;
+  --r:            10px;
+  --r-lg:         16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:           #141412;
+    --bg-surface:   #1C1B18;
+    --bg-card:      #222018;
+    --text:         #EDE9E3;
+    --text2:        #A09890;
+    --text3:        #686058;
+    --green:        #5A9070;
+    --green-mid:    #4A7860;
+    --green-light:  #182A20;
+    --accent:       #D0743E;
+    --accent-light: #2A1A0E;
+    --amber:        #D4A040;
+    --amber-light:  #2A1E08;
+    --blue:         #4A7CC0;
+    --blue-light:   #0E1E30;
+    --border:       #2C2A24;
+    --border2:      #3C3A34;
+  }
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SHARED UTILS ── */
+.section-kicker {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-kicker::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--text3);
+  flex-shrink: 0;
+}
+.section-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.22;
+  margin-bottom: 10px;
+}
+.section-sub {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION WRAPPER
+───────────────────────────────────────────── */
+.why-section {
+  padding: 100px 0 0;
+  background: var(--bg);
+}
+
+.why-header {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 48px 56px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.why-header-text { max-width: 560px; }
+
+.why-header-quote {
+  max-width: 280px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--text2);
+  line-height: 1.55;
+  text-align: right;
+  padding-right: 4px;
+  border-right: 2px solid var(--accent);
+}
+
+/* ─────────────────────────────────────────────
+   TWO-COLUMN BODY
+───────────────────────────────────────────── */
+.why-columns {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 48px 0;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ─────────────────────────────────────────────
+   LEFT: EDUCATION + CERTS
+───────────────────────────────────────────── */
+.edu-col {
+  position: sticky;
+  top: 32px;
+}
+
+.edu-block {
+  margin-bottom: 36px;
+}
+
+.edu-block-label {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid var(--border);
+}
+
+/* Degree cards */
+.degree-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.degree-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.deg-bme { background: var(--blue-light);   color: var(--blue);   }
+.deg-hfd { background: var(--green-light);  color: var(--green);  }
+
+.degree-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.degree-detail {
+  font-size: 13px;
+  color: var(--text2);
+  margin-top: 4px;
+  line-height: 1.55;
+}
+
+.degree-note {
+  font-size: 11px;
+  color: var(--accent);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Cert pills for edu column */
+.cert-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.cert-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.cp-cbs { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+.cp-cpt { background: var(--green-light);  color: var(--green);  border-color: var(--green);  }
+.cp-ces { background: var(--amber-light);  color: var(--amber);  border-color: var(--amber);  }
+.cp-pes { background: var(--blue-light);   color: var(--blue);   border-color: var(--blue);   }
+.cp-cnc { background: var(--bg-surface);   color: var(--text2);  border-color: var(--border2);}
+
+.cert-pill-note {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-top: 4px;
+}
+
+.cert-pill-note strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* What this means for you — callout block */
+.means-block {
+  background: var(--green);
+  border-radius: var(--r);
+  padding: 20px 20px 18px;
+  margin-bottom: 0;
+}
+
+.means-block-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-light);
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.means-block-text {
+  font-size: 15px;
+  color: #E8F0EA;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────
+   RIGHT COLUMN: ATHLETE + CLINICAL stacked
+───────────────────────────────────────────── */
+.exp-col { display: flex; flex-direction: column; gap: 40px; }
+
+/* ── Card shell ── */
+.exp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.exp-card-header {
+  padding: 22px 24px 18px;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.exp-card-header-text {}
+
+.exp-card-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+
+.exp-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.exp-card-sub {
+  font-size: 13px;
+  color: var(--text2);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.exp-card-accent {
+  width: 5px;
+  border-radius: 100px;
+  flex-shrink: 0;
+  align-self: stretch;
+  min-height: 40px;
+}
+.accent-green  { background: var(--green); }
+.accent-amber  { background: var(--amber); }
+
+/* ── PR GRID ── */
+.pr-section {
+  padding: 20px 24px;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.pr-section-label {
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+.pr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.pr-card {
+  background: var(--bg-surface);
+  border-radius: var(--r);
+  padding: 12px 10px 10px;
+  text-align: center;
+  position: relative;
+}
+
+.pr-card.highlighted {
+  background: var(--green-light);
+  outline: 1px solid var(--green);
+}
+
+.pr-val {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.pr-card.highlighted .pr-val { color: var(--green); }
+
+.pr-event {
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-top: 4px;
+}
+
+.pr-card.highlighted .pr-event { color: var(--green-mid); }
+
+/* Secondary / smaller PRs */
+.pr-grid-secondary {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.pr-card-sm {
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 8px 8px;
+  text-align: center;
+}
+
+.pr-val-sm {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text2);
+  line-height: 1.2;
+}
+
+.pr-event-sm {
+  font-size: 9px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+
+/* ── SWIM STRIP ── */
+.swim-strip {
+  padding: 18px 24px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.swim-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 160px;
+  flex: 1;
+}
+
+.swim-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.swim-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.swim-detail {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 1px;
+  line-height: 1.45;
+}
+
+/* ── CLINICAL TABLE ── */
+.clin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.clin-table-row {
+  display: grid;
+  grid-template-columns: 76px 20px 1fr;
+  gap: 0;
+  padding: 18px 24px;
+  border-bottom: 0.5px solid var(--border);
+  align-items: start;
+  position: relative;
+}
+
+.clin-table-row:last-child { border-bottom: none; }
+
+.clin-table-year {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3);
+  padding-top: 2px;
+  line-height: 1.4;
+}
+
+.clin-table-dot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.clin-table-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border2);
+  flex-shrink: 0;
+}
+
+.clin-table-row.active .clin-table-dot {
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.clin-table-role {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.clin-table-org {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+.clin-dur {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+
+/* Patient spectrum chips for Wellness Group */
+.spectrum-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.spectrum-chip {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 0.5px solid var(--border2);
+  background: var(--bg-surface);
+  color: var(--text2);
+  white-space: nowrap;
+}
+
+.tag-emt { background: var(--amber-light); color: var(--amber); }
+.tag-pt  { background: var(--green-light); color: var(--green); }
+
+.cp-goata { background: #501313; color: #F09595; border-color: #A32D2D; }
+.cp-yoga  { background: var(--bg-surface); color: var(--text2); border-color: var(--border2); }
+
+/* EMT context note */
+.clin-table-note {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--border);
+}
+
+/* Spectrum / concept section label */
+.spectrum-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+  margin-top: 4px;
+}
+
+/* Concept chips — slightly different tint */
+.chip-concept {
+  background: var(--blue-light);
+  color: var(--blue);
+  border-color: color-mix(in srgb, var(--blue) 25%, transparent);
+}
+
+/* Tool chips — warm amber tint */
+.chip-tool {
+  background: var(--amber-light);
+  color: var(--amber);
+  border-color: color-mix(in srgb, var(--amber) 25%, transparent);
+}
+
+/* ─────────────────────────────────────────────
+   PATIENT ASIDE — full-width breakout
+───────────────────────────────────────────── */
+.patient-aside {
+  max-width: 1240px;
+  margin: 56px auto 0;
+  padding: 0 48px;
+}
+
+.patient-card {
+  background: var(--accent-light);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--r-lg);
+  padding: 48px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Large background numeral */
+.patient-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  right: 48px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 200px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+.patient-kicker {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.patient-kicker::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.patient-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+.patient-body {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+
+.patient-body p + p { margin-top: 14px; }
+
+.patient-pull {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--text);
+  padding-left: 28px;
+  border-left: 2px solid var(--accent);
+}
+
+.patient-detail {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.patient-detail-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.patient-detail-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-detail-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+.patient-detail-text strong { color: var(--text); font-weight: 500; }
+
+/* ─────────────────────────────────────────────
+   TIMELINE STRIP
+───────────────────────────────────────────── */
+.timeline-section {
+  background: var(--bg-surface);
+  margin-top: 64px;
+  padding: 48px 0;
+}
+
+.timeline-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.timeline-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.timeline-sub {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+/* Timeline track */
+.timeline-track {
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.timeline-rail {
+  position: absolute;
+  left: 0; right: 0;
+  top: 10px;
+  height: 1px;
+  background: var(--border);
+}
+
+.timeline-nodes {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tl-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  position: relative;
+}
+
+.tl-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.tl-dot.active {
+  border-color: var(--green);
+  background: var(--green-light);
+  width: 24px;
+  height: 24px;
+}
+
+.tl-dot.active::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.tl-dot.accent {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.tl-dot.accent::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.tl-year {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text2);
+  margin-top: 8px;
+}
+
+.tl-node.active .tl-year { color: var(--green); font-weight: 600; }
+.tl-node.accent-node .tl-year { color: var(--accent); }
+
+.tl-events {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tl-event {
+  font-size: 10px;
+  text-align: center;
+  color: var(--text3);
+  line-height: 1.4;
+  max-width: 90px;
+}
+
+.tl-event.highlight {
+  color: var(--green);
+  font-weight: 500;
+}
+
+.tl-event.accent-ev {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ─────────────────────────────────────────────
+   CLOSING CTA
+───────────────────────────────────────────── */
+.closing-cta {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 72px 48px 100px;
+  text-align: center;
+}
+
+.closing-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.closing-heading em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.closing-sub {
+  font-size: 15px;
+  color: var(--text2);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: #EEE9E2;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: var(--r);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .why-header { flex-direction: column; padding: 0 24px 40px; }
+  .why-header-quote { text-align: left; border-right: none; border-left: 2px solid var(--accent); padding-right: 0; padding-left: 14px; max-width: 100%; }
+  .why-columns { grid-template-columns: 1fr; padding: 40px 24px 0; gap: 40px; }
+  .edu-col { position: static; }
+  .patient-card { grid-template-columns: 1fr; padding: 32px 28px; gap: 32px; }
+  .pr-grid { grid-template-columns: repeat(2, 1fr); }
+  .pr-grid-secondary { grid-template-columns: repeat(3, 1fr); }
+  .timeline-inner { padding: 0 24px; }
+  .closing-cta { padding: 56px 24px 72px; }
+  .patient-aside { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────────
+     WHY ME SECTION
+───────────────────────────────────────────── -->
+<section class="why-section" id="story">
+
+  <!-- Header -->
+  <div class="why-header">
+    <div class="why-header-text">
+      <p class="section-kicker">Why me</p>
+      <h2 class="section-heading">A practitioner shaped<br>by every side of the table</h2>
+      <p class="section-sub" style="max-width:480px;margin-top:8px;">
+        Engineer by training. Athlete by nature. Clinician by experience. 
+        And at one point, patient by necessity. That full circle is what I bring to your work.
+      </p>
+    </div>
+    <p class="why-header-quote">
+      "I've approached the body<br>as a scientist, tested it<br>as an athlete, and rebuilt it<br>as a patient."
+    </p>
+  </div>
+
+  <!-- Two-column body -->
+  <div class="why-columns">
+
+    <!-- LEFT: Education + Certs -->
+    <div class="edu-col">
+
+      <div class="edu-block">
+        <div class="edu-block-label">Academic foundation</div>
+
+        <div class="degree-card">
+          <div class="degree-icon deg-bme">BS</div>
+          <div>
+            <div class="degree-name">Biomedical Engineering</div>
+            <div class="degree-detail">Biomechanics, systems physiology, prosthetic device design — including a patent for shoulder arthroplasty components.</div>
+            <div class="degree-note">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M1 5.5h9M6.5 2l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Academic depth behind every movement cue
+            </div>
+          </div>
+        </div>
+
+        <div class="degree-card">
+          <div class="degree-icon deg-hfd">MS</div>
+          <div>
+            <div class="degree-name">Human Factors Design</div>
+            <div class="degree-detail">How cognitive load, biomechanical state, and behavioral patterns intersect — the lens behind a whole-system approach to your health.</div>
+            <div class="degree-note">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M1 5.5h9M6.5 2l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Cognitive → biomechanical → behavioral
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-block">
+        <div class="edu-block-label">Certifications</div>
+
+        <div class="cert-pill-row">
+          <span class="cert-pill cp-cbs">CBS</span>
+          <span class="cert-pill cp-cpt">CPT</span>
+          <span class="cert-pill cp-ces">CES</span>
+          <span class="cert-pill cp-pes">PES</span>
+          <span class="cert-pill cp-goata">GOATA</span>
+          <span class="cert-pill cp-cnc">CNC</span>
+          <span class="cert-pill cp-yoga">The Ready State Functional Yoga for Athletes</span>
+        </div>
+
+      </div>
+
+      <div class="means-block">
+        <div class="means-block-label">What this means for you</div>
+        <div class="means-block-text">
+          Most trainers have certs. Few have the academic scaffolding to apply them the way I do — reading your medical history, collaborating with your providers, and writing a program that holds up structurally and behaviorally, start to finish.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Athlete + Clinical stacked -->
+    <div class="exp-col">
+
+      <!-- ATHLETE card -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-card-accent accent-green"></div>
+          <div class="exp-card-header-text">
+            <div class="exp-card-eyebrow">Experience</div>
+            <div class="exp-card-title">The athlete</div>
+            <div class="exp-card-sub">
+              NCAA Division III cross country &amp; track · HS swim athlete · White Pass Running Camp counselor · lifelong competitor
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero PRs -->
+        <div class="pr-section">
+          <div class="pr-section-label">Personal records — track &amp; road</div>
+          <div class="pr-grid">
+            <div class="pr-card highlighted">
+              <div class="pr-val">4:42</div>
+              <div class="pr-event">Mile</div>
+            </div>
+            <div class="pr-card highlighted">
+              <div class="pr-val">9:59</div>
+              <div class="pr-event">2-Mile</div>
+            </div>
+            <div class="pr-card highlighted">
+              <div class="pr-val">15:50</div>
+              <div class="pr-event">5K</div>
+            </div>
+            <div class="pr-card highlighted">
+              <div class="pr-val">2:56</div>
+              <div class="pr-event">Marathon</div>
+            </div>
+          </div>
+
+          <!-- Secondary PRs: ascending race distance -->
+          <div class="pr-grid-secondary">
+            <div class="pr-card-sm">
+              <div class="pr-val-sm">4:18</div>
+              <div class="pr-event-sm">1500m</div>
+            </div>
+            <div class="pr-card-sm">
+              <div class="pr-val-sm">9:07</div>
+              <div class="pr-event-sm">3K</div>
+            </div>
+            <div class="pr-card-sm">
+              <div class="pr-val-sm">10:04</div>
+              <div class="pr-event-sm">3K SC</div>
+            </div>
+            <div class="pr-card-sm">
+              <div class="pr-val-sm">20:45</div>
+              <div class="pr-event-sm">6K XC</div>
+            </div>
+            <div class="pr-card-sm">
+              <div class="pr-val-sm">26:50</div>
+              <div class="pr-event-sm">8K XC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swim -->
+        <div class="swim-strip">
+          <div class="swim-item">
+            <div class="swim-dot"></div>
+            <div>
+              <div class="swim-label">YMCA swim instructor &amp; lifeguard</div>
+              <div class="swim-detail">
+                Dec 2023 – Dec 2025. Taught group classes across every age group — infants &amp; parents, children, and up through 8th grade — plus private adult lessons. Worked with diverse populations in ability, background, and goal. Coached middle schoolers specifically on meeting high school swim team selection requirements.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLINICAL card -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div class="exp-card-accent accent-amber"></div>
+          <div class="exp-card-header-text">
+            <div class="exp-card-eyebrow">Experience</div>
+            <div class="exp-card-title">The clinician</div>
+            <div class="exp-card-sub">
+              EMT · physical therapy aide · exercise specialist · movement coach
+            </div>
+          </div>
+        </div>
+
+        <div>
+
+          <!-- EMT row -->
+          <div class="clin-table-row">
+            <div class="clin-table-year">2021–<br>2023</div>
+            <div class="clin-table-dot-col">
+              <div class="clin-table-dot"></div>
+            </div>
+            <div>
+              <div class="clin-table-role">Emergency Medical Technician</div>
+              <div class="clin-table-org">Field &amp; clinical practice · 2 years</div>
+              <span class="clin-dur tag-emt">EMT</span>
+              <div class="clin-table-note">
+                If you're coming in with injury history, imaging reports, or surgical records — I've been trained to read clinical intake, interpret provider notes, and triage in real time. This lets me contextualize your medical history, and that informs the quality of work we can achieve together.
+              </div>
+            </div>
+          </div>
+
+          <!-- Wellness Group row -->
+          <div class="clin-table-row active">
+            <div class="clin-table-year">May 2024–<br>May 2025</div>
+            <div class="clin-table-dot-col">
+              <div class="clin-table-dot"></div>
+            </div>
+            <div>
+              <div class="clin-table-role">Exercise Specialist &amp; Movement Coach</div>
+              <div class="clin-table-org">The Wellness Group — physical therapy clinic · 1 year</div>
+              <span class="clin-dur tag-pt">PT clinic</span>
+              <div class="spectrum-label">Patient spectrum</div>
+              <div class="spectrum-chips">
+                <span class="spectrum-chip">Post-surgical rehab</span>
+                <span class="spectrum-chip">Hip replacement</span>
+                <span class="spectrum-chip">Knee surgery</span>
+                <span class="spectrum-chip">Functional ADL</span>
+                <span class="spectrum-chip">Return to sport</span>
+                <span class="spectrum-chip">Injury prevention</span>
+              </div>
+              <div class="spectrum-label" style="margin-top:12px;">Concepts &amp; modalities</div>
+              <div class="spectrum-chips">
+                <span class="spectrum-chip chip-concept">Functional Movement Systems</span>
+                <span class="spectrum-chip chip-concept">RPR</span>
+                <span class="spectrum-chip chip-concept">Spinal Mechanics</span>
+                <span class="spectrum-chip chip-concept">DNS</span>
+              </div>
+              <div class="spectrum-label" style="margin-top:12px;">Tools</div>
+              <div class="spectrum-chips">
+                <span class="spectrum-chip chip-tool">Heat therapy</span>
+                <span class="spectrum-chip chip-tool">Ice / cryotherapy</span>
+                <span class="spectrum-chip chip-tool">E-stim</span>
+                <span class="spectrum-chip chip-tool">Manual techniques</span>
+                <span class="spectrum-chip chip-tool">Supervised manual therapy</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── PATIENT ASIDE ── -->
+  <div class="patient-aside">
+    <div class="patient-card">
+
+      <div>
+        <p class="patient-kicker">A personal note</p>
+        <h3 class="patient-heading">I've been where<br>you might be.</h3>
+        <div class="patient-body">
+          <p>
+            In late 2022, I developed thoracic outlet syndrome — presenting initially as ulnar 
+            and radial neuropathy — while simultaneously transitioning careers into software development. 
+            The irony: I would later work most closely at the Wellness Group with patients experiencing 
+            the exact same presentation.
+          </p>
+          <p>
+            I had to learn to retrain my own body, adapt my environment, and rebuild patterns from the ground up — 
+            while staying functional in a demanding new role. That experience gave me something no certification can: 
+            the knowledge of what it actually feels like to do this work on yourself.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p class="patient-pull">
+          "When you work with me, you're working with someone who's sat in the same chair — 
+          and found their way out of it."
+        </p>
+
+        <div class="patient-detail">
+          <div class="patient-detail-item">
+            <div class="patient-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2a3 3 0 100 6 3 3 0 000-6zM2 13c0-2.761 2.686-5 6-5s6 2.239 6 5" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="patient-detail-text">
+              <strong>Personal experience</strong> with neurological rehabilitation, ergonomic retraining, and occupational adaptation.
+            </div>
+          </div>
+          <div class="patient-detail-item">
+            <div class="patient-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8l3 3 7-7" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="patient-detail-text">
+              <strong>I resonated with my patients</strong> at the Wellness Group — and they resonated with me — because I'd lived a version of their story.
+            </div>
+          </div>
+          <div class="patient-detail-item">
+            <div class="patient-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="6" stroke="var(--accent)" stroke-width="1.3"/>
+                <path d="M8 5v3.5l2 1.5" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="patient-detail-text">
+              <strong>Patience, context, and empathy</strong> aren't soft extras — they're baked into how I work with every client.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── TIMELINE STRIP ─── -->
+<div class="timeline-section">
+  <div class="timeline-inner">
+    <div class="timeline-header">
+      <span class="timeline-heading">The Journey</span>
+      <span class="timeline-sub">A continuous arc — not a pivot</span>
+    </div>
+
+    <div class="timeline-track">
+      <div class="timeline-rail"></div>
+      <div class="timeline-nodes">
+
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2009</div>
+          <div class="tl-events">
+            <span class="tl-event">HS athletics begin</span>
+          </div>
+        </div>
+
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2015</div>
+          <div class="tl-events">
+            <span class="tl-event">NCAA D3 XC/TF</span>
+          </div>
+        </div>
+
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2021</div>
+          <div class="tl-events">
+            <span class="tl-event">EMT certification</span>
+          </div>
+        </div>
+
+        <div class="tl-node accent-node">
+          <div class="tl-dot accent"></div>
+          <div class="tl-year">2022–23</div>
+          <div class="tl-events">
+            <span class="tl-event accent-ev">TOS rehab — lived experience</span>
+          </div>
+        </div>
+
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Dec 2023</div>
+          <div class="tl-events">
+            <span class="tl-event">YMCA instructor</span>
+            <span class="tl-event">NASM CPT</span>
+          </div>
+        </div>
+
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-year">May 2024</div>
+          <div class="tl-events">
+            <span class="tl-event">Wellness Group</span>
+            <span class="tl-event">exercise specialist</span>
+          </div>
+        </div>
+
+        <div class="tl-node active">
+          <div class="tl-dot active"></div>
+          <div class="tl-year">2026</div>
+          <div class="tl-events">
+            <span class="tl-event highlight">CBS · CES · PES · CNC</span>
+            <span class="tl-event highlight">Practice Intuition</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CLOSING CTA ─── -->
+<div class="closing-cta">
+  <h2 class="closing-heading">
+    Ready to work with<br>
+    <em>your</em> whole picture?
+  </h2>
+  <p class="closing-sub">
+    Whatever stage you're at — returning from injury, chasing a PR, 
+    or just trying to feel good in your body day to day — let's find your path.
+  </p>
+  <a href="#contact" class="btn-primary">
+    Get in touch
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+      <path d="M3 7.5h9M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
+</body>
+</html>

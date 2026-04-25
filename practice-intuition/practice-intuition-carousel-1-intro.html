@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carousel 1 · Practice Intuition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:        #2B4738;
+  --green-mid:    #3D6150;
+  --green-light:  #D6E9DD;
+  --cream:        #FAF8F4;
+  --cream2:       #F0EAE1;
+  --accent:       #C4622D;
+  --accent-light: #F7E4D6;
+  --amber:        #B47B1A;
+  --blue:         #1F4A7A;
+  --blue-light:   #DCE9F7;
+  --text:         #1A1917;
+  --text2:        #5C5850;
+  --text3:        #8C8880;
+  --border:       #DDD7CE;
+}
+
+body {
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  padding: 24px;
+}
+
+/* ── CAROUSEL FRAME ── */
+.carousel-wrap {
+  position: relative;
+  width: min(540px, 100vw - 48px);
+}
+
+.carousel {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── NAV ── */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 14px;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.28); }
+.nav-prev { left: -18px; }
+.nav-next { right: -18px; }
+.nav-btn:disabled { opacity: 0.25; cursor: default; }
+
+/* Dots */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.dot.active { background: #fff; transform: scale(1.3); }
+
+/* Slide counter */
+.counter {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  z-index: 5;
+}
+
+/* Swipe hint */
+.swipe-hint {
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* ════════════════════════════════
+   SLIDE 1 — COVER (dark green)
+════════════════════════════════ */
+.s1 {
+  background: var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 52px 48px;
+  text-align: center;
+}
+.s1-counter { color: rgba(214,233,221,0.45); }
+
+.s1-rule { width: 40px; height: 2px; background: var(--accent); margin: 0 auto 28px; }
+
+.s1-brand {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(13px, 3vw, 17px);
+  color: #A8C8B4;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+
+.s1-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 7vw, 46px);
+  font-weight: 600;
+  color: #EEE9E2;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.s1-sub {
+  font-size: clamp(11px, 2.2vw, 13px);
+  color: #8BAF98;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.s1-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.s1-pill {
+  font-size: clamp(9px, 1.8vw, 11px);
+  font-weight: 600;
+  padding: 5px 13px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  border: 1px solid;
+}
+.s1p-a { background: rgba(214,233,221,0.12); color: #A8C8B4; border-color: rgba(168,200,180,0.4); }
+.s1p-b { background: rgba(196,98,45,0.18);   color: #E8956A; border-color: rgba(196,98,45,0.5); }
+.s1p-c { background: rgba(220,233,247,0.1);  color: #8AAECF; border-color: rgba(138,174,207,0.35); }
+
+.s1-swipe {
+  position: absolute;
+  bottom: 22px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(168,200,180,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ════════════════════════════════
+   SLIDE 2 — CERTIFICATIONS
+════════════════════════════════ */
+.s2 {
+  background: var(--cream);
+  padding: 36px 40px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.s2-counter { color: var(--text3); }
+
+.slide-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.slide-eyebrow::before { content: ''; width: 18px; height: 1.5px; background: var(--accent); flex-shrink: 0; }
+
+.slide-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  flex: 1;
+}
+
+.cert-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cert-item.featured {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  grid-column: span 2;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.cert-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  align-self: flex-start;
+  white-space: nowrap;
+}
+.b-cbs { background: var(--accent); color: #F7E4D6; }
+.b-cpt { background: var(--green-light); color: var(--green); }
+.b-ces { background: #FDF0D5; color: var(--amber); }
+.b-pes { background: var(--blue-light); color: var(--blue); }
+.b-cnc { background: var(--cream2); color: var(--text2); border: 1px solid var(--border); }
+.b-goata { background: #501313; color: #F09595; }
+.b-yoga { background: var(--green-light); color: var(--green-mid); font-size: 8.5px; }
+
+.cert-name {
+  font-size: clamp(11px, 2.2vw, 13px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.cert-who {
+  font-size: clamp(9px, 1.8vw, 11px);
+  color: var(--text2);
+  line-height: 1.4;
+}
+
+.cert-item.featured .cert-name { font-size: clamp(13px, 2.6vw, 15px); }
+.cert-item.featured .cert-badge { align-self: center; }
+
+/* ════════════════════════════════
+   SLIDE 3 — EDUCATION
+════════════════════════════════ */
+.s3 {
+  background: var(--green);
+  padding: 38px 40px 36px;
+  display: flex;
+  flex-direction: column;
+}
+.s3-counter { color: rgba(214,233,221,0.5); }
+.s3 .slide-eyebrow { color: #A8C8B4; }
+.s3 .slide-eyebrow::before { background: #A8C8B4; }
+.s3 .slide-heading { color: #EEE9E2; }
+
+.deg-cards { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+
+.deg-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.deg-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.di-bme { background: rgba(30,74,122,0.5); color: #8AAECF; }
+.di-hfd { background: rgba(61,97,80,0.6);  color: #A8C8B4; }
+
+.deg-name {
+  font-size: clamp(14px, 2.8vw, 17px);
+  font-weight: 600;
+  color: #EEE9E2;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.deg-detail {
+  font-size: clamp(10px, 2vw, 12px);
+  color: #8BAF98;
+  line-height: 1.5;
+}
+.deg-note {
+  margin-top: 6px;
+  font-size: clamp(9px, 1.8vw, 11px);
+  color: #E8956A;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.s3-framework {
+  margin-top: 14px;
+  background: rgba(196,98,45,0.2);
+  border: 1px solid rgba(196,98,45,0.35);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: clamp(11px, 2.2vw, 13px);
+  color: #E8956A;
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+/* ════════════════════════════════
+   SLIDE 4 — EXPERIENCE
+════════════════════════════════ */
+.s4 {
+  background: var(--cream);
+  padding: 36px 40px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.s4-counter { color: var(--text3); }
+
+.exp-rows { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+
+.exp-row {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 52px 20px 1fr;
+  gap: 0 12px;
+  align-items: start;
+}
+
+.exp-year {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text3);
+  line-height: 1.4;
+  padding-top: 2px;
+}
+
+.exp-dot-col {
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.exp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.exp-row.current .exp-dot {
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.exp-role {
+  font-size: clamp(12px, 2.4vw, 14px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+.exp-org {
+  font-size: clamp(10px, 2vw, 12px);
+  color: var(--text2);
+  margin-top: 2px;
+}
+.exp-tags { display: flex; gap: 5px; margin-top: 7px; flex-wrap: wrap; }
+.exp-tag {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+.t-emt   { background: #FDF0D5; color: var(--amber); }
+.t-ymca  { background: var(--blue-light); color: var(--blue); }
+.t-pt    { background: var(--green-light); color: var(--green); }
+
+/* ════════════════════════════════
+   SLIDE 5 — SERVICES
+════════════════════════════════ */
+.s5 {
+  background: var(--cream2);
+  padding: 36px 40px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.s5-counter { color: var(--text3); }
+
+.svc-list { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+
+.svc-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.svc-item.featured-svc {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.svc-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.si-green { background: var(--green-light); }
+.si-amber { background: #FDF0D5; }
+.si-blue  { background: var(--blue-light); }
+.si-accent { background: var(--accent-light); border: 1px solid rgba(196,98,45,0.25); }
+.si-teal  { background: #E1F5EE; }
+
+.svc-name {
+  font-size: clamp(12px, 2.4vw, 14px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+.svc-desc {
+  font-size: clamp(9.5px, 1.9vw, 11px);
+  color: var(--text2);
+  margin-top: 2px;
+  line-height: 1.45;
+}
+
+/* ════════════════════════════════
+   SLIDE 6 — WHO IT'S FOR
+════════════════════════════════ */
+.s6 {
+  background: var(--green);
+  padding: 38px 40px 36px;
+  display: flex;
+  flex-direction: column;
+}
+.s6-counter { color: rgba(214,233,221,0.5); }
+.s6 .slide-eyebrow { color: #A8C8B4; }
+.s6 .slide-eyebrow::before { background: #A8C8B4; }
+.s6 .slide-heading { color: #EEE9E2; margin-bottom: 20px; }
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  flex: 1;
+}
+
+.aud-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px 15px;
+}
+.aud-icon-row { font-size: 16px; margin-bottom: 8px; }
+.aud-title {
+  font-size: clamp(11px, 2.2vw, 13px);
+  font-weight: 600;
+  color: #EEE9E2;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.aud-desc {
+  font-size: clamp(9px, 1.8vw, 11px);
+  color: #8BAF98;
+  line-height: 1.45;
+}
+
+/* ════════════════════════════════
+   SLIDE 7 — CONSULT CTA
+════════════════════════════════ */
+.s7 {
+  background: var(--cream);
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.s7-counter { color: var(--text3); }
+
+.s7-accent-line { width: 40px; height: 2px; background: var(--accent); margin: 0 auto 28px; }
+
+.s7-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 5.5vw, 38px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.s7-heading em { color: var(--accent); font-style: italic; }
+
+.s7-sub {
+  font-size: clamp(11px, 2.2vw, 13px);
+  color: var(--text2);
+  line-height: 1.65;
+  max-width: 340px;
+  margin: 0 auto 28px;
+}
+
+.s7-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 28px;
+}
+
+.s7-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+.s7-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #EEE9E2;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.s7-step-text {
+  font-size: clamp(11px, 2.2vw, 13px);
+  color: var(--text);
+  line-height: 1.4;
+}
+.s7-step-text span { color: var(--text2); font-size: 0.9em; }
+
+.s7-cta {
+  background: var(--green);
+  color: #EEE9E2;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 32px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(12px, 2.4vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.s7-brand {
+  margin-top: 18px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(11px, 2.2vw, 13px);
+  color: var(--text3);
+  letter-spacing: 0.02em;
+}
+
+/* keyboard navigation highlight */
+.carousel:focus { outline: none; }
+</style>
+</head>
+<body>
+
+<div class="carousel-wrap">
+  <div class="carousel" id="c1" tabindex="0">
+    <div class="slides" id="slides1">
+
+      <!-- SLIDE 1: COVER -->
+      <div class="slide s1">
+        <span class="counter s1-counter" id="ctr1">1 / 7</span>
+        <div class="s1-rule"></div>
+        <div class="s1-brand">Practice Intuition</div>
+        <div class="s1-name">Shreyas<br>Sriram</div>
+        <div class="s1-sub">
+          Certified Biomechanics Specialist<br>
+          Personal Trainer &amp; Movement Coach
+        </div>
+        <div class="s1-pills">
+          <span class="s1-pill s1p-a">Athletes</span>
+          <span class="s1-pill s1p-b">Post-rehab</span>
+          <span class="s1-pill s1p-c">Everyday performance</span>
+          <span class="s1-pill s1p-b">WFH &amp; desk workers</span>
+        </div>
+        <div class="s1-swipe">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6.5 2.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Swipe to explore
+        </div>
+      </div>
+
+      <!-- SLIDE 2: CERTIFICATIONS -->
+      <div class="slide s2">
+        <span class="counter s2-counter" id="ctr2">2 / 7</span>
+        <div class="slide-eyebrow">Certifications</div>
+        <div class="slide-heading">Built across<br>the full spectrum</div>
+        <div class="cert-grid">
+          <div class="cert-item featured">
+            <div>
+              <div class="cert-badge b-cbs">CBS</div>
+            </div>
+            <div>
+              <div class="cert-name">Certified Biomechanics Specialist</div>
+              <div class="cert-who">Movement analysis · load optimization · injury prevention · Conor Harris</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-badge b-cpt">CPT</div>
+            <div class="cert-name">Certified Personal Trainer</div>
+            <div class="cert-who">Fitness, weight loss, muscle gain</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-badge b-ces">CES</div>
+            <div class="cert-name">Corrective Exercise Specialist</div>
+            <div class="cert-who">Pain, movement dysfunction, recovery</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-badge b-pes">PES</div>
+            <div class="cert-name">Performance Enhancement</div>
+            <div class="cert-who">Speed, agility, power, endurance</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-badge b-goata">GOATA</div>
+            <div class="cert-name">Gait Optimization &amp; Athletic Analysis</div>
+            <div class="cert-who">Movement pattern analysis</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-badge b-cnc">CNC</div>
+            <div class="cert-name">Certified Nutrition Coach</div>
+            <div class="cert-who">Woven throughout all service levels</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: EDUCATION -->
+      <div class="slide s3">
+        <span class="counter" style="position:absolute;top:16px;right:20px;font-size:11px;font-weight:500;letter-spacing:0.08em;color:rgba(214,233,221,0.45);">3 / 7</span>
+        <div class="slide-eyebrow">Academic foundation</div>
+        <div class="slide-heading">The depth<br>behind the certs</div>
+        <div class="deg-cards">
+          <div class="deg-card">
+            <div class="deg-icon di-bme">BS</div>
+            <div>
+              <div class="deg-name">Biomedical Engineering</div>
+              <div class="deg-detail">Biomechanics, systems physiology, prosthetic device design. Patent for shoulder arthroplasty component.</div>
+              <div class="deg-note">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M5.5 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Engineering logic in every movement cue
+              </div>
+            </div>
+          </div>
+          <div class="deg-card">
+            <div class="deg-icon di-hfd">MS</div>
+            <div>
+              <div class="deg-name">Human Factors Design</div>
+              <div class="deg-detail">Cognitive → biomechanical → behavioral. How your environment, mental state, and physical body form one system.</div>
+              <div class="deg-note">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M5.5 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                The whole person, not just the movement
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s3-framework">
+          "Most trainers have certs. Few have the academic scaffolding to apply them the way I do."
+        </div>
+      </div>
+
+      <!-- SLIDE 4: EXPERIENCE -->
+      <div class="slide s4">
+        <span class="counter" style="position:absolute;top:16px;right:20px;font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--text3);">4 / 7</span>
+        <div class="slide-eyebrow">Experience</div>
+        <div class="slide-heading">Clinical context<br>you can count on</div>
+        <div class="exp-rows">
+          <div class="exp-row">
+            <div class="exp-year">2021–<br>2023</div>
+            <div class="exp-dot-col"><div class="exp-dot"></div></div>
+            <div>
+              <div class="exp-role">Emergency Medical Technician</div>
+              <div class="exp-org">Field &amp; clinical · 2 years</div>
+              <div class="exp-tags"><span class="exp-tag t-emt">EMT</span></div>
+            </div>
+          </div>
+          <div class="exp-row">
+            <div class="exp-year">Dec<br>2023</div>
+            <div class="exp-dot-col"><div class="exp-dot"></div></div>
+            <div>
+              <div class="exp-role">Swim Instructor &amp; Lifeguard</div>
+              <div class="exp-org">YMCA · infants through adults · diverse populations</div>
+              <div class="exp-tags"><span class="exp-tag t-ymca">YMCA</span></div>
+            </div>
+          </div>
+          <div class="exp-row current">
+            <div class="exp-year">May<br>2024</div>
+            <div class="exp-dot-col"><div class="exp-dot"></div></div>
+            <div>
+              <div class="exp-role">Exercise Specialist &amp; Movement Coach</div>
+              <div class="exp-org">The Wellness Group · PT clinic · 1 year</div>
+              <div class="exp-tags">
+                <span class="exp-tag t-pt">PT clinic</span>
+              </div>
+            </div>
+          </div>
+          <div class="exp-row" style="background:var(--cream2);border-color:var(--border);">
+            <div class="exp-year">2026</div>
+            <div class="exp-dot-col"><div class="exp-dot" style="border-color:var(--accent);background:var(--accent);"></div></div>
+            <div>
+              <div class="exp-role" style="color:var(--accent);">Practice Intuition · Open now</div>
+              <div class="exp-org">Personal training · biomechanics · holistic coaching</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: SERVICES -->
+      <div class="slide s5">
+        <span class="counter" style="position:absolute;top:16px;right:20px;font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--text3);">5 / 7</span>
+        <div class="slide-eyebrow">Services</div>
+        <div class="slide-heading">From recovery<br>to performance</div>
+        <div class="svc-list">
+          <div class="svc-item">
+            <div class="svc-icon si-accent">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="2.5" stroke="#C4622D" stroke-width="1.3"/><path d="M3 14c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="#C4622D" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="svc-name">Certified Biomechanics Specialist</div>
+              <div class="svc-desc">Precision movement analysis · structural injury prevention · load optimization</div>
+            </div>
+          </div>
+          <div class="svc-item">
+            <div class="svc-icon si-green">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#2B4738" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="svc-name">Corrective Exercise &amp; Personal Training</div>
+              <div class="svc-desc">Movement correction · fitness goals · injury recovery</div>
+            </div>
+          </div>
+          <div class="svc-item">
+            <div class="svc-icon si-blue">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 4.5H14l-3.5 2.5 1.5 4.5L8 11l-4 2.5 1.5-4.5L2 6.5h4.5z" stroke="#1F4A7A" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="svc-name">Athletic Performance Training</div>
+              <div class="svc-desc">Speed · agility · power · endurance · return to sport</div>
+            </div>
+          </div>
+          <div class="svc-item featured-svc">
+            <div class="svc-icon si-accent">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="2" stroke="#C4622D" stroke-width="1.3"/><path d="M5 4V3a3 3 0 016 0v1" stroke="#C4622D" stroke-width="1.3"/></svg>
+            </div>
+            <div>
+              <div class="svc-name">Functional Environment Audit</div>
+              <div class="svc-desc">WFH &amp; desk workers · biomechanics + human factors · remote consult</div>
+            </div>
+          </div>
+          <div class="svc-item">
+            <div class="svc-icon si-teal">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#0F6E56" stroke-width="1.3"/><path d="M8 5v3l2 1.5" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="svc-name">Holistic Behavior + Biomechanics</div>
+              <div class="svc-desc">Full systems coaching · cognitive · behavioral · physical</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: WHO IT'S FOR -->
+      <div class="slide s6">
+        <span class="counter" style="position:absolute;top:16px;right:20px;font-size:11px;font-weight:500;letter-spacing:0.08em;color:rgba(214,233,221,0.45);">6 / 7</span>
+        <div class="slide-eyebrow">Who this is for</div>
+        <div class="slide-heading">I meet you<br>exactly where you are</div>
+        <div class="audience-grid">
+          <div class="aud-card">
+            <div class="aud-icon-row">🏃</div>
+            <div class="aud-title">Athletes</div>
+            <div class="aud-desc">Performance training, return to sport, injury prevention</div>
+          </div>
+          <div class="aud-card">
+            <div class="aud-icon-row">🩹</div>
+            <div class="aud-title">Post-rehab</div>
+            <div class="aud-desc">Post-surgical, chronic pain, movement restoration</div>
+          </div>
+          <div class="aud-card">
+            <div class="aud-icon-row">💻</div>
+            <div class="aud-title">Desk workers</div>
+            <div class="aud-desc">WFH, software devs, corporate — environment &amp; posture audit</div>
+          </div>
+          <div class="aud-card">
+            <div class="aud-icon-row">🌿</div>
+            <div class="aud-title">Everyday people</div>
+            <div class="aud-desc">Feel better, move better, build sustainable habits</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: CTA -->
+      <div class="slide s7">
+        <span class="counter" style="position:absolute;top:16px;right:20px;font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--text3);">7 / 7</span>
+        <div class="s7-accent-line"></div>
+        <div class="s7-heading">Let's find<br><em>your</em> path.</div>
+        <div class="s7-sub">
+          Free 45-min consultation. You talk, I listen. You walk away with something real.
+        </div>
+        <div class="s7-steps">
+          <div class="s7-step">
+            <div class="s7-num">1</div>
+            <div class="s7-step-text">Book a free consult call <span>— no commitment</span></div>
+          </div>
+          <div class="s7-step">
+            <div class="s7-num">2</div>
+            <div class="s7-step-text">I send you a personalized training framework</div>
+          </div>
+          <div class="s7-step">
+            <div class="s7-num">3</div>
+            <div class="s7-step-text">Go deeper as a full client <span>— discounted to start</span></div>
+          </div>
+        </div>
+        <div class="s7-cta">
+          Book at [your link]
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M8 3.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="s7-brand">Practice Intuition · @yourusername</div>
+      </div>
+
+    </div><!-- /slides -->
+  </div><!-- /carousel -->
+
+  <button class="nav-btn nav-prev" id="prev1" onclick="move(1,-1)" disabled>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2.5L4 7l5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="nav-btn nav-next" id="next1" onclick="move(1,1)">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="dots" id="dots1"></div>
+  <div class="swipe-hint">← → arrow keys · click arrows · or tap dots</div>
+</div>
+
+<script>
+const TOTAL = 7;
+const state = { idx: 0 };
+
+const slides = document.getElementById('slides1');
+const dotsEl = document.getElementById('dots1');
+const prev = document.getElementById('prev1');
+const next = document.getElementById('next1');
+
+// Build dots
+for (let i = 0; i < TOTAL; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goto(i);
+  dotsEl.appendChild(d);
+}
+
+function goto(n) {
+  state.idx = Math.max(0, Math.min(TOTAL - 1, n));
+  slides.style.transform = `translateX(-${state.idx * 100}%)`;
+  document.querySelectorAll('#dots1 .dot').forEach((d, i) => d.classList.toggle('active', i === state.idx));
+  prev.disabled = state.idx === 0;
+  next.disabled = state.idx === TOTAL - 1;
+}
+
+function move(carousel, dir) { goto(state.idx + dir); }
+
+document.getElementById('c1').addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') goto(state.idx - 1);
+  if (e.key === 'ArrowRight') goto(state.idx + 1);
+});
+
+// Touch swipe
+let tx = 0;
+const el = document.getElementById('c1');
+el.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+el.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 40) goto(state.idx + (dx < 0 ? 1 : -1));
+}, { passive: true });
+</script>
+</body>
+</html>
