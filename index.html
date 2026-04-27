@@ -10,19 +10,26 @@
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
         :root {
-            --bg: #f4eee4;
-            --paper: rgba(255, 250, 244, 0.78);
-            --ink: #191612;
-            --muted: #675f57;
-            --line: rgba(25, 22, 18, 0.14);
-            --gold: #b88a3d;
-            --blue: #2a5bff;
-            --blue-soft: rgba(42, 91, 255, 0.1);
-            --blue-border: rgba(42, 91, 255, 0.24);
-            --red: #c24d34;
-            --red-soft: rgba(194, 77, 52, 0.1);
-            --red-border: rgba(194, 77, 52, 0.22);
-            --shadow: 0 24px 60px rgba(39, 30, 22, 0.08);
+            --bg: #11161b;
+            --paper: rgba(25, 31, 38, 0.82);
+            --ink: #f7f0e7;
+            --muted: #b9aea4;
+            --line: rgba(247, 240, 231, 0.15);
+            --gold: #f0bf66;
+            --blue: #7fa3ff;
+            --blue-soft: rgba(81, 124, 255, 0.16);
+            --blue-border: rgba(127, 163, 255, 0.62);
+            --red: #ff8d67;
+            --red-soft: rgba(255, 141, 103, 0.15);
+            --red-border: rgba(255, 141, 103, 0.66);
+            --purple: #c5a4ff;
+            --purple-soft: rgba(164, 117, 255, 0.16);
+            --purple-border: rgba(197, 164, 255, 0.64);
+            --green: #b6f45e;
+            --green-soft: rgba(182, 244, 94, 0.12);
+            --green-border: rgba(182, 244, 94, 0.58);
+            --surface: rgba(18, 23, 29, 0.9);
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
         }
 
         * {
@@ -36,9 +43,10 @@
         body {
             margin: 0;
             background:
-                radial-gradient(circle at top left, rgba(42, 91, 255, 0.1), transparent 28%),
-                radial-gradient(circle at top right, rgba(194, 77, 52, 0.1), transparent 30%),
-                linear-gradient(180deg, #f7f2ea 0%, var(--bg) 100%);
+                radial-gradient(circle at top left, rgba(127, 163, 255, 0.16), transparent 30%),
+                radial-gradient(circle at top right, rgba(255, 141, 103, 0.14), transparent 32%),
+                radial-gradient(circle at 70% 60%, rgba(182, 244, 94, 0.08), transparent 28%),
+                linear-gradient(180deg, #171d24 0%, var(--bg) 100%);
             color: var(--ink);
             font-family: 'IBM Plex Sans', sans-serif;
         }
@@ -95,9 +103,9 @@
 
         .hero {
             display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
-            gap: 32px;
-            padding: 34px 0 18px;
+            grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+            gap: 28px;
+            padding: 34px 0 10px;
             align-items: start;
         }
 
@@ -114,6 +122,14 @@
             font-size: 1.2rem;
             font-weight: 500;
             color: var(--ink);
+        }
+
+        .role-accent.blue {
+            color: #afc2ff;
+        }
+
+        .role-accent.red {
+            color: #ffb199;
         }
 
         .hero-copy {
@@ -150,37 +166,18 @@
             border-color: rgba(25, 22, 18, 0.28);
         }
 
-        .hero-side,
         .focus-panel,
         .loops-panel,
         .identity-panel {
-            background: rgba(255, 250, 244, 0.72);
+            background: var(--paper);
             border: 1px solid var(--line);
             box-shadow: var(--shadow);
         }
 
-        .hero-side {
-            border-radius: 26px;
-            padding: 24px;
-        }
-
-        .hero-side h2 {
-            margin: 0 0 10px;
-            font-family: 'Fraunces', serif;
-            font-size: 1.8rem;
-            line-height: 1.1;
-            letter-spacing: 0;
-        }
-
-        .hero-side p,
         .focus-panel > p:not(.section-label),
         .identity-panel p:not(.section-label) {
             color: var(--muted);
             line-height: 1.7;
-        }
-
-        .hero-side p {
-            margin: 0;
         }
 
         .focus-subcopy {
@@ -203,7 +200,7 @@
             height: 42px;
             border-radius: 999px;
             border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.06);
             color: var(--muted);
             transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
@@ -213,6 +210,13 @@
             transform: translateY(-2px);
             border-color: rgba(25, 22, 18, 0.26);
             color: var(--ink);
+        }
+
+        .icon-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
         .section-label {
@@ -238,7 +242,7 @@
         }
 
         .focus-panel > p:not(.section-label) {
-            max-width: 760px;
+            max-width: 880px;
             font-size: 1.05rem;
         }
 
@@ -261,6 +265,30 @@
             padding: 18px 0;
         }
 
+        .hero .timeline {
+            margin-top: 0;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: var(--paper);
+            box-shadow: var(--shadow);
+        }
+
+        .lifecycle-mark {
+            font-weight: 600;
+            text-decoration-line: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+
+        .lifecycle-mark.people {
+            text-decoration-color: var(--red);
+        }
+
+        .lifecycle-mark.product {
+            text-decoration-color: var(--blue);
+        }
+
         .timeline-label {
             margin: 0 0 12px;
             font-family: 'IBM Plex Mono', monospace;
@@ -275,21 +303,62 @@
             gap: 12px;
         }
 
+        .hero .timeline-track {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
         .timeline-item {
             display: block;
             min-height: 118px;
             padding: 14px;
             border-radius: 18px;
             border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.48);
+            background: rgba(255, 255, 255, 0.045);
             transition: transform 0.2s ease, border-color 0.2s ease;
             position: relative;
+        }
+
+        .hero .timeline-item {
+            min-height: 0;
+            padding: 12px 14px;
         }
 
         .timeline-item:hover,
         .timeline-item:focus-visible {
             transform: translateY(-2px);
-            border-color: rgba(25, 22, 18, 0.24);
+            border-color: rgba(247, 240, 231, 0.26);
+        }
+
+        .timeline-item.purple {
+            border-color: var(--purple-border);
+        }
+
+        .timeline-item.purple.fill {
+            background: linear-gradient(90deg, rgba(197, 164, 255, 0.16), rgba(255, 255, 255, 0.035));
+        }
+
+        .timeline-item.red {
+            border-color: var(--red-border);
+        }
+
+        .timeline-item.blue {
+            border-color: var(--blue-border);
+        }
+
+        .timeline-item.founder-tab {
+            min-height: 0;
+            padding: 10px 14px;
+            border-radius: 999px;
+            text-align: center;
+        }
+
+        .timeline-item.founder-tab .timeline-name {
+            margin: 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--ink);
         }
 
         .timeline-year {
@@ -298,6 +367,10 @@
             font-size: 0.69rem;
             color: var(--muted);
             margin-bottom: 12px;
+        }
+
+        .hero .timeline-year {
+            margin-bottom: 6px;
         }
 
         .timeline-name {
@@ -310,8 +383,8 @@
 
         .timeline-meta {
             display: block;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            font-size: 0.78rem;
+            line-height: 1.45;
             color: var(--muted);
         }
 
@@ -324,6 +397,10 @@
             font-family: 'IBM Plex Mono', monospace;
             font-size: 1.15rem;
             color: rgba(25, 22, 18, 0.34);
+        }
+
+        .hero .timeline-item:not(:last-child)::after {
+            display: none;
         }
 
         .workspace {
@@ -347,38 +424,43 @@
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
+        .foundation-grid.two {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
         .product-column,
         .foundation-column {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
+        }
+
+        .product-column {
+            align-self: stretch;
         }
 
         .column-head {
-            padding: 14px 16px;
-            border-radius: 18px;
+            padding: 0 16px 4px;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.72rem;
+            font-size: clamp(1rem, 1.35vw, 1.28rem);
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.02em;
         }
 
         .column-head.blue {
             color: var(--blue);
-            background: var(--blue-soft);
-            border: 1px solid var(--blue-border);
         }
 
         .column-head.red {
             color: var(--red);
-            background: var(--red-soft);
-            border: 1px solid var(--red-border);
         }
 
         .product-card,
         .small-card {
             display: block;
-            background: rgba(255, 252, 249, 0.78);
+            background: var(--surface);
             box-shadow: var(--shadow);
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
@@ -386,14 +468,18 @@
         .product-card {
             padding: 20px;
             border-radius: 24px;
-            border: 1px solid;
+            border: 2px solid;
             min-height: 220px;
+            flex: 1;
+            text-align: center;
         }
 
         .small-card {
-            border: 1px solid var(--line);
+            border: 2px solid var(--line);
             border-radius: 20px;
             padding: 18px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(27, 34, 42, 0.94), rgba(255, 255, 255, 0.04));
         }
 
         .product-card:hover,
@@ -401,15 +487,22 @@
         .small-card:hover,
         .small-card:focus-visible {
             transform: translateY(-3px);
-            box-shadow: 0 28px 70px rgba(39, 30, 22, 0.12);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
         }
 
         .product-card.blue {
             border-color: var(--blue-border);
+            background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(42, 91, 255, 0.12));
         }
 
         .product-card.red {
             border-color: var(--red-border);
+            background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(194, 77, 52, 0.14));
+        }
+
+        .product-column .product-card:only-of-type,
+        .product-column .product-card:nth-child(2):nth-last-child(1) {
+            min-height: 0;
         }
 
         .product-top {
@@ -418,6 +511,10 @@
             justify-content: space-between;
             gap: 14px;
             margin-bottom: 12px;
+        }
+
+        .product-card .product-top {
+            align-items: center;
         }
 
         .product-tag,
@@ -440,33 +537,67 @@
             color: var(--red);
         }
 
+        .split-bar.purple .product-tag,
+        .split-bar.purple .product-arrow {
+            color: var(--purple);
+        }
+
         .product-card h3 {
             margin: 0 0 10px;
             font-family: 'Fraunces', serif;
-            font-size: 1.85rem;
+            font-size: 2rem;
             line-height: 1.02;
             letter-spacing: 0;
         }
 
+        .role-subtitle {
+            margin: -2px 0 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        .experience-year {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
         .small-card h3 {
             margin: 0 0 8px;
-            font-size: 1.12rem;
+            font-size: 1.22rem;
             line-height: 1.3;
+        }
+
+        .foundation-column:first-child .small-card {
+            border-color: var(--blue-border);
+        }
+
+        .foundation-column:last-child .small-card {
+            border-color: var(--red-border);
         }
 
         .product-card p,
         .small-card p {
             color: var(--muted);
-            line-height: 1.65;
+            font-size: 0.94rem;
+            line-height: 1.55;
         }
 
         .product-card p {
             margin: 0 0 16px;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .small-card p {
             margin: 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .chip-block {
@@ -481,20 +612,129 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            justify-content: center;
         }
 
         .chip {
-            padding: 5px 9px;
+            padding: 6px 10px;
             border-radius: 999px;
             font-size: 0.72rem;
             font-family: 'IBM Plex Mono', monospace;
-            border: 1px solid var(--line);
+            border: 1px solid rgba(247, 240, 231, 0.2);
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .blue .chip,
+        .split-bar.blue .chip {
+            border-color: rgba(42, 91, 255, 0.34);
+            background: rgba(42, 91, 255, 0.075);
+        }
+
+        .red .chip,
+        .split-bar.red .chip {
+            border-color: rgba(194, 77, 52, 0.34);
+            background: rgba(194, 77, 52, 0.08);
+        }
+
+        .split-bar.purple .chip {
+            border-color: rgba(108, 59, 209, 0.34);
+            background: rgba(108, 59, 209, 0.08);
+        }
+
+        .card-split,
+        .split-bar {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .split-unit {
+            padding-top: 2px;
+        }
+
+        .split-unit + .split-unit {
+            border-left: 1px solid var(--line);
+            padding-left: 14px;
+        }
+
+        .blue .split-unit + .split-unit,
+        .split-bar.blue .split-panel + .split-panel {
+            border-left-color: rgba(42, 91, 255, 0.28);
+        }
+
+        .red .split-unit + .split-unit,
+        .split-bar.red .split-panel + .split-panel {
+            border-left-color: rgba(194, 77, 52, 0.3);
+        }
+
+        .split-bar.purple .split-panel + .split-panel {
+            border-left-color: rgba(108, 59, 209, 0.3);
+        }
+
+        .split-unit h4 {
+            margin: 0 0 8px;
+            font-size: 1.08rem;
+            line-height: 1.25;
+        }
+
+        .split-unit p {
+            margin-bottom: 12px;
+            font-size: 0.94rem;
+        }
+
+        .split-bar {
+            padding: 20px;
+            border-radius: 24px;
+            border: 2px solid var(--line);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .split-bar.blue {
+            border-color: var(--blue-border);
+            background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(42, 91, 255, 0.11));
+        }
+
+        .split-bar.red {
+            border-color: var(--red-border);
+            background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(194, 77, 52, 0.12));
+        }
+
+        .split-bar.purple {
+            border-color: var(--purple-border);
+            background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(108, 59, 209, 0.15));
+        }
+
+        .split-panel {
+            display: block;
+            min-height: 100%;
+        }
+
+        .split-panel h3 {
+            margin: 0 0 10px;
+            font-family: 'Fraunces', serif;
+            font-size: 1.75rem;
+            line-height: 1.05;
+            letter-spacing: 0;
+        }
+
+        .split-panel p {
+            margin: 0 0 14px;
             color: var(--muted);
-            background: rgba(255, 255, 255, 0.5);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .split-panel + .split-panel {
+            border-left: 1px solid var(--line);
+            padding-left: 18px;
         }
 
         .loops-panel,
         .identity-panel {
+            display: block;
             border-radius: 24px;
             padding: 24px;
         }
@@ -506,8 +746,48 @@
         .loop-card {
             padding: 16px;
             border-radius: 18px;
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.045);
             border: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .loops-panel.green {
+            border-color: var(--green-border);
+            background: linear-gradient(180deg, rgba(25, 31, 38, 0.9), rgba(182, 244, 94, 0.07));
+        }
+
+        .loops-panel.green .section-label,
+        .loops-panel.green .loop-card strong {
+            color: var(--green);
+        }
+
+        .loops-panel.green .loop-card {
+            border-color: rgba(182, 244, 94, 0.28);
+        }
+
+        .identity-dot {
+            display: inline-block;
+            width: 0.42em;
+            height: 0.42em;
+            margin: 0 0.34em;
+            border-radius: 999px;
+            vertical-align: 0.12em;
+        }
+
+        .identity-dot.red {
+            background: rgba(255, 141, 103, 0.78);
+        }
+
+        .identity-dot.green {
+            background: rgba(182, 244, 94, 0.72);
+        }
+
+        .identity-dot.blue {
+            background: rgba(127, 163, 255, 0.78);
+        }
+
+        .identity-dot.purple {
+            background: rgba(197, 164, 255, 0.78);
         }
 
         .loop-card strong {
@@ -530,18 +810,25 @@
 
         .identity-panel {
             margin-top: 28px;
+            text-align: center;
         }
 
         .identity-panel h2 {
-            margin: 8px 0 10px;
+            margin: 0 0 10px;
             font-family: 'Fraunces', serif;
             font-size: clamp(1.9rem, 3vw, 2.8rem);
             line-height: 1.05;
             letter-spacing: 0;
         }
 
+        .identity-big {
+            font-size: 1.12em;
+        }
+
         .identity-panel p:not(.section-label) {
             max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         footer {
@@ -562,9 +849,20 @@
             .product-grid,
             .timeline-track,
             .foundation-grid,
+            .foundation-grid.two,
+            .card-split,
+            .split-bar,
             .loops-track,
             .focus-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .split-unit + .split-unit,
+            .split-panel + .split-panel {
+                border-left: none;
+                border-top: 1px solid var(--line);
+                padding-left: 0;
+                padding-top: 14px;
             }
 
             .timeline-item:not(:last-child)::after {
@@ -605,101 +903,69 @@
             <section class="hero">
                 <div>
                     <h1>Shreyas Sriram</h1>
-                    <div class="role-line">Clinical AI Evaluator · Human Factors Engineer · Human Performance Specialist</div>
-                    <div class="credential-row">
-                        <a class="credential-pill" href="/experiences/">Clinical AI Safety &amp; Evaluation</a>
-                        <a class="credential-pill" href="/education/">MS Human Factors Information Design</a>
-                        <a class="credential-pill" href="/education/">BS Biomedical Engineering</a>
-                        <a class="credential-pill" href="/experiences/">Patent Holder: Glenoid Implant</a>
-                        <a class="credential-pill" href="/experiences/">Biomechanics + Movement Coaching</a>
-                        <a class="credential-pill" href="/education/">AWS Developer Associate</a>
-                    </div>
+                    <div class="role-line"><span class="role-accent blue">Human-Centered Product-Minded Engineer</span> | <span class="role-accent red">Biomechanics Specialist</span></div>
                     <p class="hero-copy">
-                        I design, evaluate, and prototype human-centered AI systems where trust, safety, behavior, and embodiment matter.
+                        I design, evaluate, and prototype human-centered systems where trust, safety, embodiment, &amp; outcomes matter.
                     </p>
+                    <section id="focus" class="focus-panel" aria-labelledby="focus-title">
+                        <p class="section-label">Current Focus</p>
+                        <h2 id="focus-title">Human-centered systems for high-stakes interaction.</h2>
+                        <p>
+                            My work operates at the intersection of the <span class="lifecycle-mark people">people development life cycle</span> &amp; <span class="lifecycle-mark product">product development life cycle</span>. I bring a systems lens to multimodal interfaces, conversational design, and public health; treating the body as a feedback loop across cognitive, biomechanical, and behavioral systems.
+                        </p>
+                        <div class="icon-row">
+                            <a href="https://linkedin.com/in/shreyas-sriram" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="icon-text">in</span></a>
+                            <a href="https://github.com/codesbyshrey" target="_blank" rel="noopener noreferrer" title="GitHub"><span class="icon-text">GH</span></a>
+                            <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" title="Substack"><i data-lucide="newspaper" size="18"></i></a>
+                            <a href="https://medium.com/@picsbyshrey" target="_blank" rel="noopener noreferrer" title="Medium"><i data-lucide="pen-tool" size="18"></i></a>
+                        </div>
+                    </section>
                 </div>
 
-                <aside class="hero-side">
-                    <h2>Human-centered systems for high-stakes interaction.</h2>
-                    <p>
-                        My work connects clinical experience, human factors methods, and AI product development to evaluate how people perceive, trust, and act with intelligent systems.
-                    </p>
-                    <p class="focus-subcopy">
-                        I bring the same systems lens to embodied interfaces and movement coaching, treating the body as a feedback system shaped by perception, behavior, environment, and design.
-                    </p>
-                    <div class="icon-row">
-                        <a href="https://linkedin.com/in/shreyas-sriram" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i data-lucide="linkedin" size="18"></i></a>
-                        <a href="https://github.com/codesbyshrey" target="_blank" rel="noopener noreferrer" title="GitHub"><i data-lucide="github" size="18"></i></a>
-                        <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" title="Substack"><i data-lucide="newspaper" size="18"></i></a>
-                        <a href="https://medium.com/@picsbyshrey" target="_blank" rel="noopener noreferrer" title="Medium"><i data-lucide="pen-tool" size="18"></i></a>
+                <section class="timeline" aria-labelledby="timeline-label">
+                    <p id="timeline-label" class="timeline-label">Chronology</p>
+                    <div class="timeline-track">
+                        <a class="timeline-item purple fill" href="/education/">
+                            <span class="timeline-year">2019</span>
+                            <span class="timeline-name">BS Biomedical Engineering</span>
+                            <span class="timeline-meta">Medical-device design, biomechanics, and systems engineering.</span>
+                        </a>
+
+                        <a class="timeline-item red" href="/experiences/">
+                            <span class="timeline-year">2020-2022</span>
+                            <span class="timeline-name">Patent + Clinical Exposure</span>
+                            <span class="timeline-meta">Glenoid implant work, EMT training, patient care, and rehab context.</span>
+                        </a>
+
+                        <a class="timeline-item blue" href="/education/">
+                            <span class="timeline-year">2023</span>
+                            <span class="timeline-name">Software + Cloud</span>
+                            <span class="timeline-meta">Full-stack development, AWS credentials, startup engineering, and delivery.</span>
+                        </a>
+
+                        <a class="timeline-item red" href="/experiences/">
+                            <span class="timeline-year">2024-2025</span>
+                            <span class="timeline-name">Movement + Coaching</span>
+                            <span class="timeline-meta">Applied biomechanics, personal training, swim instruction, and coaching.</span>
+                        </a>
+
+                        <a class="timeline-item blue" href="/education/">
+                            <span class="timeline-year">2025</span>
+                            <span class="timeline-name">MS Human Factors</span>
+                            <span class="timeline-meta">Clinical simulation, AI trust research, usability, and multimodal design.</span>
+                        </a>
+
+                        <a class="timeline-item blue" href="/experiences/">
+                            <span class="timeline-year">2026</span>
+                            <span class="timeline-name">Clinical AI Evaluation</span>
+                            <span class="timeline-meta">AI safety, LLM evaluation rubrics, ethics, and human-in-the-loop workflows.</span>
+                        </a>
+
+                        <a class="timeline-item purple founder-tab" href="/expression/">
+                            <span class="timeline-name">Founder: Practice Intuition</span>
+                        </a>
                     </div>
-                </aside>
-            </section>
-
-            <section id="focus" class="focus-panel" aria-labelledby="focus-title">
-                <p class="section-label">Current Focus</p>
-                <h2 id="focus-title">Clinical AI, human factors, and embodied health systems.</h2>
-                <p>
-                    I work across AI safety evaluation, LLM-based clinical simulation, trust calibration research, and applied biomechanics. My through-line is designing systems that respect how humans actually perceive, decide, communicate, move, and recover.
-                </p>
-                <div class="focus-grid">
-                    <div class="loop-card">
-                        <strong>Clinical AI</strong>
-                        <p class="loop-title">Safety, evaluation, and human-in-the-loop review</p>
-                        <p class="loop-copy">Clinical and behavioral consultation for trustworthy AI-human interactions in high-stakes contexts.</p>
-                    </div>
-                    <div class="loop-card">
-                        <strong>Human Factors</strong>
-                        <p class="loop-title">Trust, comprehension, and decision support</p>
-                        <p class="loop-copy">Mixed-methods research, usability testing, evidence labeling, and interaction design.</p>
-                    </div>
-                    <div class="loop-card">
-                        <strong>Embodied Systems</strong>
-                        <p class="loop-title">Movement, perception, and performance</p>
-                        <p class="loop-copy">Biomechanics coaching, haptic interfaces, and movement-centered product thinking.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="timeline" aria-labelledby="timeline-label">
-                <p id="timeline-label" class="timeline-label">Chronology</p>
-                <div class="timeline-track">
-                    <a class="timeline-item" href="/education/">
-                        <span class="timeline-year">2019</span>
-                        <span class="timeline-name">BS Biomedical Engineering</span>
-                        <span class="timeline-meta">Medical-device design, biomechanics, and systems engineering foundation.</span>
-                    </a>
-
-                    <a class="timeline-item" href="/experiences/">
-                        <span class="timeline-year">2020-2022</span>
-                        <span class="timeline-name">Patent + Clinical Exposure</span>
-                        <span class="timeline-meta">Glenoid implant invention, EMT training, patient-facing care, and rehab context.</span>
-                    </a>
-
-                    <a class="timeline-item" href="/education/">
-                        <span class="timeline-year">2023</span>
-                        <span class="timeline-name">Software + Cloud</span>
-                        <span class="timeline-meta">Full-stack development, AWS certifications, startup engineering, and product delivery.</span>
-                    </a>
-
-                    <a class="timeline-item" href="/experiences/">
-                        <span class="timeline-year">2024-2025</span>
-                        <span class="timeline-name">Movement + Coaching</span>
-                        <span class="timeline-meta">Applied biomechanics, personal training, swim instruction, and high-volume client interaction.</span>
-                    </a>
-
-                    <a class="timeline-item" href="/education/">
-                        <span class="timeline-year">2025</span>
-                        <span class="timeline-name">MS Human Factors</span>
-                        <span class="timeline-meta">Clinical simulation, AI trust research, usability, and multimodal interaction design.</span>
-                    </a>
-
-                    <a class="timeline-item" href="/experiences/">
-                        <span class="timeline-year">2026</span>
-                        <span class="timeline-name">Clinical AI Evaluation</span>
-                        <span class="timeline-meta">AI safety, LLM evaluation rubrics, system ethics, and human-in-the-loop workflows.</span>
-                    </a>
-                </div>
+                </section>
             </section>
 
             <section id="work" class="workspace">
@@ -708,110 +974,65 @@
                         <div class="product-column">
                             <div class="column-head blue">Clinical + Digital Systems</div>
 
-                            <a class="product-card blue" href="/experiences/">
-                                <div class="product-top">
-                                    <span class="product-tag">Clinical AI Safety</span>
-                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                                </div>
-                                <h3>Clinical AI Expert</h3>
-                                <p>
-                                    Supporting AI safety and evaluation programs through clinical consultation and behavioral analysis. Work focuses on trustworthy, empathetic, and safe AI-human interactions in high-stakes research and care contexts.
-                                </p>
-                                <div class="chip-block">
-                                    <p class="chip-label">Relevant Concepts</p>
-                                    <div class="chips">
-                                        <span class="chip">AI Safety</span>
-                                        <span class="chip">LLM Evaluation</span>
-                                        <span class="chip">System Ethics</span>
-                                        <span class="chip">Human-in-the-Loop</span>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a class="product-card blue" href="/NBME-CCS/">
+                            <a class="product-card blue" href="https://lovable.dev/projects/4106a248-455a-45df-a72a-7c67dac3f779" target="_blank" rel="noopener noreferrer">
                                 <div class="product-top">
                                     <span class="product-tag">Clinical AI</span>
+                                    <span class="experience-year">2025</span>
                                     <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                                 </div>
                                 <h3>NBME Clinical Communication Simulator</h3>
-                                <p>0-to-1 clinical roleplay simulator using LLM-based agents, RAG, ASR/STT/TTS, and patient persona design to support medical communication training.</p>
-                                <div class="chip-block">
-                                    <p class="chip-label">Relevant Concepts</p>
-                                    <div class="chips">
-                                        <span class="chip">Clinical Simulation</span>
-                                        <span class="chip">RAG</span>
-                                        <span class="chip">ASR / STT / TTS</span>
-                                        <span class="chip">Patient Personas</span>
+                                <p class="role-subtitle">Lead Product Engineer</p>
+                                <p>0-to-1 clinical roleplay simulator using LLM-based agents, voice workflows, and patient persona design to support medical communication training.</p>
+                                <div class="card-split">
+                                    <div class="split-unit">
+                                        <h4>Concepts</h4>
+                                        <div class="chips">
+                                            <span class="chip">Clinical Simulation</span>
+                                            <span class="chip">Patient Personas</span>
+                                            <span class="chip">OSCE Evaluation</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="chip-block">
-                                    <p class="chip-label">Tech Stack</p>
-                                    <div class="chips">
-                                        <span class="chip">OpenAI</span>
-                                        <span class="chip">Pinecone RAG</span>
-                                        <span class="chip">React</span>
+                                    <div class="split-unit">
+                                        <h4>Tech Stack</h4>
+                                        <div class="chips">
+                                            <span class="chip">OpenAI</span>
+                                            <span class="chip">Pinecone RAG</span>
+                                            <span class="chip">React</span>
+                                            <span class="chip">ASR / STT / TTS</span>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
 
                             <a class="product-card blue" href="/experiences/">
                                 <div class="product-top">
-                                    <span class="product-tag">Human Factors Research</span>
+                                    <span class="product-tag">Clinical AI + Research</span>
+                                    <span class="experience-year">2025-2026</span>
                                     <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                                 </div>
-                                <h3>AI Evidence Tools Study</h3>
-                                <p>
-                                    Mixed-methods study comparing AI-mediated evidence tools and examining user trust, comprehension, citation interpretation, and overconfidence in generated answers.
-                                </p>
-                                <div class="chips">
-                                    <span class="chip">Trust Calibration</span>
-                                    <span class="chip">Mixed Methods</span>
-                                    <span class="chip">ANOVA / Regression</span>
-                                    <span class="chip">Responsible AI</span>
-                                </div>
-                            </a>
-
-                            <a class="product-card blue" href="/kinesthetic/">
-                                <div class="product-top">
-                                    <span class="product-tag">Digital Implementation</span>
-                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                                </div>
-                                <h3>Practice Intuition / Kinesthetic Literacy</h3>
-                                <p>Founder of a human-systems coaching and design initiative translating cognitive, biomechanical, and behavioral systems into movement education, self-regulation tools, and AI-assisted coaching workflows.</p>
-                                <div class="chip-block">
-                                    <p class="chip-label">Relevant Concepts</p>
-                                    <div class="chips">
-                                        <span class="chip">Applied Biomechanics</span>
-                                        <span class="chip">Behavior Design</span>
-                                        <span class="chip">Movement Coaching</span>
-                                        <span class="chip">Health AI</span>
+                                <h3>Clinical AI Evaluation + Evidence Tools Study</h3>
+                                <div class="card-split">
+                                    <div class="split-unit">
+                                        <h4>mpathic</h4>
+                                        <p>Evaluations for human-AI interactions in clinical contexts, focused on trust, empathy, safety, and high-stakes communication.</p>
+                                        <div class="chips">
+                                            <span class="chip">AI Safety</span>
+                                            <span class="chip">LLM Evaluation</span>
+                                            <span class="chip">Human-in-the-Loop</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="chip-block">
-                                    <p class="chip-label">Tech Stack</p>
-                                    <div class="chips">
-                                        <span class="chip">Google AI Studio</span>
-                                        <span class="chip">Pinecone RAG</span>
-                                        <span class="chip">React</span>
-                                        <span class="chip">Skills.md</span>
+                                    <div class="split-unit">
+                                        <h4>Mixed-methods AI evidence study</h4>
+                                        <p>Research examining trust calibration, comprehension, citation interpretation, and overconfidence in medical AI-generated answers.</p>
+                                        <div class="chips">
+                                            <span class="chip">Trust Calibration</span>
+                                            <span class="chip">Mixed Methods</span>
+                                            <span class="chip">Responsible AI</span>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
 
-                            <a class="product-card blue" href="/praxik/">
-                                <div class="product-top">
-                                    <span class="product-tag">Healthcare Product</span>
-                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                                </div>
-                                <h3>Healthcare AI Product Incubation</h3>
-                                <p>Early product exploration for healthcare communication tools, including system design, product architecture, cloud infrastructure, and AI-enabled workflow concepts.</p>
-                                <div class="chips">
-                                    <span class="chip">AWS</span>
-                                    <span class="chip">Cloud Infrastructure</span>
-                                    <span class="chip">Product Architecture</span>
-                                    <span class="chip">Healthcare</span>
-                                </div>
-                            </a>
                         </div>
 
                         <div class="product-column">
@@ -820,45 +1041,34 @@
                             <a class="product-card red" href="/haptrek/">
                                 <div class="product-top">
                                     <span class="product-tag">Embodied Interface</span>
+                                    <span class="experience-year">2025</span>
                                     <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                                 </div>
                                 <h3>HapTrek</h3>
-                                <p>Hiking biofeedback and haptic navigation for non-visual guidance, including fall detection through a 3-axis accelerometer. Built with public health safety in mind while applying human body dynamics directly to product design.</p>
+                                <p class="role-subtitle">Multimodal Developer / Product Engineer</p>
+                                <p>Hiking biofeedback and haptic navigation for non-visual guidance, fall detection, and iterative field testing in outdoor safety contexts. Developed the fall-detection safety system using accelerometer data to translate motion events into actionable alerts.</p>
                                 <div class="chips">
                                     <span class="chip">Haptics</span>
                                     <span class="chip">3-Axis Accelerometer</span>
                                     <span class="chip">Arduino</span>
+                                    <span class="chip">C++</span>
                                     <span class="chip">Fall Detection</span>
-                                </div>
-                            </a>
-
-                            <a id="biomechanics" class="product-card red" href="/experiences/">
-                                <div class="product-top">
-                                    <span class="product-tag">Human Performance</span>
-                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                                </div>
-                                <h3>Applied Biomechanics Coaching</h3>
-                                <p>
-                                    Movement assessment and coaching practice integrating biomechanics, motor learning, breath mechanics, gait, strength progression, and client education.
-                                </p>
-                                <div class="chips">
-                                    <span class="chip">Assessment</span>
-                                    <span class="chip">Movement Coaching</span>
-                                    <span class="chip">Motor Learning</span>
-                                    <span class="chip">Recovery</span>
+                                    <span class="chip">Field Testing</span>
                                 </div>
                             </a>
 
                             <a class="product-card red" href="/implant/">
                                 <div class="product-top">
                                     <span class="product-tag">Patent and Device</span>
+                                    <span class="experience-year">2022</span>
                                     <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                                 </div>
-                                <h3>Patent Holder</h3>
-                                <p>The Glenoid Implant was developed for shoulder arthroplasty, with a novel design intended to improve implant longevity, improve biocompatibility, reduce revisional surgery time, and support better rehabilitation outcomes.</p>
+                                <h3>Glenoid Implant Patent Inventor</h3>
+                                <p><strong>INVENTOR</strong> on 0-to-1 medical-device development for shoulder arthroplasty, focused on modular design, implant longevity, revisional surgery efficiency, and rehabilitation outcomes. Stress testing 3D-printed prototypes helped evaluate design benefits quantitatively.</p>
                                 <div class="chips">
-                                    <span class="chip">Glenoid Implant</span>
                                     <span class="chip">Shoulder Arthroplasty</span>
+                                    <span class="chip">Mechanical Testing</span>
+                                    <span class="chip">Modular</span>
                                     <span class="chip">Biocompatibility</span>
                                 </div>
                             </a>
@@ -866,80 +1076,130 @@
                     </div>
                 </div>
 
-                <div id="systems" class="loops-panel">
-                    <p class="section-label">Systems I Work Across</p>
-                    <div class="loops-track">
-                        <div class="loop-card">
-                            <strong>Clinical AI</strong>
-                            <p class="loop-title">Trust → Safety → Evaluation</p>
-                            <p class="loop-copy">Designing and evaluating AI behavior for high-stakes clinical and behavioral contexts.</p>
+                <div class="split-bar purple" aria-label="Healthcare AI and clinical application">
+                    <a class="split-panel" href="/experiences/">
+                        <div class="product-top">
+                            <span class="product-tag">Healthcare AI Product Incubation</span>
+                            <span class="experience-year">2024</span>
+                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                         </div>
-
-                        <div class="loop-card">
-                            <strong>Human Factors</strong>
-                            <p class="loop-title">Perception → Decision → Action</p>
-                            <p class="loop-copy">Studying how people understand interfaces, calibrate trust, and make decisions under uncertainty.</p>
+                        <h3>ChatEMT</h3>
+                        <p>Healthcare communication product incubation across clinical decision-support concepts, patient workflows, system architecture, and AI prototyping.</p>
+                        <div class="chips">
+                            <span class="chip">Healthcare AI</span>
+                            <span class="chip">Product Architecture</span>
+                            <span class="chip">Cloud Infrastructure</span>
                         </div>
-
-                        <div class="loop-card">
-                            <strong>Embodied Systems</strong>
-                            <p class="loop-title">Assessment → Intervention → Retest</p>
-                            <p class="loop-copy">Applying biomechanics and movement coaching to help people build better feedback loops with their bodies.</p>
+                    </a>
+                    <a class="split-panel" href="/experiences/">
+                        <div class="product-top">
+                            <span class="product-tag">Clinical Application</span>
+                            <span class="experience-year">2021-2022</span>
+                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                         </div>
-                    </div>
+                        <h3>EMT + Patient-Facing Care</h3>
+                        <p>Emergency medical care, patient transport, rapid assessment, and clinical exposure grounding later healthcare AI design.</p>
+                        <div class="chips">
+                            <span class="chip">EMT-B</span>
+                            <span class="chip">Physical Therapy Clinic</span>
+                            <span class="chip">Patient Communication</span>
+                            <span class="chip">Clinical Context</span>
+                        </div>
+                    </a>
                 </div>
 
-                <div class="foundation-grid">
+                <div class="split-bar purple" aria-label="Practice Intuition digital and coaching systems">
+                    <a class="split-panel" href="/expression/">
+                        <div class="product-top">
+                            <span class="product-tag">Founder: Practice Intuition</span>
+                            <span class="experience-year">2026</span>
+                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                        </div>
+                        <h3>Bonita Intelligence System</h3>
+                        <p>AI wellness intelligence MVP for TIME, SPACE, and SELF triage, structured protocols, safety boundaries, and a full-stack product direction.</p>
+                        <div class="chips">
+                            <span class="chip">Gemini</span>
+                            <span class="chip">React</span>
+                            <span class="chip">Wellness AI</span>
+                        </div>
+                    </a>
+                    <a id="biomechanics" class="split-panel" href="/expression/">
+                        <div class="product-top">
+                            <span class="product-tag">Biomechanics Coaching</span>
+                            <span class="experience-year">2025</span>
+                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                        </div>
+                        <h3>Applied Biomechanics Coaching</h3>
+                        <p>Biomechanics assessment and movement coaching to assist with pain-free movement, strength training, and human performance.</p>
+                        <div class="chips">
+                            <span class="chip">Assessment</span>
+                            <span class="chip">Physical Therapy Clinic</span>
+                            <span class="chip">Movement Coaching</span>
+                            <span class="chip">Motor Learning</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="foundation-grid two">
                     <div class="foundation-column">
                         <p class="section-label">Research</p>
                         <a class="small-card" href="/nathan-sports/">
-                            <span class="mini">UX Research</span>
-                            <h3>Nathan Sports Usability</h3>
-                            <p>Moderated research on product discovery, purchase decision drivers, customer retention, and mobile interaction friction.</p>
-                        </a>
-                    </div>
-
-                    <div class="foundation-column">
-                        <p class="section-label">Evaluation</p>
-                        <a class="small-card" href="/experiences/">
-                            <span class="mini">Clinical AI</span>
-                            <h3>AI Safety Evaluation</h3>
-                            <p>Clinical and behavioral consultation for AI-human interaction evaluation in high-stakes contexts.</p>
-                        </a>
-                    </div>
-
-                    <div class="foundation-column">
-                        <p class="section-label">Embodied Practice</p>
-                        <a class="small-card" href="/experiences/">
-                            <span class="mini">Movement</span>
-                            <h3>Human Performance Coaching</h3>
-                            <p>Applied biomechanics, motor learning, swim instruction, strength coaching, and recovery-informed client education.</p>
+                            <div class="product-top">
+                                <span class="mini">UX Research</span>
+                                <span class="experience-year">2025</span>
+                            </div>
+                            <h3>Nathan Sports Usability Researcher</h3>
+                            <p>Moderated research on product discovery, purchase drivers, retention, mobile friction, and delivered design recommendations.</p>
                         </a>
                     </div>
 
                     <div class="foundation-column">
                         <p class="section-label">Build</p>
                         <a class="small-card" href="/education/">
-                            <span class="mini">Product Build</span>
-                            <h3>Full-Stack + Cloud</h3>
-                            <p>React, TypeScript, Python, Django, AWS, GCP, RAG, and rapid prototyping for healthcare and education workflows.</p>
+                            <div class="product-top">
+                                <span class="mini">Product Build</span>
+                                <span class="experience-year">2024</span>
+                            </div>
+                            <h3>Full Stack Cloud Developer</h3>
+                            <p>React, TypeScript, Python, Django, AWS, GCP, RAG, startup experience, and rapid prototyping for healthcare and education workflows.</p>
                         </a>
                     </div>
                 </div>
+
+                <a id="systems" class="loops-panel green" href="/about/">
+                    <p class="section-label">Systems I Work Across</p>
+                    <div class="loops-track">
+                        <div class="loop-card">
+                            <strong>Clinical AI</strong>
+                            <p class="loop-title">Trust → Safety → Evaluation</p>
+                            <p class="loop-copy">Clinical roleplay, evaluator workflows, AI safety review, and high-stakes communication systems.</p>
+                        </div>
+
+                        <div class="loop-card">
+                            <strong>Human Factors</strong>
+                            <p class="loop-title">Perception → Intention → Action</p>
+                            <p class="loop-copy">Researching how people understand interfaces, calibrate trust, and act under uncertainty.</p>
+                        </div>
+
+                        <div class="loop-card">
+                            <strong>Embodied Systems</strong>
+                            <p class="loop-title">Assessment → Intervention → Adaptation</p>
+                            <p class="loop-copy">Connecting biomechanics coaching, haptics, and self-regulation into usable biofeedback loops.</p>
+                        </div>
+                    </div>
+                </a>
             </section>
 
             <section class="identity-panel" aria-labelledby="identity-title">
-                <p class="section-label">Identity Stack</p>
-                <h2 id="identity-title">Engineer · Athlete · Patient · Clinician · Coach</h2>
+                <h2 id="identity-title"><span class="identity-big">EMT</span><span class="identity-dot red"></span>Athlete<span class="identity-dot green"></span><span class="identity-big">Patient</span><span class="identity-dot blue"></span>Coach<span class="identity-dot purple"></span><span class="identity-big">Engineer</span></h2>
                 <p>
-                    My work is shaped by biomedical engineering, distance running, personal rehabilitation, emergency medical care, and movement coaching. Those experiences inform how I design systems for learning, recovery, trust, and adaptation.
+                    Those experiences inform how I design systems for learning, trust, and adaptation.
                 </p>
             </section>
         </main>
 
         <footer id="contact">
-            <a href="https://practiceintuition.github.io" target="_blank" rel="noopener noreferrer">Practice Intuition → Human systems, movement, and embodied design</a>
-            <a href="mailto:shreyassriram3@gmail.com">shreyassriram3@gmail.com</a>
+            <a href="https://practiceintuition.github.io" target="_blank" rel="noopener noreferrer">Practice Intuition → Human Systems, Movement, and Embodied Design</a>
             <span>Shreyas Sriram &copy; 2026</span>
         </footer>
     </div>
