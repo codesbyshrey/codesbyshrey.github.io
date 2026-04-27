@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HapTrek | Shreyas Sriram</title>
-  <meta name="description" content="HapTrek project page for Shreyas Sriram: haptic navigation, fall detection, and embodied interface design." />
+  <meta name="description" content="HapTrek project page for Shreyas Sriram: haptic navigation, fall detection, accelerometer sensing, and embodied interface design." />
   <link rel="stylesheet" href="/routes.css" />
 </head>
 <body>
@@ -23,18 +23,54 @@
       <div>
         <p class="eyebrow">Embodied Interface</p>
         <h1>HapTrek</h1>
-        <p class="lead">A haptic hiking and public-safety concept exploring non-visual navigation, fall detection through a 3-axis accelerometer, and the application of human body dynamics to product design.</p>
+        <p class="lead">A haptic hiking and public-safety concept exploring non-visual navigation, fall detection through 3-axis accelerometer sensing, and the application of human body dynamics to product design.</p>
+        <div class="actions">
+          <a class="button primary" href="#study">HapTrek study</a>
+          <a class="button secondary" href="#product-brief">Product brief</a>
+        </div>
       </div>
       <div class="panel">
         <p class="panel-title">Focus</p>
         <ul class="list">
-          <li>Haptic feedback</li>
+          <li>Haptic feedback for navigation</li>
+          <li>Accessible and non-visual wayfinding</li>
           <li>3-axis accelerometer sensing</li>
-          <li>Fall detection</li>
+          <li>Fall detection and safety signaling</li>
           <li>Embodied product design</li>
         </ul>
       </div>
     </section>
+    <div class="meta">
+      <div class="meta-item"><p class="meta-label">Domain</p><p class="meta-value">Human factors, hardware, safety</p></div>
+      <div class="meta-item"><p class="meta-label">Methods</p><p class="meta-value">Haptic mapping, sensing, prototyping</p></div>
+      <div class="meta-item"><p class="meta-label">Stack</p><p class="meta-value">Arduino, accelerometer, haptics</p></div>
+      <div class="meta-item"><p class="meta-label">Lens</p><p class="meta-value">Embodied interaction</p></div>
+    </div>
+    <section id="study" class="grid">
+      <article class="panel">
+        <p class="panel-title">Problem</p>
+        <p>Outdoor navigation and safety tools often assume visual attention, phone availability, and low cognitive load. HapTrek explores how tactile feedback can support hikers when visual interfaces are impractical or unsafe.</p>
+      </article>
+      <article class="panel">
+        <p class="panel-title">Concept</p>
+        <p>The project frames navigation as an embodied interface problem: direction, motion, and safety status can be communicated through vibration patterns and sensor-driven feedback rather than a screen-first workflow.</p>
+      </article>
+      <article class="panel">
+        <p class="panel-title">Safety Layer</p>
+        <p>Accelerometer data supports fall-detection logic, giving the system a public-health and emergency-response angle beyond wayfinding alone.</p>
+      </article>
+      <article class="panel">
+        <p class="panel-title">Design Value</p>
+        <p>HapTrek connects human factors, biomechanics, and interface design: the body becomes the medium for information, and the product must respect perception, movement, balance, and terrain.</p>
+      </article>
+    </section>
+    <section id="product-brief" class="section">
+      <article class="panel">
+        <p class="panel-title">Product Brief Draft</p>
+        <p>This page serves as the current HapTrek case study and product brief. A fuller PRD would define target users, vibration language, fall-detection thresholds, environmental constraints, validation protocol, accessibility requirements, and emergency escalation behavior.</p>
+      </article>
+    </section>
+    <p class="footer">Related work: <a class="quiet-link" href="/kinesthetic/">Kinesthetic</a>, <a class="quiet-link" href="/implant/">Glenoid Implant</a>, and <a class="quiet-link" href="/experiences/">Experiences</a>.</p>
   </div>
 </body>
 </html>

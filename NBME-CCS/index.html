@@ -35,6 +35,10 @@
   .hero-title{font-family:var(--serif);font-size:clamp(28px,4.5vw,52px);font-weight:700;line-height:1.12;margin-bottom:14px;}
   .hero-title .ac{color:var(--teal);}
   .hero-sub{font-size:16px;color:var(--mid);margin-bottom:42px;max-width:520px;line-height:1.7;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 34px;}
+  .hero-btn{display:inline-block;border:1px solid var(--border);padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--white);background:var(--surface);}
+  .hero-btn.primary{border-color:var(--teal);background:var(--teal-dim);color:var(--teal);}
+  .hero-btn:hover{border-color:var(--teal);color:var(--teal);}
 
   .meta-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:42px;}
   .mc{background:var(--bg2);padding:17px 19px;}
@@ -177,12 +181,17 @@
 <!-- HERO -->
 <div class="hero">
   <div class="wrap">
-    <div class="tag reveal">Case Study · National Board of Medical Examiners · 2025</div>
+    <div class="tag reveal">NBME Study · National Board of Medical Examiners · 2025</div>
     <h1 class="hero-title reveal d1">
       Designing a Clinical Simulation Roleplay System<br>
       <span class="ac">for Patient-Centered Communication</span>
     </h1>
     <p class="hero-sub reveal d2">A behavioral simulation system for training patient-centered communication — at scale, without standardized patients.</p>
+    <div class="hero-actions reveal d2">
+      <a class="hero-btn primary" href="/NBME-CCS/">NBME Study</a>
+      <a class="hero-btn" href="/NBME-CCS-PRD/">NBME PRD</a>
+      <a class="hero-btn" href="/clinical-roleplay-prd/">Clinical Roleplay PRD</a>
+    </div>
     <div class="meta-row reveal d3">
       <div class="mc">
         <div class="ml">Domain</div>

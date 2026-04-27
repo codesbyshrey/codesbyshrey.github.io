@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NBME PRD | Shreyas Sriram</title>
+  <meta name="description" content="Product requirements document for the NBME clinical communication simulator." />
+  <link rel="stylesheet" href="/routes.css" />
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <a class="mark" href="/">Codes by Shrey</a>
+      <div class="links">
+        <a href="/about/">About Me</a>
+        <a href="/education/">Education</a>
+        <a href="/experiences/">Experiences</a>
+        <a href="/expression/">Expression</a>
+        <a href="/connect/">Connect</a>
+      </div>
+    </div>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Product Requirements Document</p>
+        <h1>NBME Clinical Communication Simulator PRD</h1>
+        <p class="lead">A virtual standardized patient simulator for medical communication training, designed around scenario-specific patients, transcript-aware dialogue, voice support, prompt experimentation, and formative OSCE-style evaluation.</p>
+        <div class="actions">
+          <a class="button primary" href="/NBME-CCS/">NBME Study</a>
+          <a class="button secondary" href="/clinical-roleplay-prd/">Clinical Roleplay PRD</a>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Current Scope</p>
+        <ul class="list">
+          <li>Generic VSP mode plus scenario-driven cases</li>
+          <li>Multi-turn text and voice interaction</li>
+          <li>Editable patient system prompts</li>
+          <li>End-of-session OSCE-style evaluation</li>
+          <li>Static HTML proof-of-concept entry point</li>
+        </ul>
+      </div>
+    </section>
+    <div class="meta">
+      <div class="meta-item"><p class="meta-label">Users</p><p class="meta-value">Medical learners and educators</p></div>
+      <div class="meta-item"><p class="meta-label">Goal</p><p class="meta-value">Repeatable communication practice</p></div>
+      <div class="meta-item"><p class="meta-label">System</p><p class="meta-value">FastAPI, scenarios, voice, evaluation</p></div>
+      <div class="meta-item"><p class="meta-label">Status</p><p class="meta-value">MVP prototype</p></div>
+    </div>
+    <main class="doc">
+      <section class="doc-section">
+        <h2>Product Summary</h2>
+        <p>The simulator gives learners a low-friction way to practice patient communication without live standardized patients. The revamped implementation supports defined patient cases, transcript-aware responses, optional voice workflows, prompt customization, and structured feedback after the encounter.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Problem</h2>
+        <p>OSCE-style practice is expensive, scheduled, and difficult to repeat. Basic chat demos are easier to access, but they often lack scenario fidelity, patient consistency, and useful evaluation. The product bridges those gaps with a lightweight simulation environment.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Core Requirements</h2>
+        <ul class="list">
+          <li>Expose a list of public scenarios from the backend.</li>
+          <li>Allow the learner to select either Generic VSP Mode or a structured patient scenario.</li>
+          <li>Preserve transcript history so patient responses stay coherent across turns.</li>
+          <li>Support typed messages, microphone input, and optional audio playback.</li>
+          <li>Generate structured evaluation JSON from the transcript and selected scenario.</li>
+          <li>Render evaluation feedback in a readable report.</li>
+        </ul>
+      </section>
+      <section class="doc-section">
+        <h2>Product Principles</h2>
+        <p>Keep the entry point simple, preserve backward compatibility with the original generic VSP workflow, make patients specific, expose prompt experimentation for builders, and treat AI evaluation as formative learning rather than credentialing.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Success Metrics</h2>
+        <ul class="list">
+          <li>Scenario load success rate</li>
+          <li>Text and voice conversation completion rates</li>
+          <li>Evaluation completion rate</li>
+          <li>Average learner turns per session</li>
+          <li>User-rated scenario realism and evaluation usefulness</li>
+          <li>Prompt override usage by builders or educators</li>
+        </ul>
+      </section>
+      <section class="doc-section">
+        <h2>Next Release Priorities</h2>
+        <p>Priorities include transcript persistence, saved evaluations, a more extensible scenario format, stronger safety and consistency constraints, a modern frontend shell, and side-by-side tools for prompt experiments.</p>
+      </section>
+    </main>
+    <p class="footer">Source-informed summary based on the NBME-CCS PRD draft. Related page: <a class="quiet-link" href="/NBME-CCS/">NBME Study</a>.</p>
+  </div>
+</body>
+</html>

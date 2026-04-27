@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Roleplay PRD | Shreyas Sriram</title>
+  <meta name="description" content="Product requirements document for a clinical roleplay simulator with AI patient scenarios and OSCE-style evaluation." />
+  <link rel="stylesheet" href="/routes.css" />
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <a class="mark" href="/">Codes by Shrey</a>
+      <div class="links">
+        <a href="/about/">About Me</a>
+        <a href="/education/">Education</a>
+        <a href="/experiences/">Experiences</a>
+        <a href="/expression/">Expression</a>
+        <a href="/connect/">Connect</a>
+      </div>
+    </div>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Product Requirements Document</p>
+        <h1>Clinical Roleplay Simulator PRD</h1>
+        <p class="lead">A web-based medical communication training tool where learners select a standardized-patient scenario, conduct a simulated consultation through text or voice, and receive AI-generated OSCE-style evaluation.</p>
+        <div class="actions">
+          <a class="button primary" href="/NBME-CCS/">NBME Study</a>
+          <a class="button secondary" href="/NBME-CCS-PRD/">NBME PRD</a>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Product Scope</p>
+        <ul class="list">
+          <li>Scenario selection from a fixed case library</li>
+          <li>In-character AI patient responses</li>
+          <li>Browser speech recognition for learner input</li>
+          <li>AI voice playback for patient responses</li>
+          <li>End-of-session structured evaluation</li>
+        </ul>
+      </div>
+    </section>
+    <div class="meta">
+      <div class="meta-item"><p class="meta-label">Users</p><p class="meta-value">Medical learners and educators</p></div>
+      <div class="meta-item"><p class="meta-label">Mode</p><p class="meta-value">Text and voice simulation</p></div>
+      <div class="meta-item"><p class="meta-label">Feedback</p><p class="meta-value">OSCE-style report</p></div>
+      <div class="meta-item"><p class="meta-label">Status</p><p class="meta-value">MVP prototype</p></div>
+    </div>
+    <main class="doc">
+      <section class="doc-section">
+        <h2>Product Summary</h2>
+        <p>The simulator is designed for communication-skills practice rather than formal assessment. Learners choose a patient scenario, interact through text or voice, and receive structured formative feedback at the end of the session.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Problem</h2>
+        <p>Medical learners need repeated practice for communication-heavy encounters: foundational history taking, cross-cultural communication, psychosocial assessment, shared decision-making, family communication, and difficult news delivery.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Scenario Library</h2>
+        <p>The MVP includes six fixed scenarios with patient demographics, chief complaint, communication focus, description, allergies, medical history, medications, vital signs, and avatar image.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Functional Requirements</h2>
+        <ul class="list">
+          <li>Present available scenarios and allow selected or random launch.</li>
+          <li>Initialize each conversation with a scenario-specific patient statement.</li>
+          <li>Display patient overview data during the encounter.</li>
+          <li>Append learner and patient messages to a visible transcript.</li>
+          <li>Support browser-native speech recognition where available.</li>
+          <li>Generate and display a structured JSON evaluation report.</li>
+        </ul>
+      </section>
+      <section class="doc-section">
+        <h2>Evaluation Categories</h2>
+        <p>Evaluation currently covers history taking, communication skills, rapport building, clinical reasoning, and professionalism, with overall score, grade, strengths, priority improvements, and specific recommendations.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Next Release Priorities</h2>
+        <p>Future work should add authentication, saved session history, transcript and evaluation persistence, educator review dashboards, rubric QA against human-rated samples, scenario authoring, learner progress tracking, and stronger accessibility behavior.</p>
+      </section>
+    </main>
+    <p class="footer">Source-informed summary based on the Clinical Roleplay Simulator PRD. Related page: <a class="quiet-link" href="/NBME-CCS/">NBME Study</a>.</p>
+  </div>
+</body>
+</html>

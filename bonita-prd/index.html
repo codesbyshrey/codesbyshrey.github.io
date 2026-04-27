@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonita PRD | Shreyas Sriram</title>
+  <meta name="description" content="Product requirements document for Bonita Encode, an AI wellness intelligence MVP." />
+  <link rel="stylesheet" href="/routes.css" />
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <a class="mark" href="/">Codes by Shrey</a>
+      <div class="links">
+        <a href="/about/">About Me</a>
+        <a href="/education/">Education</a>
+        <a href="/experiences/">Experiences</a>
+        <a href="/expression/">Expression</a>
+        <a href="/connect/">Connect</a>
+      </div>
+    </div>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Product Requirements Document</p>
+        <h1>Bonita Encode PRD</h1>
+        <p class="lead">An AI-guided wellness product that helps users assess a current challenge, route it into TIME, SPACE, and SELF, and receive structured daily protocols with clear safety boundaries.</p>
+        <div class="actions">
+          <a class="button primary" href="/bonita/">Bonita Study</a>
+          <a class="button secondary" href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" rel="noopener noreferrer">Live Build</a>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Current MVP</p>
+        <ul class="list">
+          <li>Branded landing experience</li>
+          <li>Pillar exploration and resource browsing</li>
+          <li>Chat-based AI assessment</li>
+          <li>Structured protocol generation</li>
+          <li>IQ / EQ / KQ wellness dashboard</li>
+        </ul>
+      </div>
+    </section>
+    <div class="meta">
+      <div class="meta-item"><p class="meta-label">Users</p><p class="meta-value">Wellness-oriented consumers</p></div>
+      <div class="meta-item"><p class="meta-label">Goal</p><p class="meta-value">One actionable protocol</p></div>
+      <div class="meta-item"><p class="meta-label">Stack</p><p class="meta-value">React, TypeScript, Gemini</p></div>
+      <div class="meta-item"><p class="meta-label">Safety</p><p class="meta-value">Red-flag escalation</p></div>
+    </div>
+    <main class="doc">
+      <section class="doc-section">
+        <h2>Product Summary</h2>
+        <p>Bonita Encode is a consumer-facing MVP for integrated wellness guidance. It helps users name a current problem, classify the issue across TIME, SPACE, and SELF, and receive one protocol that is specific enough to try immediately.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Problem</h2>
+        <p>Many wellness tools are too narrow, too generic, or too dependent on passive tracking. Users need personalized guidance that connects body, mind, timing, and environment while teaching the reasoning behind each recommendation.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Core User Stories</h2>
+        <ul class="list">
+          <li>Describe a current wellness challenge in natural language.</li>
+          <li>Understand whether the challenge is primarily TIME, SPACE, SELF, or multi-pillar.</li>
+          <li>Receive one practical protocol with steps and time cost.</li>
+          <li>Learn why the protocol works.</li>
+          <li>Generate a broader wellness plan after enough conversation.</li>
+          <li>Receive clear escalation when an issue may require medical help.</li>
+        </ul>
+      </section>
+      <section class="doc-section">
+        <h2>Functional Requirements</h2>
+        <ul class="list">
+          <li>Allow users to start from a home screen, browse resources, and drill into a pillar before chat.</li>
+          <li>Infer likely pillar routing from user messages.</li>
+          <li>Render structured JSON coaching responses as checklist-style protocol cards.</li>
+          <li>Pass optional daily check-in context into the next AI request.</li>
+          <li>Run deterministic red-flag checks before model generation.</li>
+          <li>Generate a structured wellness dashboard with IQ, EQ, KQ scores and recommendations.</li>
+        </ul>
+      </section>
+      <section class="doc-section">
+        <h2>Risks and Gaps</h2>
+        <p>Future versions should move model calls behind a secure backend, add persistence, expand safety coverage, support citations or evidence provenance, and turn mock longitudinal concepts into real progress tracking.</p>
+      </section>
+      <section class="doc-section">
+        <h2>Product Vision</h2>
+        <p>Bonita can evolve into a premium AI wellness intelligence platform that combines personalized behavior-change support, integrative health education, and longitudinal self-awareness while staying clear about medical boundaries.</p>
+      </section>
+    </main>
+    <p class="footer">Source-informed summary based on the Bonita Encode PRD. Related page: <a class="quiet-link" href="/bonita/">Bonita Study</a>.</p>
+  </div>
+</body>
+</html>
