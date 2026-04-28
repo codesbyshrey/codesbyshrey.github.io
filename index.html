@@ -727,8 +727,12 @@
             background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(108, 59, 209, 0.15));
         }
 
+        .split-bar.practice-hub {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
         .band-heading {
-            grid-column: 1 / -1;
             margin: 0 0 2px;
             font-family: 'IBM Plex Mono', monospace;
             font-size: clamp(1.05rem, 1.45vw, 1.35rem);
@@ -736,6 +740,38 @@
             text-transform: uppercase;
             letter-spacing: 0.03em;
             color: var(--purple);
+        }
+
+        .band-subcopy {
+            max-width: 740px;
+            margin: 2px auto 8px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        .practice-main-grid,
+        .practice-clinical-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .practice-main-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .practice-clinical-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            padding-top: 14px;
+            border-top: 1px solid rgba(108, 59, 209, 0.3);
+        }
+
+        .clinical-panel h3 {
+            font-size: 1.32rem;
+        }
+
+        .clinical-panel p {
+            font-size: 0.86rem;
         }
 
         .split-panel {
@@ -883,6 +919,8 @@
             .foundation-grid.two,
             .card-split,
             .split-bar,
+            .practice-main-grid,
+            .practice-clinical-grid,
             .loops-track,
             .focus-grid {
                 grid-template-columns: 1fr;
@@ -1096,39 +1134,6 @@
                     </div>
                 </div>
 
-                <div class="split-bar purple" aria-label="Healthcare AI and clinical application">
-                    <a class="split-panel" href="/experiences/">
-                        <div class="product-top">
-                            <span class="product-tag">Healthcare AI Product Incubation</span>
-                            <span class="experience-year">2024</span>
-                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                        </div>
-                        <h3>Chat EMT Product Incubation + EMT</h3>
-                        <p>EMT field experience translated into healthcare product incubation, clinical decision-support concepts, patient workflows, and AI prototyping.</p>
-                        <div class="chips">
-                            <span class="chip">Healthcare AI</span>
-                            <span class="chip">EMT-B</span>
-                            <span class="chip">Product Architecture</span>
-                            <span class="chip">Cloud Infrastructure</span>
-                        </div>
-                    </a>
-                    <a class="split-panel" href="/experiences/">
-                        <div class="product-top">
-                            <span class="product-tag">Clinical Communication</span>
-                            <span class="experience-year">2021-2022</span>
-                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                        </div>
-                        <h3>Physical Therapy Clinics Experience</h3>
-                        <p>Patient communication and advocacy experience grounding healthcare AI design, people-development thinking, and movement insight translation for diverse populations.</p>
-                        <div class="chips">
-                            <span class="chip">Physical Therapy Clinic</span>
-                            <span class="chip">Patient Communication</span>
-                            <span class="chip">Patient Advocacy</span>
-                            <span class="chip">Movement Education</span>
-                        </div>
-                    </a>
-                </div>
-
                 <div class="foundation-grid two">
                     <div class="foundation-column">
                         <p class="section-label">Research</p>
@@ -1165,37 +1170,81 @@
                     </div>
                 </div>
 
-                <div class="split-bar purple" aria-label="Practice Intuition digital and coaching systems">
+                <div id="practice-intuition" class="split-bar purple practice-hub" aria-label="Practice Intuition product, coaching, and clinical systems">
                     <h2 class="band-heading">Founder: Practice Intuition</h2>
-                    <a class="split-panel" href="/expression/">
-                        <div class="product-top">
-                            <span class="product-tag">Founder: Practice Intuition</span>
-                            <span class="experience-year">2026</span>
-                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                        </div>
-                        <h3>Bonita Intelligence System</h3>
-                        <p>AI wellness intelligence MVP for TIME, SPACE, and SELF triage, structured protocols, safety boundaries, and a full-stack product direction.</p>
-                        <div class="chips">
-                            <span class="chip">Gemini</span>
-                            <span class="chip">React</span>
-                            <span class="chip">Wellness AI</span>
-                        </div>
-                    </a>
-                    <a id="biomechanics" class="split-panel" href="/expression/">
-                        <div class="product-top">
-                            <span class="product-tag">Biomechanics Coaching</span>
-                            <span class="experience-year">2025</span>
-                            <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                        </div>
-                        <h3>Applied Biomechanics Coaching</h3>
-                        <p>Biomechanics assessment and movement coaching to assist with pain-free movement, strength training, and human performance.</p>
-                        <div class="chips">
-                            <span class="chip">Assessment</span>
-                            <span class="chip">Physical Therapy Clinic</span>
-                            <span class="chip">Movement Coaching</span>
-                            <span class="chip">Motor Learning</span>
-                        </div>
-                    </a>
+                    <p class="band-subcopy">A founder-led umbrella for self-developed product incubation, clinical exposure, and embodied coaching systems.</p>
+                    <div class="practice-main-grid">
+                        <a class="split-panel" href="/expression/">
+                            <div class="product-top">
+                                <span class="product-tag">Founder: Practice Intuition</span>
+                                <span class="experience-year">2026</span>
+                                <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                            </div>
+                            <h3>Bonita Intelligence System</h3>
+                            <p>AI wellness intelligence MVP for TIME, SPACE, and SELF triage, structured protocols, safety boundaries, and a full-stack product direction.</p>
+                            <div class="chips">
+                                <span class="chip">Gemini</span>
+                                <span class="chip">React</span>
+                                <span class="chip">Wellness AI</span>
+                            </div>
+                        </a>
+                        <a id="biomechanics" class="split-panel" href="/expression/">
+                            <div class="product-top">
+                                <span class="product-tag">Biomechanics Coaching</span>
+                                <span class="experience-year">2025</span>
+                                <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                            </div>
+                            <h3>Applied Biomechanics Coaching</h3>
+                            <p>Biomechanics assessment and movement coaching to assist with pain-free movement, strength training, and human performance.</p>
+                            <div class="chips">
+                                <span class="chip">Assessment</span>
+                                <span class="chip">Physical Therapy Clinic</span>
+                                <span class="chip">Movement Coaching</span>
+                                <span class="chip">Motor Learning</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="practice-clinical-grid">
+                        <a class="split-panel clinical-panel" href="/experiences/">
+                            <div class="product-top">
+                                <span class="product-tag">Product Incubation</span>
+                                <span class="experience-year">2024</span>
+                                <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                            </div>
+                            <h3>ChatEMT</h3>
+                            <p>Healthcare AI product exploration shaped by EMT workflows, triage logic, and clinical decision-support concepts.</p>
+                            <div class="chips">
+                                <span class="chip">Healthcare AI</span>
+                                <span class="chip">Product Architecture</span>
+                            </div>
+                        </a>
+                        <a class="split-panel clinical-panel" href="/experiences/">
+                            <div class="product-top">
+                                <span class="product-tag">Clinical Fieldwork</span>
+                                <span class="experience-year">2021-2022</span>
+                                <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                            </div>
+                            <h3>EMT</h3>
+                            <p>Patient care, emergency response, transport workflows, and real-time communication under uncertainty.</p>
+                            <div class="chips">
+                                <span class="chip">EMT-B</span>
+                                <span class="chip">Patient Care</span>
+                            </div>
+                        </a>
+                        <a class="split-panel clinical-panel" href="/experiences/">
+                            <div class="product-top">
+                                <span class="product-tag">Clinical Communication</span>
+                                <span class="experience-year">2021-2022</span>
+                                <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
+                            </div>
+                            <h3>Physical Therapy</h3>
+                            <p>Movement education, patient advocacy, and communication insights across pain-free performance goals.</p>
+                            <div class="chips">
+                                <span class="chip">PT Clinic</span>
+                                <span class="chip">Movement Education</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
                 <a id="systems" class="loops-panel green" href="/about/">
