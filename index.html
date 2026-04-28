@@ -342,8 +342,16 @@
             border-color: var(--red-border);
         }
 
+        .timeline-item.red.fill {
+            background: linear-gradient(90deg, rgba(255, 141, 103, 0.14), rgba(255, 255, 255, 0.035));
+        }
+
         .timeline-item.blue {
             border-color: var(--blue-border);
+        }
+
+        .timeline-item.blue.fill {
+            background: linear-gradient(90deg, rgba(127, 163, 255, 0.14), rgba(255, 255, 255, 0.035));
         }
 
         .timeline-item.founder-tab {
@@ -500,9 +508,17 @@
             background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(194, 77, 52, 0.14));
         }
 
+        .product-card.feature-card {
+            min-height: 360px;
+        }
+
         .product-column .product-card:only-of-type,
         .product-column .product-card:nth-child(2):nth-last-child(1) {
             min-height: 0;
+        }
+
+        .product-column .product-card.feature-card:only-of-type {
+            min-height: 360px;
         }
 
         .product-top {
@@ -598,6 +614,10 @@
         .small-card p {
             margin: 0;
             font-size: 0.9rem;
+        }
+
+        .small-card .chips {
+            margin-top: 12px;
         }
 
         .chip-block {
@@ -705,6 +725,17 @@
         .split-bar.purple {
             border-color: var(--purple-border);
             background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(108, 59, 209, 0.15));
+        }
+
+        .band-heading {
+            grid-column: 1 / -1;
+            margin: 0 0 2px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--purple);
         }
 
         .split-panel {
@@ -816,13 +847,13 @@
         .identity-panel h2 {
             margin: 0 0 10px;
             font-family: 'Fraunces', serif;
-            font-size: clamp(1.9rem, 3vw, 2.8rem);
+            font-size: clamp(1.65rem, 2.45vw, 2.35rem);
             line-height: 1.05;
             letter-spacing: 0;
         }
 
         .identity-big {
-            font-size: 1.12em;
+            font-size: 1.06em;
         }
 
         .identity-panel p:not(.section-label) {
@@ -911,7 +942,7 @@
                         <p class="section-label">Current Focus</p>
                         <h2 id="focus-title">Human-centered systems for high-stakes interaction.</h2>
                         <p>
-                            My work operates at the intersection of the <span class="lifecycle-mark people">people development life cycle</span> &amp; <span class="lifecycle-mark product">product development life cycle</span>. I bring a systems lens to multimodal interfaces, conversational design, and public health; treating the body as a feedback loop across cognitive, biomechanical, and behavioral systems.
+                            My work operates at the intersection of the <span class="lifecycle-mark people">human-systems biofeedback loop</span> and the <span class="lifecycle-mark product">product development life cycle</span>. I interpret human experience across cognitive, biomechanical, and behavioral systemic lenses to design multimodal &amp; conversational interfaces for public health &amp; wellness benefits.
                         </p>
                         <div class="icon-row">
                             <a href="https://linkedin.com/in/shreyas-sriram" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span class="icon-text">in</span></a>
@@ -925,44 +956,40 @@
                 <section class="timeline" aria-labelledby="timeline-label">
                     <p id="timeline-label" class="timeline-label">Chronology</p>
                     <div class="timeline-track">
-                        <a class="timeline-item purple fill" href="/education/">
+                        <a class="timeline-item red fill" href="/education/">
                             <span class="timeline-year">2019</span>
                             <span class="timeline-name">BS Biomedical Engineering</span>
-                            <span class="timeline-meta">Medical-device design, biomechanics, and systems engineering.</span>
+                            <span class="timeline-meta">Biomechanics, Biomaterials, NCAA D3 XC/TF.</span>
                         </a>
 
                         <a class="timeline-item red" href="/experiences/">
                             <span class="timeline-year">2020-2022</span>
-                            <span class="timeline-name">Patent + Clinical Exposure</span>
-                            <span class="timeline-meta">Glenoid implant work, EMT training, patient care, and rehab context.</span>
+                            <span class="timeline-name">Patent + Clinical Experience (EMT)</span>
+                            <span class="timeline-meta">Glenoid Implant Work, EMT Field Experience, Patient Care Continuum.</span>
                         </a>
 
                         <a class="timeline-item blue" href="/education/">
                             <span class="timeline-year">2023</span>
-                            <span class="timeline-name">Software + Cloud</span>
-                            <span class="timeline-meta">Full-stack development, AWS credentials, startup engineering, and delivery.</span>
+                            <span class="timeline-name">Software + Cloud Infrastructure</span>
+                            <span class="timeline-meta">AWS Developer Associate, Startup Experience, Information Architecture.</span>
                         </a>
 
                         <a class="timeline-item red" href="/experiences/">
                             <span class="timeline-year">2024-2025</span>
                             <span class="timeline-name">Movement + Coaching</span>
-                            <span class="timeline-meta">Applied biomechanics, personal training, swim instruction, and coaching.</span>
+                            <span class="timeline-meta">NASM Certified, YMCA Swim Instructor, Holistic Coaching, Applied Biomechanics Specialist.</span>
                         </a>
 
-                        <a class="timeline-item blue" href="/education/">
+                        <a class="timeline-item blue fill" href="/education/">
                             <span class="timeline-year">2025</span>
-                            <span class="timeline-name">MS Human Factors</span>
-                            <span class="timeline-meta">Clinical simulation, AI trust research, usability, and multimodal design.</span>
+                            <span class="timeline-name">MS Human Factors Information Design</span>
+                            <span class="timeline-meta">Qualitative / Quantitative Research Methods, Conversational + Immersive + Multimodal Interaction Design.</span>
                         </a>
 
                         <a class="timeline-item blue" href="/experiences/">
                             <span class="timeline-year">2026</span>
                             <span class="timeline-name">Clinical AI Evaluation</span>
-                            <span class="timeline-meta">AI safety, LLM evaluation rubrics, ethics, and human-in-the-loop workflows.</span>
-                        </a>
-
-                        <a class="timeline-item purple founder-tab" href="/expression/">
-                            <span class="timeline-name">Founder: Practice Intuition</span>
+                            <span class="timeline-meta">AI Safety, AI Trust Research, LLM Evaluation Rubrics, Human-in-the-Loop Workflows.</span>
                         </a>
                     </div>
                 </section>
@@ -974,7 +1001,7 @@
                         <div class="product-column">
                             <div class="column-head blue">Clinical + Digital Systems</div>
 
-                            <a class="product-card blue" href="https://lovable.dev/projects/4106a248-455a-45df-a72a-7c67dac3f779" target="_blank" rel="noopener noreferrer">
+                            <a class="product-card blue feature-card" href="https://lovable.dev/projects/4106a248-455a-45df-a72a-7c67dac3f779" target="_blank" rel="noopener noreferrer">
                                 <div class="product-top">
                                     <span class="product-tag">Clinical AI</span>
                                     <span class="experience-year">2025</span>
@@ -1004,41 +1031,12 @@
                                 </div>
                             </a>
 
-                            <a class="product-card blue" href="/experiences/">
-                                <div class="product-top">
-                                    <span class="product-tag">Clinical AI + Research</span>
-                                    <span class="experience-year">2025-2026</span>
-                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                                </div>
-                                <h3>Clinical AI Evaluation + Evidence Tools Study</h3>
-                                <div class="card-split">
-                                    <div class="split-unit">
-                                        <h4>mpathic</h4>
-                                        <p>Evaluations for human-AI interactions in clinical contexts, focused on trust, empathy, safety, and high-stakes communication.</p>
-                                        <div class="chips">
-                                            <span class="chip">AI Safety</span>
-                                            <span class="chip">LLM Evaluation</span>
-                                            <span class="chip">Human-in-the-Loop</span>
-                                        </div>
-                                    </div>
-                                    <div class="split-unit">
-                                        <h4>Mixed-methods AI evidence study</h4>
-                                        <p>Research examining trust calibration, comprehension, citation interpretation, and overconfidence in medical AI-generated answers.</p>
-                                        <div class="chips">
-                                            <span class="chip">Trust Calibration</span>
-                                            <span class="chip">Mixed Methods</span>
-                                            <span class="chip">Responsible AI</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
                         </div>
 
                         <div class="product-column">
                             <div class="column-head red">Embodied + Physical Systems</div>
 
-                            <a class="product-card red" href="/haptrek/">
+                            <a class="product-card red feature-card" href="/haptrek/">
                                 <div class="product-top">
                                     <span class="product-tag">Embodied Interface</span>
                                     <span class="experience-year">2025</span>
@@ -1057,22 +1055,44 @@
                                 </div>
                             </a>
 
-                            <a class="product-card red" href="/implant/">
-                                <div class="product-top">
-                                    <span class="product-tag">Patent and Device</span>
-                                    <span class="experience-year">2022</span>
-                                    <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
-                                </div>
-                                <h3>Glenoid Implant Patent Inventor</h3>
-                                <p><strong>INVENTOR</strong> on 0-to-1 medical-device development for shoulder arthroplasty, focused on modular design, implant longevity, revisional surgery efficiency, and rehabilitation outcomes. Stress testing 3D-printed prototypes helped evaluate design benefits quantitatively.</p>
-                                <div class="chips">
-                                    <span class="chip">Shoulder Arthroplasty</span>
-                                    <span class="chip">Mechanical Testing</span>
-                                    <span class="chip">Modular</span>
-                                    <span class="chip">Biocompatibility</span>
-                                </div>
-                            </a>
                         </div>
+                    </div>
+                </div>
+
+                <div class="foundation-grid two">
+                    <div class="foundation-column">
+                        <p class="section-label">Evaluation</p>
+                        <a class="small-card" href="/experiences/">
+                            <div class="product-top">
+                                <span class="mini">Clinical AI + Research</span>
+                                <span class="experience-year">2025-2026</span>
+                            </div>
+                            <h3>mpathic + Evidence Tools Study</h3>
+                            <p>Human-AI interaction evaluations and mixed-methods trust calibration research in clinical contexts.</p>
+                            <div class="chips">
+                                <span class="chip">AI Safety</span>
+                                <span class="chip">LLM Evaluation</span>
+                                <span class="chip">Trust Calibration</span>
+                                <span class="chip">Human-in-the-Loop</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="foundation-column">
+                        <p class="section-label">Patent</p>
+                        <a class="small-card" href="/implant/">
+                            <div class="product-top">
+                                <span class="mini">Patent and Device</span>
+                                <span class="experience-year">2022</span>
+                            </div>
+                            <h3>Glenoid Implant Patent Inventor</h3>
+                            <p><strong>INVENTOR</strong> on 0-to-1 shoulder arthroplasty design, with stress-tested 3D-printed prototypes for quantitative evaluation.</p>
+                            <div class="chips">
+                                <span class="chip">Shoulder Arthroplasty</span>
+                                <span class="chip">Mechanical Testing</span>
+                                <span class="chip">Modular</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
@@ -1083,32 +1103,70 @@
                             <span class="experience-year">2024</span>
                             <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                         </div>
-                        <h3>ChatEMT</h3>
-                        <p>Healthcare communication product incubation across clinical decision-support concepts, patient workflows, system architecture, and AI prototyping.</p>
+                        <h3>Chat EMT Product Incubation + EMT</h3>
+                        <p>EMT field experience translated into healthcare product incubation, clinical decision-support concepts, patient workflows, and AI prototyping.</p>
                         <div class="chips">
                             <span class="chip">Healthcare AI</span>
+                            <span class="chip">EMT-B</span>
                             <span class="chip">Product Architecture</span>
                             <span class="chip">Cloud Infrastructure</span>
                         </div>
                     </a>
                     <a class="split-panel" href="/experiences/">
                         <div class="product-top">
-                            <span class="product-tag">Clinical Application</span>
+                            <span class="product-tag">Clinical Communication</span>
                             <span class="experience-year">2021-2022</span>
                             <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                         </div>
-                        <h3>EMT + Patient-Facing Care</h3>
-                        <p>Emergency medical care, patient transport, rapid assessment, and clinical exposure grounding later healthcare AI design.</p>
+                        <h3>Physical Therapy Clinics Experience</h3>
+                        <p>Patient communication and advocacy experience grounding healthcare AI design, people-development thinking, and movement insight translation for diverse populations.</p>
                         <div class="chips">
-                            <span class="chip">EMT-B</span>
                             <span class="chip">Physical Therapy Clinic</span>
                             <span class="chip">Patient Communication</span>
-                            <span class="chip">Clinical Context</span>
+                            <span class="chip">Patient Advocacy</span>
+                            <span class="chip">Movement Education</span>
                         </div>
                     </a>
                 </div>
 
+                <div class="foundation-grid two">
+                    <div class="foundation-column">
+                        <p class="section-label">Research</p>
+                        <a class="small-card" href="/nathan-sports/">
+                            <div class="product-top">
+                                <span class="mini">UX Research</span>
+                                <span class="experience-year">2025</span>
+                            </div>
+                            <h3>Nathan Sports Usability Researcher</h3>
+                            <p>Moderated research on product discovery, purchase drivers, retention, mobile friction, and delivered design recommendations.</p>
+                            <div class="chips">
+                                <span class="chip">Psychographic Segmentation</span>
+                                <span class="chip">Mobile Experience</span>
+                                <span class="chip">Web Experience</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="foundation-column">
+                        <p class="section-label">Build</p>
+                        <a class="small-card" href="/education/">
+                            <div class="product-top">
+                                <span class="mini">Product Build</span>
+                                <span class="experience-year">2024</span>
+                            </div>
+                            <h3>Full Stack Cloud Developer</h3>
+                            <p>React, TypeScript, Python, Django, AWS, GCP, RAG, startup experience, and rapid prototyping for healthcare and education workflows.</p>
+                            <div class="chips">
+                                <span class="chip">AWS Cloud</span>
+                                <span class="chip">AWS Developer Associate</span>
+                                <span class="chip">CodingDojo Full Stack Certificate</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="split-bar purple" aria-label="Practice Intuition digital and coaching systems">
+                    <h2 class="band-heading">Founder: Practice Intuition</h2>
                     <a class="split-panel" href="/expression/">
                         <div class="product-top">
                             <span class="product-tag">Founder: Practice Intuition</span>
@@ -1138,32 +1196,6 @@
                             <span class="chip">Motor Learning</span>
                         </div>
                     </a>
-                </div>
-
-                <div class="foundation-grid two">
-                    <div class="foundation-column">
-                        <p class="section-label">Research</p>
-                        <a class="small-card" href="/nathan-sports/">
-                            <div class="product-top">
-                                <span class="mini">UX Research</span>
-                                <span class="experience-year">2025</span>
-                            </div>
-                            <h3>Nathan Sports Usability Researcher</h3>
-                            <p>Moderated research on product discovery, purchase drivers, retention, mobile friction, and delivered design recommendations.</p>
-                        </a>
-                    </div>
-
-                    <div class="foundation-column">
-                        <p class="section-label">Build</p>
-                        <a class="small-card" href="/education/">
-                            <div class="product-top">
-                                <span class="mini">Product Build</span>
-                                <span class="experience-year">2024</span>
-                            </div>
-                            <h3>Full Stack Cloud Developer</h3>
-                            <p>React, TypeScript, Python, Django, AWS, GCP, RAG, startup experience, and rapid prototyping for healthcare and education workflows.</p>
-                        </a>
-                    </div>
                 </div>
 
                 <a id="systems" class="loops-panel green" href="/about/">
