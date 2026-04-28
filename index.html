@@ -212,6 +212,13 @@
             color: var(--ink);
         }
 
+        .icon-row .focus-button {
+            width: auto;
+            min-width: 0;
+            padding: 0 14px;
+            gap: 8px;
+        }
+
         .icon-text {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.68rem;
@@ -762,8 +769,17 @@
 
         .practice-clinical-grid {
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            padding-top: 14px;
+            padding-top: 10px;
             border-top: 1px solid rgba(108, 59, 209, 0.3);
+        }
+
+        .clinical-context-label {
+            margin: 4px 0 -2px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .clinical-panel h3 {
@@ -987,6 +1003,7 @@
                             <a href="https://github.com/codesbyshrey" target="_blank" rel="noopener noreferrer" title="GitHub"><span class="icon-text">GH</span></a>
                             <a href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer" title="Substack"><i data-lucide="newspaper" size="18"></i></a>
                             <a href="https://medium.com/@picsbyshrey" target="_blank" rel="noopener noreferrer" title="Medium"><i data-lucide="pen-tool" size="18"></i></a>
+                            <a class="focus-button" href="/human-ai-parallels/" title="Human-AI parallels perspective"><i data-lucide="network" size="18"></i><span class="icon-text">Human-AI parallels perspective</span></a>
                         </div>
                     </section>
                 </div>
@@ -1170,9 +1187,9 @@
                     </div>
                 </div>
 
-                <div id="practice-intuition" class="split-bar purple practice-hub" aria-label="Practice Intuition product, coaching, and clinical systems">
-                    <h2 class="band-heading">Founder: Practice Intuition</h2>
-                    <p class="band-subcopy">A founder-led umbrella for self-developed product incubation, clinical exposure, and embodied coaching systems.</p>
+                <div id="practice-intuition" class="split-bar purple practice-hub" aria-label="Practice Intuition product, coaching, and adjacent clinical systems">
+                    <h2 class="band-heading">Practice Intuition Systems</h2>
+                    <p class="band-subcopy">Founder-led product and coaching work, shown close to the clinical experiences that shaped its healthcare and movement reasoning.</p>
                     <div class="practice-main-grid">
                         <a class="split-panel" href="/expression/">
                             <div class="product-top">
@@ -1204,11 +1221,12 @@
                             </div>
                         </a>
                     </div>
+                    <p class="clinical-context-label">Adjacent clinical and product grounding</p>
                     <div class="practice-clinical-grid">
                         <a class="split-panel clinical-panel" href="/experiences/">
                             <div class="product-top">
                                 <span class="product-tag">Product Incubation</span>
-                                <span class="experience-year">2024</span>
+                                <span class="experience-year">2023-2024</span>
                                 <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                             </div>
                             <h3>ChatEMT</h3>
@@ -1234,7 +1252,7 @@
                         <a class="split-panel clinical-panel" href="/experiences/">
                             <div class="product-top">
                                 <span class="product-tag">Clinical Communication</span>
-                                <span class="experience-year">2021-2022</span>
+                                <span class="experience-year">2024-2025</span>
                                 <i class="product-arrow" data-lucide="arrow-up-right" size="18"></i>
                             </div>
                             <h3>Physical Therapy</h3>
