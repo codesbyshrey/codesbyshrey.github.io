@@ -23,7 +23,7 @@
   --font-body:'Outfit',system-ui,sans-serif;
 }
 
-#deck-wrap{background:var(--bg);min-height:420px;position:relative;padding:0;font-family:var(--font-body);color:var(--text);user-select:none}
+#deck-wrap{background:var(--bg);min-height:420px;position:relative;padding:0;font-family:var(--font-body);color:var(--text);-webkit-user-select:none;user-select:none}
 
 .slide{display:none;width:100%;padding:36px 40px 64px;min-height:420px;position:relative;flex-direction:column;justify-content:center;background:var(--bg);animation:fadeSlide .3s ease}
 .slide.active{display:flex}
@@ -151,7 +151,7 @@ body{background:
 .quick-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .quick-links a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid var(--faint);border-radius:999px;padding:7px 10px;background:rgba(255,255,255,.04)}
 .quick-links a:hover,.quick-links a:focus-visible{border-color:var(--teal)}
-#deck-wrap{min-height:unset;background:transparent;display:grid;gap:22px;user-select:text}
+#deck-wrap{min-height:unset;background:transparent;display:grid;gap:22px;-webkit-user-select:text;user-select:text}
 .slide,.slide.active{display:flex;min-height:clamp(500px,68vh,680px);border:1px solid var(--faint);border-radius:22px;background:linear-gradient(145deg,rgba(13,16,32,.96),rgba(7,9,15,.96));box-shadow:0 24px 70px rgba(0,0,0,.32);overflow:hidden;padding:clamp(32px,4.5vw,64px);margin:0}
 .slide::after{content:attr(id);position:absolute;right:22px;bottom:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.2)}
 .slide h1{font-size:clamp(58px,7.2vw,96px)}
@@ -170,7 +170,7 @@ body{background:
   .site-shell{padding:18px 14px 52px}
   .topbar{align-items:flex-start;flex-direction:column}
   .essay-hero,.cols,.loop,.trio{grid-template-columns:1fr}
-  .slide,.slide.active{min-height:auto;padding:28px 20px}
+  .slide,.slide.active{min-height:0;padding:28px 20px}
   .map-row{grid-template-columns:1fr;gap:6px}
   .map-cell.left,.map-cell.right{text-align:left}
   .map-arrow{text-align:left}
@@ -182,7 +182,6 @@ body{background:
 <header class="topbar">
   <a class="mark" href="/">Codes by Shrey</a>
   <nav class="links" aria-label="Primary">
-    <a href="/about/">About Me</a>
     <a href="/education/">Education</a>
     <a href="/experiences/">Experiences</a>
     <a href="/expression/">Expression</a>

@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
 :root {
   --bg: #11161b;
-  --paper: #191f26;
+  --paper: rgba(25, 31, 38, 0.84);
   --ink: #f7f0e7;
   --muted: #b9aea4;
   --line: rgba(247, 240, 231, 0.15);
-  --accent: #ff8d67;
+  --gold: #f0bf66;
+  --orange: #ff8d67;
+  --teal: #6fd8c5;
+  --accent: var(--gold);
   --accent-soft: rgba(255, 141, 103, 0.15);
   --deep: #7fa3ff;
   --blue: #7fa3ff;
@@ -30,7 +35,7 @@ body {
     radial-gradient(circle at 70% 60%, rgba(182, 244, 94, 0.08), transparent 28%),
     linear-gradient(180deg, #171d24 0%, var(--bg) 100%);
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
   line-height: 1.6;
 }
 
@@ -39,9 +44,9 @@ a {
 }
 
 .shell {
-  max-width: 980px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 28px 22px 64px;
+  padding: 22px 22px 72px;
 }
 
 .topbar {
@@ -54,11 +59,11 @@ a {
 }
 
 .mark {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold);
   text-decoration: none;
 }
 
@@ -66,7 +71,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -91,7 +96,7 @@ a {
 
 .eyebrow {
   margin: 0 0 12px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -100,6 +105,7 @@ a {
 
 h1 {
   margin: 0 0 14px;
+  font-family: "Fraunces", Georgia, serif;
   font-size: clamp(2.4rem, 5vw, 4.5rem);
   line-height: 0.98;
   font-weight: 500;
@@ -113,16 +119,16 @@ h1 {
 }
 
 .panel {
-  background: var(--paper);
+  background: linear-gradient(180deg, rgba(25, 31, 38, 0.9), rgba(255, 255, 255, 0.035));
   border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 22px;
+  border-radius: 24px;
+  padding: 24px;
   box-shadow: var(--shadow);
 }
 
 .panel-title {
   margin: 0 0 12px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -170,18 +176,22 @@ h1 {
 
 .panel.accent-blue {
   border-color: rgba(127, 163, 255, 0.54);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(42, 91, 255, 0.1));
 }
 
 .panel.accent-red {
   border-color: rgba(255, 141, 103, 0.56);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(194, 77, 52, 0.12));
 }
 
 .panel.accent-purple {
   border-color: rgba(197, 164, 255, 0.54);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(108, 59, 209, 0.13));
 }
 
 .panel.accent-green {
   border-color: rgba(182, 244, 94, 0.48);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.94), rgba(182, 244, 94, 0.07));
 }
 
 .link-grid {
@@ -195,7 +205,7 @@ h1 {
   gap: 14px;
   padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.04);
   text-decoration: none;
 }
@@ -221,32 +231,36 @@ h1 {
   align-items: center;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(247, 240, 231, 0.2);
   color: var(--ink);
   background: rgba(255, 255, 255, 0.05);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 11px;
   line-height: 1.2;
 }
 
-.chip.blue {
+.chip.tech,
+.chip.green {
   border-color: rgba(127, 163, 255, 0.48);
   background: rgba(127, 163, 255, 0.08);
 }
 
+.chip.ux,
+.chip.blue {
+  border-color: rgba(111, 216, 197, 0.5);
+  background: rgba(111, 216, 197, 0.09);
+}
+
+.chip.concept,
 .chip.red {
   border-color: rgba(255, 141, 103, 0.5);
   background: rgba(255, 141, 103, 0.08);
 }
 
+.chip.domain,
 .chip.purple {
   border-color: rgba(197, 164, 255, 0.48);
   background: rgba(197, 164, 255, 0.08);
-}
-
-.chip.green {
-  border-color: rgba(182, 244, 94, 0.42);
-  background: rgba(182, 244, 94, 0.07);
 }
 
 .experience-list {
@@ -274,7 +288,7 @@ h1 {
 
 .date {
   color: var(--accent);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -296,17 +310,18 @@ h1 {
   display: inline-block;
   padding: 12px 18px;
   border-radius: 999px;
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(247, 240, 231, 0.2);
   text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .button.primary {
-  background: var(--ink);
-  color: var(--bg);
+  border-color: rgba(240, 191, 102, 0.62);
+  background: rgba(240, 191, 102, 0.14);
+  color: var(--gold);
 }
 
 .button.secondary {
@@ -333,7 +348,7 @@ h1 {
 .meta-label,
 .kicker {
   margin: 0 0 6px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -352,6 +367,7 @@ h1 {
 
 .section h2 {
   margin: 0 0 14px;
+  font-family: "Fraunces", Georgia, serif;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   line-height: 1.08;
   font-weight: 500;
@@ -382,6 +398,21 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--paper);
+}
+
+body.route-experiences {
+  --accent: var(--orange);
+  --deep: var(--purple);
+}
+
+body.route-experiences .hero.full,
+body.route-experiences .experience-list {
+  background: radial-gradient(circle at top right, rgba(255, 141, 103, 0.09), transparent 34%);
+}
+
+body.route-expression {
+  --accent: var(--purple);
+  --deep: var(--purple);
 }
 
 .doc-section h2 {

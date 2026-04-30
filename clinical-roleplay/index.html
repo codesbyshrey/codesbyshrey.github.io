@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NBME CCS — Clinical Roleplay Simulator</title>
+<title>Clinical Roleplay Simulator | Shreyas Sriram</title>
 <style>
   :root {
     --bg:#0A0E14; --bg2:#0F1520; --bg3:#141C2A;
@@ -19,6 +19,11 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--white);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden;}
+  .sitebar{max-width:980px;margin:0 auto;padding:22px 40px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--border);}
+  .sitebar .mark{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .sitebar .links{display:flex;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
+  .sitebar .links a{color:var(--mid);text-decoration:none;}
+  .sitebar .links a:hover,.sitebar .links a:focus-visible{color:var(--white);}
 
   .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
   .reveal.visible{opacity:1;transform:translateY(0);}
@@ -45,6 +50,10 @@
   .chip{display:inline-flex;align-items:center;border:1px solid rgba(240,244,248,0.16);background:rgba(240,244,248,0.05);padding:6px 10px;border-radius:999px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--mid);text-transform:uppercase;}
   .chip.teal{border-color:rgba(42,157,143,0.36);background:var(--teal-dim);color:#9CBFBB;}
   .chip.gold{border-color:rgba(233,196,106,0.34);background:var(--gold-dim);color:var(--gold);}
+  .chip.tech{border-color:rgba(127,163,255,0.48);background:rgba(127,163,255,0.08);color:#b8c9ff;}
+  .chip.ux{border-color:rgba(111,216,197,0.5);background:rgba(111,216,197,0.09);color:#9bd7cb;}
+  .chip.concept{border-color:rgba(231,111,81,0.42);background:rgba(231,111,81,0.1);color:#e9a392;}
+  .chip.domain{border-color:rgba(197,164,255,0.48);background:rgba(197,164,255,0.08);color:#d5c1ff;}
 
   .meta-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:42px;}
   .mc{background:var(--bg2);padding:17px 19px;}
@@ -198,16 +207,26 @@
     .el{grid-template-columns:1fr;}
     .etag{border-right:none;border-bottom:1px solid var(--border);}
     .wrap{padding:0 20px;}
+    .sitebar{align-items:flex-start;flex-direction:column;padding-inline:20px;}
     .ts{flex-direction:column;gap:18px;}
   }
 </style>
 </head>
 <body>
+<header class="sitebar">
+  <a class="mark" href="/">Codes by Shrey</a>
+  <nav class="links" aria-label="Primary">
+    <a href="/education/">Education</a>
+    <a href="/experiences/">Experiences</a>
+    <a href="/expression/">Expression</a>
+    <a href="/connect/">Connect</a>
+  </nav>
+</header>
 
 <!-- HERO -->
 <div class="hero">
   <div class="wrap">
-    <div class="tag reveal">NBME Study · National Board of Medical Examiners · 2025</div>
+    <div class="tag reveal">Clinical Roleplay · National Board of Medical Examiners · 2025</div>
     <h1 class="hero-title reveal d1">
       Designing a Clinical Simulation Roleplay System<br>
       <span class="ac">for Patient-Centered Communication</span>
@@ -215,16 +234,15 @@
     <p class="hero-sub reveal d2">A behavioral simulation system for practicing clinical conversations, surfacing communication patterns, and making patient-centered competence observable.</p>
     <div class="hero-thesis reveal d2">Clinical communication is not a soft skill. It is <em>observable clinical behavior under constraint</em>.</div>
     <div class="chip-row reveal d2" aria-label="Case study themes">
-      <span class="chip teal">Clinical AI</span>
-      <span class="chip">OSCE Simulation</span>
-      <span class="chip">Human Factors</span>
-      <span class="chip gold">Assessment Design</span>
-      <span class="chip">Motivational Interviewing</span>
+      <span class="chip domain">Clinical AI</span>
+      <span class="chip concept">OSCE Simulation</span>
+      <span class="chip domain">Human Factors</span>
+      <span class="chip ux">Assessment Design</span>
+      <span class="chip concept">Motivational Interviewing</span>
     </div>
     <div class="hero-actions reveal d2">
-      <a class="hero-btn primary" href="/NBME-CCS/">NBME Study</a>
-      <a class="hero-btn" href="/NBME-CCS-PRD/">NBME PRD</a>
-      <a class="hero-btn" href="/clinical-roleplay-prd/">Clinical Roleplay PRD</a>
+      <a class="hero-btn primary" href="/clinical-roleplay/">Clinical Roleplay</a>
+      <a class="hero-btn" href="/clinical-roleplay-PRD/">Clinical Roleplay PRD</a>
     </div>
     <div class="meta-row reveal d3">
       <div class="mc">
