@@ -35,10 +35,16 @@
   .hero-title{font-family:var(--serif);font-size:clamp(28px,4.5vw,52px);font-weight:700;line-height:1.12;margin-bottom:14px;}
   .hero-title .ac{color:var(--teal);}
   .hero-sub{font-size:16px;color:var(--mid);margin-bottom:42px;max-width:520px;line-height:1.7;}
+  .hero-thesis{max-width:760px;margin:0 0 24px;padding:18px 22px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(31,43,64,0.75),rgba(42,157,143,0.07));font-family:var(--serif);font-size:clamp(18px,2.2vw,25px);line-height:1.45;color:var(--white);}
+  .hero-thesis em{color:var(--gold);}
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 34px;}
   .hero-btn{display:inline-block;border:1px solid var(--border);padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--white);background:var(--surface);}
   .hero-btn.primary{border-color:var(--teal);background:var(--teal-dim);color:var(--teal);}
   .hero-btn:hover{border-color:var(--teal);color:var(--teal);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 34px;}
+  .chip{display:inline-flex;align-items:center;border:1px solid rgba(240,244,248,0.16);background:rgba(240,244,248,0.05);padding:6px 10px;border-radius:999px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--mid);text-transform:uppercase;}
+  .chip.teal{border-color:rgba(42,157,143,0.36);background:var(--teal-dim);color:#9CBFBB;}
+  .chip.gold{border-color:rgba(233,196,106,0.34);background:var(--gold-dim);color:var(--gold);}
 
   .meta-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:42px;}
   .mc{background:var(--bg2);padding:17px 19px;}
@@ -140,6 +146,25 @@
   .fres{font-size:12px;color:var(--mid);line-height:1.6;}
   .farr{text-align:center;font-family:var(--mono);font-size:11px;color:var(--teal);padding:16px;background:var(--bg3);border:1px solid var(--border);margin-top:13px;letter-spacing:.08em;}
 
+  /* REFLECTIONS + COMPETENCY MODEL */
+  .section-intro{max-width:660px;color:var(--mid);font-size:14px;line-height:1.75;margin-bottom:22px;}
+  .reflection-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:26px;}
+  .reflection-card{background:var(--bg2);padding:22px;position:relative;min-height:190px;transition:background .2s;}
+  .reflection-card:hover{background:var(--surface);}
+  .reflection-card.wide{grid-column:1 / -1;min-height:0;background:linear-gradient(180deg,rgba(31,43,64,0.9),rgba(233,196,106,0.06));}
+  .rtype{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .reflection-card:nth-child(3n) .rtype{color:var(--gold);}
+  .reflection-card:nth-child(4n) .rtype{color:var(--red);}
+  .rquote{font-family:var(--serif);font-size:17px;line-height:1.58;color:var(--white);}
+  .rnum{position:absolute;top:16px;right:18px;font-family:var(--mono);font-size:24px;color:var(--teal);opacity:.16;}
+  .competency-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:26px;}
+  .ccell{background:var(--bg2);padding:19px;transition:background .2s;}
+  .ccell:hover{background:var(--surface);}
+  .ctag{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:9px;padding-bottom:8px;border-bottom:1px solid rgba(42,157,143,0.24);}
+  .cmain{font-size:13px;color:var(--white);font-weight:600;line-height:1.45;margin-bottom:7px;}
+  .cfail{font-size:12px;color:var(--mid);line-height:1.6;}
+  .model-note{margin-top:18px;border:1px solid var(--border);background:var(--bg3);padding:18px 20px;font-size:13px;color:var(--mid);line-height:1.65;}
+
   /* METRICS */
   .mrow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:26px;}
   .mcel{background:var(--bg2);padding:22px 18px;text-align:center;}
@@ -168,7 +193,8 @@
   .flink:hover{color:var(--teal);}
 
   @media(max-width:700px){
-    .split,.rgrid,.meta-row,.fgrid,.ngrid,.mrow,.drift,.glance{grid-template-columns:1fr;}
+    .split,.rgrid,.meta-row,.fgrid,.ngrid,.mrow,.drift,.glance,.reflection-grid,.competency-grid{grid-template-columns:1fr;}
+    .reflection-card.wide{grid-column:auto;}
     .el{grid-template-columns:1fr;}
     .etag{border-right:none;border-bottom:1px solid var(--border);}
     .wrap{padding:0 20px;}
@@ -186,7 +212,15 @@
       Designing a Clinical Simulation Roleplay System<br>
       <span class="ac">for Patient-Centered Communication</span>
     </h1>
-    <p class="hero-sub reveal d2">A behavioral simulation system for training patient-centered communication — at scale, without standardized patients.</p>
+    <p class="hero-sub reveal d2">A behavioral simulation system for practicing clinical conversations, surfacing communication patterns, and making patient-centered competence observable.</p>
+    <div class="hero-thesis reveal d2">Clinical communication is not a soft skill. It is <em>observable clinical behavior under constraint</em>.</div>
+    <div class="chip-row reveal d2" aria-label="Case study themes">
+      <span class="chip teal">Clinical AI</span>
+      <span class="chip">OSCE Simulation</span>
+      <span class="chip">Human Factors</span>
+      <span class="chip gold">Assessment Design</span>
+      <span class="chip">Motivational Interviewing</span>
+    </div>
     <div class="hero-actions reveal d2">
       <a class="hero-btn primary" href="/NBME-CCS/">NBME Study</a>
       <a class="hero-btn" href="/NBME-CCS-PRD/">NBME PRD</a>
@@ -221,12 +255,12 @@
     <div class="glance reveal d1">
       <div class="gc">
         <div class="gt gt-r">Problem</div>
-        <div class="gm">Clinicians are trained to diagnose — not to communicate effectively in real-time clinical interactions.</div>
-        <div class="gs">OSCE training is expensive, scarce, and static. It scores communication but doesn't build the skill.</div>
+        <div class="gm">Clinicians are trained to diagnose — but communication often degrades under real time pressure.</div>
+        <div class="gs">OSCE training is expensive, scarce, and episodic. It can score communication without giving learners enough rehearsal to build it.</div>
       </div>
       <div class="gc">
         <div class="gt gt-t">Solution</div>
-        <div class="gm">An AI simulation system training patient-centered communication through controlled behavioral scenarios.</div>
+        <div class="gm">An AI roleplay system that treats patient-centered communication as observable, trainable behavior.</div>
         <div class="gs">Built 0-to-1: concept validation through shipped MVP with dialogue, evaluation, and feedback systems.</div>
       </div>
       <div class="gc">
@@ -236,8 +270,8 @@
       </div>
       <div class="gc">
         <div class="gt gt-m">Impact</div>
-        <div class="gm">15 clinicians tested → improved question framing and actionable feedback adoption.</div>
-        <div class="gs">Primary shift: clinicians changed <em>how</em> they structured questions — not just what they asked.</div>
+        <div class="gm">15 clinicians tested → feedback shifted from personal judgment to developmental language.</div>
+        <div class="gs">Primary shift: clinicians changed <em>how</em> they structured questions, managed uncertainty, and responded to resistance.</div>
       </div>
     </div>
   </div>
@@ -250,10 +284,10 @@
       <div class="reveal">
         <div class="snum">01 — The Problem</div>
         <h2>Communication fails in the interaction, not the knowledge</h2>
-        <p>In clinical environments, providers are trained to diagnose. They are not consistently trained to be present. Discharge paperwork is clinically correct but functionally unreadable for elderly patients or those with low health literacy. Providers discuss patients in front of patients. Emotional cues pass without acknowledgment.</p>
+        <p>In clinical environments, providers are trained to diagnose. They are not consistently trained to be present, explain uncertainty, preserve autonomy, or notice when the patient has stopped following the conversation. Discharge paperwork can be clinically correct but functionally unreadable for elderly patients or those with low health literacy. Providers discuss patients in front of patients. Emotional cues pass without acknowledgment.</p>
         <p>This gap became clear through my experience as an EMT, where effective care often depended less on diagnosis and more on how information was communicated in high-stress, low-context situations.</p>
-        <p>Clinical training focuses on what not to say — for liability. It does not train how to adapt communication in real time, navigate emotional resistance, or balance information extraction with empathetic presence.</p>
-        <div class="co">The OSCE format — the gold standard for clinical communication — is expensive, scarce, and static. It tells you whether a clinician communicates. It doesn't help them get better.</div>
+        <p>Clinical training often focuses on what not to say — for liability. It does not always train how to adapt communication in real time, navigate emotional resistance, or balance information extraction with empathetic presence.</p>
+        <div class="co">The OSCE format — the gold standard for clinical communication — is a compressed moral laboratory. Under time pressure, learners reveal what has actually been internalized: curiosity or checklist thinking, empathy or efficiency theater.</div>
       </div>
       <div class="reveal d2">
         <div class="dbox">
@@ -287,12 +321,13 @@
       <h2>Not a chatbot. A behavioral simulation.</h2>
     </div>
     <div class="co-gold reveal d1">
-      "NBME is not a chatbot. It is a system to remind clinicians that the patient is a human — not a token they're interacting with."
+      "The goal was not simply to simulate a patient. It was to create a structured environment where communication patterns could become visible, discussable, and improvable."
     </div>
     <div class="split reveal d2">
       <div>
         <p>The Clinical Roleplay Simulator gives clinicians a space to practice — without standardized patients, without scheduling overhead, and with evaluation specific enough to change behavior rather than just score it.</p>
         <p>Three goals drove the system design: simulate real interactions with enough fidelity that communication habits form, evaluate both clinical and communication performance independently, and generate feedback that surfaces patterns the clinician can actually act on.</p>
+        <p>From a human factors perspective, communication failure is not simply a deficit in individual empathy. It is often a predictable output of systems that reward speed, certainty, and throughput over understanding, trust, and reflection.</p>
       </div>
       <div class="dbox">
         <div class="dlabel">System Flow</div>
@@ -458,7 +493,7 @@
     <div class="reveal">
       <div class="snum">08 — Evaluation Engine</div>
       <h2>Three layers, one hierarchy</h2>
-      <p style="max-width:560px">Clinical competency functions as a hard constraint — it supersedes all communication scoring. A misdiagnosis costs a life. Poor communication costs trust. The hierarchy was intentional from the start.</p>
+      <p style="max-width:620px">Clinical competency functions as a hard constraint — it supersedes all communication scoring. A misdiagnosis costs a life. Poor communication costs trust, adherence, disclosure, and shared decision-making. The hierarchy was intentional from the start.</p>
     </div>
     <div class="estack reveal d1">
       <div class="el">
@@ -467,7 +502,7 @@
       </div>
       <div class="el">
         <div class="etag etag-t">Communication<br>Behavioral</div>
-        <div class="ecnt"><div class="etitle">6 patient-centered elements (King & Hoppe) · motivational interviewing · OSCE rubrics</div><div class="edesc">Evaluates emotional acknowledgment, question framing, information pacing, and responsiveness to resistance — assessed as patterns across the full session, not just individual turns.</div></div>
+        <div class="ecnt"><div class="etitle">6 patient-centered elements (King & Hoppe) · motivational interviewing · OSCE rubrics</div><div class="edesc">Evaluates emotional acknowledgment, question framing, information pacing, responsiveness to resistance, autonomy support, and epistemic humility — assessed as patterns across the full session, not just individual turns.</div></div>
       </div>
       <div class="el">
         <div class="etag etag-m">Dialogue Quality<br>Heuristics</div>
@@ -483,7 +518,7 @@
     <div class="reveal">
       <div class="snum">09 — Feedback System</div>
       <h2>Three perspectives per session</h2>
-      <p style="max-width:560px">Most evaluation systems produce a rubric score or highlight specific errors. This system produces feedback from three distinct analytical positions — each one addressing a different kind of learning.</p>
+      <p style="max-width:620px">Most evaluation systems produce a rubric score or highlight specific errors. This system produces feedback from three distinct analytical positions — each one addressing a different kind of learning and turning abstract professionalism into language a learner can practice against.</p>
     </div>
     <div class="fgrid reveal d1">
       <div class="fcel"><div class="fnum">01</div><div class="ftype">Scenario-Based</div><div class="fsc">Given this patient and context, you should have...</div><div class="fres">Situational awareness. What the case demanded and whether the clinician read the room correctly.</div></div>
@@ -494,11 +529,95 @@
   </div>
 </section>
 
-<!-- 10 OUTCOME -->
+<!-- 10 AGENT REFLECTIONS -->
 <section>
   <div class="wrap">
     <div class="reveal">
-      <div class="snum">10 — Outcome</div>
+      <div class="snum">10 — Agent Reflections</div>
+      <h2>What the faux patient and evaluator surfaced</h2>
+      <p class="section-intro">After the system had played both standardized patient and conversational evaluator, I asked it to reflect on what it had learned. The output became a useful qualitative artifact: it named the latent dimensions the simulator was already trying to assess.</p>
+    </div>
+    <div class="reflection-grid reveal d1">
+      <div class="reflection-card">
+        <div class="rnum">01</div>
+        <div class="rtype">Empirical</div>
+        <div class="rquote">Medicine keeps rediscovering the same truth: communication isn't a soft skill, it's a clinical intervention. Patient satisfaction, adherence, even malpractice risk track how well clinicians listen, reflect, and explain — not just what they prescribe. Competence is observable behavior, not intent.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">02</div>
+        <div class="rtype">Empirical</div>
+        <div class="rquote">We measure what we value. When communication becomes a formal competency — assessed, revisited, reinforced — outcomes improve. When it's treated as an early-course checkbox, empathy decays as training advances. Systems shape clinicians more than syllabi.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">03</div>
+        <div class="rtype">Philosophical</div>
+        <div class="rquote">Competency-based education quietly reframes medicine's moral core: not "Did you finish training?" but "Can you be trusted with another human being's vulnerability?" Time served is not the same as trust earned.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">04</div>
+        <div class="rtype">Philosophical</div>
+        <div class="rquote">Patient-centered care isn't about being nice. It's about epistemic humility — recognizing that the patient is the primary expert on their lived experience, while the clinician is an expert in uncertainty management. Truth emerges in dialogue, not monologue.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">05</div>
+        <div class="rtype">Theoretical</div>
+        <div class="rquote">The OSCE is a compressed moral laboratory. Under time pressure, learners reveal what has been internalized: curiosity or checklist-thinking, empathy or efficiency theater. Simulations don't test knowledge — they surface values under constraint.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">06</div>
+        <div class="rtype">Theoretical</div>
+        <div class="rquote">Motivational Interviewing works because it aligns with how humans actually change: autonomy before compliance, meaning before metrics. Education that ignores this trains technical obedience, not professional judgment.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">07</div>
+        <div class="rtype">Empirical to Theoretical Bridge</div>
+        <div class="rquote">Communication failures aren't individual flaws; they're predictable outputs of systems that reward speed, certainty, and throughput. Fixing bedside manner without fixing incentives is treating symptoms, not disease.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">08</div>
+        <div class="rtype">Philosophical</div>
+        <div class="rquote">Professionalism isn't rule-following — it's self-regulation in the presence of power. The moment clinicians stop noticing their own biases, fatigue, and limits is the moment professionalism becomes performative rather than ethical.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="rnum">09</div>
+        <div class="rtype">Theoretical</div>
+        <div class="rquote">Competencies create a shared language across transitions: student to resident to physician. Without a shared mental model of good, assessment becomes noise and feedback becomes personal instead of developmental.</div>
+      </div>
+      <div class="reflection-card wide">
+        <div class="rnum">10</div>
+        <div class="rtype">Closing Reflection</div>
+        <div class="rquote">If medicine wants fewer burned-out clinicians and fewer unheard patients, the answer isn't more content — it's better conversations, rigorously taught and relentlessly practiced. What we assess is what we become.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 COMPETENCY MODEL -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="snum">11 — Competency Model</div>
+      <h2>Turning reflection into an assessment artifact</h2>
+      <p class="section-intro">The reflections pointed toward a more mature product artifact: a shared language for what "good communication" actually means in a simulated encounter. The model below translates values into observable behaviors and failure modes.</p>
+    </div>
+    <div class="competency-grid reveal d1">
+      <div class="ccell"><div class="ctag">Listening</div><div class="cmain">Reflects, summarizes, asks clarifying questions.</div><div class="cfail">Failure mode: premature advice.</div></div>
+      <div class="ccell"><div class="ctag">Epistemic Humility</div><div class="cmain">Acknowledges uncertainty without losing clinical authority.</div><div class="cfail">Failure mode: false certainty.</div></div>
+      <div class="ccell"><div class="ctag">Autonomy</div><div class="cmain">Offers choice, asks permission, frames change collaboratively.</div><div class="cfail">Failure mode: compliance pressure.</div></div>
+      <div class="ccell"><div class="ctag">Attunement</div><div class="cmain">Names emotion and validates fear, frustration, or resistance.</div><div class="cfail">Failure mode: efficiency theater.</div></div>
+      <div class="ccell"><div class="ctag">Explanation</div><div class="cmain">Uses plain language, paces information, checks understanding.</div><div class="cfail">Failure mode: jargon dump.</div></div>
+      <div class="ccell"><div class="ctag">Self-Regulation</div><div class="cmain">Notices bias, fatigue, defensiveness, and premature closure.</div><div class="cfail">Failure mode: performative professionalism.</div></div>
+      <div class="ccell"><div class="ctag">Trust-Building</div><div class="cmain">Aligns care with the patient's goals and lived constraints.</div><div class="cfail">Failure mode: authority without relationship.</div></div>
+    </div>
+    <div class="model-note reveal d2">This was the shift from "I built a chatbot" to "I designed a rehearsal environment for clinical judgment." The simulator's value was not replacing human standardized patients; it was making hidden communication patterns visible, measurable, and improvable.</div>
+  </div>
+</section>
+
+<!-- 12 OUTCOME -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="snum">12 — Outcome</div>
       <h2>What changed</h2>
     </div>
     <div class="mrow reveal d1">
@@ -510,31 +629,32 @@
     <p class="reveal d2">Clinicians described feedback as specific, actionable, and directly tied to the dialogue.</p>
     <div class="co reveal d2">
       <strong style="color:var(--teal);font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;display:block;margin-bottom:5px">Primary shift observed</strong>
-      Clinicians changed how they structured questions across sessions — not just what they asked. The framing, pacing, and sequencing of information gathering shifted. That's a communication habit forming, not a rubric score improving.
+      Clinicians changed how they structured questions across sessions — not just what they asked. The framing, pacing, sequencing, and repair of information gathering shifted. That's a communication habit forming, not a rubric score improving.
     </div>
   </div>
 </section>
 
-<!-- 11 INSIGHT -->
+<!-- 13 INSIGHT -->
 <section>
   <div class="wrap">
     <div class="bq reveal">
-      <div class="qt">Most healthcare AI systems optimize for correctness.<br>This system optimizes for <em>evaluability</em>.</div>
-      <div class="qs">Training systems need controlled variation · consistent feedback · behavioral focus</div>
+      <div class="qt">Most healthcare AI systems optimize for correctness.<br>This system optimizes for <em>evaluability</em> — because what we assess is what we become.</div>
+      <div class="qs">Controlled variation · shared language · feedback loops · behavioral focus</div>
     </div>
   </div>
 </section>
 
-<!-- 12 NEXT -->
+<!-- 14 NEXT -->
 <section>
   <div class="wrap">
     <div class="reveal">
-      <div class="snum">12 — What's Next</div>
+      <div class="snum">14 — What's Next</div>
       <h2>Where the ceiling is</h2>
+      <p class="section-intro">The MVP proved the training loop. The next ceiling is longitudinal: making communication growth visible across sessions, personas, and transitions from student to resident to physician.</p>
     </div>
     <div class="ngrid reveal d1">
       <div class="ncel"><div class="nico">01 · Progress</div><div class="ntit">Profile Tracking</div><div class="ndsc">Track clinician improvement across personas over time. Make the development arc visible rather than session-by-session. The tool needs a sense of progress to sustain engagement.</div></div>
-      <div class="ncel"><div class="nico">02 · Difficulty</div><div class="ntit">Challenge Mode</div><div class="ndsc">A custom scenario and persona unlocked after completing the standard rotation — a sense of completion with sustained replayability. The system should have an end in sight without limiting depth.</div></div>
+      <div class="ncel"><div class="nico">02 · Rubric Language</div><div class="ntit">Shared Mental Model</div><div class="ndsc">Create stable competency language across handoffs, coaching, and repeated encounters. Feedback should feel developmental, not personal.</div></div>
       <div class="ncel"><div class="nico">03 · Depth</div><div class="ntit">Clinical Complexity</div><div class="ndsc">The area most constrained at MVP. Deeper diagnostic nuance without sacrificing evaluation consistency. As complexity increases, the empathy-information seesaw gets harder — that's where the real training value is.</div></div>
     </div>
   </div>
