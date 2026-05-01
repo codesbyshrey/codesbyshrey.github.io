@@ -365,6 +365,70 @@ h1 {
   margin-top: 30px;
 }
 
+.process-table {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.process-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) minmax(180px, 0.7fr);
+  gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.process-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.process-stage {
+  color: var(--accent);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.process-detail,
+.process-evidence {
+  margin: 0;
+  color: var(--muted);
+}
+
+.process-evidence {
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.skill-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.skill-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.skill-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .section h2 {
   margin: 0 0 14px;
   font-family: "Fraunces", Georgia, serif;
@@ -445,6 +509,8 @@ body.route-expression {
   .hero,
   .grid,
   .grid.three,
+  .skill-grid,
+  .process-row,
   .route-layout,
   .experience-row,
   .meta {

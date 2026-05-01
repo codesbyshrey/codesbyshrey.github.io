@@ -151,6 +151,12 @@ body{background:
 .quick-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .quick-links a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid var(--faint);border-radius:999px;padding:7px 10px;background:rgba(255,255,255,.04)}
 .quick-links a:hover,.quick-links a:focus-visible{border-color:var(--teal)}
+.professional-panel{border:1px solid rgba(91,184,162,.34);border-radius:22px;background:rgba(13,16,32,.72);padding:24px;margin:0 0 26px;box-shadow:0 24px 70px rgba(0,0,0,.22)}
+.professional-panel h2{font-size:clamp(34px,4vw,56px);margin-bottom:10px}
+.professional-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.professional-card{border:1px solid var(--faint);border-radius:16px;background:rgba(255,255,255,.035);padding:16px}
+.professional-card strong{display:block;color:var(--white);font-size:14px;margin-bottom:8px}
+.professional-card p{font-size:14px;line-height:1.6;margin:0;color:#b8b3aa}
 #deck-wrap{min-height:unset;background:transparent;display:grid;gap:22px;-webkit-user-select:text;user-select:text}
 .slide,.slide.active{display:flex;min-height:clamp(500px,68vh,680px);border:1px solid var(--faint);border-radius:22px;background:linear-gradient(145deg,rgba(13,16,32,.96),rgba(7,9,15,.96));box-shadow:0 24px 70px rgba(0,0,0,.32);overflow:hidden;padding:clamp(32px,4.5vw,64px);margin:0}
 .slide::after{content:attr(id);position:absolute;right:22px;bottom:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.2)}
@@ -169,7 +175,7 @@ body{background:
 @media (max-width:820px){
   .site-shell{padding:18px 14px 52px}
   .topbar{align-items:flex-start;flex-direction:column}
-  .essay-hero,.cols,.loop,.trio{grid-template-columns:1fr}
+  .essay-hero,.cols,.loop,.trio,.professional-grid{grid-template-columns:1fr}
   .slide,.slide.active{min-height:0;padding:28px 20px}
   .map-row{grid-template-columns:1fr;gap:6px}
   .map-cell.left,.map-cell.right{text-align:left}
@@ -205,6 +211,17 @@ body{background:
       <a href="#s18">Closing</a>
     </div>
   </aside>
+</section>
+
+<section class="professional-panel" aria-labelledby="systems-thesis-title">
+  <div class="essay-kicker">Professional Systems Thesis</div>
+  <h2 id="systems-thesis-title">Interaction design for coherent human-AI systems.</h2>
+  <p>This page is framed as a systems-design argument: high-stakes AI should be evaluated not only by capability, but by coherence, memory, legibility, context recovery, and the user's ability to predict what the system will do next.</p>
+  <div class="professional-grid">
+    <div class="professional-card"><strong>Design Lens</strong><p>Translate cognitive architecture into interface requirements: attention, working memory, context, feedback, and user trust calibration.</p></div>
+    <div class="professional-card"><strong>AI Systems Lens</strong><p>Map RAG, context windows, agents, multimodal sensing, and tool use onto practical product failure modes.</p></div>
+    <div class="professional-card"><strong>Portfolio Use</strong><p>Use this as the conceptual bridge across Clinical Roleplay, Praxik, Bonita, HapTrek, and embodied interface work.</p></div>
+  </div>
 </section>
 
 <div id="deck-wrap">
