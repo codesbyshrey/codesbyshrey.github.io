@@ -16,7 +16,7 @@ Personal portfolio and project legend for [codesbyshrey.github.io](https://codes
 - [Clinical Roleplay](https://codesbyshrey.github.io/clinical-roleplay/) - clinical communication simulator case study.
 - [Clinical Roleplay PRD](https://codesbyshrey.github.io/clinical-roleplay-PRD/) - product requirements document for the simulator.
 - [Clinical Roleplay PRD v1](https://codesbyshrey.github.io/clinical-roleplay-prdv1/) - earlier clinical roleplay PRD version.
-- [Praxik](https://codesbyshrey.github.io/praxik/) - healthcare AI product incubation brief.
+- [Praxik](https://codesbyshrey.github.io/praxik/) - completed Swift AR museum-learning project.
 
 ## Practice Intuition
 
