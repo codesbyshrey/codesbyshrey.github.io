@@ -61,7 +61,14 @@
   .mv{font-size:13px;font-weight:600;color:var(--white);line-height:1.4;}
   .ms{font-size:11px;color:var(--mid);margin-top:3px;}
 
+  .case-map{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:26px 0 0;}
+  .case-map a{display:block;background:var(--bg2);padding:14px 12px;text-decoration:none;color:var(--mid);transition:background .2s,color .2s;}
+  .case-map a:hover,.case-map a:focus-visible{background:var(--surface);color:var(--white);}
+  .map-num{display:block;font-family:var(--mono);font-size:9px;color:var(--teal);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;}
+  .map-title{display:block;font-size:13px;font-weight:700;color:var(--white);}
+
   .snum{font-family:var(--mono);font-size:11px;color:var(--teal);letter-spacing:.15em;margin-bottom:10px;}
+  .snum-spaced{margin-bottom:16px;}
   h2{font-family:var(--serif);font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--white);margin-bottom:24px;line-height:1.2;}
   h3{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin:22px 0 10px;}
   p{color:var(--mid);margin-bottom:15px;font-size:14px;line-height:1.75;}
@@ -71,6 +78,7 @@
   .co{border-left:2px solid var(--teal);background:var(--teal-glow);padding:17px 21px;margin:22px 0;font-size:13px;color:#9CBFBB;font-style:italic;line-height:1.65;}
   .co-gold{border-left:2px solid var(--gold);background:var(--gold-dim);padding:21px 25px;margin:26px 0;font-family:var(--serif);font-size:18px;color:var(--gold);font-style:italic;line-height:1.6;}
   .co-warn{border-left:2px solid var(--gold);background:var(--gold-dim);padding:17px 21px;margin:22px 0;font-size:13px;color:#B89A4A;font-style:italic;line-height:1.65;}
+  .primary-shift-label{color:var(--teal);font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;display:block;margin-bottom:5px;}
 
   .split{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start;}
 
@@ -86,7 +94,8 @@
   .frow .fn{flex:1;}
 
   /* GLANCE */
-  .glance{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+  .glance-band{padding:54px 0;background:var(--bg2);}
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
   .gc{background:var(--bg3);padding:24px 21px;}
   .gt{font-family:var(--mono);font-size:9px;letter-spacing:.17em;text-transform:uppercase;margin-bottom:11px;padding-bottom:9px;border-bottom-width:1px;border-bottom-style:solid;}
   .gt-r{color:var(--red);border-bottom-color:rgba(231,111,81,0.25);}
@@ -95,6 +104,15 @@
   .gt-m{color:var(--mid);border-bottom-color:var(--border);}
   .gm{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;margin-bottom:7px;}
   .gs{font-size:12px;color:var(--mid);line-height:1.6;}
+
+  .insight-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:26px;}
+  .insight-card{background:linear-gradient(180deg,rgba(31,43,64,.95),rgba(42,157,143,.06));padding:22px;}
+  .insight-card:nth-child(2){background:linear-gradient(180deg,rgba(31,43,64,.95),rgba(231,111,81,.08));}
+  .insight-card:nth-child(3){background:linear-gradient(180deg,rgba(31,43,64,.95),rgba(233,196,106,.08));}
+  .insight-card .ik{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:9px;}
+  .insight-card:nth-child(2) .ik{color:var(--red);}
+  .insight-card:nth-child(3) .ik{color:var(--gold);}
+  .insight-card .iq{font-family:var(--serif);font-size:18px;line-height:1.45;color:var(--white);}
 
   /* ROLE GRID */
   .rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:26px;}
@@ -115,9 +133,20 @@
   .ac-line::after{content:'▼';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--dim);}
   .ano{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.1em;margin-top:16px;padding:6px 13px;border:1px dashed rgba(231,111,81,0.3);background:var(--red-dim);}
 
+  .state-map{display:grid;grid-template-columns:1fr 34px 1fr;gap:10px;align-items:center;margin-top:24px;}
+  .state-stack{display:grid;gap:10px;}
+  .state-node{border:1px solid var(--border);background:var(--bg3);padding:14px 16px;}
+  .state-node strong{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
+  .state-node span{display:block;font-size:12px;color:var(--mid);line-height:1.55;}
+  .state-node.gold strong{color:var(--gold);}
+  .state-node.red strong{color:var(--red);}
+  .state-node.mid strong{color:var(--dim);}
+  .state-wall{font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.12em;text-transform:uppercase;text-align:center;writing-mode:vertical-rl;justify-self:center;border:1px dashed rgba(231,111,81,.34);padding:12px 7px;background:var(--red-dim);}
+
   /* DRIFT */
   .drift{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:26px;}
   .dc{background:var(--bg2);padding:24px;}
+  .dc.fail{background:rgba(231,111,81,0.05);}
   .dtag{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--border);}
   .dtag-g{color:var(--teal);border-bottom-color:rgba(42,157,143,0.2);}
   .dtag-r{color:var(--red);border-bottom-color:rgba(231,111,81,0.2);}
@@ -179,6 +208,11 @@
   .mcel{background:var(--bg2);padding:22px 18px;text-align:center;}
   .mnum{font-family:var(--serif);font-size:34px;color:var(--teal);line-height:1;margin-bottom:5px;}
   .mlbl{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.11em;text-transform:uppercase;}
+  .outcome-board{display:grid;grid-template-columns:1fr 28px 1fr;gap:12px;align-items:stretch;margin-top:20px;}
+  .outcome-card{border:1px solid var(--border);background:var(--bg2);padding:20px;}
+  .outcome-card strong{display:block;color:var(--white);font-size:14px;margin-bottom:8px;}
+  .outcome-card span{display:block;color:var(--mid);font-size:12px;line-height:1.65;}
+  .outcome-arrow{display:flex;align-items:center;justify-content:center;color:var(--teal);font-family:var(--mono);}
 
   /* BIG QUOTE */
   .bq{text-align:center;padding:54px 34px;}
@@ -193,6 +227,11 @@
   .ntit{font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px;}
   .ndsc{font-size:12px;color:var(--mid);line-height:1.6;}
 
+  .close-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:26px;}
+  .close-card{background:var(--bg2);padding:24px 21px;}
+  .close-card .nico{margin-bottom:10px;}
+  .close-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+
   /* FOOTER */
   .foot{padding:42px 0;border-top:1px solid var(--border);}
   .fc{display:flex;justify-content:space-between;align-items:center;}
@@ -202,7 +241,8 @@
   .flink:hover{color:var(--teal);}
 
   @media(max-width:700px){
-    .split,.rgrid,.meta-row,.fgrid,.ngrid,.mrow,.drift,.glance,.reflection-grid,.competency-grid{grid-template-columns:1fr;}
+    .split,.rgrid,.meta-row,.fgrid,.ngrid,.mrow,.drift,.glance,.reflection-grid,.competency-grid,.case-map,.insight-strip,.state-map,.outcome-board,.close-grid{grid-template-columns:1fr;}
+    .state-wall{writing-mode:horizontal-tb;}
     .reflection-card.wide{grid-column:auto;}
     .el{grid-template-columns:1fr;}
     .etag{border-right:none;border-bottom:1px solid var(--border);}
@@ -214,12 +254,12 @@
 </head>
 <body>
 <header class="sitebar">
-  <a class="mark" href="/">Codes by Shrey</a>
+  <a class="mark" href="../">Codes by Shrey</a>
   <nav class="links" aria-label="Primary">
-    <a href="/education/">Education</a>
-    <a href="/experiences/">Experiences</a>
-    <a href="/expression/">Expression</a>
-    <a href="/connect/">Connect</a>
+    <a href="../education/">Education</a>
+    <a href="../experiences/">Experiences</a>
+    <a href="../expression/">Expression</a>
+    <a href="../connect/">Connect</a>
   </nav>
 </header>
 
@@ -241,13 +281,14 @@
       <span class="chip concept">Motivational Interviewing</span>
     </div>
     <div class="hero-actions reveal d2">
-      <a class="hero-btn primary" href="/clinical-roleplay/">Clinical Roleplay</a>
-      <a class="hero-btn" href="/clinical-roleplay-PRD/">Clinical Roleplay PRD</a>
+      <a class="hero-btn primary" href="../clinical-roleplay/">Clinical Roleplay</a>
+      <a class="hero-btn" href="../clinical-roleplay-PRD/">Clinical Roleplay PRD</a>
+      <a class="hero-btn" href="../clinical-roleplay-prdv1/">PRD v1</a>
     </div>
     <div class="meta-row reveal d3">
       <div class="mc">
-        <div class="ml">Domain</div>
-        <div class="mv">Clinical AI · CUI · Human Factors</div>
+        <div class="ml">Product</div>
+        <div class="mv">OSCE-style clinical roleplay simulator</div>
       </div>
       <div class="mc">
         <div class="ml">Role</div>
@@ -255,48 +296,71 @@
         <div class="ms">AI Product Systems Designer · Lead Builder</div>
       </div>
       <div class="mc">
-        <div class="ml">Methods</div>
-        <div class="mv">User Testing · System Design · RAG Architecture</div>
+        <div class="ml">Stack / Architecture</div>
+        <div class="mv">React · TypeScript · RAG · ASR/TTS · State Separation</div>
       </div>
       <div class="mc">
-        <div class="ml">Outcome</div>
-        <div class="mv">Shipped MVP · 15 Clinician Tests</div>
+        <div class="ml">Testing / Outcome</div>
+        <div class="mv">Shipped MVP · 15 clinician tests · 3 feedback perspectives</div>
       </div>
     </div>
+    <nav class="case-map reveal d3" aria-label="Case study map">
+      <a href="#problem"><span class="map-num">01</span><span class="map-title">Problem</span></a>
+      <a href="#product"><span class="map-num">02</span><span class="map-title">Product</span></a>
+      <a href="#architecture"><span class="map-num">03</span><span class="map-title">Architecture</span></a>
+      <a href="#evaluation"><span class="map-num">04</span><span class="map-title">Evaluation</span></a>
+      <a href="#outcome"><span class="map-num">05</span><span class="map-title">Outcome</span></a>
+      <a href="#roadmap"><span class="map-num">06</span><span class="map-title">Roadmap</span></a>
+    </nav>
   </div>
 </div>
 
 <!-- AT A GLANCE -->
-<section style="padding:54px 0;background:var(--bg2);">
+<section class="glance-band">
   <div class="wrap">
-    <div class="snum reveal" style="margin-bottom:16px">At a Glance — 30 second read</div>
+    <div class="snum snum-spaced reveal">At a Glance</div>
     <div class="glance reveal d1">
       <div class="gc">
-        <div class="gt gt-r">Problem</div>
-        <div class="gm">Clinicians are trained to diagnose — but communication often degrades under real time pressure.</div>
-        <div class="gs">OSCE training is expensive, scarce, and episodic. It can score communication without giving learners enough rehearsal to build it.</div>
+        <div class="gt gt-r">Role</div>
+        <div class="gm">Lead Product Engineer</div>
+        <div class="gs">Owned the MVP loop across product, UX, architecture, and clinician testing.</div>
       </div>
       <div class="gc">
-        <div class="gt gt-t">Solution</div>
-        <div class="gm">An AI roleplay system that treats patient-centered communication as observable, trainable behavior.</div>
-        <div class="gs">Built 0-to-1: concept validation through shipped MVP with dialogue, evaluation, and feedback systems.</div>
+        <div class="gt gt-t">Product</div>
+        <div class="gm">Clinical roleplay simulator</div>
+        <div class="gs">LLM patient personas, voice/text encounters, and OSCE-style feedback.</div>
       </div>
       <div class="gc">
-        <div class="gt gt-g">Key Innovation</div>
-        <div class="gm">Separated patient, scenario, and evaluator states to prevent LLM role drift and evaluation leakage.</div>
-        <div class="gs">Without this, the model's helpfulness training caused it to become the clinician after several turns.</div>
+        <div class="gt gt-g">Methods</div>
+        <div class="gm">User testing + evaluation design</div>
+        <div class="gs">15 clinician tests, scenario calibration, persona validation, feedback usability.</div>
       </div>
       <div class="gc">
-        <div class="gt gt-m">Impact</div>
-        <div class="gm">15 clinicians tested → feedback shifted from personal judgment to developmental language.</div>
-        <div class="gs">Primary shift: clinicians changed <em>how</em> they structured questions, managed uncertainty, and responded to resistance.</div>
+        <div class="gt gt-m">Stack</div>
+        <div class="gm">React, TypeScript, RAG, ASR/TTS</div>
+        <div class="gs">State isolation across scenario, patient, conversation, and evaluator behavior.</div>
       </div>
+      <div class="gc">
+        <div class="gt gt-t">Testing</div>
+        <div class="gm">15 clinician sessions</div>
+        <div class="gs">Realism, role fidelity, question quality, and feedback usefulness.</div>
+      </div>
+      <div class="gc">
+        <div class="gt gt-r">Outcome</div>
+        <div class="gm">Question-quality shift</div>
+        <div class="gs">Feedback moved from personal judgment toward developmental language.</div>
+      </div>
+    </div>
+    <div class="insight-strip reveal d2">
+      <div class="insight-card"><div class="ik">Product Insight</div><div class="iq">Clinical communication is observable behavior under constraint.</div></div>
+      <div class="insight-card"><div class="ik">Architecture Insight</div><div class="iq">Helpfulness and role-persistence are in tension by default.</div></div>
+      <div class="insight-card"><div class="ik">Evaluation Insight</div><div class="iq">Evaluability was the constraint; realism was the target within it.</div></div>
     </div>
   </div>
 </section>
 
 <!-- 01 PROBLEM -->
-<section>
+<section id="problem">
   <div class="wrap">
     <div class="split">
       <div class="reveal">
@@ -332,7 +396,7 @@
 </section>
 
 <!-- 02 SYSTEM -->
-<section>
+<section id="product">
   <div class="wrap">
     <div class="reveal">
       <div class="snum">02 — The System</div>
@@ -382,13 +446,25 @@
 </section>
 
 <!-- 04 ARCHITECTURE -->
-<section>
+<section id="architecture">
   <div class="wrap">
     <div class="reveal">
       <div class="snum">04 — System Architecture</div>
       <h2>Three independent states — separation by design</h2>
     </div>
     <div class="co-warn reveal">The system struggled to produce consistent value until this architecture was introduced — state separation wasn't a refinement, it was a prerequisite.</div>
+    <div class="state-map reveal d1" aria-label="State separation architecture">
+      <div class="state-stack">
+        <div class="state-node gold"><strong>Scenario Generator</strong><span>Clinical prompt, task frame, OSCE-style requirements.</span></div>
+        <div class="state-node"><strong>Patient Persona State</strong><span>Emotion, cooperation score, disclosure behavior, voice tone.</span></div>
+        <div class="state-node"><strong>Conversation State</strong><span>Turns, transcript, visible patient-clinician exchange.</span></div>
+      </div>
+      <div class="state-wall">No leakage</div>
+      <div class="state-stack">
+        <div class="state-node mid"><strong>Evaluator State</strong><span>Rubric, criteria, post-session scoring, feedback generation.</span></div>
+        <div class="state-node red"><strong>No Cross-Access</strong><span>The patient never sees the evaluator rubric; the evaluator never steers the patient.</span></div>
+      </div>
+    </div>
     <div class="split reveal d1">
       <div class="arch">
         <div class="dlabel" style="align-self:flex-start">3-State Architecture</div>
@@ -467,21 +543,21 @@
       <p style="max-width:580px">In early testing, without state separation, the model defaulted to its trained behavior — resolution, helpfulness, clarification. After a predictable number of conversational turns, it stopped being the patient.</p>
     </div>
     <div class="drift reveal d1">
-      <div class="dc">
-        <div class="dtag dtag-g">✓ System Working — State Separated</div>
-        <div class="ds"><span class="arr">→</span><span>Patient receives question</span></div>
-        <div class="ds"><span class="arr">→</span><span>Patient responds <span class="ht">within persona</span></span></div>
-        <div class="ds"><span class="arr">→</span><span>Clinician adapts to resistance or emotion</span></div>
-        <div class="ds"><span class="arr">→</span><span>Evaluator assesses dialogue independently</span></div>
-        <div class="ds"><span class="arr">→</span><span class="ht">Role fidelity maintained throughout</span></div>
-      </div>
-      <div class="dc" style="background:rgba(231,111,81,0.05)">
-        <div class="dtag dtag-r">✕ State Contamination — Early Build</div>
+      <div class="dc fail">
+        <div class="dtag dtag-r">Early Build — State Contamination</div>
         <div class="ds"><span class="arr">→</span><span>Patient accumulates evaluator context</span></div>
         <div class="ds"><span class="arr">→</span><span>Model optimizes toward <span class="hr">helpful resolution</span></span></div>
         <div class="ds"><span class="arr">→</span><span>Patient begins <span class="hr">advising the clinician</span></span></div>
         <div class="ds"><span class="arr">→</span><span class="hr">Patient persona becomes the clinician</span></div>
         <div class="ds"><span class="arr">→</span><span>Simulation collapses — session invalid</span></div>
+      </div>
+      <div class="dc">
+        <div class="dtag dtag-g">Corrected Build — State Separated</div>
+        <div class="ds"><span class="arr">→</span><span>Patient receives question</span></div>
+        <div class="ds"><span class="arr">→</span><span>Patient responds <span class="ht">within persona</span></span></div>
+        <div class="ds"><span class="arr">→</span><span>Clinician adapts to resistance or emotion</span></div>
+        <div class="ds"><span class="arr">→</span><span>Evaluator assesses dialogue independently</span></div>
+        <div class="ds"><span class="arr">→</span><span class="ht">Role fidelity maintained throughout</span></div>
       </div>
     </div>
     <div class="co reveal d2" style="margin-top:18px">Any AI system where role fidelity matters — training simulations, therapeutic tools, negotiation practice — needs explicit architectural separation between what the model knows and what role it's playing.</div>
@@ -506,7 +582,7 @@
 </section>
 
 <!-- 08 EVALUATION -->
-<section>
+<section id="evaluation">
   <div class="wrap">
     <div class="reveal">
       <div class="snum">08 — Evaluation Engine</div>
@@ -632,7 +708,7 @@
 </section>
 
 <!-- 12 OUTCOME -->
-<section>
+<section id="outcome">
   <div class="wrap">
     <div class="reveal">
       <div class="snum">12 — Outcome</div>
@@ -644,9 +720,13 @@
       <div class="mcel"><div class="mnum">3×</div><div class="mlbl">Feedback Perspectives</div></div>
       <div class="mcel"><div class="mnum">↑</div><div class="mlbl">Question Quality Shift</div></div>
     </div>
-    <p class="reveal d2">Clinicians described feedback as specific, actionable, and directly tied to the dialogue.</p>
+    <div class="outcome-board reveal d2">
+      <div class="outcome-card"><strong>Before</strong><span>Feedback risked feeling personal, vague, or detached from the moment-by-moment dialogue.</span></div>
+      <div class="outcome-arrow">→</div>
+      <div class="outcome-card"><strong>After</strong><span>Feedback became specific, actionable, and tied to observable communication behavior in the transcript.</span></div>
+    </div>
     <div class="co reveal d2">
-      <strong style="color:var(--teal);font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;display:block;margin-bottom:5px">Primary shift observed</strong>
+      <strong class="primary-shift-label">Primary shift observed</strong>
       Clinicians changed how they structured questions across sessions — not just what they asked. The framing, pacing, sequencing, and repair of information gathering shifted. That's a communication habit forming, not a rubric score improving.
     </div>
   </div>
@@ -663,7 +743,7 @@
 </section>
 
 <!-- 14 PROCESS + PROGRESS -->
-<section>
+<section id="roadmap">
   <div class="wrap">
     <div class="reveal">
       <div class="snum">14 — Process + Progress</div>
@@ -708,6 +788,21 @@
       <div class="ncel"><div class="nico">01 · Progress</div><div class="ntit">Profile Tracking</div><div class="ndsc">Track clinician improvement across personas over time. Make the development arc visible rather than session-by-session. The tool needs a sense of progress to sustain engagement.</div></div>
       <div class="ncel"><div class="nico">02 · Rubric Language</div><div class="ntit">Shared Mental Model</div><div class="ndsc">Create stable competency language across handoffs, coaching, and repeated encounters. Feedback should feel developmental, not personal.</div></div>
       <div class="ncel"><div class="nico">03 · Depth</div><div class="ntit">Clinical Complexity</div><div class="ndsc">The area most constrained at MVP. Deeper diagnostic nuance without sacrificing evaluation consistency. As complexity increases, the empathy-information seesaw gets harder — that's where the real training value is.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 CLOSE -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="snum">17 — Close</div>
+      <h2>What was proven, what remains</h2>
+    </div>
+    <div class="close-grid reveal d1">
+      <div class="close-card"><div class="nico">Proven</div><div class="ntit">The training loop works</div><div class="ndsc">Clinicians can rehearse communication behaviors with AI patient personas and receive transcript-specific feedback.</div></div>
+      <div class="close-card"><div class="nico">Remaining</div><div class="ntit">Longitudinal growth</div><div class="ndsc">Profiles, saved evaluations, challenge scenarios, and deeper clinical complexity remain the next ceiling.</div></div>
+      <div class="close-card"><div class="nico">Links</div><div class="ntit">Project artifacts</div><div class="close-links"><a class="hero-btn primary" href="../clinical-roleplay-PRD/">PRD</a><a class="hero-btn" href="../clinical-roleplay-prdv1/">PRD v1</a><a class="hero-btn" href="../connect/">Connect</a><a class="hero-btn" href="../experiences/">Experience</a></div></div>
     </div>
   </div>
 </section>
