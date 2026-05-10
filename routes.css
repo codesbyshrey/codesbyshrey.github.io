@@ -1544,6 +1544,214 @@ details.edu-details .details-body ul {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
+/* --- Pitch pages: /hire/ /work/ /coaching/ --- */
+.route-pitch .pitch-crosslink {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 0 0 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.route-pitch .pitch-crosslink a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.route-pitch .pitch-crosslink a:hover,
+.route-pitch .pitch-crosslink a:focus-visible {
+  color: var(--ink);
+}
+
+.route-pitch .pitch-crosslink a.is-current {
+  color: var(--gold);
+}
+
+.route-pitch .pitch-crosslink-label {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.route-pitch .pitch-intro {
+  padding: 28px 0 8px;
+  max-width: 900px;
+}
+
+.route-pitch .pitch-intro h1 {
+  margin: 0 0 14px;
+  font-size: clamp(1.65rem, 3.8vw, 2.85rem);
+  line-height: 1.1;
+  font-weight: 500;
+  max-width: 28ch;
+}
+
+.route-pitch .pitch-intro .pitch-value {
+  margin: 0 0 22px;
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.route-pitch .schedule-hero {
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+.route-pitch .pitch-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.route-pitch .pitch-proof-item {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(25, 31, 38, 0.88), rgba(255, 255, 255, 0.03));
+  box-shadow: var(--shadow);
+}
+
+.route-pitch .pitch-proof-item dt {
+  margin: 0 0 6px;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--deep);
+}
+
+.route-pitch .pitch-proof-item dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.route-pitch .pitch-heading {
+  margin: 32px 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.route-pitch .pitch-sub {
+  margin: 8px 0 0;
+  max-width: 44rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.route-pitch .pitch-bullets {
+  margin: 16px 0 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  max-width: 46rem;
+}
+
+.route-pitch .pitch-bullets li {
+  margin: 0.55rem 0;
+  line-height: 1.55;
+}
+
+.route-pitch .pitch-models {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.route-pitch .pitch-model-card {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.92), rgba(255, 255, 255, 0.03));
+  box-shadow: var(--shadow);
+}
+
+.route-pitch .pitch-model-card h3 {
+  margin: 0 0 8px;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.route-pitch .pitch-model-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.route-pitch .pitch-coaching-tracks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.route-pitch .pitch-track {
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.9), rgba(182, 244, 94, 0.06));
+}
+
+.route-pitch .pitch-track h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.route-pitch .pitch-track p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.route-pitch .pitch-scope-note {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 141, 103, 0.45);
+  background: linear-gradient(180deg, rgba(25, 31, 39, 0.95), rgba(255, 105, 72, 0.08));
+}
+
+.route-pitch .pitch-scope-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.route-pitch .pitch-scope-note p + p {
+  margin-top: 10px;
+}
+
+.route-pitch .pitch-footer-contact {
+  margin-top: 36px;
+}
+
+.route-pitch .pitch-work-links {
+  margin-top: 18px;
+}
+
+.route-pitch .pitch-tight {
+  margin: 0 0 14px;
+}
+
 @media (max-width: 760px) {
   .hero,
   .grid,
@@ -1597,6 +1805,11 @@ details.edu-details .details-body ul {
 
   .editorial-footer {
     flex-direction: column;
+  }
+
+  .route-pitch .pitch-models,
+  .route-pitch .pitch-coaching-tracks {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -157,6 +157,12 @@ body{background:
 .professional-card{border:1px solid var(--faint);border-radius:16px;background:rgba(255,255,255,.035);padding:16px}
 .professional-card strong{display:block;color:var(--white);font-size:14px;margin-bottom:8px}
 .professional-card p{font-size:14px;line-height:1.6;margin:0;color:#b8b3aa}
+.pathway-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 28px}
+.pathway-card{display:block;text-decoration:none;border:1px solid var(--faint);border-radius:16px;background:rgba(255,255,255,.035);padding:16px;transition:border-color .16s,background .16s}
+.pathway-card:hover,.pathway-card:focus-visible{border-color:var(--teal);background:rgba(91,184,162,.08)}
+.pathway-card span{display:block;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pathway-card strong{display:block;font-size:15px;color:var(--white);margin-bottom:6px}
+.pathway-card p{font-size:13px;line-height:1.55;color:#b8b3aa;margin:0}
 #deck-wrap{min-height:unset;background:transparent;display:grid;gap:22px;-webkit-user-select:text;user-select:text}
 .slide,.slide.active{display:flex;min-height:clamp(500px,68vh,680px);border:1px solid var(--faint);border-radius:22px;background:linear-gradient(145deg,rgba(13,16,32,.96),rgba(7,9,15,.96));box-shadow:0 24px 70px rgba(0,0,0,.32);overflow:hidden;padding:clamp(32px,4.5vw,64px);margin:0}
 .slide::after{content:attr(id);position:absolute;right:22px;bottom:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.2)}
@@ -175,7 +181,7 @@ body{background:
 @media (max-width:820px){
   .site-shell{padding:18px 14px 52px}
   .topbar{align-items:flex-start;flex-direction:column}
-  .essay-hero,.cols,.loop,.trio,.professional-grid{grid-template-columns:1fr}
+  .essay-hero,.cols,.loop,.trio,.professional-grid,.pathway-row{grid-template-columns:1fr}
   .slide,.slide.active{min-height:0;padding:28px 20px}
   .map-row{grid-template-columns:1fr;gap:6px}
   .map-cell.left,.map-cell.right{text-align:left}
@@ -199,11 +205,11 @@ body{background:
   <div>
     <div class="essay-kicker">Human-AI Parallels Perspective</div>
     <h1>Same Architecture.<br>Different Coherence.</h1>
-    <p class="essay-lead">A single-page slide essay on how human cognition and artificial intelligence converge around similar design problems: memory, attention, agency, embodied sensing, representation, and the search for coherent self-regulation.</p>
+    <p class="essay-lead">An authored systems essay on how human cognition and artificial intelligence converge around memory, attention, agency, embodied sensing, representation, and coherent self-regulation.</p>
   </div>
   <aside class="essay-note">
-    <p>This page preserves the original 18-slide deck content while reshaping it into a scrollable writing surface for portfolio review and slower reading.</p>
-    <p>It sits near the Current Focus section because the underlying question is practical: how should we design high-stakes human-AI systems when intelligence is not just capability, but coherence?</p>
+    <p>A perspective piece connecting cognitive development, AI architecture, and embodied agency to product questions in high-stakes human-AI work.</p>
+    <p>The practical question: how should teams design AI systems that preserve memory, context recovery, trust calibration, and legibility when capability alone is not enough?</p>
     <div class="quick-links">
       <a href="#s3">Convergence Map</a>
       <a href="#s10">Sensor-Actuator Gap</a>
@@ -216,13 +222,19 @@ body{background:
 <section class="professional-panel" aria-labelledby="systems-thesis-title">
   <div class="essay-kicker">Professional Systems Thesis</div>
   <h2 id="systems-thesis-title">Interaction design for coherent human-AI systems.</h2>
-  <p>This page is framed as a systems-design argument: high-stakes AI should be evaluated not only by capability, but by coherence, memory, legibility, context recovery, and the user's ability to predict what the system will do next.</p>
+  <p>High-stakes AI should be evaluated not only by capability, but by coherence, memory, legibility, context recovery, and the user's ability to predict what the system will do next.</p>
   <div class="professional-grid">
-    <div class="professional-card"><strong>Design Lens</strong><p>Translate cognitive architecture into interface requirements: attention, working memory, context, feedback, and user trust calibration.</p></div>
-    <div class="professional-card"><strong>AI Systems Lens</strong><p>Map RAG, context windows, agents, multimodal sensing, and tool use onto practical product failure modes.</p></div>
-    <div class="professional-card"><strong>Portfolio Use</strong><p>Use this as the conceptual bridge across Clinical Roleplay, Praxik, Bonita, HapTrek, and embodied interface work.</p></div>
+    <div class="professional-card"><strong>Human Factors Lens</strong><p>Translate cognitive architecture into interface requirements: attention, working memory, context, feedback, and trust calibration.</p></div>
+    <div class="professional-card"><strong>AI Evaluation Lens</strong><p>Map RAG, context windows, agents, multimodal sensing, and tool use onto practical product failure modes.</p></div>
+    <div class="professional-card"><strong>Embodied Systems Lens</strong><p>Connect clinical roleplay, AI wellness, haptics, and movement work through legibility, agency, and coherent feedback loops.</p></div>
   </div>
 </section>
+
+<nav class="pathway-row" aria-label="Related portfolio pathways">
+  <a class="pathway-card" href="../clinical-roleplay/"><span>Clinical AI</span><strong>Clinical Roleplay</strong><p>OSCE-style simulation, state separation, role fidelity, and transcript-based feedback.</p></a>
+  <a class="pathway-card" href="../clinical-ai/"><span>AI Evaluation</span><strong>Human-AI Systems</strong><p>Trust calibration, evidence use, and safety-sensitive evaluation in clinical AI workflows.</p></a>
+  <a class="pathway-card" href="../connect/"><span>Conversation</span><strong>Connect</strong><p>Talk through product, research, AI evaluation, or human-performance systems work.</p></a>
+</nav>
 
 <div id="deck-wrap">
 <h2 class="sr-only">Slide deck: Same Architecture, Different Coherence, tracing parallels between human cognitive development and AI advancement</h2>
@@ -541,7 +553,7 @@ document.addEventListener('keydown',e=>{
 
 go(0);
 </script>
-<p class="source-note">Original slide sequence preserved from the Practice Intuition intelligence convergence deck; reformatted here as a single-page portfolio essay.</p>
+<p class="source-note">Practice Intuition intelligence convergence work · Human Factors &amp; Interaction Design · AI Systems</p>
 </div>
 </body>
 </html>
