@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bonita | Practice Intuition</title>
-  <meta name="description" content="Bonita Encode AI wellness intelligence MVP, case study, and PRD links." />
-  <link rel="stylesheet" href="../routes.css?v=14" />
+  <meta name="description" content="Bonita Encode AI wellness intelligence MVP, case study, PRD, and system design." />
+  <link rel="stylesheet" href="../routes.css?v=17" />
 </head>
 <body>
   <div class="shell">
@@ -15,7 +15,6 @@
         <a href="../education/">Education</a>
         <a href="../experiences/">Experiences</a>
         <a href="../expression/">Expression</a>
-        <a href="../connect/">Connect</a>
       </div>
     </div>
     <section class="hero">
@@ -24,8 +23,9 @@
         <h1>Bonita Encode</h1>
         <p class="lead">An AI wellness intelligence MVP that helps users route real-world challenges into TIME, SPACE, and SELF, then receive one structured protocol with clear steps, rationale, and safety boundaries.</p>
         <div class="actions">
-          <a class="button primary" href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" rel="noopener noreferrer">Open live build</a>
-          <a class="button secondary" href="../pi-bonita-prdv1/">PI Bonita PRD v1</a>
+          <a class="button live-link" href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" rel="noopener noreferrer">Open live build</a>
+          <a class="button concept-link" href="#prd">PRD Details</a>
+          <a class="button concept-link" href="#system-design">System Design</a>
         </div>
       </div>
       <div class="panel">
@@ -67,7 +67,7 @@
       <article class="panel">
         <p>The product is documented as a PRD-to-MVP translation: a structured assessment flow, protocol engine, safety boundary model, and future telemetry loop.</p>
         <div class="process-table">
-          <div class="process-row"><span class="process-stage">PRD</span><p class="process-detail">Define the TIME, SPACE, SELF pillars and the wellness intelligence framing.</p><p class="process-evidence"><a class="quiet-link" href="../pi-bonita-prdv1/">PI Bonita PRD v1</a></p></div>
+          <div class="process-row"><span class="process-stage">PRD</span><p class="process-detail">Define the TIME, SPACE, SELF pillars and the wellness intelligence framing.</p><p class="process-evidence"><a class="quiet-link" href="#prd">Embedded below</a></p></div>
           <div class="process-row"><span class="process-stage">MVP</span><p class="process-detail">Build a polished entry point with assessment, pillar resources, and protocol output.</p><p class="process-evidence">Live build linked from hero.</p></div>
           <div class="process-row"><span class="process-stage">Protocol</span><p class="process-detail">Use structured LLM output so the assistant returns renderable product data instead of raw chat.</p><p class="process-evidence">Checklist-style protocol workflow.</p></div>
           <div class="process-row"><span class="process-stage">Iteration</span><p class="process-detail">Next layer: saved progress, protocol quality review, telemetry, and follow-up loops.</p><p class="process-evidence">Roadmap-ready product surface.</p></div>
@@ -82,7 +82,66 @@
         <div class="skill-card"><strong>Frontend Delivery</strong><p>React, TypeScript, branded interaction design, and PRD-to-product implementation.</p></div>
       </div>
     </section>
-    <p class="footer">Read the <a class="quiet-link" href="../pi-bonita-prdv1/">PI Bonita PRD v1</a> or explore the broader <a class="quiet-link" href="../expression/">Practice Intuition expression</a> layer.</p>
+    <section id="system-design" class="section">
+      <details class="system-details">
+        <summary>System design / architecture details</summary>
+        <div class="details-body">
+          <div class="subbox-grid three">
+            <div class="subbox"><strong>Input model</strong><p>Users describe a current wellness challenge in natural language, optionally adding daily check-in context before protocol generation.</p></div>
+            <div class="subbox"><strong>Routing model</strong><p>The assistant classifies the challenge across TIME, SPACE, SELF, or multi-pillar patterns so the response has a clear conceptual home.</p></div>
+            <div class="subbox"><strong>Output model</strong><p>The model returns structured coaching data that can render as checklist-style protocol cards rather than loose chat advice.</p></div>
+          </div>
+          <p>Bonita was the proof-of-concept layer for a broader Somanaut direction: a coaching system where wellness intelligence is structured, safety-aware, and repeatable enough to become a product rather than a conversation demo.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="prd" class="section">
+      <details class="prd-details">
+        <summary>Bonita Encode PRD details</summary>
+        <div class="details-body">
+          <section class="doc-section">
+            <h2>Product Summary</h2>
+            <p>Bonita Encode is a consumer-facing MVP for integrated wellness guidance. It helps users name a current problem, classify the issue across TIME, SPACE, and SELF, and receive one protocol that is specific enough to try immediately.</p>
+          </section>
+          <section class="doc-section">
+            <h2>Problem</h2>
+            <p>Many wellness tools are too narrow, too generic, or too dependent on passive tracking. Users need personalized guidance that connects body, mind, timing, and environment while teaching the reasoning behind each recommendation.</p>
+          </section>
+          <section class="doc-section">
+            <h2>Core User Stories</h2>
+            <ul class="list">
+              <li>Describe a current wellness challenge in natural language.</li>
+              <li>Understand whether the challenge is primarily TIME, SPACE, SELF, or multi-pillar.</li>
+              <li>Receive one practical protocol with steps and time cost.</li>
+              <li>Learn why the protocol works.</li>
+              <li>Generate a broader wellness plan after enough conversation.</li>
+              <li>Receive clear escalation when an issue may require medical help.</li>
+            </ul>
+          </section>
+          <section class="doc-section">
+            <h2>Functional Requirements</h2>
+            <ul class="list">
+              <li>Allow users to start from a home screen, browse resources, and drill into a pillar before chat.</li>
+              <li>Infer likely pillar routing from user messages.</li>
+              <li>Render structured JSON coaching responses as checklist-style protocol cards.</li>
+              <li>Pass optional daily check-in context into the next AI request.</li>
+              <li>Run deterministic red-flag checks before model generation.</li>
+              <li>Generate a structured wellness dashboard with IQ, EQ, KQ scores and recommendations.</li>
+            </ul>
+          </section>
+          <section class="doc-section">
+            <h2>Risks and Gaps</h2>
+            <p>Future versions should move model calls behind a secure backend, add persistence, expand safety coverage, support citations or evidence provenance, and turn mock longitudinal concepts into real progress tracking.</p>
+          </section>
+          <section class="doc-section">
+            <h2>Product Vision</h2>
+            <p>Bonita can evolve into a premium AI wellness intelligence platform that combines personalized behavior-change support, integrative health education, and longitudinal self-awareness while staying clear about medical boundaries.</p>
+          </section>
+        </div>
+      </details>
+    </section>
+    <p class="footer">Explore the broader <a class="quiet-link" href="../expression/">Practice Intuition expression</a> layer.</p>
   </div>
 </body>
 </html>

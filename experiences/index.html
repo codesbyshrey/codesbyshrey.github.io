@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experiences | Shreyas Sriram</title>
   <meta name="description" content="Experience across clinical AI evaluation, full-stack AI prototyping, human factors research, biomedical engineering, and patient-facing care for Shreyas Sriram." />
-  <link rel="stylesheet" href="../routes.css?v=14" />
+  <link rel="stylesheet" href="../routes.css?v=17" />
 </head>
 <body class="route-experiences">
   <div class="shell">
@@ -15,7 +15,6 @@
         <a href="../education/">Education</a>
         <a href="../experiences/">Experiences</a>
         <a href="../expression/">Expression</a>
-        <a href="../connect/">Connect</a>
       </div>
     </div>
 
@@ -27,8 +26,7 @@
     </section>
 
     <section class="experience-list">
-
-      <article class="panel accent-blue experience-row">
+      <article id="mpathic" class="panel accent-blue experience-row">
         <div>
           <p class="date">2026 &middot; Clinical AI Evaluator</p>
           <h2>mpathic</h2>
@@ -49,43 +47,70 @@
         </div>
       </article>
 
-      <article class="panel accent-blue experience-row">
+      <article id="somanaut" class="panel accent-purple experience-row experience-feature clickable-row" data-href="../expression/" role="link" tabindex="0">
         <div>
-          <p class="date">2025 &middot; HF795 Mixed-Methods Research</p>
-          <h2>AI Evidence Tools Study</h2>
-          <ul class="list">
-            <li>Conducted HF795 mixed-methods research comparing OpenEvidence, Consensus, and Perplexity for trust, comprehension, and evidence interpretation.</li>
-            <li>Analyzed how citation presentation, confidence cues, and answer framing shaped user trust in AI-mediated evidence tools.</li>
-            <li>Translated findings into product recommendations for transparency, source display, and appropriate reliance.</li>
-          </ul>
+          <p class="date">2026 &middot; Founder / Product Builder</p>
+          <h2>Somanaut @ Practice Intuition</h2>
+          <p>Somanaut is the coaching application layer of Practice Intuition: a product system for helping the mind better operate the brain-body interface.</p>
+          <div class="subbox-grid two">
+            <div class="subbox">
+              <h3>Digital Product System</h3>
+              <ul class="list">
+                <li>Founded the Practice Intuition product direction and translated the philosophy into Somanaut's coaching application model.</li>
+                <li>Defined protocol logic, reflection loops, adaptive flows, and safety boundaries for brain-body self-coaching.</li>
+                <li>Used Bonita MVP learnings to clarify the move from wellness triage toward a broader adaptive coaching product.</li>
+              </ul>
+            </div>
+            <div class="subbox">
+              <h3>Coaching + Embodied Practice</h3>
+              <ul class="list">
+                <li>Connected movement coaching, biomechanics, swim instruction, and clinic-based movement education to product requirements.</li>
+                <li>Mapped the body as a feedback interface for attention, emotion, confidence, and performance.</li>
+                <li>Built a consistent language across philosophy, coaching practice, and digital product design.</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="experience-meta">
+          <span class="category-label">Live / reference links</span>
+          <div class="actions">
+            <a class="button ref-link" href="https://practiceintuition.substack.com" target="_blank" rel="noopener noreferrer">PI Substack</a>
+            <a class="button ref-link" href="https://www.linkedin.com/company/practice-intuition" target="_blank" rel="noopener noreferrer">PI LinkedIn</a>
+          </div>
+          <span class="category-label">Bonita Project &amp; Live MVP</span>
+          <p>Bonita was the first proof-of-concept MVP for this direction: an early wellness intelligence prototype that tested structured triage, protocol output, and safety boundaries before Somanaut became the broader coaching product.</p>
+          <div class="actions">
+            <a class="button ref-link" href="../pi-bonita/">Bonita Project</a>
+            <a class="button live-link" href="https://bonita-baddies-wellness-858379987835.us-west1.run.app/" target="_blank" rel="noopener noreferrer">Bonita Live MVP</a>
+          </div>
           <div class="chips">
-            <span class="chip ux">HF795</span>
-            <span class="chip ux">Mixed Methods</span>
-            <span class="chip ux">AI Trust</span>
-            <span class="chip ux">OpenEvidence</span>
-            <span class="chip ux">Consensus</span>
-            <span class="chip ux">Perplexity</span>
+            <span class="chip domain">Practice Intuition</span>
+            <span class="chip domain">Somanaut</span>
+            <span class="chip concept">Brain-Body Interface</span>
+            <span class="chip concept">Adaptive Systems</span>
           </div>
         </div>
       </article>
 
-      <article class="panel accent-blue experience-row">
+      <article id="nbme" class="panel accent-blue experience-row clickable-row" data-href="../clinical-roleplay/" role="link" tabindex="0">
         <div>
           <p class="date">2025 &middot; Lead Product Engineer</p>
           <h2>Clinical Roleplay Simulator - NBME</h2>
           <ul class="list">
-            <li>Built a React + TypeScript clinical communication simulator with LLM-driven patient personas, voice interaction, and rubric-aligned feedback for OSCE-style encounters.</li>
-            <li>Integrated OpenAI APIs, Pinecone retrieval, and ASR/STT/TTS; kept patient simulation grounded and separated evaluator UX for trust.</li>
-            <li>Iterated demo-ready end-to-end flows with domain experts; documented states, edge cases, and component contracts for handoff.</li>
+            <li>Led 0-to-1 product engineering for an NBME-sponsored clinical communication simulator for OSCE-style practice.</li>
+            <li>Built React + TypeScript learner flows for scenario selection, text/voice patient interaction, transcript handling, and formative feedback.</li>
+            <li>Separated scenario, patient, and evaluator states so patient roleplay stayed realistic while feedback stayed rubric-aligned.</li>
           </ul>
         </div>
         <div class="experience-meta">
+          <span class="category-label">Case study / PRD / live links</span>
           <div class="actions">
-            <a class="button secondary" href="../clinical-roleplay/">Case Study</a>
-            <a class="button secondary" href="../clinical-roleplay-PRD/">PRD</a>
+            <a class="button ref-link" href="../clinical-roleplay/">Case Study</a>
+            <a class="button live-link" href="https://roleplay-sim.lovable.app" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="button ref-link" href="../clinical-roleplay/#prd">PRD</a>
+            <a class="button live-link" href="https://github.com/practiceintuition/roleplay-sim" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
           </div>
+          <span class="category-label">Tech stack</span>
           <div class="chips">
             <span class="chip tech">React</span>
             <span class="chip tech">TypeScript</span>
@@ -96,19 +121,60 @@
         </div>
       </article>
 
-      <article class="panel accent-blue experience-row">
+      <article id="haptrek" class="panel accent-red experience-row clickable-row" data-href="../haptrek/" role="link" tabindex="0">
+        <div>
+          <p class="date">2025 &middot; Multimodal Developer / Product Engineer</p>
+          <h2>HapTrek - Haptic Outdoor Navigation Prototype</h2>
+          <ul class="list">
+            <li>Prototyped a wearable haptic navigation and safety-support concept using Arduino, accelerometer logic, and vibration feedback.</li>
+            <li>Designed non-visual feedback patterns for eyes-busy outdoor movement, terrain awareness, and fall or hazard signaling.</li>
+            <li>Translated embodied-interface research into a demo narrative covering perception-action coupling, accessibility, and field validation needs.</li>
+          </ul>
+        </div>
+        <div class="experience-meta">
+          <span class="category-label">Reference links</span>
+          <div class="actions">
+            <a class="button ref-link" href="../haptrek/">Case Study</a>
+            <a class="button ref-link" href="../gainsbyshrey/">gainsbyshrey</a>
+          </div>
+          <span class="category-label">Tech stack</span>
+          <div class="chips">
+            <span class="chip tech">Arduino</span>
+            <span class="chip tech">C++</span>
+            <span class="chip concept">Haptics</span>
+            <span class="chip concept">Accelerometer</span>
+            <span class="chip concept">Field Testing</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel accent-blue experience-row experience-feature clickable-row" data-href="../nathan-sports/" role="link" tabindex="0">
         <div>
           <p class="date">2025 &middot; UX Researcher</p>
           <h2>NATHAN Sports / United Sports Brands - Bentley HF</h2>
           <ul class="list">
-            <li>Led and conducted moderated usability research on mobile and web product discovery, navigation, and conversion for a running and hydration brand.</li>
-            <li>Synthesized participant behavior, runner segments, and competitive patterns into product recommendations.</li>
-            <li>Provided design recommendations and design concepts for improving findability, product comparison, and mobile shopping flow.</li>
+            <li>Planned and moderated usability sessions evaluating mobile product discovery, navigation, comparison, and conversion friction.</li>
+            <li>Synthesized participant behavior, runner segments, and competitive benchmarks into prioritized product recommendations.</li>
+            <li>Delivered research-backed design recommendations for findability, product comparison, and mobile shopping flow.</li>
           </ul>
+          <div class="subbox-grid two research-pair">
+            <div class="subbox">
+              <h3>HF795 AI Evidence Tools Study</h3>
+              <p>Mixed-methods research comparing OpenEvidence, Consensus, and Perplexity for trust, comprehension, evidence interpretation, citation presentation, and appropriate reliance.</p>
+              <div class="chips"><span class="chip ux">HF795</span><span class="chip ux">Mixed Methods</span><span class="chip ux">AI Trust</span></div>
+            </div>
+            <div class="subbox">
+              <h3>HF780 Adaptive Home Healthcare</h3>
+              <p>Human factors research on home-based care requirements, ecological dynamics, and adaptive human-in-the-loop technologies for non-clinical environments.</p>
+              <div class="chips"><span class="chip ux">HF780</span><span class="chip ux">Home Healthcare</span><span class="chip ux">Ecological Dynamics</span></div>
+            </div>
+          </div>
         </div>
         <div class="experience-meta">
+          <span class="category-label">Reference links</span>
           <div class="actions">
-            <a class="button secondary" href="../nathan-sports/">Case Study</a>
+            <a class="button ref-link" href="../nathan-sports/">Nathan Case Study</a>
+            <a class="button ref-link" href="../picsbyshrey/">picsbyshrey</a>
           </div>
           <div class="chips">
             <span class="chip ux">Moderated Usability Research</span>
@@ -120,102 +186,72 @@
         </div>
       </article>
 
-      <article class="panel accent-red experience-row">
+      <article class="panel accent-purple experience-row experience-feature clickable-row" data-href="../gainsbyshrey/" role="link" tabindex="0">
         <div>
-          <p class="date">2025 &middot; Multimodal Developer / Product Engineer</p>
-          <h2>HapTrek - Haptic Outdoor Navigation Prototype</h2>
-          <ul class="list">
-            <li>Prototyped a haptic outdoor navigation system on Arduino with accelerometer-based fall detection and non-visual feedback.</li>
-            <li>Designed perception-action mappings for eyes-busy, hands-busy use; ran iterative field tests across terrain conditions.</li>
-            <li>Bridged embedded prototyping with stakeholder demo narratives covering accessibility-adjacent and outdoor-safety use cases.</li>
-          </ul>
+          <p class="date">2024-2025 &middot; Movement / Coaching Experience</p>
+          <h2>YMCA + Wellness Group</h2>
+          <div class="subbox-grid two">
+            <div class="subbox">
+              <h3>YMCA Swimming Instruction</h3>
+              <p>Coached adults, children, and aquatherapy participants by adapting cues to fear, confidence, perceptual readiness, and motor-learning needs.</p>
+            </div>
+            <div class="subbox">
+              <h3>Wellness Group / Movement Education</h3>
+              <p>Supported movement education and wellness conversations with an emphasis on scope, trust, body awareness, and practical next steps.</p>
+            </div>
+          </div>
         </div>
         <div class="experience-meta">
           <div class="actions">
-            <a class="button secondary" href="../haptrek/">Case Study</a>
+            <a class="button ref-link" href="../gainsbyshrey/">gainsbyshrey</a>
           </div>
           <div class="chips">
-            <span class="chip tech">Arduino</span>
-            <span class="chip tech">C++</span>
-            <span class="chip concept">Haptics</span>
-            <span class="chip concept">Accelerometer</span>
-            <span class="chip concept">Field Testing</span>
+            <span class="chip concept">YMCA</span>
+            <span class="chip concept">Movement Education</span>
+            <span class="chip concept">Aquatherapy Context</span>
+            <span class="chip concept">Wellness Coaching</span>
+            <span class="chip concept">Scope Boundaries</span>
           </div>
         </div>
       </article>
 
-      <article class="panel accent-red experience-row">
+      <article id="ccnc" class="panel accent-orange experience-row experience-feature clickable-row" data-href="../chatEMT/" role="link" tabindex="0">
         <div>
-          <p class="date">2024-Present &middot; Movement &amp; Biomechanics Coach</p>
-          <h2>Applied Biomechanics Coaching - Independent</h2>
-          <ul class="list">
-            <li>Run movement assessments and individualized strength and mobility coaching for clients across pain-free movement, performance, and self-regulation goals.</li>
-            <li>Apply NASM CPT methods and biomechanics frameworks to integrate breath, gait, and load progressions into client programs.</li>
-            <li>Coach within fitness and wellness scope of practice; no clinical diagnosis or treatment.</li>
-          </ul>
+          <p class="date">2023-2024 &middot; Associate PM / Healthcare Communication Context</p>
+          <h2>Associate PM @ CCnC Solutions + EMT</h2>
+          <div class="subbox-grid two">
+            <div class="subbox">
+              <h3>Associate PM @ CCnC Solutions</h3>
+              <p>Supported early healthcare-product incubation around caregiver communication, structured intake, and escalation-aware handoff workflows.</p>
+              <ul class="list">
+                <li>Translated ambiguous healthcare communication problems into MVP slices, user flows, and product language.</li>
+                <li>Connected caregiver needs, AI-assisted information gathering, and operational handoff constraints.</li>
+                <li>Used the work to clarify ChatEMT as a safer healthcare communication and summary concept.</li>
+              </ul>
+            </div>
+            <div class="subbox">
+              <h3>EMT as Secondary Experiential Context</h3>
+              <p>EMT experience made the product context concrete: patient emotion, time pressure, documentation, transport, handoffs, uncertainty, and scope boundaries all shaped how the communication problem was framed.</p>
+              <ul class="list">
+                <li>Patient-facing care and transport under real operational constraints.</li>
+                <li>Closed-loop communication, handoff structure, and escalation awareness.</li>
+                <li>Useful clinical context for healthcare tools without overstating medical scope.</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="experience-meta">
-          <div class="actions">
-            <a class="button secondary" href="../biomechanics/">Biomechanics</a>
-          </div>
           <div class="chips">
-            <span class="chip concept">NASM CPT</span>
-            <span class="chip concept">Movement Coaching</span>
-            <span class="chip concept">Strength</span>
-            <span class="chip concept">Self-Regulation</span>
+            <span class="chip domain">Associate PM</span>
+            <span class="chip domain">CCnC Solutions</span>
+            <span class="chip ux">Healthcare Communication</span>
+            <span class="chip concept">EMT-B</span>
+            <span class="chip concept">Patient Handoff</span>
           </div>
         </div>
       </article>
 
-      <article class="panel accent-purple experience-row">
-        <div>
-          <p class="date">2023-2024 &middot; Product Incubation - PM + Developer</p>
-          <h2>CCnC Solutions / ChatEMT - Caregiver Health AI</h2>
-          <ul class="list">
-            <li>Compared ChatGPT, Gemini, and Dialogflow stacks for response quality, workflow fit, and conversational UX in a caregiver-support assistant.</li>
-            <li>Architected RAG-grounded prompt patterns and intent/entity flows; ran semantic behavior reviews across vendors and prototypes.</li>
-            <li>Translated caregiver pain into MVP slices, prototype demos, and stakeholder-facing learning loops in a small-team incubation.</li>
-          </ul>
-        </div>
-        <div class="experience-meta">
-          <div class="actions">
-            <a class="button secondary" href="../chatEMT/">ChatEMT</a>
-          </div>
-          <div class="chips">
-            <span class="chip tech">ChatGPT</span>
-            <span class="chip tech">Gemini</span>
-            <span class="chip tech">Dialogflow</span>
-            <span class="chip tech">RAG</span>
-            <span class="chip domain">Healthcare AI</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="panel accent-green experience-row">
-        <div>
-          <p class="date">2023-2024 &middot; Full-Stack Cloud Developer</p>
-          <h2>Coding Dojo Full-Stack Immersive + AWS</h2>
-          <ul class="list">
-            <li>Built and shipped React, Node/Express, and Python/Django apps with REST APIs, JWT auth, and PostgreSQL/MongoDB models during the Coding Dojo immersive.</li>
-            <li>Earned AWS Certified Developer - Associate; deployed app patterns covering EC2, RDS, Elastic Beanstalk, and Lambda fundamentals.</li>
-            <li>Practiced Scrum, Git workflows, and SDET-oriented refactoring discipline across capstone deliverables.</li>
-          </ul>
-        </div>
-        <div class="experience-meta">
-          <div class="actions">
-            <a class="button secondary" href="../fullstack/">Full Stack + Cloud</a>
-          </div>
-          <div class="chips">
-            <span class="chip tech">React</span>
-            <span class="chip tech">Node</span>
-            <span class="chip tech">Django</span>
-            <span class="chip tech">PostgreSQL</span>
-            <span class="chip tech">AWS</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="panel accent-red experience-row">
+      <article id="patent" class="panel accent-red experience-row clickable-row" data-href="../patent/" role="link" tabindex="0">
         <div>
           <p class="date">2019-2022 &middot; BME Capstone Co-Inventor</p>
           <h2>Glenoid Implant Patent - RPI</h2>
@@ -227,80 +263,51 @@
         </div>
         <div class="experience-meta">
           <div class="actions">
-            <a class="button secondary" href="../patent/">Patent</a>
+            <a class="button ref-link" href="../patent/">Patent</a>
           </div>
           <div class="chips">
             <span class="chip concept">Shoulder Arthroplasty</span>
-            <span class="chip concept">SolidWorks</span>
-            <span class="chip concept">FEA</span>
-            <span class="chip concept">Mechanical Testing</span>
+            <span class="chip tech">SolidWorks</span>
+            <span class="chip tech">FEA</span>
+            <span class="chip tech">Mechanical Testing</span>
           </div>
         </div>
       </article>
 
-      <article class="panel accent-purple experience-row">
-        <div>
-          <p class="date">2021-2022 &middot; EMT-B</p>
-          <h2>Emergency Medical Technician</h2>
-          <ul class="list">
-            <li>Delivered patient care, transport, and triage as a certified EMT-B across 911 response and inter-facility transfers.</li>
-            <li>Practiced closed-loop communication with crews and receiving providers during high-stakes, time-pressured calls.</li>
-            <li>Built field experience around patient communication and workflow under stress.</li>
-          </ul>
-        </div>
-        <div class="experience-meta">
-          <div class="chips">
-            <span class="chip concept">EMT-B</span>
-            <span class="chip concept">Patient Care</span>
-            <span class="chip concept">911 Response</span>
-            <span class="chip concept">Closed-Loop Comms</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="panel accent-purple experience-row">
-        <div>
-          <p class="date">2021-2022 &middot; Clinic-Based Movement Education</p>
-          <h2>Physical Therapy Clinic Exposure</h2>
-          <ul class="list">
-            <li>Supported clinic operations and observed patient sessions as part of Physical Therapy Clinic Exposure (no PT licensure or scope of practice).</li>
-            <li>Supported patient-facing movement education within supervised settings; focused on plain-language explanation of movement and respect for pain and uncertainty.</li>
-          </ul>
-        </div>
-        <div class="experience-meta">
-          <div class="chips">
-            <span class="chip concept">PT Clinic Exposure</span>
-            <span class="chip concept">Movement Education</span>
-            <span class="chip concept">Patient-Facing</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="panel accent-teal experience-row">
+      <article class="panel accent-teal experience-row clickable-row" data-href="../praxik/" role="link" tabindex="0">
         <div>
           <p class="date">2018 &middot; UX/UI Intern (AR iOS)</p>
           <h2>Praxik LLC - AR Internship Project</h2>
           <ul class="list">
-            <li>Designed and built an AR museum-learning iOS app concept across an 11-week internship.</li>
-            <li>Translated Adobe XD wireframes into a working Xcode/Swift/ARKit/SceneKit prototype with plane detection and model placement.</li>
-            <li>Iterated with stakeholders through co-ideation, visual critique cycles, and demo-ready milestones.</li>
+            <li>Designed and built a museum-learning AR app concept during an 11-week client-facing internship.</li>
+            <li>Translated Adobe XD concepts into Xcode/Swift/ARKit implementation with plane detection and 3D model placement.</li>
+            <li>Iterated through stakeholder feedback, visual critique, onboarding friction, and demo-ready milestones.</li>
           </ul>
         </div>
         <div class="experience-meta">
           <div class="actions">
-            <a class="button secondary" href="../praxik/">Case Study</a>
+            <a class="button ref-link" href="../praxik/">Case Study</a>
           </div>
-          <div class="chips">
-            <span class="chip ux">Adobe XD</span>
-            <span class="chip ux">Swift</span>
-            <span class="chip ux">ARKit</span>
-            <span class="chip ux">SceneKit</span>
-          </div>
+          <div class="chips"><span class="chip tech">Adobe XD</span><span class="chip tech">Swift</span><span class="chip tech">ARKit</span><span class="chip tech">SceneKit</span></div>
         </div>
       </article>
     </section>
 
     <p class="footer">For deeper case studies, see the linked project pages.</p>
   </div>
+  <script>
+    document.querySelectorAll(".clickable-row[data-href]").forEach((row) => {
+      row.addEventListener("click", (event) => {
+        if (event.target.closest("a, button, summary, details, input, select, textarea")) return;
+        window.location.href = row.dataset.href;
+      });
+      row.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        if (event.target.closest("a, button, summary, details, input, select, textarea")) return;
+        event.preventDefault();
+        window.location.href = row.dataset.href;
+      });
+    });
+  </script>
 </body>
 </html>
