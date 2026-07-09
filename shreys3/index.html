@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHREYAS | Systems, Humans, Research, Education, Why, Athlete-Coach, Shreyas</title>
+  <meta name="description" content="A scrollable SHREYAS map: systems, human-centric work, research, education, essays, athlete-coach experience, and identity links." />
+  <link rel="stylesheet" href="../routes.css?v=20" />
+  <style>
+    body {
+      background: #f3f5f7;
+    }
+
+    .shreys3-shell {
+      max-width: 1240px;
+    }
+
+    .shreys3-hero {
+      border: 0;
+      background: transparent;
+      padding: 20px 0 8px;
+    }
+
+    .shreys3-title {
+      max-width: 880px;
+      font-size: clamp(2rem, 4vw, 4.35rem);
+      line-height: 0.98;
+      margin-bottom: 16px;
+    }
+
+    .name-map {
+      display: grid;
+      grid-template-columns: 128px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      margin: 18px 0 0;
+    }
+
+    .letter-rail {
+      position: sticky;
+      top: 14px;
+      display: grid;
+      gap: 12px;
+      border: 1px solid #ccd4dc;
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+      margin: 0;
+    }
+
+    .rail-letter {
+      min-height: 118px;
+      border: 1px solid #d8dee5;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #111827;
+      background: #f9fafb;
+    }
+
+    .letter-rows {
+      display: grid;
+      gap: 12px;
+    }
+
+    .letter-row {
+      min-height: 142px;
+      display: grid;
+      grid-template-columns: minmax(190px, 0.45fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: stretch;
+      border: 1px solid #cfd7df;
+      border-radius: 8px;
+      background: #fff;
+      padding: 14px;
+      margin: 0;
+    }
+
+    .letter-row.reverse {
+      grid-template-columns: minmax(0, 1fr) minmax(190px, 0.45fr);
+    }
+
+    .letter-row.reverse .letter-label {
+      order: 2;
+    }
+
+    .letter-label {
+      border: 1px solid #d8dee5;
+      border-radius: 8px;
+      background: #eef5ff;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .letter-label strong {
+      font-size: clamp(2.25rem, 6vw, 6rem);
+      line-height: 0.9;
+    }
+
+    .letter-label span {
+      display: block;
+      font-weight: 800;
+      color: #0b355f;
+    }
+
+    .row-table {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+    }
+
+    .row-table.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cell {
+      border: 1px solid #d7dde3;
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+    }
+
+    .cell strong,
+    .cell span {
+      display: block;
+    }
+
+    .cell strong {
+      margin-bottom: 6px;
+    }
+
+    .cell p {
+      margin-bottom: 0;
+    }
+
+    .cell a {
+      font-weight: 700;
+    }
+
+    .s-row .letter-label,
+    .r-row .letter-label {
+      background: #eef5ff;
+    }
+
+    .h-row .letter-label,
+    .a-row .letter-label {
+      background: #f3edff;
+    }
+
+    .e-row .letter-label,
+    .y-row .letter-label {
+      background: #fff7ed;
+    }
+
+    .final-row .letter-label {
+      background: #ecfdf3;
+    }
+
+    .shreyas-close {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 14px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .name-map {
+        grid-template-columns: 1fr;
+      }
+
+      .letter-rail {
+        position: static;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+      }
+
+      .rail-letter {
+        min-height: 54px;
+        font-size: 1.7rem;
+      }
+
+      .letter-row,
+      .letter-row.reverse,
+      .shreyas-close {
+        grid-template-columns: 1fr;
+      }
+
+      .letter-row.reverse .letter-label {
+        order: 0;
+      }
+
+      .row-table,
+      .row-table.two {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell shreys3-shell">
+    <div class="topbar">
+      <a class="mark" href="../">Codes by Shrey</a>
+      <div class="links">
+        <a href="../health-humans-ai/">Health + AI</a>
+        <a href="../experiences/">Experiences</a>
+        <a href="../education/">Education</a>
+        <a href="../expression/">Expression</a>
+      </div>
+    </div>
+
+    <section class="shreys3-hero">
+      <p class="eyebrow">SHREYAS3</p>
+      <h1 class="shreys3-title">A scroll map of systems, humans, research, education, why, athlete-coach, and Shreyas.</h1>
+      <p class="lead">Each letter is a lane. Each lane is a subtable of work, evidence, and identity: clinical AI, patient-facing healthcare, human factors, product research, embodied coaching, essays, and public portfolios.</p>
+    </section>
+
+    <main class="name-map" aria-label="SHREYAS scroll map">
+      <aside class="letter-rail" aria-label="Name letters">
+        <span class="rail-letter">S</span>
+        <span class="rail-letter">H</span>
+        <span class="rail-letter">R</span>
+        <span class="rail-letter">E</span>
+        <span class="rail-letter">Y</span>
+        <span class="rail-letter">A</span>
+        <span class="rail-letter">S</span>
+      </aside>
+
+      <section class="letter-rows">
+        <article class="letter-row s-row">
+          <div class="letter-label">
+            <strong>S</strong>
+            <span>Systems</span>
+          </div>
+          <div class="row-table">
+            <div class="cell"><strong>NBME / mpathic</strong><p>Clinical AI systems: OSCE-style roleplay, LLM evaluation, empathy, safety, scope control, and human-in-the-loop review.</p></div>
+            <div class="cell"><strong>EMT / CCnC</strong><p>Patient healthcare systems: emergency transport, handoffs, structured intake, caregiver communication, and ChatEMT product incubation.</p></div>
+            <div class="cell"><strong>Patent</strong><p>Innovative design engineered until it could be called invented: modular glenoid implant, biomechanics, constraints, and mechanical testing.</p></div>
+          </div>
+        </article>
+
+        <article class="letter-row h-row reverse">
+          <div class="letter-label">
+            <strong>H</strong>
+            <span>Human-Centric</span>
+          </div>
+          <div class="row-table">
+            <div class="cell"><strong>Clinic + Performance Facing Work</strong><p>Physical Therapy Clinic Exposure, Nutriformance, and Athletic Republic shaped patient and athlete coaching instincts.</p></div>
+            <div class="cell"><strong>HF700 Product Design Reviews</strong><p>Human factors critique, product review, usability heuristics, and user-centered design judgment.</p></div>
+            <div class="cell"><strong>HapTrek</strong><p>Wearable haptic navigation and fall-detection concept for eyes-busy movement, non-visual feedback, and field context.</p></div>
+          </div>
+        </article>
+
+        <article class="letter-row r-row">
+          <div class="letter-label">
+            <strong>R</strong>
+            <span>Research</span>
+          </div>
+          <div class="row-table">
+            <div class="cell"><strong>Nathan Usability</strong><p>Moderated mobile UX research on product discovery, comparison, conversion friction, trust signals, and runner segments.</p></div>
+            <div class="cell"><strong>HF795 Quant</strong><p>Mixed-methods and quantitative research on AI evidence tools, trust calibration, comprehension, bias, and overreliance.</p></div>
+            <div class="cell"><strong>Qual780 / 750 LunarBoat</strong><p>Qualitative research, ecological dynamics, home healthcare, and LunarBoat project work for applied human factors practice.</p></div>
+          </div>
+        </article>
+
+        <article class="letter-row e-row reverse">
+          <div class="letter-label">
+            <strong>E</strong>
+            <span>Education</span>
+          </div>
+          <div class="row-table">
+            <div class="cell"><strong>MS HFID</strong><p>Human Factors in Information Design at Bentley: research methods, product design, interaction design, and evaluation.</p></div>
+            <div class="cell"><strong>BS Biomedical Engineering</strong><p>RPI foundation in biomaterials, biomechanics, medical-device constraints, and engineering problem solving.</p></div>
+            <div class="cell"><strong>Credentials</strong><p>AWS Developer Associate, NASM certifications, CodingDojo full-stack certificate, and Conor Harris biomechanics training.</p></div>
+          </div>
+        </article>
+
+        <article class="letter-row y-row">
+          <div class="letter-label">
+            <strong>Y</strong>
+            <span>Y Are We Here?</span>
+          </div>
+          <div class="row-table">
+            <div class="cell"><strong>Mind at Large Essay</strong><p>Long-form thinking on mind, perception, embodied intelligence, and why human systems need better language.</p></div>
+            <div class="cell"><strong>Consciousness Essay</strong><p>Notes and essays on consciousness, attention, agency, embodied cognition, and multi-agent coordination.</p></div>
+            <div class="cell"><strong>Yapping / Social Media</strong><p>Public writing, social posts, and Practice Intuition threads that turn abstract questions into usable language.</p></div>
+          </div>
+        </article>
+
+        <article class="letter-row a-row reverse">
+          <div class="letter-label">
+            <strong>A</strong>
+            <span>Athlete-Coach</span>
+          </div>
+          <div class="row-table">
+            <div class="cell"><strong>NCAA D3 / Swim Team</strong><p>Competitive training history that grounds the performance, discipline, feedback, and adaptation lens.</p></div>
+            <div class="cell"><strong>Chess Wizard / YMCA</strong><p>Instructional coaching across children, adults, aquatherapy participants, confidence, fear, attention, and learning pace.</p></div>
+            <div class="cell"><strong>White Pass / DECA</strong><p>Outdoor, leadership, business, and communication contexts that shaped comfort with groups, constraints, and public performance.</p></div>
+          </div>
+        </article>
+
+        <article class="letter-row final-row">
+          <div class="letter-label">
+            <strong>S</strong>
+            <span>Shreyas</span>
+          </div>
+          <div class="row-table two">
+            <div class="cell"><strong>Description</strong><p>I am a human-centered product engineer and researcher working across clinical AI, human factors, biomedical engineering, movement coaching, and public writing. I study how people understand, trust, and behave within health-adjacent systems, then build for n = 1 before engineering for safety and scale.</p></div>
+            <div class="cell"><strong>Public Lenses</strong><p><a href="../picsbyshrey/">picsbyshrey</a> is research and synthesis. <a href="../codesbyshrey/">codesbyshrey</a> is product engineering and adaptive systems. <a href="../gainsbyshrey/">gainsbyshrey</a> is coaching, biomechanics, and the body as an adaptive system.</p></div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <section class="shreyas-close">
+      <article class="panel accent-blue">
+        <p class="panel-title">Reading Order</p>
+        <p>Start at Systems for the clinical AI and healthcare spine. Move through Human-Centric and Research for the human factors proof. Education and Y explain the foundations. Athlete-Coach shows the embodied practice. Shreyas ties the public identities together.</p>
+      </article>
+      <article class="panel accent-purple">
+        <p class="panel-title">Links</p>
+        <div class="actions">
+          <a class="button ref-link" href="../picsbyshrey/">picsbyshrey</a>
+          <a class="button ref-link" href="../codesbyshrey/">codesbyshrey</a>
+          <a class="button ref-link" href="../gainsbyshrey/">gainsbyshrey</a>
+          <a class="button concept-link" href="../health-humans-ai/">health-humans-ai</a>
+        </div>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
