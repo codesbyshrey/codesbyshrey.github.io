@@ -1087,6 +1087,140 @@ iframe {
   margin-bottom: 12px;
 }
 
+/* SHREYAS route. A sparse identity map that reuses the portfolio's wireframe language. */
+.route-shreyas .shreyas-shell {
+  max-width: 1120px;
+}
+
+.route-shreyas main {
+  max-width: none;
+  padding: 0;
+}
+
+.shreyas-hero {
+  border: 1px solid #111;
+  background: #fff;
+  padding: clamp(24px, 6vw, 64px);
+  margin-bottom: 16px;
+}
+
+.shreyas-hero h1 {
+  max-width: none;
+  margin-bottom: 18px;
+  font-size: clamp(2.5rem, 9vw, 6.75rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.shreyas-intro {
+  max-width: 54ch;
+  color: #30363d;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  margin-bottom: 20px;
+}
+
+.shreyas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.shreyas-actions .button {
+  margin: 0;
+}
+
+.shreyas-actions .button.secondary {
+  border-color: #aeb7c2;
+  background: #fff;
+  color: #111;
+}
+
+.shreyas-map {
+  border: 1px solid #111;
+  background: #fff;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.shreyas-row {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) minmax(180px, 0.42fr);
+  gap: 20px;
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid #111;
+  border-radius: 0;
+  padding: 22px;
+  margin: 0;
+}
+
+.shreyas-row:last-child {
+  border-bottom: 0;
+}
+
+.shreyas-letter {
+  color: #0b4a8f;
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+}
+
+.shreyas-row-final .shreyas-letter {
+  color: #6d3fb5;
+}
+
+.shreyas-row .eyebrow {
+  margin-bottom: 4px;
+}
+
+.shreyas-row h2 {
+  margin: 0 0 5px;
+  font-size: 1.3rem;
+}
+
+.shreyas-row p:not(.shreyas-letter, .eyebrow) {
+  color: #30363d;
+  margin: 0;
+}
+
+.shreyas-row-links {
+  display: grid;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.shreyas-row-links a {
+  border-bottom: 1px solid #d7dde3;
+  padding: 5px 0;
+  text-decoration: none;
+}
+
+.shreyas-row-links a:last-child {
+  border-bottom: 0;
+}
+
+.shreyas-row-links a:hover,
+.shreyas-row-links a:focus {
+  text-decoration: underline;
+}
+
+.shreyas-close {
+  border: 1px solid #111;
+  background: #fff;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.shreyas-close h2 {
+  max-width: 28ch;
+  margin: 0 0 18px;
+}
+
 @media (max-width: 700px) {
   .shell,
   .editorial-shell,
@@ -1178,5 +1312,30 @@ iframe {
     float: none;
     min-height: 0;
     margin-left: 0;
+  }
+
+  .shreyas-hero {
+    padding: 24px 18px;
+  }
+
+  .shreyas-hero h1 {
+    font-size: clamp(2.2rem, 13vw, 4.2rem);
+    letter-spacing: 0.01em;
+  }
+
+  .shreyas-row {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 14px;
+  }
+
+  .shreyas-letter {
+    align-self: start;
+    font-size: 2rem;
+  }
+
+  .shreyas-row-links {
+    grid-column: 2;
+    margin-top: 4px;
   }
 }
